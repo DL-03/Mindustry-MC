@@ -1,0 +1,9 @@
+/nuget
+bin
+obj
+packages
+.vs
+*.suo
+*.user
+project.lock.json
+project.fragment.lock.json

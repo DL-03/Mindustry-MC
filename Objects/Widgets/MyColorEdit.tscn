@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://h7qbb7eroerv"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_8qfpr"]
+[ext_resource type="Script" path="res://Objects/Widgets/MyColorEdit.gd" id="1_yr1g5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8cdil"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6me2r"]
+bg_color = Color(0.627451, 0.12549, 0.941176, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i11kc"]
+bg_color = Color(0.627451, 0.12549, 0.941176, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkn0r"]
+bg_color = Color(0.627451, 0.12549, 0.941176, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[node name="MyColorEdit" type="HBoxContainer" node_paths=PackedStringArray("Line_Edit", "ColorButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -908.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yr1g5")
+Line_Edit = NodePath("LineEdit")
+ColorButton = NodePath("ColorButton")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8qfpr")
+text = "#a020f0ff"
+placeholder_text = "#FF00FF00"
+
+[node name="ColorButton" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8cdil")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6me2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i11kc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qkn0r")
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

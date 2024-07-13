@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dipdoen4ju8yg"]
+
+[ext_resource type="Script" path="res://Objects/MindustryTextLabel.gd" id="1_52qyv"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_ntexi"]
+
+[node name="MindustryTextLabel" type="RichTextLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 121.0
+offset_top = 53.0
+offset_right = -644.0
+offset_bottom = -487.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_ntexi")
+bbcode_enabled = true
+autowrap_mode = 0
+script = ExtResource("1_52qyv")

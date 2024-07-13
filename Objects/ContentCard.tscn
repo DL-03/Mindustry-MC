@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxllrpipx487b"]
+
+[ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="2_mcxc2"]
+[ext_resource type="Script" path="res://Objects/СontentСard.gd" id="2_pe2dx"]
+[ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_k7vmj"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_p8x7r"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="4_ii38n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rveqn"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ContentCard" type="Button"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -654.0
+offset_bottom = -598.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_ii38n")
+script = ExtResource("2_pe2dx")
+
+[node name="HBoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ObjectIcon" parent="HBoxContainer/MarginContainer" instance=ExtResource("3_k7vmj")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer/ObjectIcon"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rveqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Name" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_mcxc2")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
+text = "Name"
+real_text = "Name"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Path" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 2
+theme = ExtResource("3_p8x7r")
+theme_override_font_sizes/font_size = 11
+text = "Path"
+horizontal_alignment = 2
+clip_text = true
+structured_text_bidi_override = 2
+
+[node name="Type" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_p8x7r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/font_size = 10
+text = "NONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Duplicate" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_ii38n")
+disabled = true
+text = ""
+
+[node name="Rename" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_ii38n")
+disabled = true
+text = ""
+
+[node name="Delete" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_ii38n")
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+disabled = true
+text = ""
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

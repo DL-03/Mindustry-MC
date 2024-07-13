@@ -1,0 +1,103 @@
+{
+  "version": 0.1,
+  "LanguageDict": {
+    "Messages": {
+      "dont_forget_to_save": {"en": "Don't forget to save", "ru": "Не забывай сохраняться!"},
+      "modification_bylf_Closed": {"en": "Modification bylf Closed!", "ru": "Модификация была Закрыт!"},
+      "modification_has_been_opened": {"en": "Modification has been opened!", "ru": "Модификация была Открыта!"},
+      "the_modification_was_opened_with_errors": {"en": "The modification was opened with errors!", "ru": "Модификация была Открыта с ошибками!"},
+      "file_cannot_be_opened": {"en": "File cannot be opened!", "ru": "Файл не получается Открыть!"}
+    },
+    "Main":  {
+      "follow_the_link": {"en": "Follow the link!", "ru": "Перейти по ссылке!"},
+
+      "InformationText": {"en": "Information", "ru": "Информация"},
+      "VersionText": {"en": "Version", "ru": "Версия"},
+      "CreatorText": {"en": "Creator", "ru": "Создатель"},
+      "CodeText": {"en": "Password", "ru": "Пароль"},
+
+      "InformationButton": {"en": "Information", "ru": "Информация"},
+      "CreateButton": {"en": "Create", "ru": "Создать"},
+      "SettingsButton": {"en": "Settings", "ru": "Настройки"},
+
+      "buttonAtuthorHyperLinkButton": {"en": "Follow the link!", "ru": "Перейти по ссылке!"},
+      "passwordButtonButton": {"en": "Check password", "ru": "Проверить пароль"},
+      "button0FolderButton": {"en": "Folder", "ru": "Папка"},
+      "button1ArchiveButton": {"en": "Archive", "ru": "Архив"},
+
+
+
+      "Open_Modification_How?Text": {"en": "Open Modification How?", "ru": "Открыть Модификацию Как?"},
+      "How_to_open_modification?Text": {"en": "How to open modification?", "ru": "Каким способом открыть модификацию?"},
+
+      "UpdateText": {"en": "Update", "ru": "Обновление"},
+      "yesButton": {"en": "Yes", "ru": "Да"},
+      "noButton": {"en": "No", "ru": "Нет"},
+      "closeButton": {"en": "Close", "ru": "Закрыть"},
+      "backButton": {"en": "Back", "ru": "Назад"},
+
+      "SettingsText": {"en": "Settings", "ru": "Настройки"},
+      "ModificationsText": {"en": "Modifications", "ru": "Модификации"},
+
+      "LanguageText": {"en": "Language", "ru": "Язык"},
+      "contentFileMomentalWarningYes": {"en":  "\nInstant file deletion without timer", "ru":  "Моментальное удаление файла без таймера"},
+      "AutoOpenModeMindustrySettingText": {"en": "After launch, open the modification menu", "ru": "После запуска открыть меню модификаций"},
+      "saveMessageFrequency": {"en": "Save message frequency(sec.)", "ru": "Периодичность сообщения о сохранении(сек.)"},
+
+
+      "labelIntroductionText": {"en": "Welcome to [#ffd37f]Mindustry Mod Construct[white] - a program in which you can operate with modifications, edit content and much more.[#ffd37f] Below you can make the initial burnout settings!", "ru": "[]Добро пожаловать в [#ffd37f]Mindustry Mod Construct[white] - программе в которой вы можете оперировать модификациями, редактировать контент и много другое.[#ffd37f] Ниже вы можете произвести первичную настройку прогарами!"},
+      "First_launch_of_MMCText": {"en": "First launch of Mindustry Mod Construct", "ru": "Первый запуск Mindustry Mod Construct"},
+
+      "updateContentTypeWindow_LabelMText": {"en": "Update on file with classes(types)\n[green]Server: {}\n[yellow]Installed: {}\n[white]Update?", "ru": "[]Вышло обновление на файл с классами(типами)\n[green]Сервер: {}\n[yellow]Установленная: {}\n[white]Обновить?"},
+
+
+      "InformationWindow_DescriptionMMC": {"en": "[UI.YELLOW]Mindustry Mod Construct [white]or (Mindustry MC) \nis a program with the help of which you can \neasily operate the mods created for the [UI.YELLOW]Mindustry [white]game.", "ru": "[UI.YELLOW]Mindustry Mod Construct [white]или (Mindustry MC) — \nэто программа, с помощью которой вы можете легко\nуправлять модами, созданными для игры [UI.YELLOW]Mindustry[white]."},
+      "InformationWindow_SecretText": {"en": "Secret", "ru": "Секрет"},
+      "InformationWindow_SecretTip": {"en": "Enter any phrase, word or number to open Easter eggs\nassociated with any person, event, or just a funny joke,\nbut note that there is one combination of numbers that will allow\nyou enable new MMS features, Experiment!", "ru": "Введите любую фразу, слово или число для открытия пасхалки \nсвязанной с каким либо человеком, событием, или просто смешным приколом, \nно учтите, что есть одна комбинация цифр, которая позволит \nвам включить новые возможности ММС, Экспериментируйте!"}
+    },
+    "PasswordDataBase": {
+      "!else!": {"en": "What were you even hoping for?", "ru": "А на что ты вообще надеялся?"},
+      "1234": {"en": "Too trite", "ru": "Cлишком банально"},
+      "Password": {"en": "Apparently you don't understand your intentions", "ru": "Видимо ты не понимаешь своих намерений"},
+      "Code": {"en": "Bad luck and miss", "ru": "Невезуха и промах"},
+      "Secret": {"en": "Shhh....", "ru": "Тссс...."},
+      "0.21": {"en": "Access to unfinished functions received!", "ru": "Доступ к недоделанными функциям получен!"},
+
+      "Vladislav117": {"en": "Give me a piece of the router, the Internet is not working)", "ru": "Дайте мне кусочек роутера ато интернет не работает)"},
+      "DL": {"en": "[green]DL Developer [UI.YELLOW]MMC", "ru": "DL разработчик MMC"},
+      "Exmii": {"en": "Exmii is one of the [Orange]MMC veterans\n[white]Why are there no names for objects in your mod? Why???", "ru": "Exmii один из [Orange]ветеранов MMC!\n[white]Почему в твоєм моде нет названий у обєктов почему???"},
+      "IvanDog11": {"en": "IvanDog11 is one of the [Orange]MMC veterans!\n[white]''Try not to blow up the reactor''\nGreat quote!", "ru": "IvanDog11 один из [Orange]ветеранов MMC!\n[white]''Попытайтесь не взорвать реактор''\nЦытата великого!"},
+      "Neu": {"en": "Neu is one of the [Orange]MMC veterans!\n[white]Interested in programming, cryptocurrency and cryptography", "ru": "Neu один из ветеранов [Orange]MMC!\n[white]Интересуется программированием, криптовалютой и криптографией"},
+      "axylua": {"en": "Axylua is one of the [Orange]MMC veterans!\n[white]By the way, Dl, it seems to me that the save die pops up too often", "ru": "Аху один из ветеранов [Orange]MMC!\n[white]Кстати, Дл, мне кажется плашка об сохранении вылазит слишком часто"},
+
+      "_ignatusik_": {"en": "Helicopter", "ru": "Helicopter"}
+    },
+    "Class": {
+      "tip_type": {"en": "Type", "ru": "Тип"}, "tip_parametr": {"en": "Parametr", "ru": "Параметр"}, "tip_default": {"en": "Default", "ru": "По умолчанию"},
+
+      "name": {"en": "Name", "ru": "Имя"},
+
+      "localizedName": {"en": "Localized Name", "ru": "Локализованное имя"},
+
+      "description": {"en": "Description", "ru": "Описание"},
+
+      "color": {"en": "Color", "ru": "Цвет"},
+
+      "hasItems": {"en": "Has items?", "ru": "Есть предметы?"},
+      "hasItems_desc": {"en": "If ([green]true[white]), buildings have an Item Module", "ru": "Если значение ([green]true[white]), то у зданий есть модуль предмета"},
+
+      "hasLiquids": {"en": "Has Liquids?", "ru": "Имеет жидкости?"},
+      "hasLiquids_desc": {"en": "If ([green]true[white]), buildings have a Liquid Module.", "ru": "Если значение ([green]true[white]), в зданиях есть жидкостный модуль."},
+
+      "hasPower": {"en": "Has Power?", "ru": "Имеет Энергию?"},
+      "hasPower_desc": {"en": "If ([green]true[white]), buildings have a Power Module.", "ru": "Если значение ([green]true[white]), у зданий есть енерго модуль."},
+
+      "category": {"en": "Category", "ru": "Категория"},
+      "category_desc": {"en": "Category in place menu.", "ru": "Категория в меню постройки."},
+
+      "requirements": {"en": "Requirements", "ru": "Требования"},
+      "requirements_desc": {"en": "Cost of constructing this block.", "ru": "Стоимость строительства этого блока."}
+
+    }
+  }
+}

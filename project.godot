@@ -1,0 +1,76 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Mindustry Mod Construct"
+config/name_localized={
+"en": "Mindustry Mod Construct"
+}
+config/version="0.2.1"
+run/main_scene="res://main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Mindustry Mod Construct"
+config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0.145098, 0.145098, 0.145098, 1)
+boot_splash/show_image=false
+config/icon="res://resources/icon.png"
+
+[autoload]
+
+OpenMod="*res://OpenMod.gd"
+ModExplorer="res://mod_explorer.gd"
+ContentManager="*res://ContentManager.gd"
+HJSON="*res://HjsonMain.gd"
+Colors="*res://Objects/Colors.gd"
+
+[debug]
+
+settings/profiler/max_functions=41334
+file_logging/enable_file_logging=true
+settings/stdout/print_fps=true
+settings/stdout/print_gpu_profile=true
+settings/stdout/verbose_stdout=true
+settings/gdscript/max_call_stack=2047
+
+[display]
+
+window/energy_saving/keep_screen_on=false
+window/vsync/vsync_mode=0
+
+[dotnet]
+
+project/assembly_name="Mindustry Mod Construct"
+project/assembly_reload_attempts=5
+
+[editor]
+
+movie_writer/disable_vsync=true
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[gui]
+
+theme/default_font_antialiasing=2
+
+[internationalization]
+
+locale/locale_filter_mode=0
+
+[memory]
+
+limits/message_queue/max_size_mb=64
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.145098, 0.145098, 0.145098, 1)

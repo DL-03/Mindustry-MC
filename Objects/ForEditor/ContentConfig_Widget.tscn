@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnsmx158sf2fa"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_0hum1"]
+[ext_resource type="Script" path="res://Objects/ForEditor/ContentConfig_Widget.gd" id="1_jynon"]
+
+[node name="ContentConfig_Widget" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -51.5
+offset_bottom = -11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jynon")
+
+[node name="NameLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+theme = ExtResource("1_0hum1")
+text = "Key"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="NameLabel" to="." method="_on_name_label_mouse_entered"]
+[connection signal="mouse_exited" from="NameLabel" to="." method="_on_name_label_mouse_exited"]

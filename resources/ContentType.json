@@ -1,0 +1,1175 @@
+{
+  "version": 0.1,
+  "ClassType": {
+	"mod": {
+	  "name": "",
+	  "displayName": "",
+	  "description": "",
+	  "author": "",
+	  "version": "0.1",
+	  "minGameVersion": "105",
+	  "dependencies": [],
+	  "hidden": false
+	},
+	"UnlockableContent": {
+	  "name": "",
+	  "localizedName": "",
+	  "description": "",
+	  "generateIcons": true,
+	  "hideDetails": false,
+	  "iconId": -1,
+	  "inlineDescription": true,
+	  "alwaysUnlocked": true
+	},
+	"Block": {
+	  "extend": "UnlockableContent",
+	  "hasItems": false,
+	  "hasLiquids": false,
+	  "hasPower": false,
+	  "outputsLiquid": false,
+	  "consumesPower": true,
+	  "outputsPower": false,
+	  "conductivePower": false,
+	  "outputsPayload": false,
+	  "acceptsPayload": false,
+	  "acceptsItems": false,
+	  "separateItemCapacity": false,
+	  "itemCapacity": 10,
+	  "liquidCapacity": 10.0,
+	  "liquidPressure": 1.0,
+	  "outputFacing": true,
+	  "noSideBlend": false,
+	  "displayFlow": true,
+	  "inEditor": true,
+	  "lastConfig": null,
+	  "saveConfig": false,
+	  "copyConfig": true,
+	  "clearOnDoubleTap": false,
+	  "update": false,
+	  "destructible": false,
+	  "unloadable": true,
+	  "isDuct": false,
+	  "allowResupply": false,
+	  "solid": false,
+	  "solidifes": false,
+	  "teamPassable": false,
+	  "underBullets": false,
+	  "rotate": false,
+	  "rotateDraw": true,
+	  "invertFlip": false,
+	  "variants": 0,
+	  "drawArrow": true,
+	  "drawTeamOverlay": true,
+	  "saveData": false,
+	  "breakable": false,
+	  "rebuildable": true,
+	  "privileged": false,
+	  "requiresWater": false,
+	  "placeableLiquid": false,
+	  "placeablePlayer": true,
+	  "placeableOn": true,
+	  "insulated": false,
+	  "squareSprite": true,
+	  "absorbLasers": false,
+	  "enableDrawStatus": true,
+	  "drawDisabled": true,
+	  "autoResetEnabled": true,
+	  "noUpdateDisabled": false,
+	  "updateInUnits": true,
+	  "alwaysUpdateInUnits": false,
+	  "useColor": true,
+	  "itemDrop": null,
+	  "playerUnmineable": false,
+	  "attributes": null,
+	  "scaledHealth": -1.0,
+	  "health": -1,
+	  "armor": 0.0,
+	  "baseExplosiveness": 0.0,
+	  "destroyBullet": null,
+	  "drawCracks": true,
+	  "createRubble": true,
+	  "floating": false,
+	  "size": 1,
+	  "offset": 0.0,
+	  "sizeOffset": 0,
+	  "clipSize": -1.0,
+	  "placeOverlapRange": 50.0,
+	  "crushDamageMultiplier": 1.0,
+	  "timers": 1,
+	  "cacheLayer": "normal",
+	  "fillsTile": true,
+	  "forceDark": false,
+	  "alwaysReplace": false,
+	  "replaceable": true,
+	  "group": null,
+	  "flags": "of()",
+	  "priority": 0.0,
+	  "unitCapModifier": 0,
+	  "configurable": false,
+	  "commandable": false,
+	  "allowConfigInventory": true,
+	  "logicConfigurable": false,
+	  "consumesTap": false,
+	  "drawLiquidLight": true,
+	  "envRequired": 0,
+	  "envEnabled": 1,
+	  "envDisabled": 0,
+	  "sync": false,
+	  "conveyorPlacement": false,
+	  "allowDiagonal": true,
+	  "swapDiagonalPlacement": false,
+	  "schematicPriority": 0,
+	  "mapColor": "000000ff",
+	  "hasColor": false,
+	  "targetable": true,
+	  "attacks": false,
+	  "suppressable": false,
+	  "canOverdrive": true,
+	  "outlineColor": "404049ff",
+	  "outlineIcon": false,
+	  "outlineRadius": 4,
+	  "outlinedIcon": -1,
+	  "hasShadow": true,
+	  "customShadow": false,
+	  "placePitchChange": true,
+	  "breakPitchChange": true,
+	  "placeSound": "place",
+	  "breakSound": "breaks",
+	  "destroySound": "boom",
+	  "albedo": 0.0,
+	  "lightColor": "ffffffff",
+	  "emitLight": false,
+	  "lightRadius": 60.0,
+	  "fogRadius": -1,
+	  "loopSound": null,
+	  "loopSoundVolume": 0.5,
+	  "ambientSound": null,
+	  "ambientSoundVolume": 0.05,
+	  "requirements": [],
+	  "category": "distribution",
+	  "buildCost": 20.0,
+	  "buildVisibility": "hidden",
+	  "buildCostMultiplier": 1.0,
+	  "deconstructThreshold": 0.0,
+	  "instantDeconstruct": false,
+	  "breakEffect": "breakBlock",
+	  "destroyEffect": "dynamicExplosion",
+	  "researchCostMultiplier": 1.0,
+	  "researchCostMultipliers": null,
+	  "researchCost": null,
+	  "instantTransfer": false,
+	  "quickRotate": true,
+	  "subclass": null,
+	  "highUnloadPriority": false,
+	  "selectScroll": 0.0,
+	  "buildType": null,
+	  "configurations": null,
+	  "itemFilter": [],
+	  "liquidFilter": [],
+	  "consumers": [],
+	  "optionalConsumers": [],
+	  "nonOptionalConsumers": [],
+	  "updateConsumers": [],
+	  "hasConsumers": false,
+	  "consPower": null,
+	  "regionRotated1": -1,
+	  "regionRotated2": -1,
+	  "region": null,
+	  "editorIcon": null,
+	  "customShadowRegion": null,
+	  "teamRegion": null,
+	  "teamRegions": null,
+	  "variantRegions": null,
+	  "variantShadowRegions": null
+	},
+	"Accelerator": {
+	  "extend": "Block",
+	  "arrowRegion": null,
+	  "launching": "coreNucleus",
+	  "capacities": []
+	},
+	"Floor": {
+	  "extend": "Block",
+	  "edge": "stone",
+	  "speedMultiplier": 1.0,
+	  "dragMultiplier": 1.0,
+	  "damageTaken": 0.0,
+	  "drownTime": 0.0,
+	  "walkEffect": null,
+	  "walkSound": null,
+	  "walkSoundVolume": 0.1,
+	  "walkSoundPitchMin": 0.8,
+	  "walkSoundPitchMax": 1.2,
+	  "drownUpdateEffect": "bubble",
+	  "status": null,
+	  "statusDuration": 60.0,
+	  "liquidDrop": null,
+	  "liquidMultiplier": 1.0,
+	  "isLiquid": false,
+	  "overlayAlpha": 0.65,
+	  "supportsOverlay": false,
+	  "shallow": false,
+	  "blendGroup": "this",
+	  "oreDefault": false,
+	  "oreScale": 24.0,
+	  "oreThreshold": 0.828,
+	  "wall": "air",
+	  "decoration": "air",
+	  "canShadow": true,
+	  "needsSurface": true,
+	  "allowCorePlacement": false,
+	  "wallOre": false,
+	  "blendId": -1
+	},
+	"AirBlock": {
+	  "extend": "Floor"
+	},
+	"EmptyFloor": {
+	  "extend": "Floor"
+	},
+	"ShallowLiquid": {
+	  "extend": "Floor",
+	  "liquidBase": null,
+	  "floorBase": null,
+	  "liquidOpacity": 0.35
+	},
+	"OverlayFloor": {
+	  "extend": "Floor"
+	},
+	"OreBlock": {
+	  "extend": "OverlayFloor"
+	},
+	"LiquidBlock": {
+	  "extend": "Block",
+	  "liquidRegion": null,
+	  "topRegion": null,
+	  "bottomRegion": null
+	},
+	"LiquidJunction": {
+	  "extend": "LiquidBlock"
+	},
+	"LiquidRouter": {
+	  "extend": "LiquidBlock",
+	  "liquidPadding": 0.0
+	},
+	"Pump": {
+	  "extend": "LiquidBlock",
+	  "pumpAmount": 0.2,
+	  "consumeTime": 300.0,
+	  "drawer": null
+	},
+	"SolidPump": {
+	  "extend": "Pump",
+	  "result": "water",
+	  "updateEffect": null,
+	  "updateEffectChance": 0.02,
+	  "rotateSpeed": 1.0,
+	  "baseEfficiency": 1.0,
+	  "attribute": null,
+	  "rotatorRegion": null
+	},
+	"Fracker": {
+	  "extend": "SolidPump",
+	  "itemUseTime": 100.0
+	},
+	"Conduit": {
+	  "extend": "LiquidBlock",
+	  "timerFlow": 1,
+	  "botColor": "565656ff",
+	  "topRegions": null,
+	  "botRegions": null,
+	  "capRegion": null,
+	  "rotateRegions": null,
+	  "leaks": true,
+	  "junctionReplacement": null,
+	  "bridgeReplacement": null,
+	  "rotBridgeReplacement": null
+	},
+	"ArmoredConduit": {
+	  "extend": "Conduit"
+	},
+	"Conveyor": {
+	  "extend": "Block",
+	  "regions": null,
+	  "speed": 0.0,
+	  "displayedSpeed": 0.0,
+	  "junctionReplacement": null,
+	  "bridgeReplacement": null
+	},
+	"ArmoredConveyor": {
+	  "extend": "Conveyor"
+	},
+	"GenericCrafter": {
+	  "extend": "Block",
+	  "outputItem": null,
+	  "outputItems": null,
+	  "outputLiquid": null,
+	  "outputLiquids": null,
+	  "liquidOutputDirections": [
+		-1
+	  ],
+	  "dumpExtraLiquid": true,
+	  "ignoreLiquidFullness": false,
+	  "craftTime": 80.0,
+	  "craftEffect": null,
+	  "updateEffect": null,
+	  "updateEffectChance": 0.04,
+	  "warmupSpeed": 0.019,
+	  "legacyReadWarmup": false,
+	  "drawer": null
+	},
+	"AttributeCrafter": {
+	  "extend": "GenericCrafter",
+	  "attribute": "heat",
+	  "baseEfficiency": 1.0,
+	  "boostScale": 1.0,
+	  "maxBoost": 1.0,
+	  "minEfficiency": -1.0,
+	  "displayEfficiencyScale": 1.0,
+	  "displayEfficiency": true
+	},
+	"HeatCrafter": {
+	  "extend": "GenericCrafter",
+	  "heatRequirement": 10.0,
+	  "overheatScale": 1.0,
+	  "maxEfficiency": 4.0
+	},
+	"HeatProducer": {
+	  "extend": "GenericCrafter",
+	  "heatOutput": 10.0,
+	  "warmupRate": 0.15
+	},
+	"Wall": {
+	  "extend": "Block",
+	  "lightningChance": -1.0,
+	  "lightningDamage": 20.0,
+	  "lightningLength": 17,
+	  "lightningColor": "f3e979ff",
+	  "lightningSound": "spark",
+	  "chanceDeflect": -1.0,
+	  "flashHit": false,
+	  "flashColor": "ffffffff",
+	  "deflectSound": null
+	},
+	"AutoDoor": {
+	  "extend": "Wall",
+	  "timerToggle": 1,
+	  "checkInterval": 20.0,
+	  "openfx": "dooropen",
+	  "closefx": "doorclose",
+	  "doorSound": "door",
+	  "openRegion": null,
+	  "triggerMargin": 12.0
+	},
+	"BaseShield": {
+	  "extend": "Wall",
+	  "radius": 200.0,
+	  "sides": 24
+	},
+	"Door": {
+	  "extend": "Wall",
+	  "timerToggle": 1,
+	  "openfx": "dooropen",
+	  "closefx": "doorclose",
+	  "doorSound": "door",
+	  "openRegion": null
+	},
+	"BaseTurret": {
+	  "extend": "Block",
+	  "range": 80.0,
+	  "placeOverlapMargin": 56.0,
+	  "rotateSpeed": 5.0,
+	  "coolEffect": "fuelburn",
+	  "coolantMultiplier": 5.0,
+	  "coolant": null
+	},
+	"BuildTurret": {
+	  "extend": "BaseTurret",
+	  "timerTarget": 1,
+	  "timerTarget2": 2,
+	  "targetInterval": 15,
+	  "baseRegion": null,
+	  "glowRegion": null,
+	  "buildSpeed": 1.0,
+	  "buildBeamOffset": 5.0,
+	  "unitType": null,
+	  "elevation": -1.0,
+	  "heatColor": "ffd37fe5"
+	},
+	"StorageBlock": {
+	  "extend": "Block",
+	  "coreMerge": true
+	},
+	"CoreBlock": {
+	  "extend": "StorageBlock",
+	  "thruster1": null,
+	  "thruster2": null,
+	  "thrusterLength": 3.5,
+	  "isFirstTier": false,
+	  "incinerateNonBuildable": false,
+	  "unitType": "alpha",
+	  "captureInvicibility": 900.0
+	},
+	"Drill": {
+	  "extend": "Block",
+	  "hardnessDrillMultiplier": 50.0,
+	  "tier": 0,
+	  "drillTime": 300.0,
+	  "liquidBoostIntensity": 1.6,
+	  "warmupSpeed": 0.015,
+	  "blockedItem": null,
+	  "drawMineItem": true,
+	  "drillEffect": "mine",
+	  "drillEffectRnd": -1.0,
+	  "rotateSpeed": 2.0,
+	  "updateEffect": "pulverizeSmall",
+	  "updateEffectChance": 0.02,
+	  "drawRim": false,
+	  "drawSpinSprite": true,
+	  "heatColor": "ff5512ff",
+	  "rimRegion": null,
+	  "rotatorRegion": null,
+	  "topRegion": null,
+	  "itemRegion": null
+	},
+	"BurstDrill": {
+	  "extend": "Drill",
+	  "shake": 2.0,
+	  "speedCurve": "pow2In",
+	  "topInvertRegion": null,
+	  "glowRegion": null,
+	  "arrowRegion": null,
+	  "arrowBlurRegion": null,
+	  "invertedTime": 200.0,
+	  "arrowSpacing": 4.0,
+	  "arrowOffset": 0.0,
+	  "arrows": 3,
+	  "arrowColor": "feb380ff",
+	  "baseArrowColor": "6e7080ff",
+	  "glowColor": "feb380ff"
+	},
+	"DroneCenter": {
+	  "extend": "Block",
+	  "unitsSpawned": 4,
+	  "droneType": null,
+	  "status": "overdrive",
+	  "droneConstructTime": 180.0,
+	  "statusDuration": 120.0,
+	  "droneRange": 50.0
+	},
+	"HeatConductor": {
+	  "extend": "Block",
+	  "visualMaxHeat": 15.0,
+	  "drawer": null
+	},
+	"Junction": {
+	  "extend": "Block",
+	  "speed": 26.0,
+	  "capacity": 6
+	},
+	"ItemBridge": {
+	  "extend": "Block",
+	  "timerCheckMoved": 1,
+	  "range": 0,
+	  "transportTime": 2.0,
+	  "endRegion": null,
+	  "bridgeRegion": null,
+	  "arrowRegion": null,
+	  "fadeIn": true,
+	  "moveArrows": true,
+	  "pulse": false,
+	  "arrowSpacing": 4.0,
+	  "arrowOffset": 2.0,
+	  "arrowPeriod": 0.4,
+	  "arrowTimeScl": 6.2,
+	  "lastBuild": null
+	},
+	"LiquidBridge": {
+	  "extend": "ItemBridge"
+	},
+	"BufferedItemBridge": {
+	  "extend": "ItemBridge",
+	  "timerAccept": 2,
+	  "speed": 40.0,
+	  "bufferCapacity": 50
+	},
+	"LiquidVoid": {
+	  "extend": "Block"
+	},
+	"MassDriver": {
+	  "extend": "Block",
+	  "range": 0.0,
+	  "rotateSpeed": 5.0,
+	  "translation": 7.0,
+	  "minDistribute": 10,
+	  "knockback": 4.0,
+	  "reload": 100.0,
+	  "bullet": null,
+	  "bulletSpeed": 5.5,
+	  "bulletLifetime": 200.0,
+	  "shootEffect": "shootBig2",
+	  "smokeEffect": "shootBigSmoke2",
+	  "receiveEffect": "mineBig",
+	  "shootSound": "shootBig",
+	  "shake": 3.0,
+	  "baseRegion": null
+	},
+	"MemoryBlock": {
+	  "extend": "Block",
+	  "memoryCapacity": 32
+	},
+	"MendProjector": {
+	  "extend": "Block",
+	  "timerUse": 1,
+	  "baseColor": "84f491ff",
+	  "phaseColor": "84f491ff",
+	  "topRegion": null,
+	  "reload": 250.0,
+	  "range": 60.0,
+	  "healPercent": 12.0,
+	  "phaseBoost": 12.0,
+	  "phaseRangeBoost": 50.0,
+	  "useTime": 400.0
+	},
+	"PayloadBlock": {
+	  "extend": "Block",
+	  "payloadSpeed": 0.7,
+	  "payloadRotateSpeed": 5.0,
+	  "regionSuffix": "",
+	  "topRegion": null,
+	  "outRegion": null,
+	  "inRegion": null
+	},
+	"PayloadMassDriver": {
+	  "extend": "PayloadBlock",
+	  "range": 100.0,
+	  "rotateSpeed": 2.0,
+	  "length": 11.125,
+	  "knockback": 5.0,
+	  "reload": 30.0,
+	  "chargeTime": 100.0,
+	  "maxPayloadSize": 3.0,
+	  "grabWidth": 8.0,
+	  "grabHeight": 2.75,
+	  "shootEffect": "shootBig2",
+	  "smokeEffect": "shootPayloadDriver",
+	  "receiveEffect": "payloadReceive",
+	  "shootSound": "shootBig",
+	  "shake": 3.0,
+	  "transferEffect": "flyingUnitLow - 1)",
+	  "baseRegion": null,
+	  "capRegion": null,
+	  "leftRegion": null,
+	  "rightRegion": null,
+	  "capOutlineRegion": null,
+	  "leftOutlineRegion": null,
+	  "rightOutlineRegion": null,
+	  "arrow": null
+	},
+	"PayloadVoid": {
+	  "extend": "PayloadBlock",
+	  "incinerateEffect": "blastExplosion",
+	  "incinerateSound": "bang"
+	},
+	"PayloadSource": {
+	  "extend": "PayloadBlock"
+	},
+	"UnitBlock": {
+	  "extend": "PayloadBlock"
+	},
+	"Reconstructor": {
+	  "extend": "UnitBlock",
+	  "constructTime": 120.0,
+	  "upgrades": null,
+	  "capacities": []
+	},
+	"PowerBlock": {
+	  "extend": "Block"
+	},
+	"PayloadDeconstructor": {
+	  "extend": "PowerBlock",
+	  "maxPayloadSize": 4.0,
+	  "deconstructSpeed": 2.5,
+	  "dumpRate": 4
+	},
+	"PayloadLoader": {
+	  "extend": "PowerBlock",
+	  "timerLoad": 1,
+	  "loadTime": 2.0,
+	  "itemsLoaded": 8,
+	  "liquidsLoaded": 40.0,
+	  "maxBlockSize": 3,
+	  "maxPowerConsumption": 40.0,
+	  "loadPowerDynamic": true
+	},
+	"PayloadUnloader": {
+	  "extend": "PayloadLoader",
+	  "offloadSpeed": 4,
+	  "maxPowerUnload": 80.0
+	},
+	"PowerNode": {
+	  "extend": "PowerBlock",
+	  "laser": null,
+	  "laserEnd": null,
+	  "laserRange": 6.0,
+	  "maxNodes": 3,
+	  "autolink": true,
+	  "drawRange": true,
+	  "laserScale": 0.25,
+	  "laserColor1": "ffffffff",
+	  "laserColor2": "fbd367ff"
+	},
+	"LongPowerNode": {
+	  "extend": "PowerNode",
+	  "glow": null,
+	  "glowColor": "cbfd8172",
+	  "glowScl": 16.0,
+	  "glowMag": 0.6
+	},
+	"PowerSource": {
+	  "extend": "PowerNode",
+	  "powerProduction": 10000.0
+	},
+	"PowerVoid": {
+	  "extend": "PowerBlock"
+	},
+	"PowerDistributor": {
+	  "extend": "PowerBlock"
+	},
+	"Battery": {
+	  "extend": "PowerDistributor",
+	  "topRegion": null,
+	  "emptyLightColor": "f8c266ff",
+	  "fullLightColor": "fb9567ff"
+	},
+	"PowerGenerator": {
+	  "extend": "PowerDistributor",
+	  "powerProduction": 0.0,
+	  "generationType": "basePowerGeneration",
+	  "drawer": null
+	},
+	"ConsumeGenerator": {
+	  "extend": "PowerGenerator",
+	  "itemDuration": 120.0,
+	  "effectChance": 0.01,
+	  "generateEffect": null,
+	  "consumeEffect": null,
+	  "generateEffectRange": 3.0,
+	  "liquidOutput": null,
+	  "filterItem": null,
+	  "filterLiquid": null
+	},
+	"ImpactReactor": {
+	  "extend": "PowerGenerator",
+	  "timerUse": 1,
+	  "warmupSpeed": 0.001,
+	  "itemDuration": 60.0,
+	  "explosionRadius": 23,
+	  "explosionDamage": 1900,
+	  "explodeEffect": "impactReactorExplosion",
+	  "plasma1": "ffd06bff",
+	  "plasma2": "ff361bff",
+	  "bottomRegion": null,
+	  "plasmaRegions": null
+	},
+	"NuclearReactor": {
+	  "extend": "PowerGenerator",
+	  "timerFuel": 1,
+	  "tr": null,
+	  "lightColor": "7f19eaff",
+	  "coolColor": "ffffff00",
+	  "hotColor": "ff9575a3",
+	  "explodeEffect": "reactorExplosion",
+	  "itemDuration": 120.0,
+	  "heating": 0.01,
+	  "smokeThreshold": 0.3,
+	  "flashThreshold": 0.46,
+	  "explosionRadius": 19,
+	  "explosionDamage": 1250,
+	  "coolantPower": 0.5,
+	  "smoothLight": 0.0,
+	  "fuelItem": "thorium",
+	  "topRegion": null,
+	  "lightsRegion": null
+	},
+	"BeamNode": {
+	  "extend": "PowerBlock",
+	  "range": 5,
+	  "laser": null,
+	  "laserEnd": null,
+	  "laserColor1": "ffffffff",
+	  "laserColor2": "ffd9c2ff",
+	  "pulseScl": 7.0,
+	  "pulseMag": 0.05,
+	  "laserWidth": 0.4
+	},
+	"BeamDrill": {
+	  "extend": "Block",
+	  "laser": null,
+	  "laserEnd": null,
+	  "laserCenter": null,
+	  "laserBoost": null,
+	  "laserEndBoost": null,
+	  "laserCenterBoost": null,
+	  "topRegion": null,
+	  "glowRegion": null,
+	  "drillTime": 200.0,
+	  "range": 5,
+	  "tier": 1,
+	  "laserWidth": 0.65,
+	  "optionalBoostIntensity": 2.5,
+	  "sparkColor": "fd9e81ff",
+	  "glowColor": "ffffffff",
+	  "glowIntensity": 0.2,
+	  "pulseIntensity": 0.07,
+	  "glowScl": 3.0,
+	  "sparks": 7,
+	  "sparkRange": 10.0,
+	  "sparkLife": 27.0,
+	  "sparkRecurrence": 4.0,
+	  "sparkSpread": 45.0,
+	  "sparkSize": 3.5,
+	  "boostHeatColor": "75b3ccff",
+	  "heatColor": "ff5959e5",
+	  "heatPulse": 0.3,
+	  "heatPulseScl": 7.0
+	},
+	"CanvasBlock": {
+	  "extend": "Block",
+	  "padding": 0.0,
+	  "canvasSize": 8,
+	  "palette": null,
+	  "bitsPerPixel": 0,
+	  "colorToIndex": null
+	},
+	"Cliff": {
+	  "extend": "Block",
+	  "size": 11.0,
+	  "cliffs": null,
+	  "editorCliffs": null
+	},
+	"ReloadTurret": {
+	  "extend": "BaseTurret",
+	  "reload": 10.0
+	},
+	"PointDefenseTurret": {
+	  "extend": "ReloadTurret",
+	  "timerTarget": 1,
+	  "retargetTime": 5.0,
+	  "baseRegion": null,
+	  "color": "ffffffff",
+	  "beamEffect": "pointBeam",
+	  "hitEffect": "pointHit",
+	  "shootEffect": "sparkShoot",
+	  "shootSound": "lasershoot",
+	  "shootCone": 5.0,
+	  "bulletDamage": 10.0,
+	  "shootLength": 3.0
+	},
+	"Turret": {
+	  "extend": "ReloadTurret",
+	  "timerTarget": 1,
+	  "targetInterval": 20.0,
+	  "maxAmmo": 30,
+	  "ammoPerShot": 1,
+	  "consumeAmmoOnce": true,
+	  "heatRequirement": -1.0,
+	  "maxHeatEfficiency": 3.0,
+	  "inaccuracy": 0.0,
+	  "velocityRnd": 0.0,
+	  "shootCone": 8.0,
+	  "shootX": 0.0,
+	  "shootY": null,
+	  "xRand": null,
+	  "minRange": 0.0,
+	  "minWarmup": 0.0,
+	  "accurateDelay": true,
+	  "moveWhileCharging": true,
+	  "shoot": null,
+	  "targetAir": true,
+	  "targetGround": true,
+	  "targetHealing": false,
+	  "playerControllable": true,
+	  "displayAmmoMultiplier": true,
+	  "unitSort": "closest",
+	  "unitFilter": [
+		"code"
+	  ],
+	  "buildingFilter": "underBullets",
+	  "heatColor": "ab3400ff",
+	  "shootEffect": null,
+	  "smokeEffect": null,
+	  "ammoUseEffect": null,
+	  "shootSound": "shoot",
+	  "chargeSound": null,
+	  "soundPitchMin": 0.9,
+	  "soundPitchMax": 1.1,
+	  "ammoEjectBack": 1.0,
+	  "shootWarmupSpeed": 0.1,
+	  "linearWarmup": false,
+	  "recoil": 1.0,
+	  "recoilTime": -1.0,
+	  "recoilPow": 1.8,
+	  "cooldownTime": 20.0,
+	  "elevation": -1.0,
+	  "shake": 0.0,
+	  "drawer": null
+	},
+	"PayloadAmmoTurret": {
+	  "extend": "Turret",
+	  "ammoTypes": null
+	},
+	"ContinuousTurret": {
+	  "extend": "Turret",
+	  "shootType": "placeholder"
+	},
+	"ContinuousLiquidTurret": {
+	  "extend": "ContinuousTurret",
+	  "ammoTypes": null,
+	  "liquidConsumed": 0.016666668
+	},
+	"ItemTurret": {
+	  "extend": "Turret",
+	  "ammoTypes": null
+	},
+	"LiquidTurret": {
+	  "extend": "Turret",
+	  "ammoTypes": null,
+	  "extinguish": true
+	},
+	"PowerTurret": {
+	  "extend": "Turret",
+	  "shootType": null
+	},
+	"LaserTurret": {
+	  "extend": "PowerTurret",
+	  "firingMoveFract": 0.25,
+	  "shootDuration": 100.0
+	},
+	"DirectionBridge": {
+	  "extend": "Block",
+	  "bridgeRegion": null,
+	  "bridgeBotRegion": null,
+	  "bridgeLiquidRegion": null,
+	  "arrowRegion": null,
+	  "dirRegion": null,
+	  "range": 4
+	},
+	"DirectionLiquidBridge": {
+	  "extend": "DirectionBridge",
+	  "timerFlow": 1,
+	  "speed": 5.0,
+	  "liquidPadding": 1.0,
+	  "bottomRegion": null
+	},
+	"DuctBridge": {
+	  "extend": "DirectionBridge",
+	  "speed": 5.0
+	},
+	"DirectionalForceProjector": {
+	  "extend": "Block",
+	  "width": 30.0,
+	  "shieldHealth": 3000.0,
+	  "cooldownNormal": 1.75,
+	  "cooldownLiquid": 1.5,
+	  "cooldownBrokenBase": 0.35,
+	  "absorbEffect": "absorb",
+	  "shieldBreakEffect": "shieldBreak",
+	  "topRegion": null,
+	  "length": 40.0,
+	  "padSize": 40.0
+	},
+	"DirectionalUnloader": {
+	  "extend": "Block",
+	  "centerRegion": null,
+	  "topRegion": null,
+	  "arrowRegion": null,
+	  "speed": 1.0,
+	  "allowCoreUnload": false
+	},
+	"Duct": {
+	  "extend": "Block",
+	  "speed": 5.0,
+	  "armored": false,
+	  "transparentColor": "66666619",
+	  "topRegions": null,
+	  "botRegions": null
+	},
+	"DuctRouter": {
+	  "extend": "Block",
+	  "speed": 5.0,
+	  "topRegion": null
+	},
+	"ForceProjector": {
+	  "extend": "Block",
+	  "timerUse": 1,
+	  "phaseUseTime": 350.0,
+	  "phaseRadiusBoost": 80.0,
+	  "phaseShieldBoost": 400.0,
+	  "radius": 101.7,
+	  "shieldHealth": 700.0,
+	  "cooldownNormal": 1.75,
+	  "cooldownLiquid": 1.5,
+	  "cooldownBrokenBase": 0.35,
+	  "coolantConsumption": 0.1,
+	  "consumeCoolant": true,
+	  "absorbEffect": "absorb",
+	  "shieldBreakEffect": "shieldBreak",
+	  "topRegion": null,
+	  "itemConsumer": null,
+	  "coolantConsumer": null
+	},
+	"Incinerator": {
+	  "extend": "Block",
+	  "effect": "fuelburn",
+	  "flameColor": "ffad9dff"
+	},
+	"ItemIncinerator": {
+	  "extend": "Block",
+	  "effect": "incinerateSlag",
+	  "effectChance": 0.2,
+	  "liquidRegion": null,
+	  "topRegion": null
+	},
+	"ItemSource": {
+	  "extend": "Block",
+	  "itemsPerSecond": 100
+	},
+	"ItemVoid": {
+	  "extend": "Block"
+	},
+	"LaunchPad": {
+	  "extend": "Block",
+	  "launchTime": 1.0,
+	  "launchSound": null,
+	  "lightRegion": null,
+	  "podRegion": null,
+	  "lightColor": "eab678ff"
+	},
+	"LightBlock": {
+	  "extend": "Block",
+	  "brightness": 0.9,
+	  "radius": 200.0,
+	  "topRegion": null
+	},
+	"LiquidSource": {
+	  "extend": "Block",
+	  "crossRegion": null,
+	  "bottomRegion": null
+	},
+	"LogicBlock": {
+	  "extend": "Block",
+	  "maxInstructionScale": 5,
+	  "instructionsPerTick": 1,
+	  "maxInstructionsPerTick": 40,
+	  "range": 80.0
+	},
+	"LogicDisplay": {
+	  "extend": "Block",
+	  "maxSides": 25,
+	  "displaySize": 64,
+	  "scaleFactor": 1.0
+	},
+	"MessageBlock": {
+	  "extend": "Block",
+	  "maxTextLength": 220,
+	  "maxNewlines": 24
+	},
+	"OverdriveProjector": {
+	  "extend": "Block",
+	  "timerUse": 1,
+	  "topRegion": null,
+	  "reload": 60.0,
+	  "range": 80.0,
+	  "speedBoost": 1.5,
+	  "speedBoostPhase": 0.75,
+	  "useTime": 400.0,
+	  "phaseRangeBoost": 20.0,
+	  "hasBoost": true,
+	  "baseColor": "feb380ff",
+	  "phaseColor": "ffd59eff"
+	},
+	"OverflowDuct": {
+	  "extend": "Block",
+	  "speed": 5.0,
+	  "topRegion": null
+	},
+	"OverflowGate": {
+	  "extend": "Block",
+	  "speed": 1.0,
+	  "invert": false
+	},
+	"PayloadConveyor": {
+	  "extend": "Block",
+	  "moveTime": 45.0,
+	  "moveForce": 201.0,
+	  "topRegion": null,
+	  "edgeRegion": null,
+	  "interp": "pow5",
+	  "payloadLimit": 3.0
+	},
+	"PayloadRouter": {
+	  "extend": "PayloadConveyor",
+	  "overRegion": null
+	},
+	"PowerDiode": {
+	  "extend": "Block",
+	  "arrow": null
+	},
+	"Prop": {
+	  "extend": "Block"
+	},
+	"Radar": {
+	  "extend": "Block",
+	  "discoveryTime": 600.0,
+	  "rotateSpeed": 2.0,
+	  "baseRegion": null,
+	  "glowRegion": null,
+	  "glowColor": "ab3400ff",
+	  "glowScl": 5.0,
+	  "glowMag": 0.6
+	},
+	"RegenProjector": {
+	  "extend": "Block",
+	  "range": 14,
+	  "healPercent": 0.2,
+	  "optionalMultiplier": 2.0,
+	  "optionalUseTime": 480.0,
+	  "drawer": null,
+	  "effectChance": 0.03,
+	  "baseColor": "ffd37fff",
+	  "effect": "regenParticle"
+	},
+	"RepairTower": {
+	  "extend": "Block",
+	  "range": 80.0,
+	  "circleColor": "98ffa9ff",
+	  "glowColor": "98ffa97f",
+	  "circleSpeed": 120.0,
+	  "circleStroke": 3.0,
+	  "squareRad": 3.0,
+	  "squareSpinScl": 0.8,
+	  "glowMag": 0.5,
+	  "glowScl": 8.0,
+	  "healAmount": 1.0,
+	  "glow": null
+	},
+	"RepairTurret": {
+	  "extend": "Block",
+	  "timerTarget": 1,
+	  "timerEffect": 2,
+	  "repairRadius": 50.0,
+	  "repairSpeed": 0.3,
+	  "powerUse": 0.0,
+	  "length": 5.0,
+	  "beamWidth": 1.0,
+	  "pulseRadius": 6.0,
+	  "pulseStroke": 2.0,
+	  "acceptCoolant": false,
+	  "coolantUse": 0.5,
+	  "coolEffect": "fuelburn",
+	  "coolantMultiplier": 1.0,
+	  "baseRegion": null,
+	  "laser": null,
+	  "laserEnd": null,
+	  "laserTop": null,
+	  "laserTopEnd": null,
+	  "laserColor": "98ffa9ff",
+	  "laserTopColor": "ffffffff"
+	},
+	"Router": {
+	  "extend": "Block",
+	  "speed": 8.0
+	},
+	"Seaweed": {
+	  "extend": "Prop"
+	},
+	"SeaBush": {
+	  "extend": "Prop",
+	  "botRegion": null,
+	  "centerRegion": null,
+	  "lobesMin": 7,
+	  "lobesMax": 7,
+	  "botAngle": 60.0,
+	  "origin": 0.1,
+	  "sclMin": 30.0,
+	  "sclMax": 50.0,
+	  "magMin": 5.0,
+	  "magMax": 15.0,
+	  "timeRange": 40.0,
+	  "spread": 0.0
+	},
+	"Separator": {
+	  "extend": "Block",
+	  "results": null,
+	  "craftTime": 0.0,
+	  "liquidRegion": null,
+	  "spinnerRegion": null,
+	  "spinnerSpeed": 3.0
+	},
+	"ShieldBreaker": {
+	  "extend": "Block",
+	  "toDestroy": [],
+	  "effect": "shockwave",
+	  "breakEffect": "reactorExplosion",
+	  "selfKillEffect": "massiveExplosion"
+	},
+	"Item": {
+	  "extend": "UnlockableContent",
+	  "color": "000000ff",
+	  "explosiveness": 0.0,
+	  "flammability": 0.0,
+	  "radioactivity": 0.0,
+	  "charge": 0.0,
+	  "hardness": 0,
+	  "cost": 1.0,
+	  "healthScaling": 0.0,
+	  "lowPriority": false,
+	  "frames": 0,
+	  "transitionFrames": 0,
+	  "frameTime": 5.0,
+	  "buildable": true,
+	  "hidden": false,
+	  "hiddenOnPlanets": null
+	},
+	"Material": {
+	  "extend": "Item"
+	},
+	"Liquid": {
+	  "extend": "UnlockableContent",
+	  "gas": false,
+	  "color": "000000ff",
+	  "gasColor": "bfbfbfff",
+	  "barColor": null,
+	  "lightColor": "00000000",
+	  "flammability": 0.0,
+	  "temperature": 0.5,
+	  "heatCapacity": 0.5,
+	  "viscosity": 0.5,
+	  "explosiveness": 0.0,
+	  "blockReactive": true,
+	  "coolant": true,
+	  "moveThroughBlocks": false,
+	  "incinerable": true,
+	  "effect": null,
+	  "particleEffect": null,
+	  "particleSpacing": 60.0,
+	  "boilPoint": 2.0,
+	  "capPuddles": true,
+	  "vaporEffect": "vapor",
+	  "hidden": false,
+	  "canStayOn": null
+	},
+	"CellLiquid": {
+	  "extend": "Liquid",
+	  "colorFrom": "ffffffff",
+	  "colorTo": "ffffffff",
+	  "cells": 8,
+	  "spreadTarget": null,
+	  "maxSpread": 0.75,
+	  "spreadConversion": 1.2,
+	  "spreadDamage": 0.11,
+	  "removeScaling": 0.25
+	}
+  }
+}

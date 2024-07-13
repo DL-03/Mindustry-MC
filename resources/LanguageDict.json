@@ -1,0 +1,277 @@
+{
+  "version": 0.1,
+  "LanguageDict": {
+    "Messages": {
+      "dont_forget_to_save": {
+        "en": "Don't forget to save",
+        "ru": "\u041d\u0435 \u0437\u0430\u0431\u044b\u0432\u0430\u0439 \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u0442\u044c\u0441\u044f!"
+      },
+      "modification_bylf_Closed": {
+        "en": "Modification bylf Closed!",
+        "ru": "\u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0431\u044b\u043b\u0430 \u0417\u0430\u043a\u0440\u044b\u0442!"
+      },
+      "modification_has_been_opened": {
+        "en": "Modification has been opened!",
+        "ru": "\u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0431\u044b\u043b\u0430 \u041e\u0442\u043a\u0440\u044b\u0442\u0430!"
+      },
+      "the_modification_was_opened_with_errors": {
+        "en": "The modification was opened with errors!",
+        "ru": "\u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0431\u044b\u043b\u0430 \u041e\u0442\u043a\u0440\u044b\u0442\u0430 \u0441 \u043e\u0448\u0438\u0431\u043a\u0430\u043c\u0438!"
+      },
+      "file_cannot_be_opened": {
+        "en": "File cannot be opened!",
+        "ru": "\u0424\u0430\u0439\u043b \u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442\u0441\u044f \u041e\u0442\u043a\u0440\u044b\u0442\u044c!"
+      }
+    },
+    "Main": {
+      "follow_the_link": {
+        "en": "Follow the link!",
+        "ru": "\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043f\u043e \u0441\u0441\u044b\u043b\u043a\u0435!"
+      },
+      "InformationText": {
+        "en": "Information",
+        "ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f"
+      },
+      "VersionText": {
+        "en": "Version",
+        "ru": "\u0412\u0435\u0440\u0441\u0438\u044f"
+      },
+      "CreatorText": {
+        "en": "Creator",
+        "ru": "\u0421\u043e\u0437\u0434\u0430\u0442\u0435\u043b\u044c"
+      },
+      "CodeText": {
+        "en": "Password",
+        "ru": "\u041f\u0430\u0440\u043e\u043b\u044c"
+      },
+      "InformationButton": {
+        "en": "Information",
+        "ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f"
+      },
+      "CreateButton": {
+        "en": "Create",
+        "ru": "\u0421\u043e\u0437\u0434\u0430\u0442\u044c"
+      },
+      "SettingsButton": {
+        "en": "Settings",
+        "ru": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438"
+      },
+      "buttonAtuthorHyperLinkButton": {
+        "en": "Follow the link!",
+        "ru": "\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043f\u043e \u0441\u0441\u044b\u043b\u043a\u0435!"
+      },
+      "passwordButtonButton": {
+        "en": "Check password",
+        "ru": "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c"
+      },
+      "button0FolderButton": {
+        "en": "Folder",
+        "ru": "\u041f\u0430\u043f\u043a\u0430"
+      },
+      "button1ArchiveButton": {
+        "en": "Archive",
+        "ru": "\u0410\u0440\u0445\u0438\u0432"
+      },
+      "Open_Modification_How?Text": {
+        "en": "Open Modification How?",
+        "ru": "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u041a\u0430\u043a?"
+      },
+      "How_to_open_modification?Text": {
+        "en": "How to open modification?",
+        "ru": "\u041a\u0430\u043a\u0438\u043c \u0441\u043f\u043e\u0441\u043e\u0431\u043e\u043c \u043e\u0442\u043a\u0440\u044b\u0442\u044c \u043c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e?"
+      },
+      "UpdateText": {
+        "en": "Update",
+        "ru": "\u041e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435"
+      },
+      "yesButton": {
+        "en": "Yes",
+        "ru": "\u0414\u0430"
+      },
+      "noButton": {
+        "en": "No",
+        "ru": "\u041d\u0435\u0442"
+      },
+      "closeButton": {
+        "en": "Close",
+        "ru": "\u0417\u0430\u043a\u0440\u044b\u0442\u044c"
+      },
+      "backButton": {
+        "en": "Back",
+        "ru": "\u041d\u0430\u0437\u0430\u0434"
+      },
+      "SettingsText": {
+        "en": "Settings",
+        "ru": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438"
+      },
+      "ModificationsText": {
+        "en": "Modifications",
+        "ru": "\u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438"
+      },
+      "LanguageText": {
+        "en": "Language",
+        "ru": "\u042f\u0437\u044b\u043a"
+      },
+      "contentFileMomentalWarningYes": {
+        "en": "\nInstant file deletion without timer",
+        "ru": "\u041c\u043e\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u043e\u0435 \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u0430 \u0431\u0435\u0437 \u0442\u0430\u0439\u043c\u0435\u0440\u0430"
+      },
+      "AutoOpenModeMindustrySettingText": {
+        "en": "After launch, open the modification menu",
+        "ru": "\u041f\u043e\u0441\u043b\u0435 \u0437\u0430\u043f\u0443\u0441\u043a\u0430 \u043e\u0442\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e \u043c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439"
+      },
+      "saveMessageFrequency": {
+        "en": "Save message frequency(sec.)",
+        "ru": "\u041f\u0435\u0440\u0438\u043e\u0434\u0438\u0447\u043d\u043e\u0441\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u043e \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0438(\u0441\u0435\u043a.)"
+      },
+      "labelIntroductionText": {
+        "en": "Welcome to [#ffd37f]Mindustry Mod Construct[white] - a program in which you can operate with modifications, edit content and much more.[#ffd37f] Below you can make the initial burnout settings!",
+        "ru": "[]\u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c \u0432 [#ffd37f]Mindustry Mod Construct[white] - \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435 \u0432 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043e\u043f\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f\u043c\u0438, \u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043a\u043e\u043d\u0442\u0435\u043d\u0442 \u0438 \u043c\u043d\u043e\u0433\u043e \u0434\u0440\u0443\u0433\u043e\u0435.[#ffd37f] \u041d\u0438\u0436\u0435 \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u0435\u0441\u0442\u0438 \u043f\u0435\u0440\u0432\u0438\u0447\u043d\u0443\u044e \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0443 \u043f\u0440\u043e\u0433\u0430\u0440\u0430\u043c\u0438!"
+      },
+      "First_launch_of_MMCText": {
+        "en": "First launch of Mindustry Mod Construct",
+        "ru": "\u041f\u0435\u0440\u0432\u044b\u0439 \u0437\u0430\u043f\u0443\u0441\u043a Mindustry Mod Construct"
+      },
+      "updateContentTypeWindow_LabelMText": {
+        "en": "Update on file with classes(types)\n[green]Server: {}\n[yellow]Installed: {}\n[white]Update?",
+        "ru": "[]\u0412\u044b\u0448\u043b\u043e \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435 \u043d\u0430 \u0444\u0430\u0439\u043b \u0441 \u043a\u043b\u0430\u0441\u0441\u0430\u043c\u0438(\u0442\u0438\u043f\u0430\u043c\u0438)\n[green]\u0421\u0435\u0440\u0432\u0435\u0440: {}\n[yellow]\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u0430\u044f: {}\n[white]\u041e\u0431\u043d\u043e\u0432\u0438\u0442\u044c?"
+      },
+      "InformationWindow_DescriptionMMC": {
+        "en": "[UI.YELLOW]Mindustry Mod Construct [white]or (Mindustry MC) \nis a program with the help of which you can \neasily operate the mods created for the [UI.YELLOW]Mindustry [white]game.",
+        "ru": "[UI.YELLOW]Mindustry Mod Construct [white]\u0438\u043b\u0438 (Mindustry MC) \u2014 \n\u044d\u0442\u043e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430, \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043b\u0435\u0433\u043a\u043e\n\u0443\u043f\u0440\u0430\u0432\u043b\u044f\u0442\u044c \u043c\u043e\u0434\u0430\u043c\u0438, \u0441\u043e\u0437\u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u0434\u043b\u044f \u0438\u0433\u0440\u044b [UI.YELLOW]Mindustry[white]."
+      },
+      "InformationWindow_SecretText": {
+        "en": "Secret",
+        "ru": "\u0421\u0435\u043a\u0440\u0435\u0442"
+      },
+      "InformationWindow_SecretTip": {
+        "en": "Enter any phrase, word or number to open Easter eggs\nassociated with any person, event, or just a funny joke,\nbut note that there is one combination of numbers that will allow\nyou enable new MMS features, Experiment!",
+        "ru": "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043b\u044e\u0431\u0443\u044e \u0444\u0440\u0430\u0437\u0443, \u0441\u043b\u043e\u0432\u043e \u0438\u043b\u0438 \u0447\u0438\u0441\u043b\u043e \u0434\u043b\u044f \u043e\u0442\u043a\u0440\u044b\u0442\u0438\u044f \u043f\u0430\u0441\u0445\u0430\u043b\u043a\u0438 \n\u0441\u0432\u044f\u0437\u0430\u043d\u043d\u043e\u0439 \u0441 \u043a\u0430\u043a\u0438\u043c \u043b\u0438\u0431\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c, \u0441\u043e\u0431\u044b\u0442\u0438\u0435\u043c, \u0438\u043b\u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0441\u043c\u0435\u0448\u043d\u044b\u043c \u043f\u0440\u0438\u043a\u043e\u043b\u043e\u043c, \n\u043d\u043e \u0443\u0447\u0442\u0438\u0442\u0435, \u0447\u0442\u043e \u0435\u0441\u0442\u044c \u043e\u0434\u043d\u0430 \u043a\u043e\u043c\u0431\u0438\u043d\u0430\u0446\u0438\u044f \u0446\u0438\u0444\u0440, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043f\u043e\u0437\u0432\u043e\u043b\u0438\u0442 \n\u0432\u0430\u043c \u0432\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043d\u043e\u0432\u044b\u0435 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u0438 \u041c\u041c\u0421, \u042d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442\u0438\u0440\u0443\u0439\u0442\u0435!"
+      }
+    },
+    "PasswordDataBase": {
+      "!else!": {
+        "en": "What were you even hoping for?",
+        "ru": "\u0410 \u043d\u0430 \u0447\u0442\u043e \u0442\u044b \u0432\u043e\u043e\u0431\u0449\u0435 \u043d\u0430\u0434\u0435\u044f\u043b\u0441\u044f?"
+      },
+      "1234": {
+        "en": "Too trite",
+        "ru": "C\u043b\u0438\u0448\u043a\u043e\u043c \u0431\u0430\u043d\u0430\u043b\u044c\u043d\u043e"
+      },
+      "Password": {
+        "en": "Apparently you don't understand your intentions",
+        "ru": "\u0412\u0438\u0434\u0438\u043c\u043e \u0442\u044b \u043d\u0435 \u043f\u043e\u043d\u0438\u043c\u0430\u0435\u0448\u044c \u0441\u0432\u043e\u0438\u0445 \u043d\u0430\u043c\u0435\u0440\u0435\u043d\u0438\u0439"
+      },
+      "Code": {
+        "en": "Bad luck and miss",
+        "ru": "\u041d\u0435\u0432\u0435\u0437\u0443\u0445\u0430 \u0438 \u043f\u0440\u043e\u043c\u0430\u0445"
+      },
+      "Secret": {
+        "en": "Shhh....",
+        "ru": "\u0422\u0441\u0441\u0441...."
+      },
+      "0.21": {
+        "en": "Access to unfinished functions received!",
+        "ru": "\u0414\u043e\u0441\u0442\u0443\u043f \u043a \u043d\u0435\u0434\u043e\u0434\u0435\u043b\u0430\u043d\u043d\u044b\u043c\u0438 \u0444\u0443\u043d\u043a\u0446\u0438\u044f\u043c \u043f\u043e\u043b\u0443\u0447\u0435\u043d!"
+      },
+      "Vladislav117": {
+        "en": "Give me a piece of the router, the Internet is not working)",
+        "ru": "\u0414\u0430\u0439\u0442\u0435 \u043c\u043d\u0435 \u043a\u0443\u0441\u043e\u0447\u0435\u043a \u0440\u043e\u0443\u0442\u0435\u0440\u0430 \u0430\u0442\u043e \u0438\u043d\u0442\u0435\u0440\u043d\u0435\u0442 \u043d\u0435 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442)"
+      },
+      "DL": {
+        "en": "[green]DL Developer [UI.YELLOW]MMC",
+        "ru": "DL \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a MMC"
+      },
+      "Exmii": {
+        "en": "Exmii is one of the [Orange]MMC veterans\n[white]Why are there no names for objects in your mod? Why???",
+        "ru": "Exmii \u043e\u0434\u0438\u043d \u0438\u0437 [Orange]\u0432\u0435\u0442\u0435\u0440\u0430\u043d\u043e\u0432 MMC!\n[white]\u041f\u043e\u0447\u0435\u043c\u0443 \u0432 \u0442\u0432\u043e\u0454\u043c \u043c\u043e\u0434\u0435 \u043d\u0435\u0442 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0439 \u0443 \u043e\u0431\u0454\u043a\u0442\u043e\u0432 \u043f\u043e\u0447\u0435\u043c\u0443???"
+      },
+      "IvanDog11": {
+        "en": "IvanDog11 is one of the [Orange]MMC veterans!\n[white]''Try not to blow up the reactor''\nGreat quote!",
+        "ru": "IvanDog11 \u043e\u0434\u0438\u043d \u0438\u0437 [Orange]\u0432\u0435\u0442\u0435\u0440\u0430\u043d\u043e\u0432 MMC!\n[white]''\u041f\u043e\u043f\u044b\u0442\u0430\u0439\u0442\u0435\u0441\u044c \u043d\u0435 \u0432\u0437\u043e\u0440\u0432\u0430\u0442\u044c \u0440\u0435\u0430\u043a\u0442\u043e\u0440''\n\u0426\u044b\u0442\u0430\u0442\u0430 \u0432\u0435\u043b\u0438\u043a\u043e\u0433\u043e!"
+      },
+      "Neu": {
+        "en": "Neu is one of the [Orange]MMC veterans!\n[white]Interested in programming, cryptocurrency and cryptography",
+        "ru": "Neu \u043e\u0434\u0438\u043d \u0438\u0437 \u0432\u0435\u0442\u0435\u0440\u0430\u043d\u043e\u0432 [Orange]MMC!\n[white]\u0418\u043d\u0442\u0435\u0440\u0435\u0441\u0443\u0435\u0442\u0441\u044f \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435\u043c, \u043a\u0440\u0438\u043f\u0442\u043e\u0432\u0430\u043b\u044e\u0442\u043e\u0439 \u0438 \u043a\u0440\u0438\u043f\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u0435\u0439"
+      },
+      "axylua": {
+        "en": "Axylua is one of the [Orange]MMC veterans!\n[white]By the way, Dl, it seems to me that the save die pops up too often",
+        "ru": "\u0410\u0445\u0443 \u043e\u0434\u0438\u043d \u0438\u0437 \u0432\u0435\u0442\u0435\u0440\u0430\u043d\u043e\u0432 [Orange]MMC!\n[white]\u041a\u0441\u0442\u0430\u0442\u0438, \u0414\u043b, \u043c\u043d\u0435 \u043a\u0430\u0436\u0435\u0442\u0441\u044f \u043f\u043b\u0430\u0448\u043a\u0430 \u043e\u0431 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0438 \u0432\u044b\u043b\u0430\u0437\u0438\u0442 \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u0447\u0430\u0441\u0442\u043e"
+      },
+      "_ignatusik_": {
+        "en": "Helicopter",
+        "ru": "Helicopter"
+      }
+    },
+    "Class": {
+      "tip_type": {
+        "en": "Type",
+        "ru": "\u0422\u0438\u043f"
+      },
+      "tip_parametr": {
+        "en": "Parametr",
+        "ru": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440"
+      },
+      "tip_default": {
+        "en": "Default",
+        "ru": "\u041f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e"
+      },
+      "name": {
+        "en": "Name",
+        "ru": "\u0418\u043c\u044f"
+      },
+      "localizedName": {
+        "en": "Localized Name",
+        "ru": "\u041b\u043e\u043a\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0438\u043c\u044f"
+      },
+      "description": {
+        "en": "Description",
+        "ru": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+      },
+      "color": {
+        "en": "Color",
+        "ru": "\u0426\u0432\u0435\u0442"
+      },
+      "hasItems": {
+        "en": "Has items?",
+        "ru": "\u0415\u0441\u0442\u044c \u043f\u0440\u0435\u0434\u043c\u0435\u0442\u044b?"
+      },
+      "hasItems_desc": {
+        "en": "If ([green]true[white]), buildings have an Item Module",
+        "ru": "\u0415\u0441\u043b\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 ([green]true[white]), \u0442\u043e \u0443 \u0437\u0434\u0430\u043d\u0438\u0439 \u0435\u0441\u0442\u044c \u043c\u043e\u0434\u0443\u043b\u044c \u043f\u0440\u0435\u0434\u043c\u0435\u0442\u0430"
+      },
+      "hasLiquids": {
+        "en": "Has Liquids?",
+        "ru": "\u0418\u043c\u0435\u0435\u0442 \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u0438?"
+      },
+      "hasLiquids_desc": {
+        "en": "If ([green]true[white]), buildings have a Liquid Module.",
+        "ru": "\u0415\u0441\u043b\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 ([green]true[white]), \u0432 \u0437\u0434\u0430\u043d\u0438\u044f\u0445 \u0435\u0441\u0442\u044c \u0436\u0438\u0434\u043a\u043e\u0441\u0442\u043d\u044b\u0439 \u043c\u043e\u0434\u0443\u043b\u044c."
+      },
+      "hasPower": {
+        "en": "Has Power?",
+        "ru": "\u0418\u043c\u0435\u0435\u0442 \u042d\u043d\u0435\u0440\u0433\u0438\u044e?"
+      },
+      "hasPower_desc": {
+        "en": "If ([green]true[white]), buildings have a Power Module.",
+        "ru": "\u0415\u0441\u043b\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 ([green]true[white]), \u0443 \u0437\u0434\u0430\u043d\u0438\u0439 \u0435\u0441\u0442\u044c \u0435\u043d\u0435\u0440\u0433\u043e \u043c\u043e\u0434\u0443\u043b\u044c."
+      },
+      "category": {
+        "en": "Category",
+        "ru": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f"
+      },
+      "category_desc": {
+        "en": "Category in place menu.",
+        "ru": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f \u0432 \u043c\u0435\u043d\u044e \u043f\u043e\u0441\u0442\u0440\u043e\u0439\u043a\u0438."
+      },
+      "requirements": {
+        "en": "Requirements",
+        "ru": "\u0422\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f"
+      },
+      "requirements_desc": {
+        "en": "Cost of constructing this block.",
+        "ru": "\u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u0430 \u044d\u0442\u043e\u0433\u043e \u0431\u043b\u043e\u043a\u0430."
+      }
+    }
+  }
+}

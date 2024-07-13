@@ -1,0 +1,69 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dhwgnr7skb6bc"]
+
+[ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="1_gyp5b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4bii"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7irh1"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scj0q"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.490196, 0.490196, 0.490196, 0.521569)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6vr4"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0rwyv"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.490196, 0.490196, 0.490196, 0.521569)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhd87"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_gyp5b")
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 5
+Button/fonts/font = ExtResource("1_gyp5b")
+Button/styles/disabled = SubResource("StyleBoxEmpty_g4bii")
+Button/styles/focus = SubResource("StyleBoxEmpty_7irh1")
+Button/styles/hover = SubResource("StyleBoxFlat_scj0q")
+Button/styles/normal = SubResource("StyleBoxEmpty_f6vr4")
+Button/styles/pressed = SubResource("StyleBoxFlat_0rwyv")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_gyp5b")
+Panel/styles/panel = SubResource("StyleBoxFlat_lhd87")

@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjv1ns30b2oox"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_ooldv"]
+[ext_resource type="Script" path="res://Objects/ForEditor/TooltipContentKeys.gd" id="2_i0bxq"]
+[ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="2_vfkf2"]
+
+[node name="TooltipContentKeys" type="Panel"]
+offset_right = 1150.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_ooldv")
+script = ExtResource("2_i0bxq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.5
+offset_right = 159.5
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Key" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "Параметр: "
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "parametr"
+
+[node name="(" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "("
+
+[node name="DisplayName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "Параметр"
+
+[node name=")" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = ")"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="KeyType" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "Тип: "
+
+[node name="NameType" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+theme_override_colors/font_color = Color(0, 0.760784, 1, 1)
+text = "Boolean"
+
+[node name="|" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "|"
+
+[node name="KeyDefault" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "По умолчанию:"
+
+[node name="sW" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "\""
+
+[node name="ValueDefault" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "False"
+
+[node name="eW" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ooldv")
+text = "\""
+
+[node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
+layout_mode = 2
+fit_content = true
+
+[connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]

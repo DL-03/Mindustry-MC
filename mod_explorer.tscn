@@ -1,0 +1,179 @@
+[gd_scene load_steps=4 format=3 uid="uid://budnpeih4n2pc"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_8xgjm"]
+[ext_resource type="Script" path="res://mod_explorer.gd" id="1_rr7t2"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="2_vk8ij"]
+
+[node name="Mod_Explorer" type="Control"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_rr7t2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="ARC_Return" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 1
+
+[node name="Return" type="Button" parent="VBoxContainer/HBoxContainer2/ARC_Return"]
+layout_mode = 2
+theme = ExtResource("2_vk8ij")
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = ""
+
+[node name="ARC_Up" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 1
+
+[node name="Up" type="Button" parent="VBoxContainer/HBoxContainer2/ARC_Up"]
+layout_mode = 2
+theme = ExtResource("2_vk8ij")
+theme_override_font_sizes/font_size = 24
+text = ""
+
+[node name="ARC_Reload" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 1
+
+[node name="Reload" type="Button" parent="VBoxContainer/HBoxContainer2/ARC_Reload"]
+layout_mode = 2
+theme = ExtResource("2_vk8ij")
+theme_override_font_sizes/font_size = 24
+text = ""
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 1
+
+[node name="Find" type="Button" parent="VBoxContainer/HBoxContainer2/AspectRatioContainer"]
+layout_mode = 2
+theme = ExtResource("2_vk8ij")
+theme_override_font_sizes/font_size = 24
+text = ""
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8xgjm")
+placeholder_text = "Путь..."
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_8xgjm")
+selected = 6
+item_count = 8
+popup/item_0/text = "Huge Icons"
+popup/item_1/text = "Big Icons"
+popup/item_1/id = 1
+popup/item_2/text = "Default Icons"
+popup/item_2/id = 2
+popup/item_3/text = "Small Icons"
+popup/item_3/id = 7
+popup/item_4/text = "List"
+popup/item_4/id = 3
+popup/item_5/text = "Table"
+popup/item_5/id = 4
+popup/item_6/text = "Tile"
+popup/item_6/id = 5
+popup/item_7/text = "Content"
+popup/item_7/id = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 1
+
+[node name="Find" type="Button" parent="VBoxContainer/HBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+theme = ExtResource("2_vk8ij")
+theme_override_font_sizes/font_size = 24
+text = ""
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_8xgjm")
+placeholder_text = "Поиск..."
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_8xgjm")
+selected = 6
+item_count = 8
+popup/item_0/text = "Huge Icons"
+popup/item_1/text = "Big Icons"
+popup/item_1/id = 1
+popup/item_2/text = "Default Icons"
+popup/item_2/id = 2
+popup/item_3/text = "Small Icons"
+popup/item_3/id = 7
+popup/item_4/text = "List"
+popup/item_4/id = 3
+popup/item_5/text = "Table"
+popup/item_5/id = 4
+popup/item_6/text = "Tile"
+popup/item_6/id = 5
+popup/item_7/text = "Content"
+popup/item_7/id = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_8xgjm")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Box" type="FlowContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ARC_Return/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ARC_Up/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ARC_Reload/Reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/AspectRatioContainer/Find" to="." method="_on_find_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer2/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhb04uet46lh"]
+
+[ext_resource type="Script" path="res://mod_manager.gd" id="1_h5dyy"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="2_gdljv"]
+[ext_resource type="PackedScene" uid="uid://budnpeih4n2pc" path="res://mod_explorer.tscn" id="2_kougr"]
+[ext_resource type="Theme" uid="uid://m4qp8nd0866i" path="res://Windows11.tres" id="2_ld5hn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64je"]
+bg_color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sthud"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_noycv"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxmf4"]
+content_margin_left = 15.0
+bg_color = Color(0.270588, 0.270588, 0.270588, 0.235294)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nyud"]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color(0.270588, 0.270588, 0.270588, 0.235294)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_4fvam"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_m64je")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_sthud")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_noycv")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_xxmf4")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_6nyud")
+
+[node name="ModManager" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h5dyy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "123000000000000"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "123000000000000"
+
+[node name="Mod_Explorer" parent="VBoxContainer" instance=ExtResource("2_kougr")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(430, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(430, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_4fvam")
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="DownPanel" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/DownPanel"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_ld5hn")
+text = "Welcome!
+Its MMCRUE!"
+
+[node name="OpenFolder" type="Button" parent="VBoxContainer/DownPanel"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_gdljv")
+text = " Open Folder"

@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpmtt7sjrasjs"]
+
+[ext_resource type="Script" path="res://Objects/FolderCard.gd" id="1_f6d2h"]
+[ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="1_mmgm8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c77jd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmakg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2lqj"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dh5s"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+anti_aliasing = false
+
+[node name="FolderCard" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -931.0
+offset_bottom = -313.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c77jd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nmakg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y2lqj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6dh5s")
+script = ExtResource("1_f6d2h")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+vertical = true
+
+[node name="CenterContainer" type="AspectRatioContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_mmgm8")
+theme_override_font_sizes/font_size = 70
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_mmgm8")
+text = "Name"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,175 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce1e3yxgjuyas"]
+
+[ext_resource type="Script" path="res://Objects/ModCard.gd" id="1_704rw"]
+[ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="1_delpm"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://Mindustry1.tres" id="2_anmdr"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://Mindustry.tres" id="3_td60x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e46hn"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rveqn"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ModCard" type="Button"]
+custom_minimum_size = Vector2(0, 125)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e46hn")
+script = ExtResource("1_704rw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_delpm")
+expand_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rveqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="displayName" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("3_td60x")
+theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
+bbcode_enabled = true
+text = "DisplayName"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("3_td60x")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "Name"
+
+[node name="author" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("3_td60x")
+bbcode_enabled = true
+text = "Author"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="version" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("3_td60x")
+bbcode_enabled = true
+text = "Version"
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="path" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+focus_mode = 2
+theme = ExtResource("3_td60x")
+text = "Path"
+autowrap_mode = 3
+
+[node name="VFlowContainer" type="VFlowContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Open" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_anmdr")
+text = "O"
+
+[node name="Type" type="Label" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_td60x")
+text = "T
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Delete" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_anmdr")
+text = "D"
+
+[node name="Save" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_anmdr")
+text = "S"
+
+[node name="Visible" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_anmdr")
+text = "V"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Visible" to="." method="_on_visible_pressed"]

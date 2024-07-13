@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk5ac2e3vvrvf"]
+
+[ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="1_cmvo4"]
+[ext_resource type="Script" path="res://TabMod_Button.gd" id="2_c78pq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qypd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbour"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10sub"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_git5o"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v6y8"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[node name="TabMod_Button" type="Button"]
+custom_minimum_size = Vector2(50, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1102.0
+offset_bottom = -615.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 24
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_cmvo4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8qypd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kbour")
+theme_override_styles/hover = SubResource("StyleBoxFlat_10sub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_git5o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8v6y8")
+text = ""
+script = ExtResource("2_c78pq")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

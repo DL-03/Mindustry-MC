@@ -1,0 +1,706 @@
+[gd_scene load_steps=36 format=3 uid="uid://ccckl3aew6vew"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_frs3u"]
+[ext_resource type="Texture2D" uid="uid://fxejk3qs350y" path="res://resources/icons/Router.png" id="3_br432"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="3_gqou7"]
+[ext_resource type="PackedScene" uid="uid://dk5ac2e3vvrvf" path="res://TabMod_Button.tscn" id="3_in0k6"]
+[ext_resource type="Texture2D" uid="uid://by0rwsdudqgj6" path="res://resources/icons/Discord.png" id="4_cug1a"]
+[ext_resource type="AudioStream" uid="uid://cfmwvsn4n068c" path="res://resources/audiomass-output.ogg" id="5_1e43c"]
+[ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="5_ho8pe"]
+[ext_resource type="Texture2D" uid="uid://bbssmmey1eiuq" path="res://resources/icon.png" id="7_40uo8"]
+[ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://mod_manager.tscn" id="10_op5rh"]
+[ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="11_64ks2"]
+[ext_resource type="Texture2D" uid="uid://pv65qqr0rg2y" path="res://resources/icons/volume.png" id="12_wl8jw"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="13_3j25r"]
+[ext_resource type="Texture2D" uid="uid://b6ei48v4soo78" path="res://resources/icons/bgs/OIP (3).jpg" id="14_entrw"]
+[ext_resource type="Script" path="res://Objects/SettingsWindow.gd" id="14_n2ajl"]
+[ext_resource type="PackedScene" uid="uid://cjv1ns30b2oox" path="res://Objects/ForEditor/TooltipContentKeys.tscn" id="15_iqfjl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqlb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn8xc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reutl"]
+bg_color = Color(0.478431, 0.478431, 0.478431, 0.513726)
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ptn7"]
+bg_color = Color(0.478431, 0.478431, 0.478431, 0.513726)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_sdbcl"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
+	#if AllTabButtons.get_child_count() > 0
+	var s = preload(\"res://TabMod_Button.tscn\")
+	var k = s.instantiate()
+	AllTabButtons.add_child(k)
+"
+
+[sub_resource type="GDScript" id="GDScript_ogj7x"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
+	
+	if AllTabButtons.get_child_count() == 1:
+		if AllTabButtons.get_child(0).ContentFrame == null:
+			return
+		else:
+			pass
+
+	for i in AllTabButtons.get_children():
+		if i.disabled:
+			if i.ContentFrame == null:
+				
+				
+				i.free()
+				AllTabButtons.get_children()[-1].pressed.emit()
+			else:
+				var err = i.ContentFrame.Close()
+				if err == 1:
+					pass
+				else:
+					pass
+					
+				
+				if AllTabButtons.get_child_count() == 1:
+					i.reset()
+					$/root/Main/V1/ModManager.show()
+				else:
+					i.free()
+					AllTabButtons.get_children()[-1].pressed.emit()
+					
+					
+				
+			
+			break
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gquo8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rbwy"]
+bg_color = Color(1, 0.317647, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahs1q"]
+bg_color = Color(0, 0.721569, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7ukd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svh2n"]
+bg_color = Color(0, 0, 0, 0.686275)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8tgq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7acp"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+border_width_top = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4o5m1"]
+bg_color = Color(0, 0, 0, 0.882353)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osrcn"]
+draw_center = false
+border_width_top = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1pbp"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqewy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnwdo"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nb2u"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgtft"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_frs3u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.560784)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_entrw")
+expand_mode = 1
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(288, 969)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+position = Vector2(119, 724)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+position = Vector2(-537, 890)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Node2D"]
+position = Vector2(793, 1651)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Node2D"]
+position = Vector2(213, 1971)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Node2D"]
+position = Vector2(747, 2171)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Node2D"]
+position = Vector2(1461, 2038)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Node2D"]
+position = Vector2(-275, 2005)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Node2D"]
+position = Vector2(-500, 1366)
+rotation = -0.785397
+scale = Vector2(1, 24.8955)
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
+position = Vector2(719, 895)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Node2D"]
+position = Vector2(-249, 393)
+rotation = -0.785397
+texture = ExtResource("3_br432")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(-133.995, 840)
+rotation = 0.785398
+texture = ExtResource("3_br432")
+
+[node name="Discord" type="Sprite2D" parent="Node2D"]
+position = Vector2(-487.19, 583)
+rotation = 0.785397
+scale = Vector2(0.172242, 0.172242)
+texture = ExtResource("4_cug1a")
+
+[node name="Error" type="Sprite2D" parent="Node2D"]
+position = Vector2(-3, 1468)
+rotation = 0.785397
+texture = ExtResource("5_ho8pe")
+
+[node name="NoneMod" type="Sprite2D" parent="Node2D"]
+position = Vector2(381, 733)
+rotation = 0.785397
+scale = Vector2(0.335105, 0.335105)
+texture = ExtResource("11_64ks2")
+
+[node name="Icon" type="Sprite2D" parent="Node2D"]
+position = Vector2(-259, 1077)
+rotation = 0.785397
+scale = Vector2(0.0842593, 0.0842593)
+texture = ExtResource("7_40uo8")
+
+[node name="V1" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="V1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="V1/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pnqlb")
+
+[node name="MarginContainer" type="MarginContainer" parent="V1/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="V1/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+
+[node name="TabMod_Button" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer" instance=ExtResource("3_in0k6")]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="V1/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rn8xc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Button" type="Button" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_gqou7")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
+text = ""
+clip_text = true
+script = SubResource("GDScript_sdbcl")
+
+[node name="MarginContainer3" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 5
+
+[node name="Button2" type="Button" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_gqou7")
+theme_override_font_sizes/font_size = 25
+text = ""
+clip_text = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_bottom = 5
+
+[node name="Button2" type="Button" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_gqou7")
+theme_override_colors/font_disabled_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = ""
+clip_text = true
+script = SubResource("GDScript_ogj7x")
+
+[node name="ModManager" parent="V1" instance=ExtResource("10_op5rh")]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("5_1e43c")
+volume_db = -10.103
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gquo8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8rbwy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ahs1q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l7ukd")
+icon = ExtResource("12_wl8jw")
+expand_icon = true
+
+[node name="RenameDuplicateWindow" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_svh2n")
+
+[node name="Panel" type="Panel" parent="RenameDuplicateWindow"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
+
+[node name="MarginContainer" type="MarginContainer" parent="RenameDuplicateWindow/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RenameDuplicateWindow/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_3j25r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/font_size = 20
+text = "Raneme"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
+
+[node name="Label2" type="Label" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("13_3j25r")
+text = "Name"
+vertical_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("13_3j25r")
+text = "Name"
+placeholder_text = "Name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Cancel" type="Button" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("13_3j25r")
+text = "0 Cancel"
+
+[node name="Action" type="Button" parent="RenameDuplicateWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("13_3j25r")
+text = "0 Rename"
+
+[node name="SettingsWindow" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4o5m1")
+script = ExtResource("14_n2ajl")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsWindow/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("13_3j25r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/font_size = 20
+text = "Настройки"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleInfo" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("13_3j25r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_p1pbp")
+text = "Информация"
+horizontal_alignment = 1
+
+[node name="Version" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/Version"]
+layout_mode = 2
+theme = ExtResource("13_3j25r")
+text = "Версия:"
+
+[node name="Version" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/Version"]
+layout_mode = 2
+theme = ExtResource("13_3j25r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "Pre-Beta 2 ( Exp-Build: 4 ) ( 0.2.1 )"
+
+[node name="VersionContentFile" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/VersionContentFile"]
+layout_mode = 2
+theme = ExtResource("13_3j25r")
+text = "Версия ClassType:"
+
+[node name="Version" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/VersionContentFile"]
+layout_mode = 2
+theme = ExtResource("13_3j25r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "0.1.1 - Offline"
+
+[node name="Author" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Github" type="Button" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/Author"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("13_3j25r")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vqewy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnwdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0nb2u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wgtft")
+text = "Создатель: DL"
+
+[node name="Discord" type="Button" parent="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/Author"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vqewy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnwdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0nb2u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wgtft")
+icon = ExtResource("4_cug1a")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Close" type="Button" parent="SettingsWindow/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(175, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("13_3j25r")
+text = " Назад"
+
+[node name="TooltipContentKeys" parent="." instance=ExtResource("15_iqfjl")]
+layout_mode = 0
+offset_left = -375.0
+offset_top = -97.0
+offset_right = -39.0
+offset_bottom = -37.0
+
+[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer/Button" to="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3/Button2" to="SettingsWindow" method="_on_button_2_pressed"]
+[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2/Button2" to="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2/Button2" method="_on_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/Author/Github" to="SettingsWindow" method="_on_github_pressed"]
+[connection signal="pressed" from="SettingsWindow/MarginContainer/VBoxContainer/VBoxContainer/Author/Discord" to="SettingsWindow" method="_on_discord_pressed"]
+[connection signal="pressed" from="SettingsWindow/MarginContainer/VBoxContainer/HBoxContainer2/Close" to="SettingsWindow" method="_on_close_pressed"]
