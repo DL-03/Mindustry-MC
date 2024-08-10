@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh87acddn33ms"]
+
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="1_qlw2u"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="2_uffmq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svh2n"]
+bg_color = Color(0, 0, 0, 0.686275)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8tgq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7acp"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+border_width_top = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="NeedSaveContent" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_svh2n")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 175)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -87.5
+offset_right = 250.0
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_qlw2u")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 20
+text = "!  Need Save  !"
+horizontal_alignment = 1
+real_text = "!  |NeedSaveContent.Title.text|  !"
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
+
+[node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_qlw2u")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "InfoPanel"
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "InfoPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Save" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|NeedSaveContent.Save.text|"
+h_aligment = null
+
+[node name="Discard" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|NeedSaveContent.Discard.text|"
+h_aligment = null
+
+[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|NeedSaveContent.Cancel.text|"
+h_aligment = null

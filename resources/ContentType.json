@@ -1,5 +1,10 @@
 {
-  "version": 0.1,
+  "version": 0.2,
+
+	"CreateContent": {
+		"Block": ["Floor", "LiquidBlock", "LiquidJunction", "LiquidRouter", "Pump", "SolidPump", "Fracker", "Conduit", "ArmoredConduit", "Conveyor", "ArmoredConveyor", "GenericCrafter", "AttributeCrafter", "HeatCrafter", "HeatProducer", "Wall", "AutoDoor", "BaseShield", "Door", "BuildTurret", "StorageBlock", "CoreBlock", "Drill", "BurstDrill", "DroneCenter", "Junction", "ItemBrige", "LiquidBridge", "BufferedItemBridge", "MassDriver", "MemoryBlock", "MendProjector", "PayloadBlock", "PayloadMassDriver", "PayloadVoid", "PayloadSource", "UnitBlock", "Reconstructor", "PowerBlock", "PayloadDeconstructor", "PayloadLoader", "PayloadUnloader", "PowerNode", "LongPowerNode", "PowerSource", "PowerVoid", "PowerDistributor", "Battery"]
+	},
+
   "ClassType": {
 	"mod": {
 	  "name": "",

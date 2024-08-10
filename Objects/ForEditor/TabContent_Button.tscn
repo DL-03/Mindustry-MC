@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://r8tkn8o8hlvy"]
+[gd_scene load_steps=13 format=3 uid="uid://r8tkn8o8hlvy"]
 
 [ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="1_0gati"]
 [ext_resource type="Script" path="res://Objects/ForEditor/TabContent_Button.gd" id="2_d0c7l"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="3_m7gnr"]
-[ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="3_waaeb"]
+[ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_vxmjg"]
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="4_125o7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qypd"]
@@ -62,12 +62,44 @@ corner_radius_top_right = 10
 corner_detail = 1
 anti_aliasing = false
 
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkpfe"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(49, 17)
+shader_parameter/text_size = Vector2(120, 17)
+shader_parameter/text_vertical_aligment = null
+
 [node name="TabContent_Button" type="Button" node_paths=PackedStringArray("NameLabel")]
 custom_minimum_size = Vector2(50, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1027.0
+offset_right = -944.0
 offset_bottom = -615.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -100,13 +132,13 @@ NameLabel = NodePath("HBoxContainer/MarginContainer2/MindustryTextLabel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 208.0
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
@@ -114,11 +146,10 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 4
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer"]
+[node name="ObjectIcon" parent="HBoxContainer/MarginContainer" instance=ExtResource("3_vxmjg")]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("3_waaeb")
-expand_mode = 3
+size_flags_horizontal = 1
+size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -127,6 +158,7 @@ mouse_filter = 2
 theme_override_constants/margin_top = 9
 
 [node name="MindustryTextLabel" parent="HBoxContainer/MarginContainer2" instance=ExtResource("4_125o7")]
+material = SubResource("ShaderMaterial_jkpfe")
 layout_mode = 2
 size_flags_horizontal = 3
 text = "[center]Name"

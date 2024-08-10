@@ -1,0 +1,520 @@
+[gd_scene load_steps=22 format=3 uid="uid://d0ppbqrba56gs"]
+
+[ext_resource type="Script" path="res://Scripts/Windows/SettingsWindow.gd" id="1_4a58h"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_4xn72"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_yyeru"]
+[ext_resource type="PackedScene" uid="uid://bopn2g7v7eofr" path="res://Objects/Widgets/MyndustryCheckBox.tscn" id="4_bvumk"]
+[ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="4_hpttg"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_o21by"]
+[ext_resource type="Texture2D" uid="uid://by0rwsdudqgj6" path="res://resources/icons/Discord.png" id="6_js5ma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4o5m1"]
+bg_color = Color(0, 0, 0, 0.882353)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osrcn"]
+draw_center = false
+border_width_top = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1pbp"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+anti_aliasing = false
+
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5fq6"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(250, 25)
+shader_parameter/text_size = Vector2(473, 17)
+shader_parameter/text_vertical_aligment = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clqkv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5r4r"]
+bg_color = Color(0, 0, 0, 0.686275)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37nwp"]
+bg_color = Color(0, 0, 0, 0.686275)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xidm"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqewy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnwdo"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nb2u"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgtft"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwf0s"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(510, 85)
+shader_parameter/text_size = Vector2(2367, 85)
+shader_parameter/text_vertical_aligment = 0
+
+[node name="SettingsWindow" type="Panel" node_paths=PackedStringArray("EngineVersion_Value", "LangList")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4o5m1")
+script = ExtResource("1_4a58h")
+EngineVersion_Value = NodePath("MarginContainer/VBoxContainer/VBoxContainer/EngineVersion/Value")
+LangList = NodePath("MarginContainer/VBoxContainer/LangParam/OptionButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 20
+text = " Settings "
+horizontal_alignment = 1
+real_text = " |SettingsWindow.Title| "
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
+
+[node name="LangParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" parent="MarginContainer/VBoxContainer/LangParam" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Language: "
+horizontal_alignment = 1
+real_text = "|LanguageText|: "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/LangParam"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_yyeru")
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "EN"
+popup/item_1/text = "RU"
+popup/item_1/id = 1
+
+[node name="delete1Param" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" parent="MarginContainer/VBoxContainer/delete1Param" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Delete1Param: "
+horizontal_alignment = 1
+real_text = "|Delete1Param|: "
+
+[node name="MyndustryCheckBox" parent="MarginContainer/VBoxContainer/delete1Param" instance=ExtResource("4_bvumk")]
+layout_mode = 2
+
+[node name="delete2Param" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" parent="MarginContainer/VBoxContainer/delete2Param" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Delete2Param: "
+horizontal_alignment = 1
+real_text = "|Delete2Param|: "
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/delete2Param"]
+layout_mode = 2
+theme = ExtResource("3_yyeru")
+max_value = 1e+11
+value = 5.0
+allow_greater = true
+
+[node name="autoOpenSettingsParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" parent="MarginContainer/VBoxContainer/autoOpenSettingsParam" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "autoOpenSettingsParam: "
+horizontal_alignment = 1
+real_text = "|autoOpenSettingsParam|: "
+
+[node name="MyndustryCheckBox" parent="MarginContainer/VBoxContainer/autoOpenSettingsParam" instance=ExtResource("4_bvumk")]
+layout_mode = 2
+Checked = true
+
+[node name="perSaveMessageParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" parent="MarginContainer/VBoxContainer/perSaveMessageParam" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Save message frequency(sec.): "
+horizontal_alignment = 1
+real_text = "|saveMessageFrequency|: "
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/perSaveMessageParam"]
+layout_mode = 2
+theme = ExtResource("3_yyeru")
+max_value = 1e+11
+value = 60.0
+allow_greater = true
+suffix = "s"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleInfo" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_p1pbp")
+text = " Information "
+horizontal_alignment = 1
+real_text = " |InformationText| "
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="Version" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/Version" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+text = "Version: "
+horizontal_alignment = 1
+real_text = "|VersionText|: "
+
+[node name="Version" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Version"]
+layout_mode = 2
+theme = ExtResource("3_yyeru")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.4, 0.33, 0.2, 1)
+text = "Pre-Beta 2 ( Exp-Build: 5 ) ( 0.2.1 )"
+
+[node name="VersionContentFile" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/VersionContentFile" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+text = "Version ClassType:"
+horizontal_alignment = 1
+real_text = "|VersionText| ClassType:"
+
+[node name="Version" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VersionContentFile"]
+layout_mode = 2
+theme = ExtResource("3_yyeru")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.4, 0.33, 0.2, 1)
+text = "0.1.1 - Offline"
+
+[node name="Author" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer/Author" instance=ExtResource("4_hpttg")]
+material = SubResource("ShaderMaterial_v5fq6")
+clip_contents = false
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 24
+text = "[center][color=ffd37fff]Creator: [color=38d667ff]DL"
+real_text = "[ui.yellow]|CreatorText|: [green]DL"
+text_aligment = 1
+
+[node name="Github" parent="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel" instance=ExtResource("5_o21by")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_clqkv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d5r4r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_37nwp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8xidm")
+h_aligment = null
+
+[node name="Discord" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Author"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vqewy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bnwdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0nb2u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wgtft")
+icon = ExtResource("6_js5ma")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_hpttg")]
+material = SubResource("ShaderMaterial_fwf0s")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "[color=ffd37fff]Mindustry Mod Construct [color=ffffffff]or (Mindustry MC) 
+is a program with the help of which you can 
+easily operate the mods created for the [color=ffd37fff]Mindustry [color=ffffffff]game.
+[color=ffffffff]
+Translator (EN, RU): [color=38d667ff]DL"
+fit_content = true
+real_text = "InformationWindow.DescriptionMMC|
+[white]
+|TranslatorText| (EN, RU): [GREEN]DL"
+
+[node name="EngineVersion" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/EngineVersion" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+text = "Made in: "
+horizontal_alignment = 1
+real_text = "|MadeInText|: "
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/EngineVersion"]
+layout_mode = 2
+theme = ExtResource("3_yyeru")
+theme_override_colors/font_color = Color(0, 0.666667, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.141176, 0.2, 0.435294, 1)
+text = "PlaceHolder"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_4xn72")]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "Secret: "
+horizontal_alignment = 1
+real_text = "|SettingsWindow.Secret.Label|: "
+real_tooltip_text = "|InformationWindow.SecretTip|"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("3_yyeru")
+placeholder_text = "Секрет"
+
+[node name="Enter" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_yyeru")
+text = ""
+
+[node name="DebugBank" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UpPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DebugBank"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ModBank" type="ScrollContainer" parent="MarginContainer/VBoxContainer/DebugBank/UpPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/DebugBank/UpPanel/ModBank"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ContentBank" type="ScrollContainer" parent="MarginContainer/VBoxContainer/DebugBank/UpPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/DebugBank/UpPanel/ContentBank"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Tree" type="Tree" parent="MarginContainer/VBoxContainer/DebugBank/UpPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DebugBank"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/DebugBank/ActionPanel"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Open" type="Button" parent="MarginContainer/VBoxContainer/DebugBank/ActionPanel"]
+layout_mode = 2
+text = "Open"
+
+[node name="Close" type="Button" parent="MarginContainer/VBoxContainer/DebugBank/ActionPanel"]
+layout_mode = 2
+disabled = true
+text = "Close"
+
+[node name="ActionPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Close" parent="MarginContainer/VBoxContainer/ActionPanel" instance=ExtResource("5_o21by")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+real_text_icon = ""
+real_text = "|backButton|"
+h_aligment = null
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/LangParam/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel/Github" to="." method="_on_github_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel/Github" to="." method="_on_github_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel/Github" to="." method="_on_github_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Author/Discord" to="." method="_on_discord_pressed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Enter" to="." method="_on_enter_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DebugBank/ActionPanel/Open" to="." method="_on_db_open_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DebugBank/ActionPanel/Close" to="." method="_on_db_close_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ActionPanel/Close" to="." method="_on_close_pressed"]

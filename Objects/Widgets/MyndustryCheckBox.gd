@@ -1,3 +1,4 @@
+@tool
 extends Button
 
 
@@ -5,15 +6,18 @@ extends Button
 @export var Checked = false:
 	set = _set_Checked
 
+signal state_changed
+
 
 func _set_Checked(value):
 	Checked = value
 	$MarginContainer/Panel/MarginContainer2.visible = Checked
+	state_changed.emit(Checked)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	Checked = Checked
 	$MarginContainer/Panel/MarginContainer2/Panel.add_theme_stylebox_override("panel", $MarginContainer/Panel/MarginContainer2/Panel.get_theme_stylebox("panel").duplicate())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

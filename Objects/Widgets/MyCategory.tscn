@@ -1,0 +1,209 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2idvmdvvtgqx"]
+
+[ext_resource type="Script" path="res://Objects/Widgets/MyCategory.gd" id="1_l4reo"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="1_m4bge"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_8q1ts"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5gcf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mevix"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 1, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwuj2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mm5an"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wds8m"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehyvu"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgj8f"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 1, 0.270588, 1)
+corner_detail = 1
+
+[node name="MyCategory" type="HBoxContainer"]
+offset_right = 344.0
+offset_bottom = 80.0
+theme_override_constants/separation = 25
+script = ExtResource("1_l4reo")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="production" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+disabled = true
+real_text_icon = ""
+
+[node name="liquid" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="defense" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="units" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="logic" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="turret" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="distribution" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="power" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="crafting" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="effect" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
+real_text_icon = ""
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(175, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ehyvu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" parent="Panel/HBoxContainer" instance=ExtResource("2_8q1ts")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgj8f")
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = ""
+
+[node name="Text" parent="Panel/HBoxContainer" instance=ExtResource("2_8q1ts")]
+layout_mode = 2
+text = "Production"
+real_text = "Production"

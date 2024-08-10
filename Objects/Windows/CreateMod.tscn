@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=3 uid="uid://dg2i61br433ln"]
+
+[ext_resource type="Script" path="res://Scripts/Windows/CreateMod.gd" id="1_mmdjo"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_rbyj6"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_vndes"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_6ruhw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svh2n"]
+bg_color = Color(0, 0, 0, 0.686275)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8tgq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7acp"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+border_width_top = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="CreateMod" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_svh2n")
+script = ExtResource("1_mmdjo")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(750, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -87.5
+offset_right = 250.0
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_rbyj6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 20
+text = " Create Modification "
+horizontal_alignment = 1
+real_text = " |CreateMod.Title.text| "
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
+
+[node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_rbyj6")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Create Modification"
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "|CreateMod.Title.text|"
+
+[node name="Path" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" instance=ExtResource("2_rbyj6")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Path:"
+real_text = "|CreateMod.Path.text|:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Path"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_vndes")
+theme_override_font_sizes/font_size = 13
+
+[node name="NameMod" parent="Panel/MarginContainer/VBoxContainer/Path" instance=ExtResource("2_rbyj6")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "/"
+real_text = "/"
+
+[node name="Name" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" instance=ExtResource("2_rbyj6")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Name:"
+real_text = "|CreateMod.Name.text|:"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_vndes")
+
+[node name="tip" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_rbyj6")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.0826556, 0.0816599, 1)
+text = "sdfsdfsddfsfs"
+horizontal_alignment = 1
+real_text = "sdfsdfsddfsfs"
+font_color = Color(0.945098, 0.32549, 0.321569, 1)
+
+[node name="DownPanel" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("5_6ruhw")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|CreateMod.Back.text|"
+
+[node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("5_6ruhw")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|CreateMod.ChosePath.text|"
+
+[node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("5_6ruhw")]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+real_text_icon = ""
+real_text = "|CreateMod.Create.text|"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(553, 370)
+theme = ExtResource("3_vndes")
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+
+[connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Path/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Name/LineEdit" to="." method="_on_line_edit_text_changed1"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/DownPanel/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/DownPanel/ChosePath" to="." method="_on_chose_path_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/DownPanel/Create" to="." method="_on_create_pressed"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]

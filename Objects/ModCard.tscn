@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ce1e3yxgjuyas"]
+[gd_scene load_steps=19 format=3 uid="uid://ce1e3yxgjuyas"]
 
 [ext_resource type="Script" path="res://Objects/ModCard.gd" id="1_704rw"]
 [ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="1_delpm"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="2_anmdr"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_td60x"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="5_2i6kr"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_6oqlx"]
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="5_8wvy0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xaex"]
@@ -47,10 +48,84 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s078"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(119, 17)
+shader_parameter/text_size = Vector2(119, 17)
+shader_parameter/text_vertical_aligment = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxc4w"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(65, 17)
+shader_parameter/text_size = Vector2(65, 17)
+shader_parameter/text_vertical_aligment = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aon24"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(68, 17)
+shader_parameter/text_size = Vector2(68, 17)
+shader_parameter/text_vertical_aligment = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61dju"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovjvt"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfrkw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
 [node name="ModCard" type="Button"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = -762.0
+offset_right = -778.0
 offset_bottom = 130.0
 grow_horizontal = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5xaex")
@@ -108,40 +183,73 @@ mouse_filter = 2
 alignment = 1
 
 [node name="displayName" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
+material = SubResource("ShaderMaterial_1s078")
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
 text = "Display Name"
 fit_content = true
 real_text = "Display Name"
 
-[node name="name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="name" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_2i6kr")]
 layout_mode = 2
-focus_mode = 2
-theme = ExtResource("3_td60x")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 16
 text = "Name"
+vertical_alignment = 1
+real_text = "Name"
+font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="author" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
+material = SubResource("ShaderMaterial_sxc4w")
 layout_mode = 2
 text = "Author"
 fit_content = true
 real_text = "Author"
 
 [node name="version" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
+material = SubResource("ShaderMaterial_aon24")
 layout_mode = 2
 text = "Version"
 fit_content = true
 real_text = "Version"
 
-[node name="Path" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-focus_mode = 2
-theme = ExtResource("3_td60x")
-theme_override_font_sizes/font_size = 11
+
+[node name="Path" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_6oqlx")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_anmdr")
+real_text = "Path1"
+h_aligment = 2
+font_size = 11
+icon_size = 11
+
+[node name="Path2" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_2i6kr")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
 text = "Path"
 horizontal_alignment = 2
+vertical_alignment = 2
 clip_text = true
-structured_text_bidi_override = 2
+real_text = "Path"
+
+[node name="Open" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_6oqlx")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme = ExtResource("2_anmdr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_61dju")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ovjvt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bfrkw")
+real_text_icon = ""
+font_size = 11
+icon_size = 11
+real_tooltip_text = "Open Folder"
 
 [node name="VFlowContainer" type="FlowContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -152,60 +260,58 @@ theme_override_constants/v_separation = 0
 alignment = 2
 vertical = true
 
-[node name="Open" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+[node name="Open" parent="MarginContainer/HBoxContainer/VFlowContainer" instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("2_anmdr")
-text = ""
+real_text_icon = ""
+icon_size = 16
+real_tooltip_text = "Open"
 
-[node name="Type" type="Label" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+[node name="Save" parent="MarginContainer/HBoxContainer/VFlowContainer" instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_td60x")
+theme = ExtResource("2_anmdr")
+font_color = Color(0.329412, 0.839216, 0.490196, 1)
+real_text_icon = ""
+icon_size = 16
+real_tooltip_text = "Save"
+
+[node name="Type" parent="MarginContainer/HBoxContainer/VFlowContainer" instance=ExtResource("5_2i6kr")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 16
 text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
+real_text = ""
+real_tooltip_text = "Папка"
+font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="Delete" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
+[node name="Delete" parent="MarginContainer/HBoxContainer/VFlowContainer" instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("2_anmdr")
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = ""
+font_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon = ""
+icon_size = 16
+real_tooltip_text = "[UI.RED]Delete"
 
-[node name="Save" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
-visible = false
+[node name="Visible" parent="MarginContainer/HBoxContainer/VFlowContainer" instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("2_anmdr")
-text = ""
-
-[node name="Visible" type="Button" parent="MarginContainer/HBoxContainer/VFlowContainer"]
-visible = false
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_anmdr")
-text = ""
+real_text_icon = ""
+icon_size = 16
+real_tooltip_text = "Show/Hide"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path" to="." method="_on_path_copy_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Open" to="." method="_on_open_folder_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Visible" to="." method="_on_visible_pressed"]

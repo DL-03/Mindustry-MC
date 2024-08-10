@@ -40,7 +40,7 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpa6m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fksn"]
 bg_color = Color(0.270588, 0.270588, 0.270588, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -79,6 +79,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wa5jf")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,7 +95,7 @@ theme_override_constants/margin_bottom = 6
 [node name="Panel" type="Panel" parent="MarginContainer/Panel/MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xpa6m")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6fksn")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

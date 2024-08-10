@@ -40,6 +40,7 @@ offset_right = -931.0
 offset_bottom = -313.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_c77jd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nmakg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_y2lqj")

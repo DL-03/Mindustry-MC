@@ -80,6 +80,7 @@ size_flags_vertical = 6
 script = ExtResource("1_dmfv7")
 
 [node name="Main" type="TextureRect" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_d3kp4")
 layout_mode = 2
 texture = ExtResource("1_yytgo")
@@ -87,6 +88,7 @@ expand_mode = 1
 
 [node name="Rotator" type="TextureRect" parent="Main"]
 visible = false
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,6 +100,7 @@ expand_mode = 1
 
 [node name="Top" type="TextureRect" parent="."]
 visible = false
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_yytgo")
 expand_mode = 1

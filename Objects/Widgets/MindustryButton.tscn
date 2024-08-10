@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr6bawc8angch"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_lday0"]
+[ext_resource type="Script" path="res://Objects/Widgets/MindustryButton.gd" id="2_qhjnh"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="3_7e0be"]
+
+[node name="MindustryButton" type="Button" node_paths=PackedStringArray("Text_Element", "Icon_Text_Element")]
+offset_left = 112.0
+offset_top = 28.0
+offset_right = 261.0
+offset_bottom = 93.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_lday0")
+script = ExtResource("2_qhjnh")
+Text_Element = NodePath("MarginContainer/HBoxContainer/Text")
+Icon_Text_Element = NodePath("MarginContainer/HBoxContainer/IconText")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="IconText" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_7e0be")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = ""
+real_text = ""
+
+[node name="Text" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_7e0be")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 16
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+real_text = ""
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/Text" to="." method="_on_text_ready"]

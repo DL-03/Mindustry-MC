@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://budnpeih4n2pc"]
+[gd_scene load_steps=5 format=3 uid="uid://budnpeih4n2pc"]
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_8xgjm"]
 [ext_resource type="Script" path="res://mod_explorer.gd" id="1_rr7t2"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="2_vk8ij"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_idx0b"]
 
 [node name="Mod_Explorer" type="Control"]
 custom_minimum_size = Vector2(400, 0)
@@ -49,11 +50,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 stretch_mode = 1
 
-[node name="Up" type="Button" parent="VBoxContainer/HBoxContainer2/ARC_Up"]
+[node name="Up" parent="VBoxContainer/HBoxContainer2/ARC_Up" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-theme_override_font_sizes/font_size = 24
-text = ""
+real_text_icon = ""
+font_size = 11
+real_tooltip_text = "Top Directory"
 
 [node name="ARC_Reload" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 0)
@@ -61,11 +63,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 stretch_mode = 1
 
-[node name="Reload" type="Button" parent="VBoxContainer/HBoxContainer2/ARC_Reload"]
+[node name="Reload" parent="VBoxContainer/HBoxContainer2/ARC_Reload" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-theme_override_font_sizes/font_size = 24
-text = ""
+real_text_icon = ""
+font_size = 11
+real_tooltip_text = "Refresh"
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(50, 0)
@@ -73,23 +76,25 @@ layout_mode = 2
 size_flags_horizontal = 0
 stretch_mode = 1
 
-[node name="Find" type="Button" parent="VBoxContainer/HBoxContainer2/AspectRatioContainer"]
+[node name="Find" parent="VBoxContainer/HBoxContainer2/AspectRatioContainer" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-theme_override_font_sizes/font_size = 24
-text = ""
+real_text_icon = ""
+font_size = 11
+real_tooltip_text = "|FindButton|"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_8xgjm")
-placeholder_text = "Путь..."
+placeholder_text = "Path..."
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_8xgjm")
+alignment = 1
 selected = 6
 item_count = 8
 popup/item_0/text = "Huge Icons"
@@ -109,6 +114,7 @@ popup/item_7/text = "Content"
 popup/item_7/id = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
@@ -118,22 +124,25 @@ layout_mode = 2
 size_flags_horizontal = 0
 stretch_mode = 1
 
-[node name="Find" type="Button" parent="VBoxContainer/HBoxContainer/AspectRatioContainer"]
+[node name="Find" parent="VBoxContainer/HBoxContainer/AspectRatioContainer" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-theme_override_font_sizes/font_size = 24
-text = ""
+real_text_icon = ""
+font_size = 11
+real_tooltip_text = "|FindButton|"
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_8xgjm")
-placeholder_text = "Поиск..."
+placeholder_text = "Search..."
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_8xgjm")
+alignment = 1
 selected = 6
 item_count = 8
 popup/item_0/text = "Huge Icons"
@@ -168,6 +177,16 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="LabelLoading" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_8xgjm")
+theme_override_font_sizes/font_size = 90
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="property_list_changed" from="." to="." method="_on_property_list_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/ARC_Return/Return" to="." method="_on_return_pressed"]

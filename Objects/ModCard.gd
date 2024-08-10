@@ -6,7 +6,48 @@ var CLASS_NAME = "ModCard"
 
 
 var ModEditor: Node
-var contentClass: ContentClass
+var contentClass: ContentClass:
+	set = _set_contentClass
+
+
+
+
+func _contentClass_updated():
+	if typeof(contentClass.FullData) == TYPE_DICTIONARY:
+		if "displayName" in contentClass.FullData:
+			$MarginContainer/HBoxContainer/VBoxContainer/displayName.real_text = contentClass.FullData["displayName"]
+		if "name" in contentClass.FullData:
+			$MarginContainer/HBoxContainer/VBoxContainer/name.text = contentClass.FullData["name"]
+		if "author" in contentClass.FullData:
+			$MarginContainer/HBoxContainer/VBoxContainer/author.real_text = contentClass.FullData["author"]
+		if "version" in contentClass.FullData:
+			$MarginContainer/HBoxContainer/VBoxContainer/version.text = contentClass.FullData["version"]
+	
+	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_text = ModEditor.modClass.Path
+	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_tooltip_text = ModEditor.modClass.Path
+	
+	if ModEditor.modClass.ModType.to_lower() == "folder":
+		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_text = ""
+		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Text.Folder|"
+	else:
+		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_text = ""
+		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Text.Archive|"
+		
+	show_save_button = ModEditor.modClass.ModType.to_lower() == "archive"
+
+func _set_contentClass(value):
+	if value == null:
+		return
+	
+	contentClass = value
+	
+	contentClass.data_changed.connect(_contentClass_updated)
+	
+	
+	_contentClass_updated()
+	
+	
+	
 
 var TempSize = 0
 var Visible = true
@@ -103,17 +144,17 @@ func toggle_visible():
 	
 	InfoPanel.get_node("author").visible = Visible
 	InfoPanel.get_node("version").visible = Visible
-	InfoPanel.get_node("Path").visible = Visible
+	InfoPanel.get_node("HBoxContainer").visible = Visible
 
 	
 	if Visible:
 		custom_minimum_size.y = 130
 
-		ControlPanel.get_node("Visible").text = ""
+		ControlPanel.get_node("Visible").real_text_icon = ""
 	else:
 		custom_minimum_size.y = 50
 
-		ControlPanel.get_node("Visible").text = ""
+		ControlPanel.get_node("Visible").real_text_icon = ""
 
 
 func _on_visible_pressed() -> void:
@@ -131,3 +172,19 @@ func _on_resized():
 func _on_pressed():
 	if ModEditor != null:
 		ModEditor.ContentEditor.open_from_path(contentClass)
+
+
+func _on_open_folder_pressed():
+	if OS.get_name() == "Windows":
+		OS.execute("explorer.exe", PackedStringArray([ ProjectSettings.globalize_path(InfoPanel.get_node("HBoxContainer/Path").real_text)]))
+		#MessageAPI.info("Path Copied!")
+
+func _on_path_copy_pressed():
+	DisplayServer.clipboard_set(InfoPanel.get_node("HBoxContainer/Path").real_text)
+	MessageAPI.info("Path Copied!")
+
+
+func _on_save_pressed():
+	if ModEditor.modClass.ModType.to_lower() == "archive":
+		ArchiveMain.Pack(ModEditor.modClass.Path, ModEditor.modClass.SourcePath)
+		MessageAPI.info("Moddification Saved!")

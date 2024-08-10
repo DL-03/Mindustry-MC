@@ -1,17 +1,58 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7xc004po17sb"]
+[gd_scene load_steps=24 format=3 uid="uid://c7xc004po17sb"]
 
 [ext_resource type="Script" path="res://Objects/ForEditor/ModEditor.gd" id="1_845tx"]
 [ext_resource type="PackedScene" uid="uid://ce1e3yxgjuyas" path="res://Objects/ModCard.tscn" id="2_u0hhs"]
 [ext_resource type="PackedScene" uid="uid://b4f0pxojub5i8" path="res://button_tab_content_editor.tscn" id="3_d6n3b"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="4_p5g38"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_pfa80"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="5_y0pox"]
 [ext_resource type="Script" path="res://Objects/ContentEditor.gd" id="6_rws2k"]
+[ext_resource type="Texture2D" uid="uid://c3lrs63ysubv0" path="res://resources/PointEvent.png" id="7_67jq7"]
+[ext_resource type="Script" path="res://Objects/ForEditor/Save.gd" id="7_g6evi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odpfj"]
 bg_color = Color(0, 0, 0, 1)
 border_width_right = 5
 border_color = Color(0.270588, 0.270588, 0.270588, 1)
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5rhb"]
+bg_color = Color(1, 0, 0, 1)
+border_width_bottom = 5
+border_color = Color(1, 0, 0, 1)
+corner_detail = 1
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l1h4"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_bottom = 5
+corner_detail = 1
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4qbr"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_bottom = 5
+corner_detail = 1
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dhc4"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+draw_center = false
+border_width_top = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymwp1"]
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_mh2fg"]
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_m5rhb")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_2l1h4")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_g4qbr")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_6dhc4")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_6dhc4")
+ScrollContainer/styles/panel = SubResource("StyleBoxFlat_ymwp1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uj0s5"]
 
@@ -26,6 +67,47 @@ corner_radius_top_right = 10
 corner_detail = 1
 anti_aliasing = false
 anti_aliasing_size = 4.72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vmab"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+anti_aliasing_size = 4.72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m25i6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+anti_aliasing_size = 4.72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2p1ds"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+anti_aliasing_size = 4.72
+
+[sub_resource type="Curve" id="Curve_4kon5"]
+max_value = 2.5
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 2.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c1qk"]
 bg_color = Color(0, 0, 0, 1)
@@ -132,23 +214,38 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="CreateContent" type="Button" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CreateContent" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
-text = " Создать контент"
+real_text_icon = ""
+real_text = "|CreateContent.Title.text|"
+font_size = 14
+icon_size = 16
 
-[node name="ReloadContent" type="Button" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ReloadContent" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
-text = " Обновить список"
+real_text_icon = ""
+real_text = "|ReloadList|"
+font_size = 14
+icon_size = 16
 
-[node name="ContentEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("ModEditor", "Tabs", "Editors")]
+[node name="ContentBank" type="Button" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_y0pox")
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+text = "(DEBUG) ContentBank (DEBUG)"
+
+[node name="ContentEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("ModEditor", "Tabs", "Editors", "SaveButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -5
@@ -156,6 +253,7 @@ script = ExtResource("6_rws2k")
 ModEditor = NodePath("..")
 Tabs = NodePath("Top/Tabs/ScrollContainer/MarginContainer/HBoxContainer")
 Editors = NodePath("Editors/MarginContainer")
+SaveButton = NodePath("Top/Save")
 
 [node name="Top" type="HBoxContainer" parent="ContentEditor"]
 custom_minimum_size = Vector2(0, 50)
@@ -163,7 +261,6 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="Tabs" type="MarginContainer" parent="ContentEditor/Top"]
-z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -172,37 +269,63 @@ theme_override_constants/margin_right = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ContentEditor/Top/Tabs"]
 layout_mode = 2
+theme = SubResource("Theme_mh2fg")
 vertical_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ContentEditor/Top/Tabs/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContentEditor/Top/Tabs/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 
 [node name="VSeparator" type="VSeparator" parent="ContentEditor/Top"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
 [node name="Save" type="Button" parent="ContentEditor/Top"]
+z_index = -1
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("4_p5g38")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/disabled = SubResource("StyleBoxFlat_nba43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0vmab")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m25i6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2p1ds")
 disabled = true
 text = ""
+script = ExtResource("7_g6evi")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ContentEditor/Top/Save"]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(25, 25)
+emitting = false
+amount = 1
+lifetime = 5.0
+speed_scale = 2.0
+texture = ExtResource("7_67jq7")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_4kon5")
 
 [node name="VSeparator2" type="VSeparator" parent="ContentEditor/Top"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
 [node name="Editors" type="Panel" parent="ContentEditor"]
+z_index = -1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8c1qk")
@@ -214,16 +337,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 15
 
 [node name="Window" type="Window" parent="."]
 snap_2d_vertices_to_pixel = true
 title = "ContentBank"
 initial_position = 2
 size = Vector2i(560, 375)
+visible = false
 theme = ExtResource("4_p5g38")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Window"]
@@ -238,4 +360,7 @@ bbcode_enabled = true
 autowrap_mode = 0
 
 [connection signal="pressed" from="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
+[connection signal="pressed" from="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]
+[connection signal="pressed" from="Panel/Panel/MarginContainer/VBoxContainer/ContentBank" to="." method="_on_content_bank_pressed"]
+[connection signal="pressed" from="ContentEditor/Top/Save" to="ContentEditor" method="_on_save_pressed"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]

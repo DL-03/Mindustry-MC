@@ -1,20 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://dipdoen4ju8yg"]
+[gd_scene load_steps=6 format=3 uid="uid://dipdoen4ju8yg"]
 
 [ext_resource type="Script" path="res://Objects/MindustryTextLabel.gd" id="1_52qyv"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_ntexi"]
+[ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="2_bad1k"]
+
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ev2i6"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(206, 118)
+shader_parameter/text_size = Vector2(0, 0)
+shader_parameter/text_vertical_aligment = 0
 
 [node name="MindustryTextLabel" type="RichTextLabel"]
+material = SubResource("ShaderMaterial_ev2i6")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 121.0
-offset_top = 53.0
-offset_right = -644.0
-offset_bottom = -487.0
+offset_left = 114.0
+offset_top = 45.0
+offset_right = -832.0
+offset_bottom = -485.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_ntexi")
+theme_override_colors/font_shadow_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_fonts/normal_font = ExtResource("2_bad1k")
 bbcode_enabled = true
 autowrap_mode = 0
 script = ExtResource("1_52qyv")

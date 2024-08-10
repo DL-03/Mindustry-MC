@@ -1,8 +1,8 @@
 {
-    "Settings": {
-        "Language": "ru",
-        "AutoOpenModeMindustry": false,
-        "contentFileMomentalWarningYes": false,
-        "saveMessageFrequency": 60
-    }
+	"Settings": {
+		"Language": "ru",
+		"AutoOpenModeMindustry": false,
+		"contentFileMomentalWarningYes": false,
+		"saveMessageFrequency": 60
+	}
 }

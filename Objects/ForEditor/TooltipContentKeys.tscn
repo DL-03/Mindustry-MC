@@ -1,8 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjv1ns30b2oox"]
+[gd_scene load_steps=7 format=3 uid="uid://cjv1ns30b2oox"]
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_ooldv"]
 [ext_resource type="Script" path="res://Objects/ForEditor/TooltipContentKeys.gd" id="2_i0bxq"]
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="2_vfkf2"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="3_xdgqr"]
+
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf2fs"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(0, 0)
+shader_parameter/text_size = Vector2(0, 0)
+shader_parameter/text_vertical_aligment = null
 
 [node name="TooltipContentKeys" type="Panel"]
 offset_right = 1150.0
@@ -34,11 +67,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="Key" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="key" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_xdgqr")]
 layout_mode = 2
-theme = ExtResource("1_ooldv")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-text = "Параметр: "
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+text = "Parametr:"
+real_text = "|ClassType.tip_parametr|:"
+font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -68,11 +103,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="KeyType" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="KeyType" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_xdgqr")]
 layout_mode = 2
-theme = ExtResource("1_ooldv")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-text = "Тип: "
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+text = "Type:"
+real_text = "|ClassType.tip_type|:"
+font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="NameType" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -85,11 +122,13 @@ layout_mode = 2
 theme = ExtResource("1_ooldv")
 text = "|"
 
-[node name="KeyDefault" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="KeyDefault" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_xdgqr")]
 layout_mode = 2
-theme = ExtResource("1_ooldv")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-text = "По умолчанию:"
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+text = "Default:"
+real_text = "|ClassType.tip_default|:"
+font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="sW" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -107,6 +146,7 @@ theme = ExtResource("1_ooldv")
 text = "\""
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
+material = SubResource("ShaderMaterial_lf2fs")
 layout_mode = 2
 fit_content = true
 

@@ -2,7 +2,7 @@
 class_name ModExplorer
 extends Control
 
-var HjsonMain = preload("res://HjsonMain.gd").new()
+
 
 var FinderPanel = null
 
@@ -20,6 +20,10 @@ func WaitForChild(path, try_counter=50):
 var view_type = 6
 
 
+var thread: Thread
+
+
+
 
 
 var history = []
@@ -27,44 +31,46 @@ var history = []
 
 func _update_history():
 	$VBoxContainer/HBoxContainer2/ARC_Return/Return.disabled = len(history) == 0
-	print(history)
+	#print(history)
 
 @export var current_path = "":
 	set = _set_current_path
 var path = ""
 
-func get_all_files(path: String, file_ext := "", files := []):
-	var dir = DirAccess.open(path)
-	#print(dir)
-	if dir != null:
-		dir.list_dir_begin()
-
-		var file_name = dir.get_next()
-
-		while file_name != "":
-			if dir.current_is_dir():
-				dir.get_current_dir()
-				files = get_all_files(dir.get_current_dir()+"/"+file_name, file_ext, files)
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
-			else:
-				if file_ext and file_name.get_extension() != file_ext:
-					file_name = dir.get_next()
-					continue
-
-				files.append(file_name)
-
-			file_name = dir.get_next()
+func get_all_files(path: String, file_ext := "", files := [], _max_recursion=99):
+	if _max_recursion <= 0:
+		return files
 	else:
-		print("An error occurred when trying to access %s." % path)
+		var dir = DirAccess.open(path)
+		#print(dir)
+		if dir != null:
+			dir.list_dir_begin()
+
+			var file_name = dir.get_next()
+
+			while file_name != "":
+				if dir.current_is_dir():
+					dir.get_current_dir()
+					files = get_all_files(dir.get_current_dir()+"/"+file_name, file_ext, files,_max_recursion-1)
+					#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
+				else:
+					if file_ext and file_name.get_extension() != file_ext:
+						file_name = dir.get_next()
+						continue
+
+					files.append(file_name)
+
+				file_name = dir.get_next()
+		else:
+			print("An error occurred when trying to access %s." % path)
 
 	return files
-func _set_current_path(value):
-	
-	var _prev = current_path
-	current_path = value
-	
+
+
+
+func thred_fetching(value,_prev):
 	if value != path:
-		print(DirAccess.dir_exists_absolute(value),DirAccess.open(value),value)
+		#print(DirAccess.dir_exists_absolute(value),DirAccess.open(value),value)
 		if DirAccess.dir_exists_absolute(value):
 			if 1==1:
 				var DirA = DirAccess.open(value)
@@ -104,7 +110,7 @@ func _set_current_path(value):
 					var PathZip = path+file_name
 					var PathLocal = null
 					if DirA.current_is_dir():
-						var reader = get_all_files(path+file_name)
+						var reader = get_all_files(path+file_name, "", [], 3)
 						
 						
 						for i in reader:
@@ -118,31 +124,35 @@ func _set_current_path(value):
 								if s != null:
 									Data = JSON.parse_string(FileAccess.open(path+file_name+"/"+i,FileAccess.READ).get_as_text())
 									#print(reader.file_exists(i.left(-8)+"icon.png"))
-									if FileAccess.file_exists(path+file_name+"/"+i.left(-8)+"icon.png"):
+									#print("AR: ",path+file_name+"/"+"icon.png")
+									if FileAccess.file_exists(path+file_name+"/"+"icon.png"):
 										var image = Image.new()
-										image.load_png_from_buffer(FileAccess.open(path+file_name+"/"+i.left(-8)+"icon.png",FileAccess.READ).get_buffer(-1))
+										image.load(path+file_name+"/"+"icon.png")
 										var t = ImageTexture.new()
 										
 										Icon = t.create_from_image(image)
+									s.close()
 									#print(Icon)
 								#print(i.left(-8)+"icon.png")
 								break
 							if i.right(10) == "/mod.hjson" or i == "mod.hjson":
+								TypeMod = "Folder"
 								PathLocal = i.left(-9)
 								
-								var s = reader.read_file(i)
+
+								var s := FileAccess.open(path+file_name+"/"+i,FileAccess.READ)
 								if s != null:
-								
-									Data = HjsonMain.parse_string(s.get_string_from_utf8())
-									#print(reader.file_exists(i.left(-9)+"icon.png"))
-									if reader.file_exists(i.left(-9)+"icon.png"):
+									Data = HJSON.parse_string(FileAccess.open(path+file_name+"/"+i,FileAccess.READ).get_as_text())
+									#print(reader.file_exists(i.left(-8)+"icon.png"))
+									if FileAccess.file_exists(path+file_name+"/"+"icon.png"):
 										var image = Image.new()
-										image.load_png_from_buffer(reader.read_file(i.left(-9)+"icon.png"))
+										image.load(path+file_name+"/"+"icon.png")
 										var t = ImageTexture.new()
 										
 										Icon = t.create_from_image(image)
-										#print(Icon)
-									#print(i.left(-9)+"icon.png")
+									s.close()
+									#print(Icon)
+								#print(i.left(-8)+"icon.png")
 								break
 					else:
 						var reader := ZIPReader.new()
@@ -175,7 +185,7 @@ func _set_current_path(value):
 									PathLocal = i.left(-9)
 									var s := reader.read_file(i)
 									if s != null:
-										Data = HjsonMain.parse_string(s.get_string_from_utf8())
+										Data = HJSON.parse_string(s.get_string_from_utf8())
 										#print(reader.file_exists(i.left(-9)+"icon.png"))
 										if reader.file_exists(i.left(-9)+"icon.png"):
 											var image = Image.new()
@@ -186,7 +196,7 @@ func _set_current_path(value):
 										#print(Icon)
 									#print(i.left(-9)+"icon.png")
 									break
-									
+							reader.close()
 									
 									
 					if Data != null:
@@ -197,7 +207,7 @@ func _set_current_path(value):
 						if "displayName" in Data:
 							st.get_node("displayName").real_text = str(Data["displayName"])
 						if "name" in Data:
-							st.get_node("name").text = str(Data["name"])
+							st.get_node("name").real_text = str(Data["name"])
 						if "author" in Data:
 							st.get_node("author").real_text = str(Data["author"])
 						if "version" in Data:
@@ -207,11 +217,13 @@ func _set_current_path(value):
 							_ModCard.get_node("MarginContainer/HBoxContainer/MarginContainer/TextureRect").texture = Icon
 						
 						if TypeMod == "Folder":
-							_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").text = ""
+							_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").real_text = ""
+							_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").real_tooltip_text = "[UI.YELLOW]|Text.Folder|"
 						else:
-							_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").text = ""
-
-						st.get_node("Path").text = PathZip
+							_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").real_text = ""
+							_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").real_tooltip_text = "[UI.YELLOW]|Text.Archive|"
+						st.get_node("HBoxContainer/Path").real_text = PathZip
+						st.get_node("HBoxContainer/Path").real_tooltip_text = PathZip
 						#_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").tooltip_text = TypeMod
 						_ModCard.Path = PathZip
 
@@ -231,13 +243,41 @@ func _set_current_path(value):
 					file_name = DirA.get_next()
 			if _prev != "":
 				#if _prev != history[len(history)-1]:
-					print(_prev)
+					#print(_prev)
 					history.append(_prev)
 					_update_history()
 		else:
 			$VBoxContainer/HBoxContainer2/LineEdit.add_theme_color_override("font_color", Color.RED)
-	print("JJ")
 	update_list_view()
+	
+func _set_current_path(value):
+	
+	
+	
+	
+	var _prev = current_path
+	current_path = value
+	
+	
+	$VBoxContainer/LabelLoading.show()
+	$VBoxContainer/ScrollContainer.hide()
+	
+	
+	#if thread != null:
+	#	thread.queue_free()
+	#	thread = null
+	#thread = Thread.new()
+	#var c = Callable.create(self, "thred_fetching")
+	#c.bind([value,_prev])
+	#thread.start(c,Thread.PRIORITY_NORMAL)
+	await thred_fetching(value,_prev)
+	
+	#thread.wait_to_finish()
+	
+	
+	
+	#print("JJ")
+	
 @export var finder = true : 
 	set = _set_finder
 @export var view_folders = true
@@ -303,7 +343,7 @@ func update_list_view():
 					var n = (index==6 or index == 7)
 					i.get_node("MarginContainer/HBoxContainer/VBoxContainer/author").visible = n
 					i.get_node("MarginContainer/HBoxContainer/VBoxContainer/version").visible = n
-					i.get_node("MarginContainer/HBoxContainer/VBoxContainer/Path").visible = n
+					i.get_node("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path").visible = n
 					
 			
 			if index >= 0 and index <= 3:
@@ -325,10 +365,12 @@ func update_list_view():
 			i.size.y = 0
 			i.size.x = 0
 			
-			print("CCC")
+			#print("CCC")
 		
 		
-		print("SUM")
+		#print("SUM")
+	$VBoxContainer/LabelLoading.hide()
+	$VBoxContainer/ScrollContainer.show()
 
 
 			

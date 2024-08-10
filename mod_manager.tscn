@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bhb04uet46lh"]
 
 [ext_resource type="Script" path="res://mod_manager.gd" id="1_h5dyy"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="2_gdljv"]
 [ext_resource type="PackedScene" uid="uid://budnpeih4n2pc" path="res://mod_explorer.tscn" id="2_kougr"]
 [ext_resource type="Theme" uid="uid://m4qp8nd0866i" path="res://Windows11.tres" id="2_ld5hn"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_1uiuu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64je"]
 bg_color = Color(0.270588, 0.270588, 0.270588, 1)
@@ -68,6 +68,7 @@ text = "123000000000000"
 
 [node name="Mod_Explorer" parent="VBoxContainer" instance=ExtResource("2_kougr")]
 layout_mode = 2
+finder = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 visible = false
@@ -99,8 +100,9 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="DownPanel" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/DownPanel"]
@@ -110,8 +112,22 @@ theme = ExtResource("2_ld5hn")
 text = "Welcome!
 Its MMCRUE!"
 
-[node name="OpenFolder" type="Button" parent="VBoxContainer/DownPanel"]
+[node name="OpenFolder" parent="VBoxContainer/DownPanel" instance=ExtResource("4_1uiuu")]
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_gdljv")
-text = " Open Folder"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+real_text_icon = ""
+real_text = "|ModManager.OpenFolder.text|"
+h_aligment = null
+
+[node name="CreateModification" parent="VBoxContainer/DownPanel" instance=ExtResource("4_1uiuu")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+real_text_icon = ""
+real_text = "|ModManager.CreateModification.text|"
+h_aligment = null
+
+[connection signal="pressed" from="VBoxContainer/DownPanel/CreateModification" to="." method="_on_create_modification_pressed"]
