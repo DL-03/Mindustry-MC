@@ -1,0 +1,254 @@
+[gd_scene load_steps=15 format=3 uid="uid://ctvf6s35ig4fm"]
+
+[ext_resource type="Theme" uid="uid://358iq8huos60" path="res://resources/themes/MindustryRect.tres" id="1_j720t"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="1_ma5oc"]
+[ext_resource type="Script" path="res://Scripts/ForCustomExplorer/Element.gd" id="2_gng34"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_m226d"]
+[ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="3_2euqq"]
+[ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="4_hwhlm"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_gap6n"]
+
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5auqh"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(0, 19)
+shader_parameter/text_size = Vector2(202, 17)
+shader_parameter/text_vertical_aligment = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hiyhc"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(0, 20)
+shader_parameter/text_size = Vector2(202, 17)
+shader_parameter/text_vertical_aligment = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tw6cd"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(0, 20)
+shader_parameter/text_size = Vector2(202, 17)
+shader_parameter/text_vertical_aligment = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7fsk"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_viylu"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oem0q"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[node name="Element" type="Button"]
+custom_minimum_size = Vector2(400, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_j720t")
+script = ExtResource("2_gng34")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextIcon" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_m226d")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = ""
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_j720t")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ImageIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_2euqq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DisplayName" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
+material = SubResource("ShaderMaterial_5auqh")
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/normal_font_size = 15
+text = "[color=e55454ff]None"
+real_text = "[UI.RED]None"
+text_vertical_aligment = 1
+
+[node name="Name" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("2_m226d")]
+clip_contents = true
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 15
+text = "None"
+vertical_alignment = 1
+real_text = "None"
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="Author" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
+visible = false
+material = SubResource("ShaderMaterial_hiyhc")
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+text = "[color=e55454ff]None"
+real_text = "[UI.RED]None"
+text_vertical_aligment = 1
+
+[node name="Version" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
+visible = false
+material = SubResource("ShaderMaterial_tw6cd")
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 15
+text = "[color=e55454ff]None"
+real_text = "[UI.RED]None"
+text_vertical_aligment = 1
+
+[node name="PathBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoPanel"]
+visible = false
+layout_mode = 2
+
+[node name="Path" parent="MarginContainer/HBoxContainer/InfoPanel/PathBox" instance=ExtResource("5_gap6n")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_ma5oc")
+real_text = "Path"
+icon_aligment = null
+h_aligment = 2
+font_size = 11
+real_tooltip_text = "Copy Link!"
+
+[node name="OpenFolder" parent="MarginContainer/HBoxContainer/InfoPanel/PathBox" instance=ExtResource("5_gap6n")]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme = ExtResource("1_ma5oc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f7fsk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_viylu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oem0q")
+real_text_icon = ""
+icon_aligment = null
+h_aligment = 2
+font_size = 13
+icon_size = 13
+real_tooltip_text = "|CustomExplorer.Element.OpenFolder.text|"
+
+[node name="ControlPanel" type="VFlowContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="Duplicate" parent="MarginContainer/HBoxContainer/ControlPanel" instance=ExtResource("5_gap6n")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_ma5oc")
+real_text_icon = ""
+icon_aligment = null
+icon_size = 20
+real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
+
+[node name="Rename" parent="MarginContainer/HBoxContainer/ControlPanel" instance=ExtResource("5_gap6n")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_ma5oc")
+real_text_icon = ""
+icon_aligment = null
+icon_size = 20
+real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
+
+[node name="Delete" parent="MarginContainer/HBoxContainer/ControlPanel" instance=ExtResource("5_gap6n")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("1_ma5oc")
+icon_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon = ""
+icon_aligment = null
+icon_size = 20
+real_tooltip_text = "[UI.RED]|CustomExplorer.Element.Delete.text|"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/InfoPanel/PathBox/Path" to="." method="_on_path_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/InfoPanel/PathBox/OpenFolder" to="." method="_on_open_folder_pressed"]

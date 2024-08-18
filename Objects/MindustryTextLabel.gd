@@ -12,6 +12,19 @@ class_name MindustryTextLabel
 @export_enum("Up","Center","Bottom") var text_vertical_aligment = 0:
 	set = _text_vertical_aligment
 
+@export_multiline var real_tooltip_text = "":
+	set = _set_real_tooltip_text
+		
+
+func _set_real_tooltip_text(value):
+	real_tooltip_text = value
+	
+	if value == "":
+		mouse_filter = MOUSE_FILTER_IGNORE
+	else:
+		mouse_filter = MOUSE_FILTER_PASS
+
+
 
 func _set_real_text(value):
 	real_text = value
@@ -53,7 +66,7 @@ func _text_update():
 func translate_text(text):
 	if text == null:
 		return text
-	
+	text = str(text)
 	var text_list = text.split("|")
 	
 	var result = ""
@@ -83,4 +96,18 @@ func _set_text_size(value):
 	material.set_shader_parameter("text_size", text_size)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+
+
+func _on_resized():
 	material.set_shader_parameter("object_size", size)
+
+
+func _on_mouse_entered():
+	if real_tooltip_text != "":
+		$/root/Main/MindustryToolTip.tip(real_tooltip_text,get_viewport().get_mouse_position())
+
+
+func _on_mouse_exited():
+	if real_tooltip_text != "":
+		$/root/Main/MindustryToolTip.untip()

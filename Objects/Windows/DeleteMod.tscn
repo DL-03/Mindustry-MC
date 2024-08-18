@@ -1,0 +1,227 @@
+[gd_scene load_steps=15 format=3 uid="uid://vsvpa6ywikp2"]
+
+[ext_resource type="Script" path="res://Scripts/Windows/DeleteMod.gd" id="1_72wha"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_cpqxq"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_scntm"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_40crj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgu5g"]
+bg_color = Color(0, 0, 0, 0.686275)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogyua"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ic54b"]
+bg_color = Color(0.945098, 0.32549, 0.321569, 1)
+border_width_top = 2
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpn5o"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh2b8"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8xsv"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="Shader" id="Shader_5mxv5"]
+code = "shader_type canvas_item;
+
+uniform vec2 texture_size;
+
+
+void fragment() {
+	if (float(int(((UV.x-TIME/25.0)*texture_size.x)+(UV.y*texture_size.y))&30) > 15.0) {
+		if (COLOR.a != 0.0) {
+			COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+		}
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6jvfk"]
+shader = SubResource("Shader_5mxv5")
+shader_parameter/texture_size = Vector2(90, 50)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ox7ud"]
+bg_color = Color(0.945098, 0.32549, 0.321569, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_jlgtx"]
+script/source = "extends Panel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	material.set_shader_parameter(\"texture_size\", size)
+"
+
+[node name="DeleteMod" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cgu5g")
+script = ExtResource("1_72wha")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ogyua")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_cpqxq")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.0826556, 0.0816599, 1)
+theme_override_font_sizes/font_size = 20
+text = "!  Delete Mod  !"
+horizontal_alignment = 1
+real_text = "!  Delete Mod  !"
+font_color = Color(0.945098, 0.32549, 0.321569, 1)
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ic54b")
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_scntm")
+text = "Name"
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_40crj")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|RDW.Cancel.text|"
+icon_aligment = null
+
+[node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_40crj")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
+real_text_icon = ""
+real_text = "|RDW.Delete.text|"
+icon_aligment = null
+h_aligment = null
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete"]
+z_index = -1
+material = SubResource("ShaderMaterial_6jvfk")
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 50.045
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ox7ud")
+script = SubResource("GDScript_jlgtx")
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="button_down" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_button_down"]
+[connection signal="button_up" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_button_up"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_pressed"]

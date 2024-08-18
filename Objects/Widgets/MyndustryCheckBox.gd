@@ -12,7 +12,7 @@ signal state_changed
 func _set_Checked(value):
 	Checked = value
 	$MarginContainer/Panel/MarginContainer2.visible = Checked
-	state_changed.emit(Checked)
+	
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +27,7 @@ func _process(delta):
 
 func _on_pressed():
 	Checked = not Checked
-
+	state_changed.emit(Checked)
 
 func _on_mouse_entered():
 	

@@ -67,26 +67,17 @@ shader = SubResource("Shader_uvqyj")
 shader_parameter/u_campos = null
 shader_parameter/water_effect = false
 
-[node name="ObjectIcon" type="AspectRatioContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -3.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-script = ExtResource("1_dmfv7")
-
-[node name="Main" type="TextureRect" parent="."]
+[node name="Main" type="TextureRect"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_d3kp4")
-layout_mode = 2
+offset_left = 251.5
+offset_right = 897.5
+offset_bottom = 646.0
 texture = ExtResource("1_yytgo")
 expand_mode = 1
+script = ExtResource("1_dmfv7")
 
-[node name="Rotator" type="TextureRect" parent="Main"]
+[node name="Rotator" type="TextureRect" parent="."]
 visible = false
 texture_filter = 1
 layout_mode = 1
@@ -101,6 +92,11 @@ expand_mode = 1
 [node name="Top" type="TextureRect" parent="."]
 visible = false
 texture_filter = 1
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_yytgo")
 expand_mode = 1

@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 
 func OpenFromPath(TabButton, Path, Type=null) -> void:
 	var t = CLASS_ModEditor.instantiate()
-	TabButton.text = "MindustryMod"
 	$/root/Main/V1.add_child(t)
 	TabButton.ContentFrame = t
 	t.ButtonTab = TabButton

@@ -26,7 +26,6 @@ func _set_real_text(value):
 		text = translate_text(value)
 
 
-
 @export var font_color = Color.WHITE:
 	set = _set_font_color
 
@@ -52,9 +51,7 @@ func _ready():
 	font_color = font_color
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 
 
 func translate_text(text):
@@ -74,7 +71,6 @@ func translate_text(text):
 
 
 func _on_mouse_entered():
-	print("eees")
 	if real_tooltip_text != "":
 		$/root/Main/MindustryToolTip.tip(real_tooltip_text,get_viewport().get_mouse_position())
 

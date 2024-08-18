@@ -33,18 +33,18 @@ func _set_contentClass(value):
 	if contentClass != null:
 		if typeof(contentClass.FullData) == TYPE_DICTIONARY:
 			if contentClass.FileType == "mod":
-				if "displayName" in contentClass.FullData:
+				if contentClass.FullData["displayName"] != "":
 					NameLabel.real_text = contentClass.FullData["displayName"]
 				else:
 					if "name" in contentClass.FullData:
 						NameLabel.real_text = contentClass.FullData["name"]
 					else:
-						NameLabel.real_text = "[red]null"
+						NameLabel.real_text = "[UI.RED]None"
 			else:
 				if "name" in contentClass.FullData:
 					NameLabel.real_text = contentClass.FullData["name"]
 				else:
-					NameLabel.real_text = "[red]null"
+					NameLabel.real_text = "[UI.RED]None"
 			
 		
 	
@@ -56,8 +56,8 @@ func _set_contentClass(value):
 	ContentFrame.RootNode = RootNode
 	ContentFrame.contentClass = contentClass
 	
-	$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
-	$HBoxContainer/MarginContainer/ObjectIcon.contentClass = contentClass
+	#$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
+	$MarginContainer/HBoxContainer/Icon.contentClass = contentClass
 		
 	
 	RootNode.select_tab(self)
@@ -79,10 +79,6 @@ func _process(delta):
 func _on_pressed():
 	RootNode.select_tab(self)
 
-
-
-func _on_h_box_container_resized():
-	pass
 
 
 
@@ -114,7 +110,8 @@ func NSC_SaveButton():
 		ContentFrame.queue_free()
 	self.queue_free()
 
-func _on_Close_pressed():
+
+func _on_close_pressed():
 	if ContentFrame != null:
 		
 		if ContentFrame.needSave:
@@ -128,3 +125,12 @@ func _on_Close_pressed():
 			self.queue_free()
 	else:
 		self.queue_free()
+
+
+func _on_margin_container_resized():
+	custom_minimum_size.x = $MarginContainer.size.x
+	size.x = 0
+	
+	
+func _on_h_box_container_resized():
+	$MarginContainer.size.x = 0

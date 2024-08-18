@@ -28,6 +28,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="IconText" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_7e0be")]
 visible = false

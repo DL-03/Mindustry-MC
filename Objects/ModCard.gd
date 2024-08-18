@@ -4,11 +4,13 @@ extends Button
 
 var CLASS_NAME = "ModCard"
 
+var Path = ""
 
 var ModEditor: Node
 var contentClass: ContentClass:
 	set = _set_contentClass
 
+var mod_explorer
 
 
 
@@ -21,10 +23,10 @@ func _contentClass_updated():
 		if "author" in contentClass.FullData:
 			$MarginContainer/HBoxContainer/VBoxContainer/author.real_text = contentClass.FullData["author"]
 		if "version" in contentClass.FullData:
-			$MarginContainer/HBoxContainer/VBoxContainer/version.text = contentClass.FullData["version"]
+			$MarginContainer/HBoxContainer/VBoxContainer/version.text = str(contentClass.FullData["version"])
 	
 	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_text = ModEditor.modClass.Path
-	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_tooltip_text = ModEditor.modClass.Path
+	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+ModEditor.modClass.Path
 	
 	if ModEditor.modClass.ModType.to_lower() == "folder":
 		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_text = ""
@@ -55,7 +57,7 @@ var Visible = true
 func _ready():
 	_set_TypeButton(0)
 
-var Path = ""
+
 
 
 var show_visible_button = false:
@@ -176,15 +178,19 @@ func _on_pressed():
 
 func _on_open_folder_pressed():
 	if OS.get_name() == "Windows":
-		OS.execute("explorer.exe", PackedStringArray([ ProjectSettings.globalize_path(InfoPanel.get_node("HBoxContainer/Path").real_text)]))
+		OS.execute("explorer.exe", PackedStringArray([ $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_text.simplify_path().replace("/", "\\")]))
 		#MessageAPI.info("Path Copied!")
-
+		#OS.execute("start", ["\"\"", ProjectSettings.globalize_path(InfoPanel.get_node("HBoxContainer/Path").real_text.simplify_path() + "/")])
 func _on_path_copy_pressed():
 	DisplayServer.clipboard_set(InfoPanel.get_node("HBoxContainer/Path").real_text)
-	MessageAPI.info("Path Copied!")
+	MessageAPI.info("|CustomExplorer.Message.PathCopied|!")
 
 
 func _on_save_pressed():
 	if ModEditor.modClass.ModType.to_lower() == "archive":
 		ArchiveMain.Pack(ModEditor.modClass.Path, ModEditor.modClass.SourcePath)
 		MessageAPI.info("Moddification Saved!")
+
+
+func _on_delete_pressed():
+	$/root/Main/DeleteMod.open(Path)

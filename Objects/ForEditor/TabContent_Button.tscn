@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://r8tkn8o8hlvy"]
+[gd_scene load_steps=14 format=3 uid="uid://r8tkn8o8hlvy"]
 
-[ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="1_0gati"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_mt4cl"]
 [ext_resource type="Script" path="res://Objects/ForEditor/TabContent_Button.gd" id="2_d0c7l"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="3_m7gnr"]
 [ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_vxmjg"]
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="4_125o7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qypd"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_hyb1r"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="5_ud2jl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbour"]
 content_margin_left = 10.0
@@ -69,6 +69,7 @@ uniform vec2 object_size;
 uniform vec2 text_size;
 uniform int text_vertical_aligment;
 
+
 void vertex() {
 	if (text_vertical_aligment == 1) {
 		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
@@ -78,101 +79,78 @@ void vertex() {
 	}
 }
 
-void fragment() {
-	// Called for every pixel the material is visible on.
-}
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkpfe"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a155u"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(49, 17)
-shader_parameter/text_size = Vector2(120, 17)
-shader_parameter/text_vertical_aligment = null
+shader_parameter/object_size = Vector2(47, 25)
+shader_parameter/text_size = Vector2(202, 17)
+shader_parameter/text_vertical_aligment = 1
 
-[node name="TabContent_Button" type="Button" node_paths=PackedStringArray("NameLabel")]
-custom_minimum_size = Vector2(50, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -944.0
-offset_bottom = -615.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TabButton_ContentEditor" type="Button" node_paths=PackedStringArray("NameLabel")]
+custom_minimum_size = Vector2(50, 30)
+offset_right = 182.0
+offset_bottom = 30.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_constants/icon_max_width = 24
-theme_override_fonts/font = ExtResource("1_0gati")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8qypd")
+theme = ExtResource("1_mt4cl")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_kbour")
 theme_override_styles/hover = SubResource("StyleBoxFlat_10sub")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_git5o")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8v6y8")
 script = ExtResource("2_d0c7l")
-NameLabel = NodePath("HBoxContainer/MarginContainer2/MindustryTextLabel")
+NameLabel = NodePath("MarginContainer/HBoxContainer/Text")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 208.0
+offset_right = 124.0
 grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
 
-[node name="ObjectIcon" parent="HBoxContainer/MarginContainer" instance=ExtResource("3_vxmjg")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
+size_flags_horizontal = 0
+theme_override_constants/separation = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="Icon" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_vxmjg")]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/margin_top = 9
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="MindustryTextLabel" parent="HBoxContainer/MarginContainer2" instance=ExtResource("4_125o7")]
-material = SubResource("ShaderMaterial_jkpfe")
+[node name="Text" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_125o7")]
+material = SubResource("ShaderMaterial_a155u")
 layout_mode = 2
-size_flags_horizontal = 3
-text = "[center]Name"
+text = "[color=e55454ff]None"
 fit_content = true
-real_text = "Name"
-text_aligment = 1
+real_text = "[UI.RED]None"
+text_vertical_aligment = 1
 
-[node name="Close" type="Button" parent="HBoxContainer"]
+[node name="Save" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_ud2jl")]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 8
-mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+text = "*"
+real_text = "*"
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="Close" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_hyb1r")]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
 theme = ExtResource("3_m7gnr")
-text = "x"
+icon_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon = ""
+icon_size = 20
+real_tooltip_text = "[UI.RED]Close"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
-[connection signal="resized" from="HBoxContainer" to="." method="_on_h_box_container_resized"]
-[connection signal="pressed" from="HBoxContainer/Close" to="." method="_on_Close_pressed"]
+[connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]
+[connection signal="resized" from="MarginContainer/HBoxContainer" to="." method="_on_h_box_container_resized"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

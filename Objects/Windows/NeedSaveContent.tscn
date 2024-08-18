@@ -100,6 +100,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon = ""
 real_text = "|NeedSaveContent.Save.text|"
+icon_aligment = null
 h_aligment = null
 
 [node name="Discard" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
@@ -107,6 +108,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon = ""
 real_text = "|NeedSaveContent.Discard.text|"
+icon_aligment = null
 h_aligment = null
 
 [node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
@@ -114,4 +116,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon = ""
 real_text = "|NeedSaveContent.Cancel.text|"
+icon_aligment = null
 h_aligment = null

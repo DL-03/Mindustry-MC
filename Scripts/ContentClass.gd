@@ -42,6 +42,8 @@ func _set_WriteData(value):
 	Data = value
 	
 	#if FileAccess.file_exists(Path):
+	if not DirAccess.dir_exists_absolute( Path.substr(0, len(Path)-len(Path.get_file())) ):
+		DirAccess.make_dir_recursive_absolute( Path.substr(0, len(Path)-len(Path.get_file())) )
 	var fileAccess = FileAccess.open(Path,FileAccess.WRITE)
 	
 	if Path.get_extension() == "json":
@@ -68,9 +70,10 @@ func _set_Path(_path):
 
 				if len(_path.substr(1+len(modClass.Path.simplify_path())).split("/")) > 1:
 					FileType = _path.substr(1+len(modClass.Path.simplify_path())).split("/")[1]
-				if _path.substr(1+len(modClass.Path.simplify_path())) == "mod.json":
+				#print("AAASS: ",_path.substr(1+len(modClass.Path)))
+				if _path.substr(1+len(modClass.Path)) == "mod.json":
 					FileType = "mod"
-				if _path.substr(1+len(modClass.Path.simplify_path())) == "mod.hjson":
+				if _path.substr(1+len(modClass.Path)) == "mod.hjson":
 					FileType = "mod"
 				
 				
@@ -110,24 +113,24 @@ func _set_File(value):
 func _set_Data(value):
 	
 	Data = value
-	if Data != null:
-		if typeof(Data) == TYPE_DICTIONARY:
-			if "type" in Data:
-				ContentType = Data["type"]
-			
-			var DATA = {}
+	if typeof(Data) != TYPE_DICTIONARY:
+		Data = {}
+	if "type" in Data:
+		ContentType = Data["type"]
+	
+	var DATA = {}
 
-			DefaultData = ContentManager.get_content(ContentType)
-			
-			
-			DATA = Data
-			
-			if DefaultData != null:
-				DATA = DefaultData.duplicate()
-				DATA.merge(Data, true)
+	DefaultData = ContentManager.get_content(ContentType)
+	
+	
+	DATA = Data
+	
+	if DefaultData != null:
+		DATA = DefaultData.duplicate()
+		DATA.merge(Data, true)
 
-			FullData = DATA
-			data_changed.emit()
+	FullData = DATA
+	data_changed.emit()
 		#else:
 			#ModEditor.ContentBank.erase(self)
 			#queue_free()

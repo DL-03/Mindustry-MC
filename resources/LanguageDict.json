@@ -81,7 +81,20 @@
 	"CreateMod.tip.ModInvalid": {"en": "The name of the modification is invalid", "ru": "Имя модификации недопустимо"},
 
 
-
+	
+	"CustomExplorer.TopPanel.Home.text": {"en": "Home", "ru": "Домой"},
+	"CustomExplorer.TopPanel.Search.text": {"en": "Search", "ru": "Поиск"},
+	"CustomExplorer.TopPanel.Refresh.text": {"en": "Refresh", "ru": "Обновить"},
+	"CustomExplorer.TopPanel.UpToFolder.text": {"en": "Up To Folder", "ru": "Перейти на дерикторию выше"},
+	
+	"CustomExplorer.Element.Duplicate.text": {"en": "Duplicate", "ru": "Дублировать"},
+	"CustomExplorer.Element.Rename.text": {"en": "Rename", "ru": "Перейменовать"},
+	"CustomExplorer.Element.Delete.text": {"en": "Delete", "ru": "Удалить"},
+	"CustomExplorer.Element.CopyPath.text": {"en": "Copy path", "ru": "Копировать путь"},
+	"CustomExplorer.Element.OpenFolder.text": {"en": "Open folder", "ru": "Открыть папку"},
+	
+	"CustomExplorer.Message.PathCopied": {"en": "Path copied", "ru": "Путь скопирован"},
+	
 
 	"CreateContent.Title.text": {"en": "Create Content", "ru": "Создать Контент"},
 	"CreateContent.Label.text": {"en": "Create Content File", "ru": "Создать Файл Контента"},

@@ -59,7 +59,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5fq6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcfsd"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(250, 25)
 shader_parameter/text_size = Vector2(473, 17)
@@ -153,7 +153,7 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwf0s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh1vh"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(510, 85)
 shader_parameter/text_size = Vector2(2367, 85)
@@ -348,15 +348,17 @@ layout_mode = 2
 alignment = 1
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer/Author" instance=ExtResource("4_hpttg")]
-material = SubResource("ShaderMaterial_v5fq6")
+material = SubResource("ShaderMaterial_vcfsd")
 clip_contents = false
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 24
 text = "[center][color=ffd37fff]Creator: [color=38d667ff]DL"
 real_text = "[ui.yellow]|CreatorText|: [green]DL"
 text_aligment = 1
+real_tooltip_text = null
 
 [node name="Github" parent="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel" instance=ExtResource("5_o21by")]
 custom_minimum_size = Vector2(0, 50)
@@ -375,6 +377,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_clqkv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_d5r4r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_37nwp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8xidm")
+icon_aligment = null
 h_aligment = null
 
 [node name="Discord" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Author"]
@@ -390,7 +393,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_hpttg")]
-material = SubResource("ShaderMaterial_fwf0s")
+material = SubResource("ShaderMaterial_lh1vh")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -448,6 +451,7 @@ theme = ExtResource("3_yyeru")
 text = ""
 
 [node name="DebugBank" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -498,7 +502,7 @@ text = "Close"
 
 [node name="ActionPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 10
 alignment = 1
 
 [node name="Close" parent="MarginContainer/VBoxContainer/ActionPanel" instance=ExtResource("5_o21by")]
@@ -506,6 +510,7 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 real_text_icon = ""
 real_text = "|backButton|"
+icon_aligment = null
 h_aligment = null
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/LangParam/OptionButton" to="." method="_on_option_button_item_selected"]

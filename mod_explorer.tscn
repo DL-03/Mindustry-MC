@@ -54,6 +54,7 @@ stretch_mode = 1
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
 real_text_icon = ""
+icon_aligment = null
 font_size = 11
 real_tooltip_text = "Top Directory"
 
@@ -67,6 +68,7 @@ stretch_mode = 1
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
 real_text_icon = ""
+icon_aligment = null
 font_size = 11
 real_tooltip_text = "Refresh"
 
@@ -80,6 +82,7 @@ stretch_mode = 1
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
 real_text_icon = ""
+icon_aligment = null
 font_size = 11
 real_tooltip_text = "|FindButton|"
 
@@ -128,6 +131,7 @@ stretch_mode = 1
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
 real_text_icon = ""
+icon_aligment = null
 font_size = 11
 real_tooltip_text = "|FindButton|"
 

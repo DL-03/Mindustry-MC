@@ -49,6 +49,8 @@ func changed_data(key,value):
 	writeData.merge({key:value}, true)
 	print(writeData,contentClass.FullData)
 	
+	$TabContainer/Editor/d1.text = str(writeData)
+	$TabContainer/Editor/d2.text = str(contentClass.Data)
 
 	needSave = len(writeData) > 0
 		
@@ -117,7 +119,7 @@ func _set_contentClass(value):
 					$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel.add_child(s)
 	
 	
-	$TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
+	#$TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
 	$TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon.contentClass = contentClass
 	
 	

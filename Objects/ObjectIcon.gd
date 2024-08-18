@@ -1,13 +1,9 @@
-extends AspectRatioContainer
+extends TextureRect
 
 
 var rotator_speed = 80
 var conveyor_speed = 1
 var conveyor_frame = 0
-
-
-var modClass: ModClass
-
 
 
 var contentClass: ContentClass:
@@ -17,32 +13,32 @@ func _set_contentClass(value):
 	contentClass = value
 	
 	if FileAccess.file_exists(contentClass.Path):
-		if modClass != null:
+		if contentClass.modClass != null:
 			if contentClass.FileType == "mod":
-				if FileAccess.file_exists(modClass.Path+"/icon.png"):
+				if FileAccess.file_exists(contentClass.modClass.Path+"/icon.png"):
 					var image = Image.new()
-					image.load(modClass.Path+"/icon.png")
+					image.load(contentClass.modClass.Path+"/icon.png")
 					var t = ImageTexture.new()
 				
 					var Icon = t.create_from_image(image)
 
-					$Main.texture = Icon
+					texture = Icon
 			
 			else:
-				$Main.texture = modClass.get_sprite(get_only_filename(contentClass.Path))
-				$Main/Rotator.texture = modClass.get_sprite(get_only_filename(contentClass.Path)+"-rotator")
-				$Top.texture = modClass.get_sprite(get_only_filename(contentClass.Path)+"-top")
+				texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path))
+				$Rotator.texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path)+"-rotator")
+				$Top.texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path)+"-top")
 			
-		$Main.material = $Main.material.duplicate()
-		$Main.material.set_shader_parameter("water_effect", false)
-		$Main/Rotator.hide()
+		material = material.duplicate()
+		material.set_shader_parameter("water_effect", false)
+		$Rotator.hide()
 		$Top.hide()
 		
 
 		if contentClass.FullData != null:
 			if typeof(contentClass.FullData) == TYPE_DICTIONARY:
 				if contentClass.ContentType == "Drill":
-					$Main/Rotator.show()
+					$Rotator.show()
 					$Top.show()
 					
 					if "drillTime" in contentClass.FullData:
@@ -52,7 +48,7 @@ func _set_contentClass(value):
 						conveyor_speed = contentClass.FullData["speed"]
 				if contentClass.ContentType == "Floor":
 					if "isLiquid" in contentClass.FullData:
-						$Main.material.set_shader_parameter("water_effect", contentClass.FullData["isLiquid"])
+						material.set_shader_parameter("water_effect", contentClass.FullData["isLiquid"])
 
 	
 
@@ -74,7 +70,7 @@ func update_conveyor():
 			else:
 				conveyor_frame += 1
 			
-			$Main.texture = modClass.get_sprite(get_only_filename(contentClass.Path)+"-0-"+str(conveyor_frame))
+			texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path)+"-0-"+str(conveyor_frame))
 			
 			await get_tree().create_timer((1/((140*conveyor_speed)/3))/8).timeout.connect(update_conveyor)
 		
@@ -89,6 +85,6 @@ func _process(delta):
 	
 	if contentClass != null:
 		if contentClass.ContentType == "Drill":
-			$Main/Rotator.set_rotation_degrees($Main/Rotator.get_rotation_degrees()-(60*delta))
-			$Main/Rotator.pivot_offset = $Main/Rotator.size/2
+			$Rotator.set_rotation_degrees($Rotator.get_rotation_degrees()-(60*delta))
+			$Rotator.pivot_offset = $Rotator.size/2
 			

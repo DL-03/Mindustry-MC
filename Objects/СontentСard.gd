@@ -20,14 +20,14 @@ func _set_contentClass(value):
 	contentClass = value
 	
 	
-	$HBoxContainer/VBoxContainer/HBoxContainer2/Path.real_text = str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())
-	$HBoxContainer/VBoxContainer/HBoxContainer2/Path.real_tooltip_text = contentClass.Path
-	$HBoxContainer/VBoxContainer/HBoxContainer2/Type.text = "."+str((contentClass.Path.get_extension()).to_upper())
+	$HBoxContainer/VBoxContainer/PathBox/Path.real_text = str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())
+	$HBoxContainer/VBoxContainer/PathBox/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())+"[UI.YELLOW]."+str((contentClass.Path.get_extension()).to_upper())
+	$HBoxContainer/VBoxContainer/PathBox/Path.real_text_icon = ". "+str((contentClass.Path.get_extension()).to_upper())
 
 
 	
-	$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
-	$HBoxContainer/MarginContainer/ObjectIcon.contentClass = contentClass
+	#$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
+	$HBoxContainer/ObjectIcon.contentClass = contentClass
 	
 	
 	#contentClass.content_loaded.connect(_content_loaded)
@@ -36,6 +36,8 @@ func _set_contentClass(value):
 		if typeof(contentClass.Data) == TYPE_DICTIONARY:
 			if "name" in contentClass.Data:
 				$HBoxContainer/VBoxContainer/Name.real_text = str(contentClass.Data["name"])
+				$HBoxContainer/VBoxContainer/Name.real_tooltip_text = str(contentClass.Data["name"])
+				
 				pass
 			else:
 				$HBoxContainer/VBoxContainer/Name.real_text = "[red]none"
@@ -55,3 +57,13 @@ func _on_rename_pressed():
 	get_node("/root/Main/RenameDuplicateWindow").open(contentClass, 1)
 func _on_duplicate_pressed():
 	get_node("/root/Main/RenameDuplicateWindow").open(contentClass, 2)
+
+
+func _on_path_pressed():
+	DisplayServer.clipboard_set(contentClass.Path)
+	MessageAPI.info("|CustomExplorer.Message.PathCopied|!")
+
+
+func _on_open_folder_pressed():
+	if OS.get_name() == "Windows":
+		OS.execute("explorer.exe", PackedStringArray([ contentClass.Path.simplify_path().replace("/", "\\")]))

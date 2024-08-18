@@ -14,6 +14,37 @@ func get_only_filename(path):
 
 
 
+
+
+func update_data():
+	var new_text = $Panel/MarginContainer/VBoxContainer/LineEdit.text
+	
+	print(FileAccess.file_exists(contentClass.Path.substr(0, len(contentClass.Path)-len(contentClass.Path.get_file()))+new_text+"."+contentClass.Path.get_extension()))
+	
+	if Type == 0:
+		$Panel/MarginContainer/VBoxContainer/tip.real_text = "You can`t return content after deleting!!!"
+		return
+	
+	if new_text == $Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text:
+		$Panel/MarginContainer/VBoxContainer/tip.real_text = "Its Old Name!!!"
+		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", COLORS.)
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
+		return
+	if FileAccess.file_exists(contentClass.Path.substr(0, len(contentClass.Path)-len(contentClass.Path.get_file()))+new_text+"."+contentClass.Path.get_extension()):
+		$Panel/MarginContainer/VBoxContainer/tip.real_text = " A file with this name already exists!!!"
+		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.FIREBRICK)
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
+		return
+	else:
+		$Panel/MarginContainer/VBoxContainer/tip.real_text = ""
+		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.SEA_GREEN)
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = false
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = false
+		return
+
+
 func open(_contentClass, _type):
 	if _contentClass != null:
 		contentClass = _contentClass
@@ -27,7 +58,7 @@ func open(_contentClass, _type):
 		show()
 		
 		
-		$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.GOLD)
+		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.GOLD)
 		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
 		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
 		
@@ -46,7 +77,8 @@ func open(_contentClass, _type):
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|RDW.Delete.text|"
 			
 			$Panel/MarginContainer/VBoxContainer/LineEdit.hide()
-			$Panel/MarginContainer/VBoxContainer/Label2.text = "You really want delete content\n - <"+str(contentClass.FullData["name"])+">?\nYou can`t return content after deleting!!!"
+			$Panel/MarginContainer/VBoxContainer/Label2.text = "You really want delete content\n - <"+str(contentClass.FullData["name"])+">?"
+			#$Panel/MarginContainer/VBoxContainer/tip.real_text = "You can`t return content after deleting!!!"
 		elif Type == 1:
 			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |RDW.Title.Rename| "
 			
@@ -75,9 +107,11 @@ func open(_contentClass, _type):
 			
 			$Panel/MarginContainer/VBoxContainer/LineEdit.text = get_only_filename(contentClass.Path)
 			$Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text = get_only_filename(contentClass.Path)
+			
 		else:
 			hide()
 			return
+		update_data()
 
 
 
@@ -144,26 +178,7 @@ func _on_duplicate_pressed():
 
 
 func _on_line_edit_text_changed(new_text):
-	print(FileAccess.file_exists(contentClass.Path.substr(0, len(contentClass.Path)-len(contentClass.Path.get_file()))+new_text+"."+contentClass.Path.get_extension()))
-	
-	if new_text == $Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text:
-		$Panel/MarginContainer/VBoxContainer/Label2.text = "Old file name: <"+str(get_only_filename(contentClass.Path))+">\n Its Old Name!!!"
-		$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.FIREBRICK)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
-		return
-	if FileAccess.file_exists(contentClass.Path.substr(0, len(contentClass.Path)-len(contentClass.Path.get_file()))+new_text+"."+contentClass.Path.get_extension()):
-		$Panel/MarginContainer/VBoxContainer/Label2.text = "Old file name: <"+str(get_only_filename(contentClass.Path))+">\n A file with this name already exists!!!"
-		$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.FIREBRICK)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
-		return
-	else:
-		$Panel/MarginContainer/VBoxContainer/Label2.text = "Old file name: <"+str(get_only_filename(contentClass.Path))+">\n The name is free!!!"
-		$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.SEA_GREEN)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = false
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = false
-		return
+	update_data()
 
 
 func _on_delete_button_down():

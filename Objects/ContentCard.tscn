@@ -1,23 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxllrpipx487b"]
+[gd_scene load_steps=11 format=3 uid="uid://dxllrpipx487b"]
 
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="2_mcxc2"]
 [ext_resource type="Script" path="res://Objects/СontentСard.gd" id="2_pe2dx"]
 [ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_k7vmj"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_p8x7r"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="4_ii38n"]
-[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="5_ws1lm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rveqn"]
-draw_center = false
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="7_oh4t0"]
 
 [sub_resource type="Shader" id="Shader_xabsi"]
 code = "shader_type canvas_item;
@@ -45,11 +32,41 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jl666"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0pau"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(0, 25)
+shader_parameter/object_size = Vector2(342, 20)
 shader_parameter/text_size = Vector2(49, 17)
-shader_parameter/text_vertical_aligment = null
+shader_parameter/text_vertical_aligment = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8bts"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtrt1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svsd1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
 
 [node name="ContentCard" type="Button"]
 custom_minimum_size = Vector2(0, 50)
@@ -73,25 +90,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="ObjectIcon" parent="HBoxContainer" instance=ExtResource("3_k7vmj")]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ObjectIcon" parent="HBoxContainer/MarginContainer" instance=ExtResource("3_k7vmj")]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 1
 size_flags_vertical = 3
-stretch_mode = 1
-
-[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer/ObjectIcon"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rveqn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -101,72 +103,78 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Name" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_mcxc2")]
-material = SubResource("ShaderMaterial_jl666")
-custom_minimum_size = Vector2(0, 25)
+material = SubResource("ShaderMaterial_c0pau")
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_font_sizes/normal_font_size = 13
 text = "Name"
 real_text = "Name"
+text_vertical_aligment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="PathBox" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Path" parent="HBoxContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("5_ws1lm")]
+[node name="Path" parent="HBoxContainer/VBoxContainer/PathBox" instance=ExtResource("7_oh4t0")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 12
-text = "Path"
-horizontal_alignment = 2
-vertical_alignment = 1
-clip_text = true
+theme = ExtResource("4_ii38n")
+icon_color = Color(1, 0.827451, 0.498039, 1)
+real_text_icon = "JSON"
 real_text = "Path"
+icon_aligment = 2
+h_aligment = 2
+font_size = 11
+icon_size = 11
 
-[node name="Type" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(20, 15)
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_p8x7r")
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.198, 0.12, 1)
-theme_override_font_sizes/font_size = 10
-text = "NONE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Duplicate" type="Button" parent="HBoxContainer"]
+[node name="OpenFolder" parent="HBoxContainer/VBoxContainer/PathBox" instance=ExtResource("7_oh4t0")]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("4_ii38n")
-text = ""
+theme_override_styles/hover = SubResource("StyleBoxFlat_l8bts")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wtrt1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_svsd1")
+real_text_icon = ""
+h_aligment = 2
+font_size = 13
+icon_size = 13
+real_tooltip_text = "|CustomExplorer.Element.OpenFolder.text|"
 
-[node name="Rename" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(25, 25)
+[node name="Duplicate" parent="HBoxContainer" instance=ExtResource("7_oh4t0")]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("4_ii38n")
-text = ""
+real_text_icon = ""
+icon_aligment = null
+icon_size = 16
+real_tooltip_text = "Duplicate"
 
-[node name="Delete" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+[node name="Rename" parent="HBoxContainer" instance=ExtResource("7_oh4t0")]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 theme = ExtResource("4_ii38n")
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = ""
+real_text_icon = ""
+icon_aligment = null
+icon_size = 16
+real_tooltip_text = "Rename"
+
+[node name="Delete" parent="HBoxContainer" instance=ExtResource("7_oh4t0")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("4_ii38n")
+icon_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon = ""
+icon_aligment = null
+icon_size = 16
+real_tooltip_text = "[UI.RED]Delete"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PathBox/Path" to="." method="_on_path_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PathBox/OpenFolder" to="." method="_on_open_folder_pressed"]
 [connection signal="pressed" from="HBoxContainer/Duplicate" to="." method="_on_duplicate_pressed"]
 [connection signal="pressed" from="HBoxContainer/Rename" to="." method="_on_rename_pressed"]
 [connection signal="pressed" from="HBoxContainer/Delete" to="." method="_on_delete_pressed"]

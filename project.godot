@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Mindustry Mod Construct"
 config/version="0.2.1"
+config/tags=PackedStringArray("123")
 run/main_scene="res://Objects/Main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Mindustry Mod Construct"

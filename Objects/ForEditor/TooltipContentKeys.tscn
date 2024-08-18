@@ -31,7 +31,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf2fs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yypm"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 0)
 shader_parameter/text_size = Vector2(0, 0)
@@ -146,8 +146,10 @@ theme = ExtResource("1_ooldv")
 text = "\""
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
-material = SubResource("ShaderMaterial_lf2fs")
+material = SubResource("ShaderMaterial_6yypm")
 layout_mode = 2
+mouse_filter = 1
 fit_content = true
+real_tooltip_text = null
 
 [connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]

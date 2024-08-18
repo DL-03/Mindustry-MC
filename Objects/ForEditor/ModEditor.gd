@@ -1,8 +1,7 @@
-extends HSplitContainer
+extends Control
 
 var ButtonTab = null
 
-var ModContentClass = ContentClass.new()
 
 var modClass: ModClass:
 	set = _set_modClass
@@ -18,6 +17,8 @@ var ContentDirWathcer = DirectoryWatcher.new()
 func Close():
 	ModManager.close_mod(modClass)
 	queue_free()
+	#if ButtonTab != null:
+	#	ButtonTab.queue_free()
 
 
 
@@ -35,15 +36,20 @@ var GlobalModCard = null
 # Called when the node enters the scene tree for the first time.
 
 
+
+
+
+
+
 func _ModContentClass_changed():
 	pass
 func _ready():
-	ModContentClass.data_changed.connect(_ModContentClass_changed)
+	#ModContentClass.data_changed.connect(_ModContentClass_changed)
 	
 	
 	await update_content_bank_window()
 	
-	GlobalModCard = $Panel/ModCard
+	GlobalModCard = $ModEditor/Panel/ModCard
 	
 	#$Panel.add_child(GlobalModCard)
 	#$Panel.move_child(GlobalModCard,0)
@@ -56,14 +62,14 @@ func _ready():
 	
 	
 	ContentTabButtons = [
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/blocks,
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/items,
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/liquids,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/blocks,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/items,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/liquids,
 		
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/status,
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/units,
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/weathers,
-		$Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/sectors
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/status,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/units,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/weathers,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/sectors
 	]
 	
 	for i in ContentTabButtons:
@@ -127,25 +133,30 @@ func get_all_pathes(path: String, file_ext := "", files := []):
 
 
 
-
+@onready var LoadingWindow = $LoadingWindow
 
 func setPath(path):
 	
 	if ModManager.test_from_path(path):
 		modClass = ModManager.open_from_path(path)
 		
-		ButtonTab.text = modClass.ModContentClass.FullData["name"]
 		
-		#print(FileAccess.file_exists(ModPath.path_join("icon.png")))
-		if FileAccess.file_exists(modClass.Path.path_join("icon.png")):
-			var image = Image.new()
-			image.load(modClass.Path.path_join("icon.png"))
-			var t = ImageTexture.new()
+		ButtonTab.modClass = modClass
+		
+		
+		__max_contentData = len(get_all_pathes(modClass.Path.path_join("content")))
+		
+		modClass.connect_loaded(func():
+			LoadingWindow.call_deferred("hide")
+			)
+		modClass.ContentBank_added.connect(
+			func(_contentClass: ContentClass):
+				_content_add(_contentClass)
+		)
 			
-			var Icon = t.create_from_image(image)
-			GlobalModCard.get_node("MarginContainer/HBoxContainer/MarginContainer/TextureRect").texture = Icon
-			ButtonTab.icon = Icon
 		
+		print(modClass.ModContentClass.FullData)
+
 		GlobalModCard.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 		
 		#return
@@ -153,7 +164,7 @@ func setPath(path):
 		GlobalModCard.ModEditor = self
 		GlobalModCard.contentClass = modClass.ModContentClass
 		
-		#ContentEditor.open_from_path(ModContentClass)
+		ContentEditor.open_from_path(modClass.ModContentClass)
 
 		#first_scan_content()
 		
@@ -180,6 +191,8 @@ var ContentTabButtons = []
 #@onready var CONTENT_CARD = preload("res://test.tscn")
 
 
+
+
 func _content_add(_content_class):
 	if _content_class != null:
 		if typeof(_content_class.Data) == TYPE_DICTIONARY:
@@ -195,31 +208,42 @@ func _content_add(_content_class):
 			#_s.Path = _path
 			
 			
-			
-			$Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer.add_child(_s)
+			ListContentElements.call_deferred("add_child", _s)
+			#ListContentElements.add_child(_s)
 			
 			_s.show()
 
 
+@onready var ListContentElements = $ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
+
+func refresh_content_list():
+	
+		#i.free()
+	
+	for i in modClass.ContentBank:
+		if i.FileType == current_tab_content:
+			if i.File != null:
+				if i.Data != null:
+					
+					_content_add(i)
+	return
+					
+
 
 func _set_current_tab_content(value):
 	
-	#if value != current_tab_content:
+	current_tab_content = value
 	if value != null:
-		for i in $Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer.get_children():
-			i.free()
-		
-		
-		for i in modClass.ContentBank:
-			if i.FileType == value:
-				if i.File != null:
-					if i.Data != null:
-						await _content_add(i)
+		for i in ListContentElements.get_children():
+			i.queue_free()
+		#refresh_content_list()
+		var thread = Thread.new()
+		thread.start(refresh_content_list,Thread.PRIORITY_HIGH)
 		
 		
 		
 
-	current_tab_content = value
+	
 	
 var current_tab_content = null:
 	set = _set_current_tab_content
@@ -243,3 +267,24 @@ func _on_reload_content_pressed():
 
 func _on_content_bank_pressed():
 	$Window.show()
+
+
+
+
+var __max_contentData = 0
+
+func _process(delta):
+	if LoadingWindow.visible:
+		if modClass != null:
+			if modClass.ModContentClass != null:
+				#$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.text = str(ModContentClass)
+				if modClass.ModContentClass.FullData != null:
+					$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.text = "Loading: " + str(modClass.ModContentClass.FullData["name"]) + "\n Content["+str(len(modClass.ContentBank))+"/"+str(__max_contentData)+"]: "+ str(modClass.ContentBank[-1].Path).substr(len(modClass.Path))
+					
+					$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.max_value = __max_contentData
+					$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.value = len(modClass.ContentBank)
+
+
+func _on_cancel_loading_pressed():
+	$LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel.disabled = true
+	Close()

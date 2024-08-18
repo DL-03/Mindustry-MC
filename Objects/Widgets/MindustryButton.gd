@@ -8,12 +8,17 @@ class_name MindustryButton
 @export var Icon_Text_Element: Node
 
 
-@export var font_color = Color.WHITE
+@export var font_color = Color.WHITE:
+	set = _set_font_color
+@export var icon_color = Color.WHITE:
+	set = _set_icon_color
 @export var real_text_icon = "":
 	set = _real_text_icon
 
 @export_multiline var real_text = "":
 	set = _set_real_text
+@export_enum("Left", "Up", "Right") var icon_aligment = 0:
+	set = _set_icon_aligment
 @export_enum("Left", "Center", "Right") var h_aligment = 1:
 	set = _set_h_aligment
 @export var font_size = 16:
@@ -22,6 +27,19 @@ class_name MindustryButton
 	set = _set_icon_size
 
 @export_multiline var real_tooltip_text = ""
+
+func _set_icon_color(value):
+	if value != null:
+		icon_color = value
+		
+		if Icon_Text_Element != null:
+			Icon_Text_Element.font_color = icon_color
+func _set_font_color(value):
+	if value != null:
+		font_color = value
+		
+		if Text_Element != null:
+			Text_Element.font_color = font_color
 
 func _set_font_size(value):
 	if value != null:
@@ -35,6 +53,16 @@ func _set_icon_size(value):
 		
 		if Icon_Text_Element != null:
 			Icon_Text_Element.add_theme_font_size_override("font_size", value)
+func _set_icon_aligment(value):
+	icon_aligment = value
+	
+	if icon_aligment == 0:
+		$MarginContainer/HBoxContainer.move_child($MarginContainer/HBoxContainer/IconText, 0)
+		
+	elif icon_aligment == 1:
+		pass
+	elif icon_aligment == 2:
+		$MarginContainer/HBoxContainer.move_child($MarginContainer/HBoxContainer/IconText, 1)
 func _set_h_aligment(value):
 	h_aligment = value
 	print(h_aligment)
@@ -70,14 +98,19 @@ func _ready():
 	
 
 
+var disabled_d = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if disabled:
-		Text_Element.font_color = Color.from_string("#454545", Color.DIM_GRAY)
-		Icon_Text_Element.font_color = Color.from_string("#454545", Color.DIM_GRAY)
+		if disabled_d == 0:
+			Text_Element.font_color = Color.from_string("#454545", Color.DIM_GRAY)
+			Icon_Text_Element.font_color = Color.from_string("#454545", Color.DIM_GRAY)
+			disabled_d = 1
 	else:
-		Text_Element.font_color = font_color
-		Icon_Text_Element.font_color = font_color
+		if disabled_d == 1:
+			Text_Element.font_color = font_color
+			Icon_Text_Element.font_color = icon_color
+			disabled_d = 0
 
 
 

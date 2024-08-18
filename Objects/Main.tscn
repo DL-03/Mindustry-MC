@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://ccckl3aew6vew"]
+[gd_scene load_steps=42 format=3 uid="uid://ccckl3aew6vew"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_g5qeq"]
 [ext_resource type="Texture2D" uid="uid://b6ei48v4soo78" path="res://resources/icons/bgs/OIP (3).jpg" id="2_mp4s8"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="5_tl8xs"]
 [ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="6_6yeec"]
 [ext_resource type="Texture2D" uid="uid://bbssmmey1eiuq" path="res://resources/icon.png" id="7_wh2t7"]
-[ext_resource type="PackedScene" uid="uid://dk5ac2e3vvrvf" path="res://TabMod_Button.tscn" id="8_fwvcr"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="9_75wf1"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="9_snfom"]
 [ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://mod_manager.tscn" id="10_tugy5"]
 [ext_resource type="AudioStream" uid="uid://cfmwvsn4n068c" path="res://resources/audiomass-output.ogg" id="11_68wom"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dg2i61br433ln" path="res://Objects/Windows/CreateMod.tscn" id="17_bdimx"]
 [ext_resource type="PackedScene" uid="uid://cjv1ns30b2oox" path="res://Objects/ForEditor/TooltipContentKeys.tscn" id="17_owemy"]
 [ext_resource type="Script" path="res://MessagePanel.gd" id="18_6mwj3"]
+[ext_resource type="PackedScene" uid="uid://vsvpa6ywikp2" path="res://Objects/Windows/DeleteMod.tscn" id="19_g767o"]
 [ext_resource type="Script" path="res://Objects/MindustryToolTip.gd" id="19_rb3ox"]
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="20_bit2t"]
 
@@ -57,79 +58,6 @@ corner_radius_bottom_left = 5
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="GDScript" id="GDScript_sdbcl"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_pressed():
-	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
-	#if AllTabButtons.get_child_count() > 0
-	var s = preload(\"res://TabMod_Button.tscn\")
-	var k = s.instantiate()
-	AllTabButtons.add_child(k)
-"
-
-[sub_resource type="GDScript" id="GDScript_ogj7x"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_pressed():
-	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
-	
-	if AllTabButtons.get_child_count() == 1:
-		if AllTabButtons.get_child(0).ContentFrame == null:
-			return
-		else:
-			pass
-
-	for i in AllTabButtons.get_children():
-		if i.disabled:
-			if i.ContentFrame == null:
-				
-				
-				i.free()
-				AllTabButtons.get_children()[-1].pressed.emit()
-			else:
-				var err = i.ContentFrame.Close()
-				if err == 1:
-					pass
-				else:
-					pass
-					
-				
-				if AllTabButtons.get_child_count() == 1:
-					i.reset()
-					$/root/Main/V1/ModManager.show()
-				else:
-					i.free()
-					AllTabButtons.get_children()[-1].pressed.emit()
-					
-					
-				
-			
-			break
-"
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gquo8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rbwy"]
@@ -153,21 +81,6 @@ shadow_color = Color(0, 0, 0, 0.686275)
 shadow_size = 15
 anti_aliasing = false
 
-[sub_resource type="Animation" id="Animation_5jbhb"]
-resource_name = "new_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(300, 50), Vector2(300, 84.49)]
-}
-
 [sub_resource type="Animation" id="Animation_5qeqa"]
 length = 0.001
 tracks/0/type = "value"
@@ -181,6 +94,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(300, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_5jbhb"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 50), Vector2(300, 84.49)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y07iu"]
@@ -215,7 +143,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eki7b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imtt6"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(40, 27)
 shader_parameter/text_size = Vector2(101, 17)
@@ -475,8 +403,21 @@ layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 
-[node name="TabMod_Button" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer" instance=ExtResource("8_fwvcr")]
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="NewTab" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_75wf1")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("9_snfom")
+real_text_icon = ""
+icon_aligment = null
+icon_size = 24
+real_tooltip_text = "New Tab"
 
 [node name="Panel2" type="Panel" parent="V1/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
@@ -493,57 +434,52 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer"]
+[node name="NewTab" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer" instance=ExtResource("9_75wf1")]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
 theme = ExtResource("9_snfom")
-theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
-text = ""
-clip_text = true
-script = SubResource("GDScript_sdbcl")
+real_text_icon = ""
+icon_aligment = null
+icon_size = 30
+real_tooltip_text = "New Tab"
 
 [node name="MarginContainer3" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Settings" type="Button" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3"]
+[node name="Settings" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3" instance=ExtResource("9_75wf1")]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
 theme = ExtResource("9_snfom")
-theme_override_font_sizes/font_size = 25
-text = ""
-clip_text = true
+theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
+real_text_icon = ""
+real_text = "|SettingsWindow.Title|"
+icon_size = 25
 
 [node name="MarginContainer2" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_bottom = 5
 
-[node name="Button2" type="Button" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2"]
+[node name="Close" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2" instance=ExtResource("9_75wf1")]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
 theme = ExtResource("9_snfom")
-theme_override_colors/font_disabled_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = ""
-clip_text = true
-script = SubResource("GDScript_ogj7x")
+icon_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon = ""
+icon_aligment = null
+icon_size = 30
+real_tooltip_text = "[UI.RED]Close"
 
 [node name="ModManager" parent="V1" instance=ExtResource("10_tugy5")]
 layout_mode = 2
@@ -574,7 +510,6 @@ icon = ExtResource("12_t8b66")
 expand_icon = true
 
 [node name="SettingsWindow" parent="." instance=ExtResource("13_ix45l")]
-visible = false
 layout_mode = 1
 
 [node name="RenameDuplicateWindow" parent="." instance=ExtResource("14_v3wjf")]
@@ -599,6 +534,10 @@ offset_left = -375.0
 offset_top = -97.0
 offset_right = -39.0
 offset_bottom = -37.0
+
+[node name="DeleteMod" parent="." instance=ExtResource("19_g767o")]
+visible = false
+layout_mode = 1
 
 [node name="MessagePanel" type="Panel" parent="."]
 layout_mode = 1
@@ -641,7 +580,7 @@ mouse_filter = 2
 script = ExtResource("19_rb3ox")
 
 [node name="MindustryToolTip" parent="MindustryToolTip" instance=ExtResource("20_bit2t")]
-material = SubResource("ShaderMaterial_eki7b")
+material = SubResource("ShaderMaterial_imtt6")
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
@@ -664,8 +603,9 @@ libraries = {
 }
 speed_scale = 8.0
 
-[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer/Button" to="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer/NewTab" to="." method="_on_new_tab_pressed"]
+[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer/NewTab" to="." method="_on_new_tab_pressed"]
 [connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2/Button2" to="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2/Button2" method="_on_pressed"]
+[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2/Close" to="." method="_on_close_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -226,6 +226,7 @@ func thred_fetching(value,_prev):
 						st.get_node("HBoxContainer/Path").real_tooltip_text = PathZip
 						#_ModCard.get_node("MarginContainer/HBoxContainer/VFlowContainer/Type").tooltip_text = TypeMod
 						_ModCard.Path = PathZip
+						_ModCard.mod_explorer = self
 
 						_ModCard.show_visible_button = false
 						_ModCard.show_save_button = false

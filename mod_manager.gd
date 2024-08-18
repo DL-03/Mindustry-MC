@@ -28,7 +28,7 @@ func _ready():
 	
 	var panel = $VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer
 	
-	$VBoxContainer/Mod_Explorer.current_path = path
+	#$VBoxContainer/Mod_Explorer.current_path = path
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

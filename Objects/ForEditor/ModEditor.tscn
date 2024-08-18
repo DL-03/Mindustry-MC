@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c7xc004po17sb"]
+[gd_scene load_steps=30 format=3 uid="uid://c7xc004po17sb"]
 
 [ext_resource type="Script" path="res://Objects/ForEditor/ModEditor.gd" id="1_845tx"]
 [ext_resource type="PackedScene" uid="uid://ce1e3yxgjuyas" path="res://Objects/ModCard.tscn" id="2_u0hhs"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Objects/ContentEditor.gd" id="6_rws2k"]
 [ext_resource type="Texture2D" uid="uid://c3lrs63ysubv0" path="res://resources/PointEvent.png" id="7_67jq7"]
 [ext_resource type="Script" path="res://Objects/ForEditor/Save.gd" id="7_g6evi"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="10_3higr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odpfj"]
 bg_color = Color(0, 0, 0, 1)
@@ -118,7 +119,46 @@ corner_radius_top_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[node name="ModEditor" type="HSplitContainer" node_paths=PackedStringArray("ContentEditor")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgu5g"]
+bg_color = Color(0, 0, 0, 0.686275)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8tgq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7acp"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+border_width_top = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6iog"]
+bg_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 5
+corner_radius_bottom_right = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn6io"]
+bg_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 5
+corner_radius_bottom_right = 5
+corner_detail = 1
+anti_aliasing = false
+
+[node name="ModEditor" type="Control" node_paths=PackedStringArray("ContentEditor")]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -126,25 +166,35 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-split_offset = 350
 script = ExtResource("1_845tx")
-ContentEditor = NodePath("ContentEditor")
+ContentEditor = NodePath("ModEditor/ContentEditor")
 
-[node name="Panel" type="VBoxContainer" parent="."]
+[node name="ModEditor" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 400
+
+[node name="Panel" type="VBoxContainer" parent="ModEditor"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ModCard" parent="Panel" instance=ExtResource("2_u0hhs")]
+[node name="ModCard" parent="ModEditor/Panel" instance=ExtResource("2_u0hhs")]
 custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Panel"]
+[node name="Panel" type="Panel" parent="ModEditor/Panel"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_odpfj")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,125 +204,131 @@ grow_vertical = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="blocks" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Blocks"
 
-[node name="items" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="items" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Items"
 
-[node name="liquids" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="liquids" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Liquids"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="status" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="status" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Status"
 
-[node name="units" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="units" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Units"
 
-[node name="weathers" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="weathers" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Weathers"
 
-[node name="sectors" parent="Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Sectors"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_p5g38")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="CreateContent" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
+[node name="CreateContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
 real_text_icon = ""
 real_text = "|CreateContent.Title.text|"
+icon_aligment = null
 font_size = 14
 icon_size = 16
 
-[node name="ReloadContent" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
+[node name="ReloadContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
 real_text_icon = ""
 real_text = "|ReloadList|"
+icon_aligment = null
 font_size = 14
 icon_size = 16
 
-[node name="ContentBank" type="Button" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_y0pox")
+theme_override_colors/font_hover_pressed_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_hover_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_focus_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 text = "(DEBUG) ContentBank (DEBUG)"
 
-[node name="ContentEditor" type="VBoxContainer" parent="." node_paths=PackedStringArray("ModEditor", "Tabs", "Editors", "SaveButton")]
+[node name="ContentEditor" type="VBoxContainer" parent="ModEditor" node_paths=PackedStringArray("ModEditor", "Tabs", "Editors", "SaveButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -5
 script = ExtResource("6_rws2k")
-ModEditor = NodePath("..")
+ModEditor = NodePath("../..")
 Tabs = NodePath("Top/Tabs/ScrollContainer/MarginContainer/HBoxContainer")
 Editors = NodePath("Editors/MarginContainer")
 SaveButton = NodePath("Top/Save")
 
-[node name="Top" type="HBoxContainer" parent="ContentEditor"]
+[node name="Top" type="HBoxContainer" parent="ModEditor/ContentEditor"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Tabs" type="MarginContainer" parent="ContentEditor/Top"]
+[node name="Tabs" type="MarginContainer" parent="ModEditor/ContentEditor/Top"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ContentEditor/Top/Tabs"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/ContentEditor/Top/Tabs"]
 layout_mode = 2
 theme = SubResource("Theme_mh2fg")
 vertical_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="ContentEditor/Top/Tabs/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/ContentEditor/Top/Tabs/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -280,16 +336,16 @@ mouse_filter = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContentEditor/Top/Tabs/ScrollContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/ContentEditor/Top/Tabs/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="VSeparator" type="VSeparator" parent="ContentEditor/Top"]
+[node name="VSeparator" type="VSeparator" parent="ModEditor/ContentEditor/Top"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
-[node name="Save" type="Button" parent="ContentEditor/Top"]
+[node name="Save" type="Button" parent="ModEditor/ContentEditor/Top"]
 z_index = -1
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -304,7 +360,7 @@ disabled = true
 text = ""
 script = ExtResource("7_g6evi")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="ContentEditor/Top/Save"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ModEditor/ContentEditor/Top/Save"]
 modulate = Color(1, 0, 0, 1)
 z_index = 1
 texture_filter = 1
@@ -320,17 +376,17 @@ emission_rect_extents = Vector2(1, 1)
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_4kon5")
 
-[node name="VSeparator2" type="VSeparator" parent="ContentEditor/Top"]
+[node name="VSeparator2" type="VSeparator" parent="ModEditor/ContentEditor/Top"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
-[node name="Editors" type="Panel" parent="ContentEditor"]
+[node name="Editors" type="Panel" parent="ModEditor/ContentEditor"]
 z_index = -1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8c1qk")
 
-[node name="MarginContainer" type="MarginContainer" parent="ContentEditor/Editors"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/ContentEditor/Editors"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -359,8 +415,94 @@ size_flags_vertical = 3
 bbcode_enabled = true
 autowrap_mode = 0
 
-[connection signal="pressed" from="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
-[connection signal="pressed" from="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]
-[connection signal="pressed" from="Panel/Panel/MarginContainer/VBoxContainer/ContentBank" to="." method="_on_content_bank_pressed"]
-[connection signal="pressed" from="ContentEditor/Top/Save" to="ContentEditor" method="_on_save_pressed"]
+[node name="LoadingWindow" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cgu5g")
+
+[node name="Panel" type="Panel" parent="LoadingWindow"]
+custom_minimum_size = Vector2(800, 225)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadingWindow/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingWindow/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_font_sizes/font_size = 20
+text = "Loading"
+horizontal_alignment = 1
+real_text = "Loading"
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="HSeparator" type="HSeparator" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
+
+[node name="Label2" type="Label" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_p5g38")
+text = "Name"
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("4_p5g38")
+theme_override_constants/outline_size = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_q6iog")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rn6io")
+value = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
+layout_mode = 2
+size_flags_horizontal = 3
+real_text_icon = ""
+real_text = "|RDW.Cancel.text|"
+icon_aligment = null
+
+[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
+[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]
+[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ContentBank" to="." method="_on_content_bank_pressed"]
+[connection signal="pressed" from="ModEditor/ContentEditor/Top/Save" to="ModEditor/ContentEditor" method="_on_save_pressed"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_loading_pressed"]
