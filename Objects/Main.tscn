@@ -1,17 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://ccckl3aew6vew"]
+[gd_scene load_steps=22 format=3 uid="uid://ccckl3aew6vew"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_g5qeq"]
-[ext_resource type="Texture2D" uid="uid://b6ei48v4soo78" path="res://resources/icons/bgs/OIP (3).jpg" id="2_mp4s8"]
-[ext_resource type="Texture2D" uid="uid://fxejk3qs350y" path="res://resources/icons/Router.png" id="3_75eus"]
-[ext_resource type="Texture2D" uid="uid://by0rwsdudqgj6" path="res://resources/icons/Discord.png" id="4_lhtyi"]
-[ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="5_tl8xs"]
-[ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="6_6yeec"]
-[ext_resource type="Texture2D" uid="uid://bbssmmey1eiuq" path="res://resources/icon.png" id="7_wh2t7"]
+[ext_resource type="PackedScene" uid="uid://cu5a2gtoj1vc3" path="res://Objects/MindustryToolTip.tscn" id="7_72h3x"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="9_75wf1"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="9_snfom"]
 [ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://mod_manager.tscn" id="10_tugy5"]
-[ext_resource type="AudioStream" uid="uid://cfmwvsn4n068c" path="res://resources/audiomass-output.ogg" id="11_68wom"]
-[ext_resource type="Texture2D" uid="uid://pv65qqr0rg2y" path="res://resources/icons/volume.png" id="12_t8b66"]
 [ext_resource type="PackedScene" uid="uid://d0ppbqrba56gs" path="res://Objects/Windows/SettingsWindow.tscn" id="13_ix45l"]
 [ext_resource type="PackedScene" uid="uid://cjg0xhrkoy7ib" path="res://Objects/Windows/RenameDuplicateWindow.tscn" id="14_v3wjf"]
 [ext_resource type="PackedScene" uid="uid://bh87acddn33ms" path="res://Objects/Windows/NeedSaveContent.tscn" id="15_6lj5a"]
@@ -20,8 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cjv1ns30b2oox" path="res://Objects/ForEditor/TooltipContentKeys.tscn" id="17_owemy"]
 [ext_resource type="Script" path="res://MessagePanel.gd" id="18_6mwj3"]
 [ext_resource type="PackedScene" uid="uid://vsvpa6ywikp2" path="res://Objects/Windows/DeleteMod.tscn" id="19_g767o"]
-[ext_resource type="Script" path="res://Objects/MindustryToolTip.gd" id="19_rb3ox"]
-[ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="20_bit2t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqlb"]
 bg_color = Color(0, 0, 0, 1)
@@ -57,16 +48,6 @@ border_color = Color(1, 0.827451, 0.498039, 1)
 corner_radius_bottom_left = 5
 corner_detail = 1
 anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gquo8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rbwy"]
-bg_color = Color(1, 0.317647, 0.431373, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahs1q"]
-bg_color = Color(0, 0.721569, 0.333333, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7ukd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4iwy"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -117,138 +98,7 @@ _data = {
 "new_animation": SubResource("Animation_5jbhb")
 }
 
-[sub_resource type="Shader" id="Shader_xabsi"]
-code = "shader_type canvas_item;
-
-uniform vec2 object_size;
-uniform vec2 text_size;
-uniform int text_vertical_aligment;
-
-void vertex() {
-	if (text_vertical_aligment == 1) {
-		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
-	}
-	if (text_vertical_aligment == 2) {
-		VERTEX.y += object_size.y-text_size.y;
-	}
-}
-
-void fragment() {
-	// Called for every pixel the material is visible on.
-}
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhv16"]
-shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(40, 27)
-shader_parameter/text_size = Vector2(101, 17)
-shader_parameter/text_vertical_aligment = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c84yp"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0, 0, 0, 0.686275)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="Animation" id="Animation_notif"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MindustryToolTip:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_7qbon"]
-resource_name = "hide"
-step = 0.2268
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MindustryToolTip:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_70p5c"]
-resource_name = "show"
-capture_included = true
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MindustryToolTip:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 1),
-"transitions": PackedFloat32Array(1, 0.463409, 1),
-"update": 2,
-"values": [false, true, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptake"]
-_data = {
-"RESET": SubResource("Animation_notif"),
-"hide": SubResource("Animation_7qbon"),
-"show": SubResource("Animation_70p5c")
-}
-
-[node name="Main" type="Control"]
+[node name="Main" type="Control" node_paths=PackedStringArray("AllTabButtons", "ContentPanel", "modManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -256,105 +106,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g5qeq")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.560784)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_mp4s8")
-expand_mode = 1
-
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
-
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
-position = Vector2(288, 969)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
-position = Vector2(119, 724)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
-position = Vector2(-537, 890)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D10" type="Sprite2D" parent="Node2D"]
-position = Vector2(793, 1651)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D11" type="Sprite2D" parent="Node2D"]
-position = Vector2(213, 1971)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D13" type="Sprite2D" parent="Node2D"]
-position = Vector2(747, 2171)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D14" type="Sprite2D" parent="Node2D"]
-position = Vector2(1461, 2038)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D15" type="Sprite2D" parent="Node2D"]
-position = Vector2(-275, 2005)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D16" type="Sprite2D" parent="Node2D"]
-position = Vector2(-500, 1366)
-rotation = -0.785397
-scale = Vector2(1, 24.8955)
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
-position = Vector2(719, 895)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D8" type="Sprite2D" parent="Node2D"]
-position = Vector2(-249, 393)
-rotation = -0.785397
-texture = ExtResource("3_75eus")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
-position = Vector2(-133.995, 840)
-rotation = 0.785398
-texture = ExtResource("3_75eus")
-
-[node name="Discord" type="Sprite2D" parent="Node2D"]
-position = Vector2(-487.19, 583)
-rotation = 0.785397
-scale = Vector2(0.172242, 0.172242)
-texture = ExtResource("4_lhtyi")
-
-[node name="Error" type="Sprite2D" parent="Node2D"]
-position = Vector2(-3, 1468)
-rotation = 0.785397
-texture = ExtResource("5_tl8xs")
-
-[node name="NoneMod" type="Sprite2D" parent="Node2D"]
-position = Vector2(381, 733)
-rotation = 0.785397
-scale = Vector2(0.335105, 0.335105)
-texture = ExtResource("6_6yeec")
-
-[node name="Icon" type="Sprite2D" parent="Node2D"]
-position = Vector2(-259, 1077)
-rotation = 0.785397
-scale = Vector2(0.0842593, 0.0842593)
-texture = ExtResource("7_wh2t7")
+AllTabButtons = NodePath("V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs")
+ContentPanel = NodePath("V1/ConentPanel")
+modManager = NodePath("V1/ModManager")
 
 [node name="V1" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -364,18 +118,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="V1"]
+[node name="UpPanel" type="HBoxContainer" parent="V1"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Panel" type="Panel" parent="V1/HBoxContainer"]
+[node name="TabsPanel" type="Panel" parent="V1/UpPanel"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_pnqlb")
 
-[node name="MarginContainer" type="MarginContainer" parent="V1/HBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/TabsPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -386,29 +140,29 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="V1/HBoxContainer/Panel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="V1/UpPanel/TabsPanel/MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="MarginContainer2" type="MarginContainer" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer"]
+[node name="Tabs" type="HBoxContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 
-[node name="NewTab" parent="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_75wf1")]
+[node name="NewTab" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("9_75wf1")]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -417,14 +171,14 @@ theme = ExtResource("9_snfom")
 real_text_icon = ""
 icon_aligment = null
 icon_size = 24
-real_tooltip_text = "New Tab"
+real_tooltip_text = "|Main.UpPanel.NewTab.text|"
 
-[node name="Panel2" type="Panel" parent="V1/HBoxContainer"]
+[node name="ControlPanel" type="Panel" parent="V1/UpPanel"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rn8xc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="V1/HBoxContainer/Panel2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/UpPanel/ControlPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -433,14 +187,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/ControlPanel/HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="NewTab" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer" instance=ExtResource("9_75wf1")]
+[node name="NewTab" parent="V1/UpPanel/ControlPanel/HBoxContainer/MarginContainer" instance=ExtResource("9_75wf1")]
 layout_mode = 2
 theme = ExtResource("9_snfom")
 theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
@@ -450,13 +204,13 @@ icon_aligment = null
 icon_size = 30
 real_tooltip_text = "New Tab"
 
-[node name="MarginContainer3" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="V1/UpPanel/ControlPanel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Settings" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3" instance=ExtResource("9_75wf1")]
+[node name="Settings" parent="V1/UpPanel/ControlPanel/HBoxContainer/MarginContainer3" instance=ExtResource("9_75wf1")]
 layout_mode = 2
 theme = ExtResource("9_snfom")
 theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
@@ -465,66 +219,41 @@ real_text_icon = ""
 real_text = "|SettingsWindow.Title|"
 icon_size = 25
 
-[node name="MarginContainer2" type="MarginContainer" parent="V1/HBoxContainer/Panel2/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_bottom = 5
-
-[node name="Close" parent="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2" instance=ExtResource("9_75wf1")]
-visible = false
-layout_mode = 2
-theme = ExtResource("9_snfom")
-icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
-icon_aligment = null
-icon_size = 30
-real_tooltip_text = "[UI.RED]Close"
-
 [node name="ModManager" parent="V1" instance=ExtResource("10_tugy5")]
 layout_mode = 2
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("11_68wom")
-volume_db = -10.103
+[node name="ConentPanel" type="Control" parent="V1"]
+layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
-visible = false
+[node name="Windows" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -100.0
-grow_horizontal = 0
-grow_vertical = 0
-mouse_default_cursor_shape = 4
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gquo8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_8rbwy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ahs1q")
-theme_override_styles/normal = SubResource("StyleBoxFlat_l7ukd")
-icon = ExtResource("12_t8b66")
-expand_icon = true
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="SettingsWindow" parent="." instance=ExtResource("13_ix45l")]
+[node name="SettingsWindow" parent="Windows" instance=ExtResource("13_ix45l")]
 layout_mode = 1
 
-[node name="RenameDuplicateWindow" parent="." instance=ExtResource("14_v3wjf")]
+[node name="RenameDuplicateWindow" parent="Windows" instance=ExtResource("14_v3wjf")]
 visible = false
 layout_mode = 1
 
-[node name="NeedSaveContent" parent="." instance=ExtResource("15_6lj5a")]
+[node name="NeedSaveContent" parent="Windows" instance=ExtResource("15_6lj5a")]
 visible = false
 layout_mode = 1
 
-[node name="CreateContent" parent="." instance=ExtResource("16_ek1ic")]
+[node name="CreateContent" parent="Windows" instance=ExtResource("16_ek1ic")]
 visible = false
 layout_mode = 1
 
-[node name="CreateMod" parent="." instance=ExtResource("17_bdimx")]
+[node name="CreateMod" parent="Windows" instance=ExtResource("17_bdimx")]
+visible = false
+layout_mode = 1
+
+[node name="DeleteMod" parent="Windows" instance=ExtResource("19_g767o")]
 visible = false
 layout_mode = 1
 
@@ -534,10 +263,6 @@ offset_left = -375.0
 offset_top = -97.0
 offset_right = -39.0
 offset_bottom = -37.0
-
-[node name="DeleteMod" parent="." instance=ExtResource("19_g767o")]
-visible = false
-layout_mode = 1
 
 [node name="MessagePanel" type="Panel" parent="."]
 layout_mode = 1
@@ -569,43 +294,11 @@ libraries = {
 "": SubResource("AnimationLibrary_y07iu")
 }
 
-[node name="MindustryToolTip" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 28.0
-offset_top = -88.0
-offset_right = 68.0
-offset_bottom = -61.0
-mouse_filter = 2
-script = ExtResource("19_rb3ox")
+[node name="MindustryToolTip" parent="." instance=ExtResource("7_72h3x")]
 
-[node name="MindustryToolTip" parent="MindustryToolTip" instance=ExtResource("20_bit2t")]
-material = SubResource("ShaderMaterial_lhv16")
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 1
-grow_vertical = 1
-theme_override_styles/normal = SubResource("StyleBoxFlat_c84yp")
-text = "[center]123"
-fit_content = true
-real_text = "123"
-text_aligment = 1
+[node name="full_ready" type="Node" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MindustryToolTip"]
-libraries = {
-"": SubResource("AnimationLibrary_ptake")
-}
-speed_scale = 8.0
-
-[connection signal="pressed" from="V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer/NewTab" to="." method="_on_new_tab_pressed"]
-[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer/NewTab" to="." method="_on_new_tab_pressed"]
-[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer3/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="V1/HBoxContainer/Panel2/HBoxContainer/MarginContainer2/Close" to="." method="_on_close_pressed"]
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab" to="." method="_on_new_tab_pressed"]
+[connection signal="pressed" from="V1/UpPanel/ControlPanel/HBoxContainer/MarginContainer/NewTab" to="." method="_on_new_tab_pressed"]
+[connection signal="pressed" from="V1/UpPanel/ControlPanel/HBoxContainer/MarginContainer3/Settings" to="." method="_on_settings_pressed"]
+[connection signal="ready" from="full_ready" to="." method="_on_full_ready_ready"]

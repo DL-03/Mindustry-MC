@@ -19,7 +19,7 @@ var VALUE_EDIT = null
 
 
 func LineEdit_text_changed(value):
-	print("LineEdit_text_changed: ", value)
+	print("[ContentCnfig][LineEdit_text_changed][value]: ", value)
 	#var value = VALUE_EDIT.text
 	if typeof(DefaultData) == TYPE_DICTIONARY:
 		RootContentFrame.changed_data(Name, JSON.parse_string(value))
@@ -101,7 +101,11 @@ func _update():
 func _set_Name(value):
 	Name = value
 	
-	$NameLabel.text = Name+":"
+	if LocalizationAPI.has_text("ClassType."+Name):
+		$NameLabel.text = LocalizationAPI.translate_text("|ClassType."+Name+"|:")
+	else:
+		$NameLabel.text = Name+":"
+
 
 
 
@@ -117,67 +121,88 @@ func _set_Data(value):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	LocalizationAPI.global_language_changed.connect(func(): Name = Name)
+
 
 var MouseFocus = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if MouseFocus:
-		get_node("/root/Main/TooltipContentKeys").position = get_viewport().get_mouse_position() + Vector2(5, 5)
-
-
+		var MousePos = get_viewport().get_mouse_position()
+		var MySize = get_node("/root/Main/TooltipContentKeys").size
+		get_node("/root/Main/TooltipContentKeys").position = MousePos + Vector2(5, 5) + Vector2(min(0, get_node("/root/Main").size.x-(MousePos.x+MySize.x+5)), 0)
+		if MousePos.y+5+MySize.y > get_node("/root/Main").size.y:
+			get_node("/root/Main/TooltipContentKeys").position.y -= 10+MySize.y
+		
+		#get_node("/root/Main/TooltipContentKeys").position.x = min(0,$/root/Main.size.x-($MindustryToolTip.size.x+pos.x))
+		get_node("/root/Main/TooltipContentKeys").show()
+		
 func _on_name_label_mouse_entered():
 	MouseFocus = true
-	get_node("/root/Main/TooltipContentKeys").show()
+	
+	
 	
 	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer/Name").text = Name
-	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer/DisplayName").text = Name
+	if LocalizationAPI.has_text("ClassType."+Name):
+		get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer/DisplayName").real_text = LocalizationAPI.translate_text("|ClassType."+Name+"|")
+	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer/DisplayName").visible = LocalizationAPI.has_text("ClassType."+Name)
+	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer/(").visible = LocalizationAPI.has_text("ClassType."+Name)
+	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer/)").visible = LocalizationAPI.has_text("ClassType."+Name)
 	
-	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").remove_theme_color_override("font_color")
+	
+	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").font_color = Color.WHITE
 	
 	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/sW").visible = (typeof(DefaultData) == TYPE_STRING)
 	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/eW").visible = (typeof(DefaultData) == TYPE_STRING)
 	
+	if LocalizationAPI.has_text("ClassType."+Name+"_desc"):
+		get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/Description").real_text = "|ClassType."+Name+"_desc|"
+	else:
+		get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/Description").real_text = ""
+
+	
 	var _name_type = get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/NameType")
 	if Type == "Color":
 		_name_type.text = "Color"
-		_name_type.add_theme_color_override("font_color", Color.GOLD)
+		_name_type.font_color = Color.GOLD
 	elif Type == "Category":
 		_name_type.text = "Category"
-		_name_type.add_theme_color_override("font_color", Color.DEEP_PINK)
+		_name_type.font_color = Color.DEEP_PINK
 	elif typeof(DefaultData) == TYPE_STRING:
 		_name_type.text = "String"
-		_name_type.add_theme_color_override("font_color", Color.WEB_GRAY)
-		get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault")
+		_name_type.font_color = Color.WEB_GRAY
 		
 	elif typeof(DefaultData) == TYPE_BOOL:
 		_name_type.text = "Boolean"
-		_name_type.add_theme_color_override("font_color", Color.DODGER_BLUE)
+		_name_type.font_color = Color.DODGER_BLUE
 		if DefaultData:
-			get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").add_theme_color_override("font_color", Color.SEA_GREEN)
+			get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").font_color = Color.SEA_GREEN
 		else:
-			get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").add_theme_color_override("font_color", Color.INDIAN_RED)
+			get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").font_color = Color.INDIAN_RED
 			
 	elif typeof(DefaultData) == TYPE_ARRAY:
 		_name_type.text = "Array"
-		_name_type.add_theme_color_override("font_color", Color.GREEN_YELLOW)
+		_name_type.font_color = Color.GREEN_YELLOW
 	elif typeof(DefaultData) == TYPE_DICTIONARY:
 		_name_type.text = "Dictionary"
-		_name_type.add_theme_color_override("font_color", Color.YELLOW)
+		_name_type.font_color = Color.YELLOW
 	elif typeof(DefaultData) == TYPE_INT:
 		_name_type.text = "Integer"
-		_name_type.add_theme_color_override("font_color", Color.BLUE_VIOLET)
+		_name_type.font_color = Color.BLUE_VIOLET
 	elif typeof(DefaultData) == TYPE_FLOAT:
 		_name_type.text = "Float"
-		_name_type.add_theme_color_override("font_color", Color.WEB_PURPLE)
+		_name_type.font_color = Color.WEB_PURPLE
 	elif typeof(DefaultData) == TYPE_NIL:
 		_name_type.text = "Null"
-		_name_type.add_theme_color_override("font_color", Color.RED)
+		_name_type.font_color = Color.RED
 	else:
 		_name_type.text = "?"
-		_name_type.add_theme_color_override("font_color", Color.FIREBRICK)
-		
-	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").text = str(DefaultData)
+		_name_type.font_color = Color.FIREBRICK
+	
+	
+	get_node("/root/Main/TooltipContentKeys/MarginContainer/VBoxContainer/HBoxContainer2/ValueDefault").real_text = str(DefaultData)
+
+
 func _on_name_label_mouse_exited():
 	MouseFocus = false
 	get_node("/root/Main/TooltipContentKeys").hide()

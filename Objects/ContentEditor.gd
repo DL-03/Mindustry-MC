@@ -71,8 +71,9 @@ func save_content(_contentClass):
 				
 				var defaultData = i.contentClass.DefaultData
 				
-				print("_D: ", _data)
-				print("DD: ", defaultData)
+				print("[ContentEditor][save_content][WrietData]: ", i.ContentFrame.writeData)
+				print("[ContentEditor][save_content][Data]: ", _data)
+				print("[ContentEditor][save_content][DefaultData]: : ", defaultData)
 				
 				
 				

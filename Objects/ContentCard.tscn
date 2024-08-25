@@ -32,9 +32,9 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0pau"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pt1gj"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(342, 20)
+shader_parameter/object_size = Vector2(0, 20)
 shader_parameter/text_size = Vector2(49, 17)
 shader_parameter/text_vertical_aligment = 1
 
@@ -103,7 +103,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Name" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_mcxc2")]
-material = SubResource("ShaderMaterial_c0pau")
+material = SubResource("ShaderMaterial_pt1gj")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3

@@ -65,7 +65,7 @@ func _set_icon_aligment(value):
 		$MarginContainer/HBoxContainer.move_child($MarginContainer/HBoxContainer/IconText, 1)
 func _set_h_aligment(value):
 	h_aligment = value
-	print(h_aligment)
+	#print(h_aligment)
 	if h_aligment == 0:
 		#Text_Element.size_flags_horizontal = SIZE_SHRINK_BEGIN | SIZE_EXPAND
 		Text_Element.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -116,7 +116,7 @@ func _process(delta):
 
 
 func _on_mouse_entered():
-	print("eees")
+	#print("eees")
 	if real_tooltip_text != "":
 		$/root/Main/MindustryToolTip.tip(real_tooltip_text,get_viewport().get_mouse_position())
 

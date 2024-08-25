@@ -52,11 +52,11 @@ func _on_pressed():
 
 
 func _on_delete_pressed():
-	get_node("/root/Main/RenameDuplicateWindow").open(contentClass, 0)
+	$/root/Main/Windows/RenameDuplicateWindow.open(contentClass, 0)
 func _on_rename_pressed():
-	get_node("/root/Main/RenameDuplicateWindow").open(contentClass, 1)
+	$/root/Main/Windows/RenameDuplicateWindow.open(contentClass, 1)
 func _on_duplicate_pressed():
-	get_node("/root/Main/RenameDuplicateWindow").open(contentClass, 2)
+	$/root/Main/Windows/RenameDuplicateWindow.open(contentClass, 2)
 
 
 func _on_path_pressed():

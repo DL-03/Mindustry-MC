@@ -80,9 +80,9 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1oj5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1idfp"]
 shader = SubResource("Shader_imvkg")
-shader_parameter/object_size = Vector2(79, 25)
+shader_parameter/object_size = Vector2(79, 17)
 shader_parameter/text_size = Vector2(79, 17)
 shader_parameter/text_vertical_aligment = 1
 
@@ -123,7 +123,7 @@ texture = ExtResource("3_nfibb")
 expand_mode = 1
 
 [node name="Text" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_vd8ua")]
-material = SubResource("ShaderMaterial_o1oj5")
+material = SubResource("ShaderMaterial_1idfp")
 layout_mode = 2
 text = "Explorer"
 fit_content = true
@@ -138,7 +138,7 @@ theme = ExtResource("6_7ukii")
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon = ""
 icon_size = 20
-real_tooltip_text = "[UI.RED]Close"
+real_tooltip_text = "[UI.RED]|Main.UpPanel.Tab.Close.text|"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]

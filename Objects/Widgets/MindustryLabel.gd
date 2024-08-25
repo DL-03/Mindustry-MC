@@ -20,10 +20,8 @@ func _set_real_tooltip_text(value):
 
 func _set_real_text(value):
 	real_text = value
-	if translate_text(value) == null:
-		text = value
-	else:
-		text = translate_text(value)
+
+	text = LocalizationAPI.translate_text(value)
 
 
 @export var font_color = Color.WHITE:
@@ -44,30 +42,13 @@ func _set_font_color(value):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	LocalizationAPI.change_current_language.connect(func(): real_text = real_text)
+	LocalizationAPI.global_language_changed.connect(func(): real_text = real_text)
 	
 	real_tooltip_text = real_tooltip_text
 	real_text = real_text
 	font_color = font_color
 
 
-
-
-
-func translate_text(text):
-	var text_list = text.split("|")
-	
-	var result = ""
-	
-	for i in text_list:
-		if i in LocalizationAPI.LanguageDict["LanguageDict"]:
-			if LocalizationAPI.language_list[LocalizationAPI.current_language] in LocalizationAPI.LanguageDict["LanguageDict"][i]:
-				result += translate_text(LocalizationAPI.LanguageDict["LanguageDict"][i][LocalizationAPI.language_list[LocalizationAPI.current_language]])
-			else:
-				result += i
-		else:
-			result += i
-	return result
 
 
 func _on_mouse_entered():

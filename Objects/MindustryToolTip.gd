@@ -12,6 +12,7 @@ func tip(text = "", pos = Vector2.ZERO):
 	$MindustryToolTip.size = Vector2.ZERO
 	
 	$MindustryToolTip.position.x = min(0,$/root/Main.size.x-($MindustryToolTip.size.x+pos.x))
+	$MindustryToolTip.position.y = min(0,$/root/Main.size.y-($MindustryToolTip.size.y+pos.y))
 	
 	
 	

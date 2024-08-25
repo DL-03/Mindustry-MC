@@ -168,7 +168,7 @@ func setPath(path):
 
 		#first_scan_content()
 		
-		MessageAPI.info("Modification Opened")
+		MessageAPI.info("|Message.modification_has_been_opened|")
 		
 
 	
@@ -258,7 +258,7 @@ func _on_window_close_requested():
 
 
 func _on_create_content_pressed():
-	$/root/Main/CreateContent.open(modClass)
+	$/root/Main/Windows/CreateContent.open(modClass)
 
 
 func _on_reload_content_pressed():

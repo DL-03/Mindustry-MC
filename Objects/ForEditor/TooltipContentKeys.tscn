@@ -1,9 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjv1ns30b2oox"]
+[gd_scene load_steps=8 format=3 uid="uid://cjv1ns30b2oox"]
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_ooldv"]
 [ext_resource type="Script" path="res://Objects/ForEditor/TooltipContentKeys.gd" id="2_i0bxq"]
 [ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="2_vfkf2"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="3_xdgqr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5oswy"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+shadow_size = 10
+anti_aliasing = false
 
 [sub_resource type="Shader" id="Shader_xabsi"]
 code = "shader_type canvas_item;
@@ -31,7 +46,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yypm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsyg7"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 0)
 shader_parameter/text_size = Vector2(0, 0)
@@ -43,6 +58,7 @@ offset_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme = ExtResource("1_ooldv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5oswy")
 script = ExtResource("2_i0bxq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -71,7 +87,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
-text = "Parametr:"
+text = "Параметр:"
 real_text = "|ClassType.tip_parametr|:"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
@@ -81,19 +97,16 @@ theme = ExtResource("1_ooldv")
 text = "parametr"
 
 [node name="(" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_ooldv")
 text = "("
 
-[node name="DisplayName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
+[node name="DisplayName" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_xdgqr")]
 layout_mode = 2
-theme = ExtResource("1_ooldv")
 text = "Параметр"
+real_text = "Параметр"
 
 [node name=")" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_ooldv")
 text = ")"
@@ -107,15 +120,17 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
-text = "Type:"
+text = "Тип:"
 real_text = "|ClassType.tip_type|:"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="NameType" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="NameType" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_xdgqr")]
 layout_mode = 2
-theme = ExtResource("1_ooldv")
-theme_override_colors/font_color = Color(0, 0.760784, 1, 1)
+theme_override_colors/font_color = Color(0.054902, 0.85098, 0.94902, 1)
+theme_override_colors/font_shadow_color = Color(0.0138843, 0.215206, 0.24, 1)
 text = "Boolean"
+real_text = "Boolean"
+font_color = Color(0.054902, 0.85098, 0.94902, 1)
 
 [node name="|" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -126,7 +141,7 @@ text = "|"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
-text = "Default:"
+text = "По умолчанию:"
 real_text = "|ClassType.tip_default|:"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
@@ -135,18 +150,21 @@ layout_mode = 2
 theme = ExtResource("1_ooldv")
 text = "\""
 
-[node name="ValueDefault" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ValueDefault" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_xdgqr")]
 layout_mode = 2
-theme = ExtResource("1_ooldv")
+theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.0826556, 0.0816599, 1)
 text = "False"
+real_text = "False"
+font_color = Color(0.945098, 0.32549, 0.321569, 1)
 
 [node name="eW" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_ooldv")
 text = "\""
 
-[node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
-material = SubResource("ShaderMaterial_6yypm")
+[node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
+material = SubResource("ShaderMaterial_hsyg7")
 layout_mode = 2
 mouse_filter = 1
 fit_content = true

@@ -19,8 +19,8 @@ func _ready():
 			pass
 		"Linux":
 			pass
-	print(path)
-	print(OS.get_data_dir())
+	print("[ModManager][_ready][MindsutyModsPath]: "+path)
+	print("[ModManager][_ready][MMC_DataPath]: "+path)
 	if OS.get_name() != "Windows":
 		$VBoxContainer/DownPanel/OpenFolder.visible = false
 	
@@ -35,4 +35,4 @@ func _process(delta):
 
 
 func _on_create_modification_pressed():
-	$/root/Main/CreateMod.open()
+	$/root/Main/Windows/CreateMod.open()

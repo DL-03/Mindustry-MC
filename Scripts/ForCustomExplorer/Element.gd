@@ -153,7 +153,7 @@ func _on_pressed():
 	if TypeElement.FOLDER == Type:
 		RootNode.set_path(Path)
 	elif TypeElement.MOD == Type:
-		var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer/HBoxContainer
+		var AllTabButtons = $/root/Main/V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs
 		for i in AllTabButtons.get_children():
 			if i.disabled:
 				if i.ContentFrame == null:

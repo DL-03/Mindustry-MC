@@ -140,7 +140,7 @@ func submited(new_text: String):
 	if len(new_text) > 4:
 		if new_text.get_extension().to_lower() == "open_mod":
 			var _path = new_text.left(len(new_text)-len(new_text.get_extension())-1)
-			print("Open Mod: ",_path)
+			print("[CustomExplorer][submited][OpenMod][Path]: ",_path)
 			new_text = current_path
 			#return
 			var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
@@ -159,7 +159,7 @@ func submited(new_text: String):
 	refresh()
 
 func _on_line_edit_text_submitted(new_text: String):
-	pass
+	submited(new_text)
 	
 
 func _on_line_edit_text_changed(new_text):

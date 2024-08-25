@@ -59,10 +59,10 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcfsd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a26op"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(250, 25)
-shader_parameter/text_size = Vector2(473, 17)
+shader_parameter/text_size = Vector2(486, 17)
 shader_parameter/text_vertical_aligment = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clqkv"]
@@ -153,10 +153,10 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh1vh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lclig"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(510, 85)
-shader_parameter/text_size = Vector2(2367, 85)
+shader_parameter/object_size = Vector2(434, 85)
+shader_parameter/text_size = Vector2(2394, 85)
 shader_parameter/text_vertical_aligment = 0
 
 [node name="SettingsWindow" type="Panel" node_paths=PackedStringArray("EngineVersion_Value", "LangList")]
@@ -192,7 +192,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
-text = " Settings "
+text = " Настройки "
 horizontal_alignment = 1
 real_text = " |SettingsWindow.Title| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -208,9 +208,9 @@ alignment = 1
 [node name="Label" parent="MarginContainer/VBoxContainer/LangParam" instance=ExtResource("2_4xn72")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Language: "
+text = "Язык: "
 horizontal_alignment = 1
-real_text = "|LanguageText|: "
+real_text = "|SettingsWindow.Main.Language.text|: "
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/LangParam"]
 custom_minimum_size = Vector2(100, 50)
@@ -220,9 +220,17 @@ theme = ExtResource("3_yyeru")
 alignment = 1
 selected = 0
 item_count = 2
-popup/item_0/text = "EN"
-popup/item_1/text = "RU"
+popup/item_0/text = "en"
+popup/item_1/text = "ru"
 popup/item_1/id = 1
+
+[node name="Reload" parent="MarginContainer/VBoxContainer/LangParam" instance=ExtResource("5_o21by")]
+custom_minimum_size = Vector2(125, 40)
+layout_mode = 2
+size_flags_vertical = 4
+real_text_icon = ""
+real_text = "Update"
+icon_size = 20
 
 [node name="delete1Param" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 visible = false
@@ -275,16 +283,15 @@ layout_mode = 2
 Checked = true
 
 [node name="perSaveMessageParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 alignment = 1
 
 [node name="Label" parent="MarginContainer/VBoxContainer/perSaveMessageParam" instance=ExtResource("2_4xn72")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Save message frequency(sec.): "
+text = "Периодичность сообщения о сохранении: "
 horizontal_alignment = 1
-real_text = "|saveMessageFrequency|: "
+real_text = "|SettingsWindow.Main.SaveMessageFrequenc.text|: "
 
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/perSaveMessageParam"]
 layout_mode = 2
@@ -292,6 +299,7 @@ theme = ExtResource("3_yyeru")
 max_value = 1e+11
 value = 60.0
 allow_greater = true
+update_on_text_changed = true
 suffix = "s"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -304,9 +312,9 @@ theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_p1pbp")
-text = " Information "
+text = " Информация "
 horizontal_alignment = 1
-real_text = " |InformationText| "
+real_text = " |SettingsWindow.Information.Tab.text| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="Version" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
@@ -315,16 +323,16 @@ alignment = 1
 
 [node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/Version" instance=ExtResource("2_4xn72")]
 layout_mode = 2
-text = "Version: "
+text = "Версия: "
 horizontal_alignment = 1
-real_text = "|VersionText|: "
+real_text = "|SettingsWindow.Information.Version.text|: "
 
 [node name="Version" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Version"]
 layout_mode = 2
 theme = ExtResource("3_yyeru")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.4, 0.33, 0.2, 1)
-text = "Pre-Beta 2 ( Exp-Build: 5 ) ( 0.2.1 )"
+text = "Pre-Beta 2 ( Exp-Build: 6 ) ( 0.2.2 )"
 
 [node name="VersionContentFile" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -332,33 +340,31 @@ alignment = 1
 
 [node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/VersionContentFile" instance=ExtResource("2_4xn72")]
 layout_mode = 2
-text = "Version ClassType:"
+text = "Версия ClassType:"
 horizontal_alignment = 1
-real_text = "|VersionText| ClassType:"
+real_text = "|SettingsWindow.Information.Version.text| ClassType:"
 
 [node name="Version" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VersionContentFile"]
 layout_mode = 2
 theme = ExtResource("3_yyeru")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.4, 0.33, 0.2, 1)
-text = "0.1.1 - Offline"
+text = "0.2 - Offline"
 
 [node name="Author" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer/Author" instance=ExtResource("4_hpttg")]
-material = SubResource("ShaderMaterial_vcfsd")
+material = SubResource("ShaderMaterial_a26op")
 clip_contents = false
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 size_flags_vertical = 4
-mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 24
-text = "[center][color=ffd37fff]Creator: [color=38d667ff]DL"
-real_text = "[ui.yellow]|CreatorText|: [green]DL"
+text = "[center][color=ffd37fff]Создатель: [color=38d667ff]DL"
+real_text = "[ui.yellow]|SettingsWindow.Information.Creator.text|: [green]DL"
 text_aligment = 1
-real_tooltip_text = null
 
 [node name="Github" parent="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel" instance=ExtResource("5_o21by")]
 custom_minimum_size = Vector2(0, 50)
@@ -377,8 +383,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_clqkv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_d5r4r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_37nwp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8xidm")
-icon_aligment = null
-h_aligment = null
 
 [node name="Discord" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Author"]
 custom_minimum_size = Vector2(50, 50)
@@ -393,17 +397,17 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_hpttg")]
-material = SubResource("ShaderMaterial_lh1vh")
+material = SubResource("ShaderMaterial_lclig")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "[color=ffd37fff]Mindustry Mod Construct [color=ffffffff]or (Mindustry MC) 
-is a program with the help of which you can 
-easily operate the mods created for the [color=ffd37fff]Mindustry [color=ffffffff]game.
+text = "[color=ffd37fff]Mindustry Mod Construct [color=ffffffff]или (Mindustry MC) — 
+это программа, с помощью которой вы можете легко
+управлять модами, созданными для игры [color=ffd37fff]Mindustry[color=ffffffff].
 [color=ffffffff]
-Translator (EN, RU): [color=38d667ff]DL"
+TranslatorText (EN, RU): [color=38d667ff]DL"
 fit_content = true
-real_text = "InformationWindow.DescriptionMMC|
+real_text = "|SettingsWindow.Information.DescriptionMMC.text|
 [white]
 |TranslatorText| (EN, RU): [GREEN]DL"
 
@@ -413,9 +417,9 @@ alignment = 1
 
 [node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/EngineVersion" instance=ExtResource("2_4xn72")]
 layout_mode = 2
-text = "Made in: "
+text = "Сделано в: "
 horizontal_alignment = 1
-real_text = "|MadeInText|: "
+real_text = "|SettingsWindow.Information.MadeIn.text|: "
 
 [node name="Value" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/EngineVersion"]
 layout_mode = 2
@@ -432,10 +436,10 @@ alignment = 1
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 24
-text = "Secret: "
+text = "Секрет: "
 horizontal_alignment = 1
-real_text = "|SettingsWindow.Secret.Label|: "
-real_tooltip_text = "|InformationWindow.SecretTip|"
+real_text = "|SettingsWindow.Information.Secret.text|: "
+real_tooltip_text = "|SettingsWindow.Information.Secret.tip|"
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -509,11 +513,14 @@ alignment = 1
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 real_text_icon = ""
-real_text = "|backButton|"
+real_text = "|SettingsWindow.Back.text|"
 icon_aligment = null
 h_aligment = null
 
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/LangParam/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/LangParam/OptionButton" to="." method="_on_lang_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LangParam/Reload" to="." method="_on_lang_reload_pressed"]
+[connection signal="changed" from="MarginContainer/VBoxContainer/perSaveMessageParam/SpinBox" to="." method="_on_spin_box_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/perSaveMessageParam/SpinBox" to="." method="_on_save_message_frequenc_spin_box_value_changed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel/Github" to="." method="_on_github_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel/Github" to="." method="_on_github_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Author/MindustryTextLabel/Github" to="." method="_on_github_pressed"]

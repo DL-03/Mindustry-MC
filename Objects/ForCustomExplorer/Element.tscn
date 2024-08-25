@@ -27,19 +27,19 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5auqh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6k2py"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 19)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hiyhc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fldj"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 20)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tw6cd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpl51"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 20)
 shader_parameter/text_size = Vector2(202, 17)
@@ -145,7 +145,7 @@ theme_override_constants/separation = 2
 alignment = 1
 
 [node name="DisplayName" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
-material = SubResource("ShaderMaterial_5auqh")
+material = SubResource("ShaderMaterial_6k2py")
 custom_minimum_size = Vector2(0, 19)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
@@ -168,7 +168,7 @@ font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="Author" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
 visible = false
-material = SubResource("ShaderMaterial_hiyhc")
+material = SubResource("ShaderMaterial_6fldj")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
@@ -178,7 +178,7 @@ text_vertical_aligment = 1
 
 [node name="Version" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
 visible = false
-material = SubResource("ShaderMaterial_tw6cd")
+material = SubResource("ShaderMaterial_qpl51")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15

@@ -1,12 +1,13 @@
+@tool
 extends Node
 
 
 signal data_loaded
-
+signal data_changed
 
 var defaultData = {
 	"Settings": {
-		"Language": 0,
+		"Language": "en",
 		"AutoOpenModeMindustry": false,
 		"contentFileMomentalWarningYes": false,
 		"saveMessageFrequency": 60
@@ -17,8 +18,9 @@ var data = {}
 
 func save_data():
 	var s = FileAccess.open("user://saveData.json", FileAccess.WRITE)
-	s.store_string(str(data))
+	s.store_string(JSON.stringify(data))
 	s.close()
+	data_changed.emit()
 
 func load_data():
 	if not FileAccess.file_exists("user://saveData.json"):
@@ -32,6 +34,7 @@ func load_data():
 		data.merge(JSON.parse_string(s.get_as_text()), true)
 		s.close()
 	data_loaded.emit()
+	data_changed.emit()
 
 
 # Called when the node enters the scene tree for the first time.

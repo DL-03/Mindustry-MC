@@ -41,15 +41,7 @@ func reset():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	reset()
-	
-	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer/HBoxContainer
-	for i in AllTabButtons.get_children():
-		i.disabled = false
-		if i.ContentFrame != null:
-			i.ContentFrame.visible = false
-	self.disabled = true
-	$/root/Main/V1/ModManager.visible = true
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,7 +52,7 @@ func _process(delta):
 
 
 func _on_pressed():
-	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer/HBoxContainer
+	var AllTabButtons = $/root/Main/V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs
 	for i in AllTabButtons.get_children():
 		i.disabled = false
 		if i.ContentFrame != null:
@@ -80,7 +72,7 @@ func _on_margin_container_resized():
 
 
 func _on_close_pressed():
-	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer/HBoxContainer
+	var AllTabButtons = $/root/Main/V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs
 	
 	if AllTabButtons.get_child_count() == 1:
 		if AllTabButtons.get_child(0).ContentFrame == null:

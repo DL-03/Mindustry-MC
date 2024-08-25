@@ -37,7 +37,7 @@ func get_content(_type=null):
 			while _tt:
 				if "extend" in _mod1:
 					if _mod1["extend"] in ClassType:
-						print(_mod1["extend"])
+						#print(_mod1["extend"])
 						_mod1 = reverseDict(ClassType[_mod1["extend"]])
 						_mod.merge(_mod1)
 					
@@ -54,7 +54,8 @@ func get_content(_type=null):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("WOS:",get_content("material"))
+	#print("WOS:",get_content("material"))
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

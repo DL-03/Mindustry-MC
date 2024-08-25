@@ -134,6 +134,7 @@ func get_sprite(key):
 func set_path(_path: String):
 	_path = _path.simplify_path()
 	
+	print("[ModClass][set_path]: Start")
 	if DirAccess.dir_exists_absolute(_path):
 		Path = _path
 		ModType = "folder"
@@ -167,7 +168,8 @@ func set_path(_path: String):
 			ModContentClass.modClass = self
 			ModContentClass.Path = Path.path_join(i)
 			
-			print("ModContentClassO: ", i, " | ", Path, " | ")
+			print("[ModClass][set_path][ModContentClass]: Loaded")
+			print("[ModClass][set_path][ModContentClass][Path]:" + Path)
 			
 			break
 	
@@ -179,6 +181,8 @@ func set_path(_path: String):
 	#print(SpriteDictonary)
 	
 	first_scan_content()
+	
+	print("[ModClass][set_path]: Loaded")
 
 func get_mod_icon():
 	

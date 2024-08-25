@@ -8,8 +8,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	size.x = $MarginContainer.size.x
+	size = $MarginContainer.size
 
 
 func _on_margin_container_resized():
-	size.x = $MarginContainer.size.x
+	size = $MarginContainer.size

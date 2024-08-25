@@ -74,19 +74,19 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncnkk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtuhi"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(119, 17)
 shader_parameter/text_size = Vector2(119, 17)
 shader_parameter/text_vertical_aligment = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ucf17"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lg4ku"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(65, 17)
 shader_parameter/text_size = Vector2(65, 17)
 shader_parameter/text_vertical_aligment = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qncco"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwri3"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(68, 17)
 shader_parameter/text_size = Vector2(68, 17)
@@ -183,7 +183,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="displayName" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
-material = SubResource("ShaderMaterial_ncnkk")
+material = SubResource("ShaderMaterial_qtuhi")
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
 text = "Display Name"
@@ -201,14 +201,14 @@ real_text = "Name"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="author" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
-material = SubResource("ShaderMaterial_ucf17")
+material = SubResource("ShaderMaterial_lg4ku")
 layout_mode = 2
 text = "Author"
 fit_content = true
 real_text = "Author"
 
 [node name="version" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
-material = SubResource("ShaderMaterial_qncco")
+material = SubResource("ShaderMaterial_cwri3")
 layout_mode = 2
 text = "Version"
 fit_content = true

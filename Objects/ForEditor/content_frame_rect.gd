@@ -33,21 +33,25 @@ func _set_needSave(value):
 	needSave = value
 	
 	RootNode.SaveButton.disabled = not needSave
+	if TabButton != null:
+		TabButton.get_node("MarginContainer/HBoxContainer/Save").visible = needSave
 func changed_data(key,value):
 	if key in contentClass.FullData:
 		if typeof(contentClass.FullData[key]) == typeof(value):
 			if contentClass.FullData[key] == value:
 				if key in writeData:
 					writeData.erase(key)
-					print("S ",writeData,contentClass.FullData)
-					
+					print("[content_frame_rect][changed_data]1[WriteData]: ",writeData)
+					print("[content_frame_rect][changed_data]1[FullData]: ",contentClass.FullData)
 
 					needSave = len(writeData) > 0
 					
 					return
 
 	writeData.merge({key:value}, true)
-	print(writeData,contentClass.FullData)
+	print("[content_frame_rect][changed_data]2[WriteData]: ",writeData)
+	print("[content_frame_rect][changed_data]2[FullData]: ",contentClass.FullData)
+
 	
 	$TabContainer/Editor/d1.text = str(writeData)
 	$TabContainer/Editor/d2.text = str(contentClass.Data)

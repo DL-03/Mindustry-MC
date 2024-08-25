@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mindustry Mod Construct"
-config/version="0.2.1"
+config/version="0.2.2"
 config/tags=PackedStringArray("123")
 run/main_scene="res://Objects/Main.tscn"
 config/use_custom_user_dir=true
@@ -24,6 +24,8 @@ config/windows_native_icon="res://resources/MMC_ICON.ico"
 
 [autoload]
 
+PropertiesReader="*res://libs/PropertiesReader.gd"
+SaveDataAPI="*res://Objects/SaveDataAPI.gd"
 OpenMod="*res://OpenMod.gd"
 ModExplorer="res://mod_explorer.gd"
 ContentManager="*res://libs/ContentManager.gd"
@@ -31,7 +33,6 @@ HJSON="*res://libs/HjsonMain.gd"
 MessageAPI="*res://libs/MessageAPI.gd"
 LocalizationAPI="*res://Objects/LocalizationAPI.gd"
 FileOperations="*res://libs/FileOperations.cs"
-SaveDataAPI="*res://Objects/SaveDataAPI.gd"
 ModManager="*res://Scripts/ModManager.gd"
 COLORS="*res://libs/COLORS.gd"
 ArchiveMain="*res://libs/ArchiveMain.gd"

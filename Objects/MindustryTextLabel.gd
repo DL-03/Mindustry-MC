@@ -55,7 +55,7 @@ func _text_update():
 			_text += "[right]"
 	
 	
-	_text += COLORS.colorita(translate_text(real_text))
+	_text += COLORS.colorita(LocalizationAPI.translate_text(real_text))
 	#_text += "LONG TEXT LONG TEXT"
 	#print(_text)
 	text = str(_text)
@@ -63,26 +63,9 @@ func _text_update():
 
 
 
-func translate_text(text):
-	if text == null:
-		return text
-	text = str(text)
-	var text_list = text.split("|")
-	
-	var result = ""
-	
-	for i in text_list:
-		if i in LocalizationAPI.LanguageDict["LanguageDict"]:
-			if LocalizationAPI.language_list[LocalizationAPI.current_language] in LocalizationAPI.LanguageDict["LanguageDict"][i]:
-				result += translate_text(LocalizationAPI.LanguageDict["LanguageDict"][i][LocalizationAPI.language_list[LocalizationAPI.current_language]])
-			else:
-				result += i
-		else:
-			result += i
-	return result
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	LocalizationAPI.change_current_language.connect(_text_update)
+	LocalizationAPI.global_language_changed.connect(_text_update)
 	
 	material.set_shader_parameter("object_size", size)
 	material = material.duplicate()
