@@ -77,7 +77,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
-text = " Создать Контент "
+text = " Створити Контент "
 horizontal_alignment = 1
 real_text = " |CreateContent.Title.text| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -90,7 +90,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "Создать Файл Контента"
+text = "Створити Файл Контенту"
 horizontal_alignment = 1
 vertical_alignment = 1
 real_text = "|CreateContent.Label.text|"
@@ -101,7 +101,7 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/ContentType" instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Тип Контента:"
+text = "Тип Контенту:"
 real_text = "|CreateContent.ContentType.text|:"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/ContentType"]
@@ -135,7 +135,7 @@ theme = ExtResource("3_xm7ci")
 
 [node name="MindustryLabel2" parent="Panel/MarginContainer/VBoxContainer/Type" instance=ExtResource("2_aiir5")]
 layout_mode = 2
-text = "Пользовательский:"
+text = "Користувацький:"
 real_text = "|CreateContent.Custom.text|:"
 
 [node name="CheckCustom" parent="Panel/MarginContainer/VBoxContainer/Type" instance=ExtResource("4_c8dfg")]
@@ -148,7 +148,7 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Путь:"
+text = "Шлях:"
 real_text = "|CreateContent.Path.text|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Path"]
@@ -169,7 +169,7 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Имя:"
+text = "Ім'я:"
 real_text = "|CreateContent.Name.text|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name"]
@@ -198,6 +198,7 @@ theme = ExtResource("3_xm7ci")
 selected = 0
 item_count = 2
 popup/item_0/text = "JSON"
+popup/item_0/id = 0
 popup/item_1/text = "HJSON"
 popup/item_1/id = 1
 

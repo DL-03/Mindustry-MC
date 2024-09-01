@@ -23,14 +23,14 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vt0o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xibnp"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(206, 118)
 shader_parameter/text_size = Vector2(0, 0)
 shader_parameter/text_vertical_aligment = 0
 
 [node name="MindustryTextLabel" type="RichTextLabel"]
-material = SubResource("ShaderMaterial_2vt0o")
+material = SubResource("ShaderMaterial_xibnp")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

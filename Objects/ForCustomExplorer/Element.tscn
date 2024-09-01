@@ -27,21 +27,21 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6k2py"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hm0ys"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(0, 19)
+shader_parameter/object_size = Vector2(994, 19)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fldj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjc2a"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(0, 20)
+shader_parameter/object_size = Vector2(48, 20)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpl51"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sknmy"]
 shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(0, 20)
+shader_parameter/object_size = Vector2(48, 20)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
@@ -117,6 +117,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 theme = ExtResource("1_j720t")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel"]
@@ -126,6 +127,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -145,7 +147,7 @@ theme_override_constants/separation = 2
 alignment = 1
 
 [node name="DisplayName" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
-material = SubResource("ShaderMaterial_6k2py")
+material = SubResource("ShaderMaterial_hm0ys")
 custom_minimum_size = Vector2(0, 19)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
@@ -168,7 +170,7 @@ font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="Author" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
 visible = false
-material = SubResource("ShaderMaterial_6fldj")
+material = SubResource("ShaderMaterial_vjc2a")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
@@ -178,7 +180,7 @@ text_vertical_aligment = 1
 
 [node name="Version" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
 visible = false
-material = SubResource("ShaderMaterial_qpl51")
+material = SubResource("ShaderMaterial_sknmy")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
@@ -215,6 +217,7 @@ icon_size = 13
 real_tooltip_text = "|CustomExplorer.Element.OpenFolder.text|"
 
 [node name="ControlPanel" type="VFlowContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/h_separation = 0

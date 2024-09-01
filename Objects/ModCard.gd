@@ -36,6 +36,8 @@ func _contentClass_updated():
 		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Text.Archive|"
 		
 	show_save_button = ModEditor.modClass.ModType.to_lower() == "archive"
+	
+	$MarginContainer/HBoxContainer/MarginContainer/TextureRect.texture = ModEditor.modClass.get_mod_icon()
 
 func _set_contentClass(value):
 	if value == null:

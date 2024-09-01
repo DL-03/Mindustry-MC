@@ -59,10 +59,10 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a26op"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bomu5"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(250, 25)
-shader_parameter/text_size = Vector2(486, 17)
+shader_parameter/text_size = Vector2(468, 17)
 shader_parameter/text_vertical_aligment = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clqkv"]
@@ -153,10 +153,10 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lclig"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7p0wj"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(434, 85)
-shader_parameter/text_size = Vector2(2394, 85)
+shader_parameter/text_size = Vector2(2387, 85)
 shader_parameter/text_vertical_aligment = 0
 
 [node name="SettingsWindow" type="Panel" node_paths=PackedStringArray("EngineVersion_Value", "LangList")]
@@ -192,7 +192,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
-text = " Настройки "
+text = " Налаштування "
 horizontal_alignment = 1
 real_text = " |SettingsWindow.Title| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -208,7 +208,7 @@ alignment = 1
 [node name="Label" parent="MarginContainer/VBoxContainer/LangParam" instance=ExtResource("2_4xn72")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Язык: "
+text = "Мова: "
 horizontal_alignment = 1
 real_text = "|SettingsWindow.Main.Language.text|: "
 
@@ -221,6 +221,7 @@ alignment = 1
 selected = 0
 item_count = 2
 popup/item_0/text = "en"
+popup/item_0/id = 0
 popup/item_1/text = "ru"
 popup/item_1/id = 1
 
@@ -229,7 +230,7 @@ custom_minimum_size = Vector2(125, 40)
 layout_mode = 2
 size_flags_vertical = 4
 real_text_icon = ""
-real_text = "Update"
+real_text = "|SettingsWindow.Information.UpdateVersions.text|"
 icon_size = 20
 
 [node name="delete1Param" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -289,7 +290,7 @@ alignment = 1
 [node name="Label" parent="MarginContainer/VBoxContainer/perSaveMessageParam" instance=ExtResource("2_4xn72")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Периодичность сообщения о сохранении: "
+text = "Частота повідомлень про зберігання: "
 horizontal_alignment = 1
 real_text = "|SettingsWindow.Main.SaveMessageFrequenc.text|: "
 
@@ -312,7 +313,7 @@ theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_p1pbp")
-text = " Информация "
+text = " Інформація "
 horizontal_alignment = 1
 real_text = " |SettingsWindow.Information.Tab.text| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -332,7 +333,7 @@ layout_mode = 2
 theme = ExtResource("3_yyeru")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.4, 0.33, 0.2, 1)
-text = "Pre-Beta 2 ( Exp-Build: 6 ) ( 0.2.2 )"
+text = "Pre-Beta 2 ( 0.2.3 )"
 
 [node name="VersionContentFile" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -356,13 +357,13 @@ layout_mode = 2
 alignment = 1
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer/Author" instance=ExtResource("4_hpttg")]
-material = SubResource("ShaderMaterial_a26op")
+material = SubResource("ShaderMaterial_bomu5")
 clip_contents = false
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 24
-text = "[center][color=ffd37fff]Создатель: [color=38d667ff]DL"
+text = "[center][color=ffd37fff]Творець: [color=38d667ff]DL"
 real_text = "[ui.yellow]|SettingsWindow.Information.Creator.text|: [green]DL"
 text_aligment = 1
 
@@ -397,7 +398,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="MindustryTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_hpttg")]
-material = SubResource("ShaderMaterial_lclig")
+material = SubResource("ShaderMaterial_7p0wj")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -405,11 +406,11 @@ text = "[color=ffd37fff]Mindustry Mod Construct [color=ffffffff]или (Mindustr
 это программа, с помощью которой вы можете легко
 управлять модами, созданными для игры [color=ffd37fff]Mindustry[color=ffffffff].
 [color=ffffffff]
-TranslatorText (EN, RU): [color=38d667ff]DL"
+Перекладач (EN, RU, UA): [color=38d667ff]DL"
 fit_content = true
 real_text = "|SettingsWindow.Information.DescriptionMMC.text|
 [white]
-|TranslatorText| (EN, RU): [GREEN]DL"
+|SettingsWindow.Information.Translator.text| (EN, RU, UA): [GREEN]DL"
 
 [node name="EngineVersion" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -417,7 +418,7 @@ alignment = 1
 
 [node name="Title" parent="MarginContainer/VBoxContainer/VBoxContainer/EngineVersion" instance=ExtResource("2_4xn72")]
 layout_mode = 2
-text = "Сделано в: "
+text = "Зроблено в: "
 horizontal_alignment = 1
 real_text = "|SettingsWindow.Information.MadeIn.text|: "
 
@@ -516,6 +517,7 @@ real_text_icon = ""
 real_text = "|SettingsWindow.Back.text|"
 icon_aligment = null
 h_aligment = null
+font_size = 18
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/LangParam/OptionButton" to="." method="_on_lang_option_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LangParam/Reload" to="." method="_on_lang_reload_pressed"]

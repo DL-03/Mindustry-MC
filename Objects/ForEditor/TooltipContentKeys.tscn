@@ -46,7 +46,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsyg7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kdn0"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 0)
 shader_parameter/text_size = Vector2(0, 0)
@@ -164,7 +164,7 @@ theme = ExtResource("1_ooldv")
 text = "\""
 
 [node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
-material = SubResource("ShaderMaterial_hsyg7")
+material = SubResource("ShaderMaterial_5kdn0")
 layout_mode = 2
 mouse_filter = 1
 fit_content = true

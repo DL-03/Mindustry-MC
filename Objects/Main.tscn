@@ -174,7 +174,7 @@ icon_size = 24
 real_tooltip_text = "|Main.UpPanel.NewTab.text|"
 
 [node name="ControlPanel" type="Panel" parent="V1/UpPanel"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rn8xc")
 
@@ -223,6 +223,20 @@ icon_size = 25
 layout_mode = 2
 
 [node name="ConentPanel" type="Control" parent="V1"]
+layout_mode = 2
+
+[node name="WindowBoxPart" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleBar" type="Panel" parent="WindowBoxPart"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Windows" type="Control" parent="."]
@@ -301,4 +315,5 @@ libraries = {
 [connection signal="pressed" from="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab" to="." method="_on_new_tab_pressed"]
 [connection signal="pressed" from="V1/UpPanel/ControlPanel/HBoxContainer/MarginContainer/NewTab" to="." method="_on_new_tab_pressed"]
 [connection signal="pressed" from="V1/UpPanel/ControlPanel/HBoxContainer/MarginContainer3/Settings" to="." method="_on_settings_pressed"]
+[connection signal="gui_input" from="WindowBoxPart/TitleBar" to="." method="TitleBar_input"]
 [connection signal="ready" from="full_ready" to="." method="_on_full_ready_ready"]

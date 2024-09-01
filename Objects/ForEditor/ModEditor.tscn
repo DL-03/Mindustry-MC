@@ -274,7 +274,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
 real_text_icon = ""
-real_text = "|CreateContent.Title.text|"
+real_text = "|ModEditor.CreateContent.text|"
 icon_aligment = null
 font_size = 14
 icon_size = 16
@@ -284,12 +284,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
 real_text_icon = ""
-real_text = "|ReloadList|"
+real_text = "|ModEditor.ReloadList.text|"
 icon_aligment = null
 font_size = 14
 icon_size = 16
 
 [node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -345,20 +346,20 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
-[node name="Save" type="Button" parent="ModEditor/ContentEditor/Top"]
+[node name="Save" parent="ModEditor/ContentEditor/Top" instance=ExtResource("5_pfa80")]
 z_index = -1
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("4_p5g38")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/disabled = SubResource("StyleBoxFlat_nba43")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0vmab")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_m25i6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2p1ds")
 disabled = true
-text = ""
-script = ExtResource("7_g6evi")
+icon_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon = ""
+icon_size = 20
+real_tooltip_text = "|ModEditor.ContentEditor.Save.text|"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="ModEditor/ContentEditor/Top/Save"]
 modulate = Color(1, 0, 0, 1)
@@ -375,6 +376,7 @@ emission_shape = 3
 emission_rect_extents = Vector2(1, 1)
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_4kon5")
+script = ExtResource("7_g6evi")
 
 [node name="VSeparator2" type="VSeparator" parent="ModEditor/ContentEditor/Top"]
 layout_mode = 2
@@ -457,27 +459,29 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="LoadingWindow/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
+[node name="Title" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
-text = "Loading"
+text = " Загрузка "
 horizontal_alignment = 1
-real_text = "Loading"
+real_text = " |ModEditor.LoadingWindow.Title| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="HSeparator" type="HSeparator" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 
-[node name="Label2" type="Label" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+[node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("4_p5g38")
-text = "Name"
+text = "Загрузка: None
+Контент[0/0]: /none.json"
 vertical_alignment = 2
 autowrap_mode = 3
+real_text = "|ModEditor.LoadingWindow.Label.text|: None
+|ModEditor.LoadingWindow.Content.text|[0/0]: /none.json"
 
 [node name="ProgressBar" type="ProgressBar" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)

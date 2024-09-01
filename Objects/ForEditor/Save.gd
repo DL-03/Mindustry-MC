@@ -1,4 +1,4 @@
-extends Button
+extends CPUParticles2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$CPUParticles2D.emitting = not disabled
+	emitting = not get_parent().disabled

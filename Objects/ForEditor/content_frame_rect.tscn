@@ -59,9 +59,10 @@ grow_vertical = 2
 theme = ExtResource("2_cvm5d")
 theme_override_styles/panel = SubResource("StyleBoxFlat_jlbwk")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_7h65s")
-current_tab = 0
+current_tab = 1
 
 [node name="Editor" type="VBoxContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -113,7 +114,6 @@ theme_override_constants/margin_right = 5
 layout_mode = 2
 
 [node name="Textures" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10

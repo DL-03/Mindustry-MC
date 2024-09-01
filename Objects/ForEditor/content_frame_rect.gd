@@ -60,12 +60,61 @@ func changed_data(key,value):
 		
 
 
+func _SpriteBank_updated():
+	$TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon.contentClass = contentClass
+	
+	
+	for i in $TabContainer/Textures/ScrollContainer/Flow.get_children():
+		if i != $TabContainer/Textures/ScrollContainer/Flow.get_child(0):
+			i.queue_free()
+	
+	
+	
+	var s = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
+	$TabContainer/Textures/ScrollContainer/Flow.add_child(s)
+	
+	if contentClass.FileType == "mod":
+
+		s.get_node("TextureRect").texture = contentClass.modClass.get_mod_icon()
+	else:
+		s.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path))
+	s.get_node("Label").text = get_only_filename(contentClass.Path)
+	
+	if contentClass.ContentType in ["Drill"]:
+		var st = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
+		$TabContainer/Textures/ScrollContainer/Flow.add_child(st)
+		
+		st.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-rotator")
+		st.get_node("Label").text = get_only_filename(contentClass.Path)+"-rotator"
+		
+		
+		var stt = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
+		$TabContainer/Textures/ScrollContainer/Flow.add_child(stt)
+		
+		stt.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-top")
+		stt.get_node("Label").text = get_only_filename(contentClass.Path)+"-top"
+	if contentClass.ContentType in ["Conveyor"]:
+		
+		
+		
+		for r in [0,1,2,3]:
+			for f in [0,1,2,3]:
+				var sk = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
+				$TabContainer/Textures/ScrollContainer/Flow.add_child(sk)
+				
+				sk.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-"+str(r)+"-"+str(f))
+				sk.get_node("Label").text = get_only_filename(contentClass.Path)+"-"+str(r)+"-"+str(f)
+	
+
+
+
 
 func _set_contentClass(value):
 	if contentClass != null:
 		contentClass.data_changed.disconnect(_data_changed)
+		contentClass.modClass.SpriteBank_updated.disconnect(_SpriteBank_updated)
 	value.data_changed.connect(_data_changed)
-	
+	value.modClass.SpriteBank_updated.connect(_SpriteBank_updated)
 	
 	contentClass = value
 	
@@ -123,52 +172,7 @@ func _set_contentClass(value):
 					$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel.add_child(s)
 	
 	
-	#$TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
-	$TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon.contentClass = contentClass
-	
-	
-	
-	var s = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
-	$TabContainer/Textures/ScrollContainer/Flow.add_child(s)
-	
-	if contentClass.FileType == "mod":
-		if FileAccess.file_exists(ModEditor.modClass.Path+"icon.png"):
-			var image = Image.new()
-			image.load(ModEditor.modClass.Path+"icon.png")
-			var t = ImageTexture.new()
-		
-			var Icon = t.create_from_image(image)
-
-			s.get_node("TextureRect").texture = Icon
-	else:
-		s.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path))
-	s.get_node("Label").text = get_only_filename(contentClass.Path)
-	
-	if contentClass.ContentType in ["Drill"]:
-		var st = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
-		$TabContainer/Textures/ScrollContainer/Flow.add_child(st)
-		
-		st.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-rotator")
-		st.get_node("Label").text = get_only_filename(contentClass.Path)+"-rotator"
-		
-		
-		var stt = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
-		$TabContainer/Textures/ScrollContainer/Flow.add_child(stt)
-		
-		stt.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-top")
-		stt.get_node("Label").text = get_only_filename(contentClass.Path)+"-top"
-	if contentClass.ContentType in ["Conveyor"]:
-		
-		
-		
-		for r in [0,1,2,3]:
-			for f in [0,1,2,3]:
-				var sk = preload("res://Objects/ForEditor/Icons_Textures.tscn").instantiate()
-				$TabContainer/Textures/ScrollContainer/Flow.add_child(sk)
-				
-				sk.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-"+str(r)+"-"+str(f))
-				sk.get_node("Label").text = get_only_filename(contentClass.Path)+"-"+str(r)+"-"+str(f)
-	
+	_SpriteBank_updated()
 	
 func get_only_filename(path):
 	return path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length())

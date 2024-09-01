@@ -36,7 +36,7 @@ func reset():
 	modClass = null
 	
 	$MarginContainer/HBoxContainer/Icon.hide()
-	$MarginContainer/HBoxContainer/Text.real_text = "Explorer"
+	$MarginContainer/HBoxContainer/Text.real_text = "[UI.YELLOW]|Main.UpPanel.Tab.Explorer.text|"
 
 
 # Called when the node enters the scene tree for the first time.

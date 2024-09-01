@@ -29,7 +29,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfjj4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_700ev"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(40, 27)
 shader_parameter/text_size = Vector2(101, 17)
@@ -145,7 +145,7 @@ mouse_filter = 2
 script = ExtResource("1_igv5d")
 
 [node name="MindustryToolTip" parent="." instance=ExtResource("2_paw7h")]
-material = SubResource("ShaderMaterial_wfjj4")
+material = SubResource("ShaderMaterial_700ev")
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0

@@ -18,8 +18,20 @@ func _ready():
 	pass
 
 
-	
-	
+
+var TB_I_following = false
+var TB_I_StartPos = Vector2.ZERO
+func TitleBar_input(event):
+	if event is InputEventMouseButton:
+		print(event.get_button_index())
+		if event.get_button_index() == 1:
+			TB_I_following = not TB_I_following
+			TB_I_StartPos = get_local_mouse_position()
+func _process(_delta):
+
+	if TB_I_following:
+		get_viewport().position += Vector2i(get_global_mouse_position()-TB_I_StartPos)
+		print(get_viewport().position)
 	
 
 func create_tab():

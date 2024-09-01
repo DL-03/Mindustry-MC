@@ -32,7 +32,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pt1gj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ikrhn"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 20)
 shader_parameter/text_size = Vector2(49, 17)
@@ -103,7 +103,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Name" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_mcxc2")]
-material = SubResource("ShaderMaterial_pt1gj")
+material = SubResource("ShaderMaterial_ikrhn")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -149,7 +149,7 @@ theme = ExtResource("4_ii38n")
 real_text_icon = ""
 icon_aligment = null
 icon_size = 16
-real_tooltip_text = "Duplicate"
+real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
 
 [node name="Rename" parent="HBoxContainer" instance=ExtResource("7_oh4t0")]
 custom_minimum_size = Vector2(30, 30)
@@ -159,7 +159,7 @@ theme = ExtResource("4_ii38n")
 real_text_icon = ""
 icon_aligment = null
 icon_size = 16
-real_tooltip_text = "Rename"
+real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
 
 [node name="Delete" parent="HBoxContainer" instance=ExtResource("7_oh4t0")]
 custom_minimum_size = Vector2(30, 30)
@@ -170,7 +170,7 @@ icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon = ""
 icon_aligment = null
 icon_size = 16
-real_tooltip_text = "[UI.RED]Delete"
+real_tooltip_text = "[UI.RED]||CustomExplorer.Element.Delete.text||"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/PathBox/Path" to="." method="_on_path_pressed"]

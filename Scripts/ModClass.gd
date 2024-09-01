@@ -25,9 +25,9 @@ signal ContentBank_added
 signal ContentBank_removed
 signal ContentBank_updated
 
-signal SpritBank_added
-signal SpritBank_removed
-signal SpritBank_updated
+signal SpriteBank_added
+signal SpriteBank_removed
+signal SpriteBank_updated
 
 
 # Called when the node enters the scene tree for the first time.
@@ -118,11 +118,10 @@ func get_sprite(key):
 			var image = Image.new()
 			image.load(SpriteBank[key])
 			var t = ImageTexture.new()
-		
 			var Icon = t.create_from_image(image)
+			
 			return Icon
 	return preload("res://resources/icons/error.png")
-
 
 
 
@@ -150,20 +149,38 @@ func set_path(_path: String):
 		else:
 
 			
-			red.close()
+			
 			var p = ProjectSettings.globalize_path("user://Temp/"+str(MinosUUIDGenerator.generate_new_UUID())+_path.get_file().get_basename())
+			var p1 = ProjectSettings.globalize_path("user://Temp/"+str(MinosUUIDGenerator.generate_new_UUID())+_path.get_file().get_basename())
 			ArchiveMain.ExtracteToDirectory(SourcePath, p)
+			
+			
 			Path = p
+			
+			
+			for i in red.get_files():
+				if i.get_file() in ["mod.json","mod.hjson"]:
+					DirAccess.rename_absolute(p.path_join(i.replace(i.get_file(), ""))+"/", p1+"/")
+					print(p1)
+					print(p.path_join(i.replace(i.get_file(), "")))
+					DirAccess.remove_absolute(p)
+					Path = p1.simplify_path()
+					break
+			red.close()
+			
+			
+			
 			
 
 	var reader = get_all_files(Path, "", [], 1)
 	
-	
+	print("[reader]:" + str(reader))
+		
 	
 	for i in reader:
-		
 		if i.get_file() in ["mod.json","mod.hjson"]:
-			Path = Path.path_join(i).left(len(Path.path_join(i))-len(i.get_file())).simplify_path()
+			Path = Path.path_join(i.replace(i.get_file(), "")).simplify_path()
+			
 			
 			ModContentClass.modClass = self
 			ModContentClass.Path = Path.path_join(i)
@@ -223,7 +240,7 @@ func first_scan_content():
 	customFileWathcer.OnChanged.connect(_OnChanged)
 	customFileWathcer.OnRenamed.connect(_OnRenamed)
 	customFileWathcer.OnDeleted.connect(_OnDeleted)
-	customFileWathcer.setPath(Path.path_join("content/"))
+	customFileWathcer.setPath(Path)
 
 
 
@@ -255,8 +272,22 @@ func revursive_first_scaner_content(path: String, file_ext := "", files := [], o
 					continue
 				
 				
-				import_content_from_path(dir.get_current_dir().path_join(file_name))
 
+				var _path = dir.get_current_dir().path_join(file_name).simplify_path()
+				if _path.get_extension().to_lower() in ["json", "hjson"]:
+					for i in ContentBank:
+						if i.Path == _path:
+							return
+
+					
+					var c = ContentClass.new()
+					c.modClass = _modClass
+					c.Path = _path
+					ContentBank.append(c)
+					modClass.add_child(c)
+					
+					ContentBank_added.emit(c)
+		
 				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
 			file_name = dir.get_next()
 	else:
@@ -270,6 +301,10 @@ func revursive_first_scaner_content(path: String, file_ext := "", files := [], o
 
 var _modClass = self
 
+var modClass = self
+
+
+
 func import_content_from_path(path: String):
 	path = path.simplify_path()
 	if path.get_extension().to_lower() in ["json", "hjson"]:
@@ -282,7 +317,7 @@ func import_content_from_path(path: String):
 		c.modClass = _modClass
 		c.Path = path
 		ContentBank.append(c)
-		add_child(c)
+		modClass.add_child(c)
 		
 		ContentBank_added.emit(c)
 		
@@ -302,27 +337,60 @@ func unload_content(contentClass: ContentClass):
 
 
 func _OnCreated(path: String):
-	import_content_from_path(path)
+	if path.simplify_path().replace(Path, "").simplify_path().split("/", false)[0] == "content":
+		import_content_from_path(path)
+	elif path.simplify_path().replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
+		SpriteBank.merge({path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()): path}, true)
+		SpriteBank_updated.emit()
+	
+	print_rich("[color=green][_OnCreated][/color]: ",path.simplify_path().replace(Path, "").simplify_path())
+	#import_content_from_path(path)
 
 
-func _OnChanged(file):
-	pass
-func _OnRenamed(file, file1):
-	file = file.simplify_path()
-	file1 = file1.simplify_path()
-	if file.to_lower() in ["json", "hjson"]:
-		for i in ContentBank:
-			if i.Path == file:
-				i.Path = file1
-				MessageAPI.debug("Контент файл перейменован: "+file.get_file()+" => "+file1.get_file())
-func _OnDeleted(file):
-	file = file.simplify_path()
-	if file.to_lower() in ["json", "hjson"]:
-		for i in ContentBank:
-			if i.Path == file:
-				var s = i
-				ContentBank.erase(s)
-				
-				s.file_deleted.emit()
-				MessageAPI.debug("Пропал контент: "+file.get_file())
-		#current_tab_content=current_tab_content
+func _OnChanged(path: String):
+	path = path.simplify_path()
+	
+	if path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
+		#SpriteBank.merge({path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()): path}, true)
+		#SpriteBank_updated.emit()
+		pass
+	
+	print_rich("[color=blue][_OnChanged][/color]: ",path.simplify_path().replace(Path, "").simplify_path())
+	
+func _OnRenamed(path: String, new_path: String):
+	path = path.simplify_path()
+	new_path = new_path.simplify_path()
+	
+	if path.replace(Path, "").simplify_path().split("/", false)[0] == "content":
+		if path.to_lower() in ["json", "hjson"]:
+			for i in ContentBank:
+				if i.Path == path:
+					i.Path = new_path
+					MessageAPI.debug("Контент файл перейменован: "+path.get_file()+" => "+new_path.get_file())
+	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
+		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
+		
+		if new_path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
+			SpriteBank.merge({new_path.get_file().substr(0, -1+new_path.get_file().length()-new_path.get_file().get_extension().length()): new_path}, true)
+		SpriteBank_updated.emit()
+	
+	print_rich("[color=yellow][_OnRenamed][/color]: ",path.simplify_path().replace(Path, "").simplify_path(), " => ", new_path.simplify_path().replace(Path, "").simplify_path())
+	
+func _OnDeleted(path: String):
+	path = path.simplify_path()
+	
+	if path.replace(Path, "").simplify_path().split("/", false)[0] == "content":
+		if path.to_lower() in ["json", "hjson"]:
+			for i in ContentBank:
+				if i.Path == path:
+					var s = i
+					ContentBank.erase(s)
+					
+					s.file_deleted.emit()
+					MessageAPI.debug("Пропал контент: "+path.get_file())
+	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
+		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
+
+		SpriteBank_updated.emit()
+		
+	print_rich("[color=red][_OnDeleted][/color]: ",path.simplify_path().replace(Path, "").simplify_path())

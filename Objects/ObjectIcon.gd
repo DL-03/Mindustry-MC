@@ -6,12 +6,8 @@ var conveyor_speed = 1
 var conveyor_frame = 0
 
 
-var contentClass: ContentClass:
-	set = _set_contentClass
 
-func _set_contentClass(value):
-	contentClass = value
-	
+func _SpriteBank_updated():
 	if FileAccess.file_exists(contentClass.Path):
 		if contentClass.modClass != null:
 			if contentClass.FileType == "mod":
@@ -50,6 +46,21 @@ func _set_contentClass(value):
 					if "isLiquid" in contentClass.FullData:
 						material.set_shader_parameter("water_effect", contentClass.FullData["isLiquid"])
 
+
+
+
+
+var contentClass: ContentClass:
+	set = _set_contentClass
+
+func _set_contentClass(value):
+	if contentClass != null:
+		contentClass.modClass.SpriteBank_updated.disconnect(_SpriteBank_updated)
+	contentClass = value
+	if contentClass != null:
+		contentClass.modClass.SpriteBank_updated.connect(_SpriteBank_updated)
+	
+	_SpriteBank_updated()
 	
 
 

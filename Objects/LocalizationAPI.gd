@@ -28,10 +28,10 @@ func reload_language_bank():
 				var lang = i.get_file().split(".")[0]
 				
 				var file = FileAccess.open("user://Languages".path_join(i), FileAccess.READ)
+				if file != null:
+					var res = PropertiesReader.parse(file.get_as_text())
 				
-				var res = PropertiesReader.parse(file.get_as_text())
-				
-				LanguageBank.merge({lang: res}, true)
+					LanguageBank.merge({lang: res}, true)
 		language_bank_updated.emit()
 		set_global_language(global_language)
 	#current_language = current_language
@@ -110,16 +110,36 @@ func RequestLanguages_completed(result, response_code, headers, body):
 			print("[DownloadLanguage][response_code]: ", response_code)
 			#print("[DownloadLanguage][headers]: ", headers)
 			
-			#print("[DownloadLanguage][body]: ", body.get_string_from_utf8())
-			if not DirAccess.dir_exists_absolute("user://Languages"):
-				DirAccess.make_dir_recursive_absolute("user://Languages")
 			
+			var p = PropertiesReader.parse(body.get_string_from_utf8())
 			
-			#if PropertiesReader.parse(body.get_string_from_utf8())["version"] > LocalizationAPI.LanguageBank
+			var server_version = null
+			var client_version = null
 			
-			var file = FileAccess.open("user://Languages/"+l,FileAccess.WRITE)
-			file.store_string(body.get_string_from_utf8())
-			file.close()
+			if "version" in p:
+				server_version = p["version"]
+			
+			if l.split(".")[0] in LocalizationAPI.LanguageBank:
+				if "version" in LocalizationAPI.LanguageBank[l.split(".")[0]]:
+					client_version = LocalizationAPI.LanguageBank[l.split(".")[0]]["version"]
+			print("[DownloadLanguage][server_version]: ", server_version)
+			print("[DownloadLanguage][client_version]: ", client_version)
+			if server_version != null:
+				if client_version == null:
+					if not DirAccess.dir_exists_absolute("user://Languages"):
+						DirAccess.make_dir_recursive_absolute("user://Languages")
+
+					var file = FileAccess.open("user://Languages/"+l,FileAccess.WRITE)
+					file.store_string(body.get_string_from_utf8())
+					file.close()
+				elif server_version > client_version:
+
+					if not DirAccess.dir_exists_absolute("user://Languages"):
+						DirAccess.make_dir_recursive_absolute("user://Languages")
+
+					var file = FileAccess.open("user://Languages/"+l,FileAccess.WRITE)
+					file.store_string(body.get_string_from_utf8())
+					file.close()
 			
 			https_requests1.queue_free()
 			)

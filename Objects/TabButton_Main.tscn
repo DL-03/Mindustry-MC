@@ -80,7 +80,7 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1idfp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4243"]
 shader = SubResource("Shader_imvkg")
 shader_parameter/object_size = Vector2(79, 17)
 shader_parameter/text_size = Vector2(79, 17)
@@ -123,7 +123,7 @@ texture = ExtResource("3_nfibb")
 expand_mode = 1
 
 [node name="Text" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_vd8ua")]
-material = SubResource("ShaderMaterial_1idfp")
+material = SubResource("ShaderMaterial_b4243")
 layout_mode = 2
 text = "Explorer"
 fit_content = true

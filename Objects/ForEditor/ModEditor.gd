@@ -279,7 +279,7 @@ func _process(delta):
 			if modClass.ModContentClass != null:
 				#$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.text = str(ModContentClass)
 				if modClass.ModContentClass.FullData != null:
-					$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.text = "Loading: " + str(modClass.ModContentClass.FullData["name"]) + "\n Content["+str(len(modClass.ContentBank))+"/"+str(__max_contentData)+"]: "+ str(modClass.ContentBank[-1].Path).substr(len(modClass.Path))
+					$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.real_text = "|ModEditor.LoadingWindow.Label.text|: " + str(modClass.ModContentClass.FullData["name"]) + "\n|ModEditor.LoadingWindow.Content.text|["+str(len(modClass.ContentBank))+"/"+str(__max_contentData)+"]: "+ str(modClass.ContentBank[-1].Path).substr(len(modClass.Path))
 					
 					$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.max_value = __max_contentData
 					$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.value = len(modClass.ContentBank)
