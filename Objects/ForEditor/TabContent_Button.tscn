@@ -81,7 +81,7 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ik7s4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wmpy"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(47, 17)
 shader_parameter/text_size = Vector2(202, 17)
@@ -124,7 +124,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Text" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_125o7")]
-material = SubResource("ShaderMaterial_ik7s4")
+material = SubResource("ShaderMaterial_2wmpy")
 layout_mode = 2
 text = "[color=e55454ff]None"
 fit_content = true
@@ -147,7 +147,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("3_m7gnr")
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
+real_text_icon_left = ""
 icon_size = 20
 real_tooltip_text = "[UI.RED]|Main.UpPanel.Tab.Close.text|"
 

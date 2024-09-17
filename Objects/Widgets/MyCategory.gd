@@ -18,7 +18,7 @@ func _set_Data(value):
 	if $HFlowContainer.has_node(Data):
 		$HFlowContainer.get_node(Data).disabled = true
 		
-		$Panel/HBoxContainer/Icon.real_text = $HFlowContainer.get_node(Data).real_text_icon
+		$Panel/HBoxContainer/Icon.real_text = $HFlowContainer.get_node(Data).real_text_icon_left
 		$Panel/HBoxContainer/Text.real_text = $HFlowContainer.get_node(Data).name
 		
 		var t = $Panel/HBoxContainer/Icon.get_theme_stylebox("normal")
@@ -47,7 +47,7 @@ func _ready():
 			data_changed.emit(Data)
 			)
 		i.mouse_entered.connect(func():
-			$Panel/HBoxContainer/Icon.real_text = i.real_text_icon
+			$Panel/HBoxContainer/Icon.real_text = i.real_text_icon_left
 			$Panel/HBoxContainer/Text.real_text = i.name
 			
 			var t = $Panel/HBoxContainer/Icon.get_theme_stylebox("normal")
@@ -62,7 +62,7 @@ func _ready():
 			$Panel/HBoxContainer/Icon.add_theme_stylebox_override("normal",t)
 			
 			if $HFlowContainer.has_node(Data):
-				$Panel/HBoxContainer/Icon.real_text = $HFlowContainer.get_node(Data).real_text_icon
+				$Panel/HBoxContainer/Icon.real_text = $HFlowContainer.get_node(Data).real_text_icon_left
 				$Panel/HBoxContainer/Text.real_text = Data
 				t.border_color = COLORS.get_color("UI.GREEN")
 			else:

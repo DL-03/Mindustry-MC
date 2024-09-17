@@ -117,9 +117,8 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|ModManager.OpenFolder.text|"
-icon_aligment = null
 h_aligment = null
 
 [node name="CreateModification" parent="VBoxContainer/DownPanel" instance=ExtResource("4_1uiuu")]
@@ -127,9 +126,8 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|ModManager.CreateModification.text|"
-icon_aligment = null
 h_aligment = null
 
 [connection signal="pressed" from="VBoxContainer/DownPanel/CreateModification" to="." method="_on_create_modification_pressed"]

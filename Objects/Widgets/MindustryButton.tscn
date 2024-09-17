@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Objects/Widgets/MindustryButton.gd" id="2_qhjnh"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="3_7e0be"]
 
-[node name="MindustryButton" type="Button" node_paths=PackedStringArray("Text_Element", "Icon_Text_Element")]
+[node name="MindustryButton" type="Button" node_paths=PackedStringArray("Text_Element", "Icon_Text_Left_Element", "Icon_Text_Right_Element")]
 offset_left = 112.0
 offset_top = 28.0
 offset_right = 261.0
@@ -13,7 +13,10 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("1_lday0")
 script = ExtResource("2_qhjnh")
 Text_Element = NodePath("MarginContainer/HBoxContainer/Text")
-Icon_Text_Element = NodePath("MarginContainer/HBoxContainer/IconText")
+Icon_Text_Left_Element = NodePath("MarginContainer/HBoxContainer/IconTextLeft")
+Icon_Text_Right_Element = NodePath("MarginContainer/HBoxContainer/IconTextRight")
+font_color_disabled = Color(0.270588, 0.270588, 0.270588, 1)
+icon_color_disabled = Color(0.270588, 0.270588, 0.270588, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -30,7 +33,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 alignment = 1
 
-[node name="IconText" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_7e0be")]
+[node name="IconTextLeft" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_7e0be")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -50,6 +53,16 @@ vertical_alignment = 1
 clip_text = true
 real_text = ""
 
+[node name="IconTextRight" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_7e0be")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = ""
+real_text = ""
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/IconTextLeft" to="." method="_on_icon_text_left_ready"]
 [connection signal="ready" from="MarginContainer/HBoxContainer/Text" to="." method="_on_text_ready"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/IconTextRight" to="." method="_on_icon_text_right_ready"]

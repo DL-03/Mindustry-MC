@@ -221,6 +221,11 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="all" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+layout_mode = 2
+disabled = true
+text = "All"
+
 [node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Blocks"
@@ -273,21 +278,19 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|ModEditor.CreateContent.text|"
-icon_aligment = null
 font_size = 14
-icon_size = 16
+icon_size = 18
 
 [node name="ReloadContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|ModEditor.ReloadList.text|"
-icon_aligment = null
 font_size = 14
-icon_size = 16
+icon_size = 20
 
 [node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
 visible = false
@@ -357,7 +360,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_m25i6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2p1ds")
 disabled = true
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
+real_text_icon_left = ""
 icon_size = 20
 real_tooltip_text = "|ModEditor.ContentEditor.Save.text|"
 
@@ -464,7 +467,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
 theme_override_font_sizes/font_size = 20
-text = " Загрузка "
+text = " Завантаження "
 horizontal_alignment = 1
 real_text = " |ModEditor.LoadingWindow.Title| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -476,7 +479,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Загрузка: None
+text = "Завантаження: None
 Контент[0/0]: /none.json"
 vertical_alignment = 2
 autowrap_mode = 3
@@ -500,9 +503,8 @@ size_flags_vertical = 10
 [node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|RDW.Cancel.text|"
-icon_aligment = null
 
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]

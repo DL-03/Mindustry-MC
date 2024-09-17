@@ -62,6 +62,8 @@ func _ready():
 	
 	
 	ContentTabButtons = [
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/all,
+	
 		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/blocks,
 		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/items,
 		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/liquids,
@@ -221,10 +223,13 @@ func refresh_content_list():
 		#i.free()
 	
 	for i in modClass.ContentBank:
-		if i.FileType == current_tab_content:
+		if current_tab_content == "all":
 			if i.File != null:
 				if i.Data != null:
-					
+					_content_add(i)
+		elif i.FileType == current_tab_content:
+			if i.File != null:
+				if i.Data != null:
 					_content_add(i)
 	return
 					
@@ -236,10 +241,12 @@ func _set_current_tab_content(value):
 	if value != null:
 		for i in ListContentElements.get_children():
 			i.queue_free()
-		#refresh_content_list()
-		var thread = Thread.new()
-		thread.start(refresh_content_list,Thread.PRIORITY_HIGH)
 		
+		
+		#refresh_content_list()
+		#var thread = Thread.new()
+		#thread.start(refresh_content_list,Thread.PRIORITY_NORMAL)
+		refresh_content_list()
 		
 		
 

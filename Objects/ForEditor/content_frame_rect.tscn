@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkavys7f1pirs"]
+[gd_scene load_steps=8 format=3 uid="uid://bkavys7f1pirs"]
 
 [ext_resource type="Script" path="res://Objects/ForEditor/content_frame_rect.gd" id="1_xngna"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="2_cvm5d"]
 [ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_1yhoy"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="3_o6wa1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlbwk"]
 bg_color = Color(0, 0, 0, 1)
@@ -59,10 +60,9 @@ grow_vertical = 2
 theme = ExtResource("2_cvm5d")
 theme_override_styles/panel = SubResource("StyleBoxFlat_jlbwk")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_7h65s")
-current_tab = 1
+current_tab = 0
 
 [node name="Editor" type="VBoxContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -113,7 +113,19 @@ theme_override_constants/margin_right = 5
 [node name="Panel" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
+[node name="Content" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+layout_mode = 2
+
+[node name="CreateKey" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel" instance=ExtResource("3_o6wa1")]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+real_text_icon_left = "+"
+real_text_icon_right = "+"
+real_text = "Create Key"
+
 [node name="Textures" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -142,8 +154,6 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ObjectIcon" parent="TabContainer/Textures/ScrollContainer/Flow/MarginContainer" instance=ExtResource("3_1yhoy")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon"]
 layout_mode = 1
@@ -154,3 +164,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j5slg")
+
+[connection signal="pressed" from="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey" to="." method="_on_create_key_pressed"]

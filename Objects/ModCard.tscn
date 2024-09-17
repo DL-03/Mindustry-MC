@@ -74,19 +74,19 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqs8d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_54sr5"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(119, 17)
 shader_parameter/text_size = Vector2(119, 17)
 shader_parameter/text_vertical_aligment = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulncm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6akff"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(65, 17)
 shader_parameter/text_size = Vector2(65, 17)
 shader_parameter/text_vertical_aligment = null
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_agxr0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pj2fg"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(68, 17)
 shader_parameter/text_size = Vector2(68, 17)
@@ -183,7 +183,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="displayName" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
-material = SubResource("ShaderMaterial_hqs8d")
+material = SubResource("ShaderMaterial_54sr5")
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
 text = "Display Name"
@@ -201,14 +201,14 @@ real_text = "Name"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="author" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
-material = SubResource("ShaderMaterial_ulncm")
+material = SubResource("ShaderMaterial_6akff")
 layout_mode = 2
 text = "Author"
 fit_content = true
 real_text = "Author"
 
 [node name="version" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_8wvy0")]
-material = SubResource("ShaderMaterial_agxr0")
+material = SubResource("ShaderMaterial_pj2fg")
 layout_mode = 2
 text = "Version"
 fit_content = true
@@ -224,7 +224,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_anmdr")
 real_text = "Path"
-icon_aligment = null
 h_aligment = 2
 font_size = 11
 icon_size = 11
@@ -236,8 +235,7 @@ theme = ExtResource("2_anmdr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_61dju")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ovjvt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_bfrkw")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 font_size = 11
 icon_size = 11
 real_tooltip_text = "|CustomExplorer.Element.OpenFolder.text|"
@@ -255,8 +253,7 @@ vertical = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_anmdr")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "Open"
 
@@ -265,8 +262,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_anmdr")
 icon_color = Color(0.329412, 0.839216, 0.490196, 1)
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "Save"
 
@@ -289,8 +285,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_anmdr")
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "[UI.RED]Delete"
 
@@ -298,8 +293,7 @@ real_tooltip_text = "[UI.RED]Delete"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("2_anmdr")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "Show/Hide"
 

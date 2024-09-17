@@ -122,13 +122,13 @@ func _set_contentClass(value):
 	
 	$TabContainer/Editor/HBoxContainer/ContentType.text = "ContentType: " + str(contentClass.ContentType)
 	
-	for i in $TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel.get_children():
+	for i in $TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.get_children():
 		i.queue_free()
 	
 	
 	if typeof(contentClass.FullData) == TYPE_DICTIONARY:
 		var DATA = contentClass.FullData
-		
+		print(DATA)
 		
 		var _FlowContainer: HFlowContainer
 		for i in DATA.keys():
@@ -161,7 +161,7 @@ func _set_contentClass(value):
 				if s.Type == "Boolean":
 					if _FlowContainer == null:
 						_FlowContainer = HFlowContainer.new()
-						$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel.add_child(_FlowContainer)
+						$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.add_child(_FlowContainer)
 						_FlowContainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 						_FlowContainer.add_theme_constant_override("separation", 20)
 					_FlowContainer.add_child(s)
@@ -169,10 +169,14 @@ func _set_contentClass(value):
 					if _FlowContainer != null:
 						_FlowContainer = null
 				
-					$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel.add_child(s)
+					$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.add_child(s)
 	
 	
 	_SpriteBank_updated()
 	
 func get_only_filename(path):
 	return path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length())
+
+
+func _on_create_key_pressed():
+	pass # Replace with function body.

@@ -86,8 +86,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
 disabled = true
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="liquid" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -97,8 +96,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="defense" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -108,8 +106,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="units" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -119,8 +116,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="logic" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -130,8 +126,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="turret" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -141,8 +136,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="distribution" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -152,8 +146,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="power" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -163,8 +156,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="crafting" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -174,8 +166,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="effect" parent="HFlowContainer" instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -185,8 +176,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wds8m")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(175, 40)

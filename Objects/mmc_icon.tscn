@@ -5,27 +5,27 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h00mh"]
 bg_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 corner_detail = 1
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydl3m"]
 bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
 corner_detail = 1
 anti_aliasing = false
 
 [node name="MMC_Icon" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 512.0
-offset_bottom = 512.0
+offset_right = 200.0
+offset_bottom = 200.0
 script = ExtResource("1_4s4q7")
 
 [node name="Panel" type="Panel" parent="."]
@@ -45,10 +45,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 75
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_right = 75
-theme_override_constants/margin_bottom = 75
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 17
+theme_override_constants/margin_bottom = 17
 
 [node name="Panel2" type="Panel" parent="Panel/MarginContainer"]
 layout_mode = 2
@@ -64,7 +64,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_xgtn7")
 theme_override_colors/font_color = Color(0.219608, 0.839216, 0.403922, 1)
-theme_override_font_sizes/font_size = 316
+theme_override_colors/font_shadow_color = Color(0.118662, 0.441082, 0.208222, 1)
+theme_override_font_sizes/font_size = 158
 text = ""
 horizontal_alignment = 1
 vertical_alignment = 1

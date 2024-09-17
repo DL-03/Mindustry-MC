@@ -120,11 +120,8 @@ func get_icon_from_path(_path: String):
 
 				return Icon
 				
-	var image = Image.new()
-	image.load("res://resources/icons/noneMod.png")
-	var t = ImageTexture.new()
 
-	var Icon = t.create_from_image(image)
+	var Icon = load("res://resources/icons/noneMod.png")
 
 	return Icon
 

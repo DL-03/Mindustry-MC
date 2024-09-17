@@ -53,8 +53,8 @@ stretch_mode = 1
 [node name="Up" parent="VBoxContainer/HBoxContainer2/ARC_Up" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = "<null>"
+real_text_icon_right = "<null>"
 font_size = 11
 real_tooltip_text = "Top Directory"
 
@@ -67,8 +67,8 @@ stretch_mode = 1
 [node name="Reload" parent="VBoxContainer/HBoxContainer2/ARC_Reload" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = "<null>"
+real_text_icon_right = "<null>"
 font_size = 11
 real_tooltip_text = "Refresh"
 
@@ -81,8 +81,8 @@ stretch_mode = 1
 [node name="Find" parent="VBoxContainer/HBoxContainer2/AspectRatioContainer" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = "<null>"
+real_text_icon_right = "<null>"
 font_size = 11
 real_tooltip_text = "|FindButton|"
 
@@ -131,8 +131,8 @@ stretch_mode = 1
 [node name="Find" parent="VBoxContainer/HBoxContainer/AspectRatioContainer" instance=ExtResource("4_idx0b")]
 layout_mode = 2
 theme = ExtResource("2_vk8ij")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = "<null>"
+real_text_icon_right = "<null>"
 font_size = 11
 real_tooltip_text = "|FindButton|"
 

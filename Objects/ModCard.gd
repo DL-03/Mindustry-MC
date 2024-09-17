@@ -154,11 +154,11 @@ func toggle_visible():
 	if Visible:
 		custom_minimum_size.y = 130
 
-		ControlPanel.get_node("Visible").real_text_icon = ""
+		ControlPanel.get_node("Visible").real_text_icon_left = ""
 	else:
 		custom_minimum_size.y = 50
 
-		ControlPanel.get_node("Visible").real_text_icon = ""
+		ControlPanel.get_node("Visible").real_text_icon_left = ""
 
 
 func _on_visible_pressed() -> void:

@@ -27,19 +27,19 @@ void vertex() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hm0ys"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_heal8"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(994, 19)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjc2a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_akoot"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(48, 20)
 shader_parameter/text_size = Vector2(202, 17)
 shader_parameter/text_vertical_aligment = 1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sknmy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2s53"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(48, 20)
 shader_parameter/text_size = Vector2(202, 17)
@@ -147,7 +147,7 @@ theme_override_constants/separation = 2
 alignment = 1
 
 [node name="DisplayName" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
-material = SubResource("ShaderMaterial_hm0ys")
+material = SubResource("ShaderMaterial_heal8")
 custom_minimum_size = Vector2(0, 19)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.827451, 0.498039, 1)
@@ -170,7 +170,7 @@ font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="Author" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
 visible = false
-material = SubResource("ShaderMaterial_vjc2a")
+material = SubResource("ShaderMaterial_akoot")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
@@ -180,7 +180,7 @@ text_vertical_aligment = 1
 
 [node name="Version" parent="MarginContainer/HBoxContainer/InfoPanel" instance=ExtResource("4_hwhlm")]
 visible = false
-material = SubResource("ShaderMaterial_sknmy")
+material = SubResource("ShaderMaterial_g2s53")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 15
@@ -197,7 +197,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_ma5oc")
 real_text = "Path"
-icon_aligment = null
 h_aligment = 2
 font_size = 11
 real_tooltip_text = "Copy Link!"
@@ -209,8 +208,7 @@ theme = ExtResource("1_ma5oc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_f7fsk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_viylu")
 theme_override_styles/normal = SubResource("StyleBoxFlat_oem0q")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_right = ""
 h_aligment = 2
 font_size = 13
 icon_size = 13
@@ -227,8 +225,7 @@ theme_override_constants/v_separation = 0
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("1_ma5oc")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_right = "<null>"
 icon_size = 20
 real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
 
@@ -236,8 +233,7 @@ real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("1_ma5oc")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_right = "<null>"
 icon_size = 20
 real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
 
@@ -246,8 +242,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("1_ma5oc")
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_right = "<null>"
 icon_size = 20
 real_tooltip_text = "[UI.RED]|CustomExplorer.Element.Delete.text|"
 

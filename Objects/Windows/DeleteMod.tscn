@@ -192,9 +192,8 @@ size_flags_vertical = 10
 [node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_40crj")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|RDW.Cancel.text|"
-icon_aligment = null
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_40crj")]
 z_index = 1
@@ -203,9 +202,8 @@ size_flags_horizontal = 3
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|RDW.Delete.text|"
-icon_aligment = null
 h_aligment = null
 
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete"]

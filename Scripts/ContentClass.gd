@@ -2,9 +2,8 @@ class_name ContentClass
 extends Node
 
 
-
-
 var modClass: ModClass
+
 
 
 signal content_loaded
@@ -34,6 +33,18 @@ var FullData = null
 var DefaultData = null
 var WriteData = {}:
 	set = _set_WriteData
+
+
+
+
+
+
+func set_path(path: String):
+	path = path.simplify_path()
+	
+
+
+
 
 
 func _set_WriteData(value):
@@ -96,7 +107,7 @@ func _set_File(value):
 	File = value
 
 	if Path.get_extension() == "json":
-		Data = JSON.parse_string(File.get_as_text())
+		Data = HJSON.parse_string(File.get_as_text())
 		File.close()
 		return
 	elif Path.get_extension() == "hjson":

@@ -32,7 +32,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ikrhn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gidlt"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 20)
 shader_parameter/text_size = Vector2(49, 17)
@@ -103,7 +103,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Name" parent="HBoxContainer/VBoxContainer" instance=ExtResource("2_mcxc2")]
-material = SubResource("ShaderMaterial_ikrhn")
+material = SubResource("ShaderMaterial_gidlt")
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -121,9 +121,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ii38n")
 icon_color = Color(1, 0.827451, 0.498039, 1)
-real_text_icon = "JSON"
 real_text = "Path"
-icon_aligment = 2
 h_aligment = 2
 font_size = 11
 icon_size = 11
@@ -135,7 +133,7 @@ theme = ExtResource("4_ii38n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l8bts")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wtrt1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_svsd1")
-real_text_icon = ""
+real_text_icon_left = ""
 h_aligment = 2
 font_size = 13
 icon_size = 13
@@ -146,8 +144,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("4_ii38n")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
 
@@ -156,8 +153,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("4_ii38n")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
 
@@ -167,8 +163,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("4_ii38n")
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "[UI.RED]||CustomExplorer.Element.Delete.text||"
 

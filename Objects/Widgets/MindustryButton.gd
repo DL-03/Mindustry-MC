@@ -5,20 +5,27 @@ class_name MindustryButton
 
 
 @export var Text_Element: Node
-@export var Icon_Text_Element: Node
+@export var Icon_Text_Left_Element: Node
+@export var Icon_Text_Right_Element: Node
 
 
 @export var font_color = Color.WHITE:
 	set = _set_font_color
 @export var icon_color = Color.WHITE:
 	set = _set_icon_color
-@export var real_text_icon = "":
-	set = _real_text_icon
+
+@export var font_color_disabled = Color.from_string("#454545", Color.DIM_GRAY):
+	set = _set_font_color_disabled
+@export var icon_color_disabled = Color.from_string("#454545", Color.DIM_GRAY):
+	set = _set_icon_color_disabled
+
+@export var real_text_icon_left = "":
+	set = _real_text_icon_left
+@export var real_text_icon_right = "":
+	set = _real_text_icon_right
 
 @export_multiline var real_text = "":
 	set = _set_real_text
-@export_enum("Left", "Up", "Right") var icon_aligment = 0:
-	set = _set_icon_aligment
 @export_enum("Left", "Center", "Right") var h_aligment = 1:
 	set = _set_h_aligment
 @export var font_size = 16:
@@ -32,14 +39,29 @@ func _set_icon_color(value):
 	if value != null:
 		icon_color = value
 		
-		if Icon_Text_Element != null:
-			Icon_Text_Element.font_color = icon_color
+		if Icon_Text_Left_Element != null:
+			Icon_Text_Left_Element.font_color = icon_color
+		if Icon_Text_Right_Element != null:
+			Icon_Text_Right_Element.font_color = icon_color
 func _set_font_color(value):
 	if value != null:
 		font_color = value
 		
 		if Text_Element != null:
 			Text_Element.font_color = font_color
+			
+func _set_icon_color_disabled(value):
+	if value != null:
+		icon_color_disabled = value
+		
+
+func _set_font_color_disabled(value):
+	if value != null:
+		font_color_disabled = value
+
+
+
+
 
 func _set_font_size(value):
 	if value != null:
@@ -51,18 +73,11 @@ func _set_icon_size(value):
 	if value != null:
 		icon_size = value
 		
-		if Icon_Text_Element != null:
-			Icon_Text_Element.add_theme_font_size_override("font_size", value)
-func _set_icon_aligment(value):
-	icon_aligment = value
-	
-	if icon_aligment == 0:
-		$MarginContainer/HBoxContainer.move_child($MarginContainer/HBoxContainer/IconText, 0)
-		
-	elif icon_aligment == 1:
-		pass
-	elif icon_aligment == 2:
-		$MarginContainer/HBoxContainer.move_child($MarginContainer/HBoxContainer/IconText, 1)
+		if Icon_Text_Left_Element != null:
+			Icon_Text_Left_Element.add_theme_font_size_override("font_size", value)
+		if Icon_Text_Right_Element != null:
+			Icon_Text_Right_Element.add_theme_font_size_override("font_size", value)
+
 func _set_h_aligment(value):
 	h_aligment = value
 	#print(h_aligment)
@@ -81,21 +96,32 @@ func _set_real_text(value):
 	Text_Element.real_text = real_text
 
 	Text_Element.visible = (real_text != "")
-func _real_text_icon(value):
-	real_text_icon = value
 	
-	Icon_Text_Element.real_text = real_text_icon
+func _real_text_icon_left(value):
+	real_text_icon_left = str(value)
 	
-	Icon_Text_Element.visible = (real_text_icon != "")
-# Called when the node enters the scene tree for the first time.
+	if Icon_Text_Left_Element != null:
+		Icon_Text_Left_Element.real_text = real_text_icon_left
+		
+		Icon_Text_Left_Element.visible = (real_text_icon_left != "")
+func _real_text_icon_right(value):
+	real_text_icon_right = str(value)
+	
+	if Icon_Text_Right_Element != null:
+		Icon_Text_Right_Element.real_text = real_text_icon_right
+		
+		Icon_Text_Right_Element.visible = (real_text_icon_right != "")
+
 
 
 
 
 func _ready():
 	
-	real_text_icon = real_text_icon
+	pass
 	
+func _full_ready():
+	pass
 
 
 var disabled_d = 0
@@ -103,13 +129,15 @@ var disabled_d = 0
 func _process(delta):
 	if disabled:
 		if disabled_d == 0:
-			Text_Element.font_color = Color.from_string("#454545", Color.DIM_GRAY)
-			Icon_Text_Element.font_color = Color.from_string("#454545", Color.DIM_GRAY)
+			Text_Element.font_color = font_color_disabled
+			Icon_Text_Left_Element.font_color = icon_color_disabled
+			Icon_Text_Right_Element.font_color = icon_color_disabled
 			disabled_d = 1
 	else:
 		if disabled_d == 1:
 			Text_Element.font_color = font_color
-			Icon_Text_Element.font_color = icon_color
+			Icon_Text_Left_Element.font_color = icon_color
+			Icon_Text_Right_Element.font_color = icon_color
 			disabled_d = 0
 
 
@@ -131,3 +159,12 @@ func _on_text_ready():
 	
 	font_size = font_size
 	h_aligment = h_aligment
+
+
+func _on_icon_text_left_ready():
+	real_text_icon_left = real_text_icon_left
+
+
+
+func _on_icon_text_right_ready():
+	real_text_icon_right = real_text_icon_right

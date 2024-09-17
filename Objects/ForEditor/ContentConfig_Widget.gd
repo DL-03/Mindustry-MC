@@ -206,3 +206,7 @@ func _on_name_label_mouse_entered():
 func _on_name_label_mouse_exited():
 	MouseFocus = false
 	get_node("/root/Main/TooltipContentKeys").hide()
+
+
+func _on_actions_pressed():
+	pass # Replace with function body.

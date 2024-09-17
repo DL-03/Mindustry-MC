@@ -146,24 +146,21 @@ size_flags_vertical = 10
 [node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|CreateMod.Back.text|"
-icon_aligment = null
 
 [node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|CreateMod.ChosePath.text|"
-icon_aligment = null
 
 [node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
-real_text_icon = ""
+real_text_icon_left = ""
 real_text = "|CreateMod.Create.text|"
-icon_aligment = null
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"

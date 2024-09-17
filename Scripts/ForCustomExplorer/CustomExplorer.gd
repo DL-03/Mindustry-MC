@@ -2,7 +2,7 @@ extends Control
 
 
 
-var current_path = "C:/"
+var current_path = ""
 
 
 
@@ -72,10 +72,33 @@ func refresh():
 		table_update()
 	else:
 		PathLine.add_theme_color_override("font_color", COLORS.get_color("UI.RED"))
-
+var HOME_PATH = ""
 # Called when the node enters the scene tree for the first time.
+
+
+func l_glc_changed():
+	$Panels/UpPanel/OptionButton.set_item_text(0, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.HugeIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(1, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.BigIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(2, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.DefaultIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(3, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.SmallIcons|"))
+	
+	$Panels/UpPanel/OptionButton.set_item_text(4, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.List|"))
+	$Panels/UpPanel/OptionButton.set_item_text(5, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.Table|"))
+	
+	$Panels/UpPanel/OptionButton.set_item_text(6, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.Tile|"))
+	$Panels/UpPanel/OptionButton.set_item_text(7, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.Content|"))
+
 func _ready():
-	set_path(ProjectSettings.globalize_path(OS.get_environment("APPDATA")+"\\Mindustry\\mods\\"))
+
+	match OS.get_name():
+		"Windows":
+			HOME_PATH = ProjectSettings.globalize_path(OS.get_environment("APPDATA")+"\\Mindustry\\mods\\")
+		"Android":
+			pass
+		"Linux":
+			HOME_PATH = ProjectSettings.globalize_path("~\\.local\\share\\Mindustry\\mods\\")
+
+	set_path(HOME_PATH)
 	
 	$Panels/UpPanel/OptionButton.add_item("Huge Icons")
 	$Panels/UpPanel/OptionButton.add_item("Big Icons")
@@ -89,7 +112,10 @@ func _ready():
 	$Panels/UpPanel/OptionButton.add_item("Content")
 	
 	$Panels/UpPanel/OptionButton.select(6)
-
+	
+	
+	LocalizationAPI.global_language_changed.connect(l_glc_changed)
+	l_glc_changed()
 
 
 func table_update():
@@ -137,6 +163,10 @@ func _on_refresh_pressed():
 
 
 func submited(new_text: String):
+	if new_text == "" or new_text == " ":
+		new_text = "C:/"
+		PathLine.text = new_text
+	
 	if len(new_text) > 4:
 		if new_text.get_extension().to_lower() == "open_mod":
 			var _path = new_text.left(len(new_text)-len(new_text.get_extension())-1)
@@ -154,8 +184,9 @@ func submited(new_text: String):
 	current_path = new_text.simplify_path()
 	
 	if DirAccess.dir_exists_absolute(current_path):
-		if current_path[-1] != "/":
-			PathLine.text = current_path+"/"
+		if len(current_path) > 0:
+			if current_path[-1] != "/":
+				PathLine.text = current_path+"/"
 	refresh()
 
 func _on_line_edit_text_submitted(new_text: String):
@@ -179,7 +210,7 @@ func _on_line_edit_text_changed(new_text):
 
 
 func _on_home_pressed():
-	set_path(ProjectSettings.globalize_path(OS.get_environment("APPDATA")+"\\Mindustry\\mods\\"))
+	set_path(HOME_PATH)
 
 
 func _on_up_folder_pressed():

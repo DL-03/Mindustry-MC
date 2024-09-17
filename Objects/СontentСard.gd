@@ -22,7 +22,7 @@ func _set_contentClass(value):
 	
 	$HBoxContainer/VBoxContainer/PathBox/Path.real_text = str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())
 	$HBoxContainer/VBoxContainer/PathBox/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())+"[UI.YELLOW]."+str((contentClass.Path.get_extension()).to_upper())
-	$HBoxContainer/VBoxContainer/PathBox/Path.real_text_icon = ". "+str((contentClass.Path.get_extension()).to_upper())
+	$HBoxContainer/VBoxContainer/PathBox/Path.real_text_icon_right = ". "+str((contentClass.Path.get_extension()).to_upper())
 
 
 	

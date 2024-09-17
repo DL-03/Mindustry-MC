@@ -182,12 +182,11 @@ func _ready():
 	reload_language_bank()
 	
 	SaveDataAPI.data_loaded.connect(func():
-		set_global_language(SaveDataAPI.data["Settings"]["Language"])
+		set_global_language(SaveDataAPI.data["Settings.Language"])
 	)
 	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
-		if "Settings" in SaveDataAPI.data:
-			if "Language" in SaveDataAPI.data["Settings"]:
-				set_global_language(SaveDataAPI.data["Settings"]["Language"])
+		if "Settings.Language" in SaveDataAPI.data:
+			set_global_language(SaveDataAPI.data["Settings.Language"])
 	
 	
 	var timer = Timer.new()

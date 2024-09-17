@@ -50,9 +50,7 @@ func open(_contentClass, _type):
 		contentClass = _contentClass
 		Type = _type
 		
-		delete_process = 0
-		delete_process_state = false
-		final_delete_process = 0
+		
 		
 		
 		show()
@@ -66,6 +64,19 @@ func open(_contentClass, _type):
 		if Type == 0:
 			$Panel/MarginContainer/VBoxContainer/Label.real_text = "!  |RDW.Title.Delete|  !"
 			$Panel/MarginContainer/VBoxContainer/Label.font_color = COLORS.get_color("UI.RED")
+			
+			
+			delete_process = 0
+			delete_process_state = false
+			final_delete_process = 0
+			
+			#if "MomentalDelete" in SaveDataAPI.data:
+			#	SaveDataAPI.data["Settings.MomentalDelete"]
+			if "Settings.TimeForDelete" in SaveDataAPI.data:
+				if SaveDataAPI.data["Settings.TimeForDelete"] == 0:
+					final_delete_process = 1
+					delete_process = 0
+			
 			
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.show()
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.hide()
@@ -134,8 +145,15 @@ func update_delete_procces():
 	else:
 		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete/Panel.size.x = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.size.x
 
-	await get_tree().create_timer(0.05).timeout.connect(update_delete_procces)
+	if "Settings.TimeForDelete" in SaveDataAPI.data:
+		if SaveDataAPI.data["Settings.TimeForDelete"] == 0:
+			await get_tree().create_timer(1/100).timeout.connect(update_delete_procces)
+		else:
+			await get_tree().create_timer(SaveDataAPI.data["Settings.TimeForDelete"]/100).timeout.connect(update_delete_procces)
 			
+	else:
+		await get_tree().create_timer(5/100).timeout.connect(update_delete_procces)
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -149,6 +167,11 @@ func _on_cancel_pressed():
 
 func _on_delete_pressed():
 	if final_delete_process > 0:
+		if "Settings.MomentalDelete" in SaveDataAPI.data:
+			if SaveDataAPI.data["Settings.MomentalDelete"]:
+				contentClass.delete()
+				hide()
+		
 		final_delete_process += 1
 		if final_delete_process == 1:
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|RDW.Delete.text|? - 5"

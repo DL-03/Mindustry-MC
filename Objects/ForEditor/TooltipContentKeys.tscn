@@ -46,7 +46,7 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kdn0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ic3m"]
 shader = SubResource("Shader_xabsi")
 shader_parameter/object_size = Vector2(0, 0)
 shader_parameter/text_size = Vector2(0, 0)
@@ -141,7 +141,7 @@ text = "|"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
-text = "По умолчанию:"
+text = "За умовчанням:"
 real_text = "|ClassType.tip_default|:"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
@@ -164,7 +164,7 @@ theme = ExtResource("1_ooldv")
 text = "\""
 
 [node name="Description" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_vfkf2")]
-material = SubResource("ShaderMaterial_5kdn0")
+material = SubResource("ShaderMaterial_2ic3m")
 layout_mode = 2
 mouse_filter = 1
 fit_content = true

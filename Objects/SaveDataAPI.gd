@@ -6,12 +6,12 @@ signal data_loaded
 signal data_changed
 
 var defaultData = {
-	"Settings": {
-		"Language": "en",
-		"AutoOpenModeMindustry": false,
-		"contentFileMomentalWarningYes": false,
-		"saveMessageFrequency": 60
-	}
+	"Settings.Language": "en",
+	"Settings.AutoOpenSettings": true,
+	"Settings.TimeForDelete": 5,
+	"Settings.MomentalDelete": false,
+	"Settings.SaveMessageFrequency": 60,
+	"Settings.Debug": false
 }
 var data = {}
 
@@ -25,7 +25,7 @@ func save_data():
 func load_data():
 	if not FileAccess.file_exists("user://saveData.json"):
 		var s = FileAccess.open("user://saveData.json", FileAccess.WRITE)
-		s.store_string(str(defaultData))
+		s.store_string(JSON.stringify(data))
 		data = defaultData
 		s.close()
 	else:

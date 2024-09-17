@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnsmx158sf2fa"]
+[gd_scene load_steps=5 format=3 uid="uid://cnsmx158sf2fa"]
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_0hum1"]
 [ext_resource type="Script" path="res://Objects/ForEditor/ContentConfig_Widget.gd" id="1_jynon"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="2_vrnr7"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="3_kipmo"]
 
 [node name="ContentConfig_Widget" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -15,6 +17,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jynon")
 
+[node name="Actions" parent="." instance=ExtResource("2_vrnr7")]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("3_kipmo")
+real_text_icon_left = ""
+
 [node name="NameLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -25,5 +34,6 @@ text = "Key"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[connection signal="pressed" from="Actions" to="." method="_on_actions_pressed"]
 [connection signal="mouse_entered" from="NameLabel" to="." method="_on_name_label_mouse_entered"]
 [connection signal="mouse_exited" from="NameLabel" to="." method="_on_name_label_mouse_exited"]

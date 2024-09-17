@@ -30,16 +30,14 @@ layout_mode = 2
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 real_tooltip_text = "|CustomExplorer.TopPanel.UpToFolder.text|"
 
 [node name="Refresh" parent="Panels/UpPanel" instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 icon_size = 32
 real_tooltip_text = "|CustomExplorer.TopPanel.Refresh.text|"
 
@@ -47,8 +45,7 @@ real_tooltip_text = "|CustomExplorer.TopPanel.Refresh.text|"
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 real_tooltip_text = "|CustomExplorer.TopPanel.Home.text|"
 
 [node name="LineEdit" type="LineEdit" parent="Panels/UpPanel"]
@@ -61,13 +58,13 @@ theme = ExtResource("3_y1hpg")
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
 real_tooltip_text = "|CustomExplorer.TopPanel.Search.text|"
 
 [node name="OptionButton" type="OptionButton" parent="Panels/UpPanel"]
 layout_mode = 2
 theme = ExtResource("3_y1hpg")
+alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panels"]
 layout_mode = 2

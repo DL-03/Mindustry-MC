@@ -66,8 +66,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("3_2w5fw")
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = "+"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -163,5 +162,4 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("3_2w5fw")
 font_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon = ""
-icon_aligment = null
+real_text_icon_left = ""
