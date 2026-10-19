@@ -18,13 +18,7 @@ class_name MindustryTextLabel
 
 func _set_real_tooltip_text(value):
 	real_tooltip_text = value
-	
-	if value == "":
-		mouse_filter = MOUSE_FILTER_IGNORE
-	else:
-		mouse_filter = MOUSE_FILTER_PASS
-
-
+	tl_upd()
 
 func _set_real_text(value):
 	real_text = value
@@ -68,8 +62,8 @@ func _ready():
 	LocalizationAPI.global_language_changed.connect(_text_update)
 	
 	material.set_shader_parameter("object_size", size)
-	material = material.duplicate()
 	_text_update()
+
 var text_size = get_theme_default_font().get_string_size(text,HORIZONTAL_ALIGNMENT_CENTER,-1,get_theme_default_font_size()):
 	set = _set_text_size
 
@@ -77,20 +71,22 @@ func _set_text_size(value):
 	text_size = value
 	
 	material.set_shader_parameter("text_size", text_size)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 
 
 func _on_resized():
 	material.set_shader_parameter("object_size", size)
 
 
-func _on_mouse_entered():
-	if real_tooltip_text != "":
-		$/root/Main/MindustryToolTip.tip(real_tooltip_text,get_viewport().get_mouse_position())
 
+func _on_mind_tooltip_ready() -> void:
+	tl_upd()
 
-func _on_mouse_exited():
-	if real_tooltip_text != "":
-		$/root/Main/MindustryToolTip.untip()
+func tl_upd():
+	var _MindTooltip = get_node_or_null("MindTooltip")
+	if not _MindTooltip:
+		return
+	if real_tooltip_text:
+		_MindTooltip.tooltip_text = "[emb]"+real_tooltip_text
+	else:
+		_MindTooltip.tooltip_text = ""

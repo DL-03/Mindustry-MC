@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dt75s6lh5d4x0"]
+
+[ext_resource type="Script" uid="uid://b171d0do4m4r2" path="res://widgets/mind_rtl.gd" id="1_kptve"]
+[ext_resource type="Theme" uid="uid://74bv3fejycli" path="res://themes/mindustry.tres" id="2_e8pyo"]
+
+[node name="MindRTL" type="RichTextLabel" unique_id=1359297754 node_paths=PackedStringArray("emb_label")]
+clip_contents = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("2_e8pyo")
+bbcode_enabled = true
+text = "[color=#ffd37f]MindRTL.HI . 123123  123"
+script = ExtResource("1_kptve")
+real_text = "[emb][UI.YELLOW]MindRTL.[emb offset=10 color=#700]HI [emb color=#f00]. 123123 [/emb] 123"
+emb_label = NodePath("emboss_bottom")
+
+[node name="emboss_bottom" type="Control" parent="." unique_id=1848420830]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

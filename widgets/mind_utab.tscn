@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://dysrmuh6iglhw"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_qcote"]
+[ext_resource type="Script" uid="uid://oq30e2hacfsi" path="res://widgets/mind_utab.gd" id="2_qcote"]
+[ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="3_qcote"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="4_uy63y"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="5_55wej"]
+[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="6_8kuwh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v6y8"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_git5o"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10sub"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbour"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
+
+[node name="MindUTab" type="Button" unique_id=578091389]
+custom_minimum_size = Vector2(175, 30)
+offset_right = 175.0
+offset_bottom = 30.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_qcote")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8v6y8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_git5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_10sub")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kbour")
+script = ExtResource("2_qcote")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2088221355]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_right = 124.0
+offset_bottom = 12.5
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1201070992]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 5
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1600658513]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_qcote")
+expand_mode = 1
+
+[node name="Label" parent="MarginContainer/HBoxContainer" unique_id=1359297754 instance=ExtResource("4_uy63y")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "MindUTab"
+fit_content = true
+autowrap_mode = 0
+real_text = "[emb]MindUTab"
+
+[node name="Changes" parent="MarginContainer/HBoxContainer" unique_id=1626496899 instance=ExtResource("4_uy63y")]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 21
+text = "[color=#ffd37f]*"
+fit_content = true
+autowrap_mode = 0
+real_text = "[emb][UI.YELLOW]*"
+
+[node name="MindTooltip" parent="MarginContainer/HBoxContainer/Changes" unique_id=259170520 instance=ExtResource("6_8kuwh")]
+tooltip_text = "[emb][UI.YELLOW]|Changes|"
+position_mode = 3
+anchor = 1
+
+[node name="Close" parent="MarginContainer/HBoxContainer" unique_id=529493969 instance=ExtResource("5_55wej")]
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_type_variation = &"Unborder"
+text = ""
+
+[node name="Label" parent="MarginContainer/HBoxContainer/Close/MarginContainer" parent_id_path=PackedInt32Array(529493969, 32214607) index="0" unique_id=1969564989]
+theme_override_constants/line_separation = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "[color=#e55454]"
+scroll_active = false
+real_text = "[emb][UI.RED]"
+
+[node name="MindTooltip" parent="MarginContainer/HBoxContainer/Close" unique_id=174273947 instance=ExtResource("6_8kuwh")]
+tooltip_text = "[emb][UI.RED]|Close|"
+position_mode = 3
+anchor = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]
+[connection signal="resized" from="MarginContainer/HBoxContainer" to="." method="_on_h_box_container_resized"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+
+[editable path="MarginContainer/HBoxContainer/Close"]

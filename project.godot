@@ -8,15 +8,19 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Mindustry Mod Construct"
-config/version="0.2.4"
+config/version="0.3.0"
 config/tags=PackedStringArray("123")
-run/main_scene="res://Objects/Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Mindustry Mod Construct"
-config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0.145098, 0.145098, 0.145098, 1)
 boot_splash/show_image=false
 config/icon="res://resources/MMC_ICON.png"
@@ -25,16 +29,16 @@ config/windows_native_icon="res://resources/MMC_ICON.ico"
 [autoload]
 
 PropertiesReader="*res://libs/PropertiesReader.gd"
-SaveDataAPI="*res://Objects/SaveDataAPI.gd"
+SaveDataAPI="*res://libs/SaveDataAPI.gd"
 OpenMod="*res://OpenMod.gd"
-ModExplorer="res://mod_explorer.gd"
 ContentManager="*res://libs/ContentManager.gd"
 HJSON="*res://libs/HjsonMain.gd"
 MessageAPI="*res://libs/MessageAPI.gd"
-LocalizationAPI="*res://Objects/LocalizationAPI.gd"
+LocalizationAPI="*uid://dblqn1jfxabv1"
 FileOperations="*res://libs/FileOperations.cs"
 ModManager="*res://Scripts/ModManager.gd"
 COLORS="*res://libs/COLORS.gd"
+MindTooltipManager="*uid://cnf4srh20tt7f"
 ArchiveMain="*res://libs/ArchiveMain.gd"
 
 [debug]
@@ -46,6 +50,7 @@ settings/gdscript/max_call_stack=2047
 [display]
 
 window/energy_saving/keep_screen_on=false
+display_server/driver.linuxbsd="wayland"
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -58,6 +63,14 @@ project/assembly_reload_attempts=5
 movie_writer/disable_vsync=true
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[file_customization]
+
+folder_colors={
+"res://libs/": "yellow",
+"res://scenes/": "teal",
+"res://widgets/": "orange"
+}
 
 [gui]
 

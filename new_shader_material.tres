@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dngoscap32dcv"]
+
+[sub_resource type="Shader" id="Shader_rllwa"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+"
+
+[resource]
+shader = SubResource("Shader_rllwa")
+shader_parameter/object_size = Vector2(206, 118)
+shader_parameter/text_size = Vector2(42, 17)
+shader_parameter/text_vertical_aligment = 0

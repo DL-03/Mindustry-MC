@@ -1,6 +1,10 @@
 @tool
 extends Node
 
+const COLOR_PATTERN := r"\[([^\]]+)\]\|([^|]*)\||\|([^|]*)\|\[([^\]]+)\]|\[([^\]]*)\]"
+
+var _color_pattern: RegEx
+
 var data = {
 	"ARC": {
 		"CLEAR": "#00000000",
@@ -47,10 +51,6 @@ var data = {
 		"GREEN": "#54d67d",
 		"GRAY": "#454545",
 	}}
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 
 func get_color(a: String):
 	var a_list = a.split(".")
@@ -66,95 +66,64 @@ func get_color(a: String):
 
 
 
-func colorita(text: String):
-	if text == null:
+func colorita(text: String) -> String:
+	if not is_instance_valid(_color_pattern):
+		_color_pattern = RegEx.new()
+		var error := _color_pattern.compile(COLOR_PATTERN)
+		if error != OK:
+			push_error("COLORS.colorita: failed to compile the color pattern")
+			return text
+
+	var matches := _color_pattern.search_all(text)
+	for match_index in range(matches.size() - 1, -1, -1):
+		var color_match: RegExMatch = matches[match_index]
+		var color_name := color_match.get_string(1)
+		var content := color_match.get_string(2)
+		var replacement := ""
+		if color_name.is_empty() and content.is_empty():
+			content = color_match.get_string(3)
+			color_name = color_match.get_string(4)
+		if color_name.is_empty() and content.is_empty():
+			color_name = color_match.get_string(5)
+
+		var color_html := _get_color_html(color_name)
+		if color_html.is_empty():
+			continue
+
+		if not content.is_empty() or color_match.get_string(1) != "" or color_match.get_string(4) != "":
+			replacement = "[color=#%s]%s[/color]" % [color_html, content]
+		else:
+			replacement = "[color=#%s]" % color_html
+		text = text.substr(0, color_match.get_start()) + replacement + text.substr(color_match.get_end())
+
+	return text
+
+
+func _get_color_html(color_name: String) -> String:
+	if color_name.is_empty():
+		return "ffffff"
+
+	if color_name.begins_with("#"):
+		var hex := color_name.substr(1)
+		if hex.length() not in [3, 6]:
+			return ""
+		for character in hex:
+			if not character in "0123456789abcdefABCDEF":
+				return ""
+		return Color.from_string(color_name, Color.TRANSPARENT).to_html(false)
+
+	var color_parts := color_name.split(".")
+	var palette := "ARC"
+	var color_key := color_parts[0]
+	if color_parts.size() == 2:
+		palette = color_parts[0].to_upper()
+		color_key = color_parts[1]
+	elif color_parts.size() != 1:
 		return ""
-	
-	var level = 0
-	var text1 = ""
-	var type = "Main"
-	var _color = ""
 
-	var result = ""
-	var mode = 0
-	var translator = {"level": 0, "text": "", "class": "", "parametr": ""}
-	var colorita = {"level": 0, "text": "", "class": "", "parametr": ""}
-	var r = 0
-	#print("".rsplit())
-	#print(text.split("\r\n",false))
-	
-	for s in [text]:
-		var ii = -1
-		for i in s:
-			ii += 1
-			if mode == 0:
-				if "|1" == i: # - HERE TRANSLATOR BLOCKATOR
-					if r == 0:
-						#print(s[ii+1])
-						if s[ii+1] == "|":
-							r = 1
-						else:
-							mode = 1
-							translator["level"] = 0
-					else:
-						r = 0
-						result += "||"
+	palette = palette.to_upper()
+	color_key = color_key.to_upper()
+	if not data.has(palette) or not data[palette].has(color_key):
+		return ""
 
-				elif "[" == i:
-					_color = ""
-					mode = 2
-				else:
-					result += i
-			if mode == 1:
-				if "|" == i:
-
-					if translator["level"] == 0:
-						translator["level"] = 1
-						#translator["class"] = "Main"
-						translator["parametr"] = ""
-					else:
-						if translator["parametr"] in LocalizationAPI.LanguageDict["LanguageDict"]:
-								result += LocalizationAPI.LanguageDict["LanguageDict"][translator["parametr"]][LocalizationAPI.language_list[LocalizationAPI.current_language]]
-								translator["level"] = 0
-						if translator["level"] != 0:
-							result += translator["parametr"]
-							translator["level"] = 0
-
-						#translator["class"] = "Main"
-						translator["parametr"] = ""
-						mode = 0
-
-				elif translator["level"] == 1:
-					if translator["parametr"] == "" and i == " ":
-						result += "| "
-						translator["level"] = 0
-					elif ".1" == i:
-						translator["level"] = 2
-						translator["class"] = translator["parametr"]
-						translator["parametr"] = ""
-					else:
-						translator["parametr"] += i
-				elif translator["level"] == 2:
-					translator["parametr"] += i
-			elif mode == 2:
-				if i != "[" and i != "]":
-					_color += i
-				if i == "[":
-					result += '[color='
-				if i == "]":
-					var _t = get_color(_color)
-					#print(_color.to_upper().substr(0, len(_color)-3))
-					if _t == Color.PURPLE:
-						result += _color
-					else:
-						result += _t.to_html()
-					result += ']'
-					mode = 0
-		result += "<br>"
-
-	return result.substr(0, len(result)-4)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	return Color.from_string(data[palette][color_key], Color.PURPLE).to_html(false)

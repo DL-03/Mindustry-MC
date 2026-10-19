@@ -1,24 +1,12 @@
 extends Node
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var csharp_script = preload("res://libs/ArchiveMain.cs").new()
 
 func ExtracteToDirectory(ZipPath,extractPath):
-	var my_csharp_script = preload("res://libs/ArchiveMain.cs").new()
-	my_csharp_script.ExtracteToDirectory(ZipPath,extractPath)
-
+	csharp_script.ExtracteToDirectory(ZipPath,extractPath)
 
 func Pack(SourcePath, ArchivePath):
-	var my_csharp_script = preload("res://libs/ArchiveMain.cs").new()
-	my_csharp_script.Pack(SourcePath,ArchivePath)
+	csharp_script.Pack(SourcePath,ArchivePath)
 
 func CreateFolder(Path):
-	var my_csharp_script = preload("res://libs/ArchiveMain.cs").new()
-	my_csharp_script.CreateFolder(Path)
+	csharp_script.CreateFolder(Path)

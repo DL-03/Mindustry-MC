@@ -21,10 +21,17 @@ func get_only_filename(path):
 
 func select_tab(_tab):
 	for i in Tabs.get_children():
-		i.disabled = false
+		if not i.tab: return
+		if not i.tab.is_node_ready():
+			await i.tab.ready
+		i.tab.disabled = false
 		if i.ContentFrame != null:
 			i.ContentFrame.visible = false
-	_tab.disabled = true
+
+	if not _tab.tab: return
+	if not _tab.tab.is_node_ready():
+		await _tab.tab.ready
+	_tab.tab.disabled = true
 	SaveButton.disabled = false
 	if _tab.ContentFrame != null:
 		_tab.ContentFrame.visible = true
@@ -43,18 +50,8 @@ func open_from_path(_contentClass):
 	tab.RootNode = self
 	tab.contentClass = _contentClass
 	Tabs.add_child(tab)
+	select_tab(tab)
 
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func save_content(_contentClass):

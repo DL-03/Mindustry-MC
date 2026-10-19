@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cneaemclmk5bk"]
+
+[ext_resource type="Script" uid="uid://c50glsfbq6adu" path="res://Objects/TabMain.gd" id="1_a6qjs"]
+[ext_resource type="PackedScene" uid="uid://dysrmuh6iglhw" path="res://widgets/mind_utab.tscn" id="1_glfba"]
+
+[node name="Tab" type="PanelContainer" unique_id=714916886]
+script = ExtResource("1_a6qjs")
+
+[node name="Tab" parent="." unique_id=578091389 instance=ExtResource("1_glfba")]
+custom_minimum_size = Vector2(159, 30)
+layout_mode = 2
+
+[node name="Changes" parent="Tab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="2" unique_id=1626496899]
+visible = false
+
+[node name="Close" parent="Tab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="3" unique_id=529493969]
+text = ""
+
+[connection signal="close" from="Tab" to="." method="_on_tab_close"]
+[connection signal="pressed" from="Tab" to="." method="_on_tab_pressed"]
+
+[editable path="Tab"]
+[editable path="Tab/MarginContainer/HBoxContainer/Close"]

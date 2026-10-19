@@ -20,11 +20,6 @@ var writeData = {}
 func _data_changed():
 	contentClass = contentClass
 
-func _ready():
-	pass
-func _process(delta):
-	pass
-
 
 var needSave = false:
 	set = _set_needSave
@@ -32,9 +27,13 @@ var needSave = false:
 func _set_needSave(value):
 	needSave = value
 	
+	upd_needSave()
+
+func upd_needSave():
 	RootNode.SaveButton.disabled = not needSave
 	if TabButton != null:
-		TabButton.get_node("MarginContainer/HBoxContainer/Save").visible = needSave
+		TabButton.ElementChanges.visible = needSave
+
 func changed_data(key,value):
 	if key in contentClass.FullData:
 		if typeof(contentClass.FullData[key]) == typeof(value):
@@ -74,7 +73,6 @@ func _SpriteBank_updated():
 	$TabContainer/Textures/ScrollContainer/Flow.add_child(s)
 	
 	if contentClass.FileType == "mod":
-
 		s.get_node("TextureRect").texture = contentClass.modClass.get_mod_icon()
 	else:
 		s.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path))
@@ -155,7 +153,7 @@ func _set_contentClass(value):
 				if contentClass.DefaultData != null:
 					if i in contentClass.DefaultData:
 						s.DefaultData = contentClass.DefaultData[i]
-				
+						s.get_node("Actions").hide()
 				
 				
 				if s.Type == "Boolean":
@@ -171,12 +169,50 @@ func _set_contentClass(value):
 				
 					$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.add_child(s)
 	
-	
+	upd_needSave()
 	_SpriteBank_updated()
 	
 func get_only_filename(path):
 	return path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length())
 
+var _FlowContainer: HFlowContainer
+func create_input(key, value):
+	var s = preload("res://Objects/ForEditor/ContentConfig_Widget.tscn").instantiate()
+	s.Name = str(key)
+	s.RootContentFrame = self
+
+	if typeof(value) == TYPE_BOOL:
+		s.Type = "Boolean"
+	elif key == "description":
+		s.Type = "MultiString"
+	elif key == "category":
+		s.Type = "Category"
+	elif key in ["color", "flameColor", "mapColor", "outlineColor", "lightColor", "heatColor", "lightningColor", "flashColor"]:
+		s.Type = "Color"
+	else:
+		s.Type = "String"
+
+	s.Data = value
+
+	if contentClass.DefaultData != null:
+		if key in contentClass.DefaultData:
+			s.DefaultData = contentClass.DefaultData[key]
+
+
+
+	if s.Type == "Boolean":
+		if _FlowContainer == null:
+			_FlowContainer = HFlowContainer.new()
+			$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.add_child(_FlowContainer)
+			_FlowContainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			_FlowContainer.add_theme_constant_override("separation", 20)
+		_FlowContainer.add_child(s)
+	else:
+		if _FlowContainer != null:
+			_FlowContainer = null
+
+		$TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.add_child(s)
+
 
 func _on_create_key_pressed():
-	pass # Replace with function body.
+	$/root/Main/Windows/ContentEditorKeyActions.create(self)

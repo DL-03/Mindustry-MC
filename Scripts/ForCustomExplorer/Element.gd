@@ -1,11 +1,5 @@
 extends Button
 
-
-
-
-
-
-
 var RootNode: Node
 enum TypeElement {
 	FOLDER,
@@ -16,8 +10,8 @@ enum TypeElement {
 var Type = null
 var Path = ""
 
-
-
+@export var richLabel: MindRTL
+@export var filePathElement: Node
 
 enum TableType {
 	HUGE_ICONS,
@@ -35,26 +29,25 @@ func table_update():
 	if TableType.LIST==table_type or TableType.TABLE==table_type:
 		custom_minimum_size.y = 50
 		if TypeElement.MOD == Type:
-			$MarginContainer/HBoxContainer/InfoPanel/Author.hide()
-			$MarginContainer/HBoxContainer/InfoPanel/Version.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox.hide()
+			pass
+			#$MarginContainer/HBoxContainer/InfoPanel/Author.hide()
+			#$MarginContainer/HBoxContainer/InfoPanel/Version.hide()
+		filePathElement.hide()
 	elif TableType.TILE==table_type or TableType.CONTENT==table_type:
 		custom_minimum_size.y = 130
 		if TypeElement.MOD == Type:
-			$MarginContainer/HBoxContainer/InfoPanel/Author.show()
-			$MarginContainer/HBoxContainer/InfoPanel/Version.show()
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox.show()
+			pass
+			#$MarginContainer/HBoxContainer/InfoPanel/Author.show()
+			#$MarginContainer/HBoxContainer/InfoPanel/Version.show()
+		filePathElement.show()
 	$MarginContainer/HBoxContainer.vertical = (table_type in [TableType.HUGE_ICONS,TableType.BIG_ICONS,TableType.DEFAULT_ICONS,TableType.SMALL_ICONS])
 	if (table_type in [TableType.HUGE_ICONS,TableType.BIG_ICONS,TableType.DEFAULT_ICONS,TableType.SMALL_ICONS]):
-		#if TypeElement.MOD == Type:
-		$MarginContainer/HBoxContainer/InfoPanel/Author.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/Version.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox.show()
+		filePathElement.show()
 		
 		if table_type == TableType.SMALL_ICONS:
-			$MarginContainer/HBoxContainer/InfoPanel/PathBox.hide()
+			filePathElement.hide()
 		else:
-			$MarginContainer/HBoxContainer/InfoPanel/PathBox.show()
+			filePathElement.show()
 		
 		
 		match table_type:
@@ -66,18 +59,11 @@ func table_update():
 			5: custom_minimum_size = Vector2(350,50)
 			6: custom_minimum_size = Vector2(350,130)
 			7: custom_minimum_size = Vector2(350,130)
-		$MarginContainer/HBoxContainer/InfoPanel/DisplayName.text_aligment = 1
-		$MarginContainer/HBoxContainer/InfoPanel/Name.horizontal_alignment = 1
+
+		richLabel.horizontal_alignment = 1
 	else:
 		custom_minimum_size.x = 400
-		
-		$MarginContainer/HBoxContainer/InfoPanel/DisplayName.text_aligment = 0
-		$MarginContainer/HBoxContainer/InfoPanel/Name.horizontal_alignment = 0
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
+		richLabel.horizontal_alignment = 0
 
 func set_path(path: String):
 	Path = path.simplify_path()
@@ -96,58 +82,39 @@ func set_path(path: String):
 
 
 func update_data():
-	if TypeElement.FOLDER == Type:
+	if Type in [TypeElement.FOLDER,TypeElement.FILE]:
 		$MarginContainer/HBoxContainer/Panel.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/Name.real_text = Path.get_file()
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox/Path.real_text = Path
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+Path
 		
-		$MarginContainer/HBoxContainer/InfoPanel/Author.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/Version.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/DisplayName.hide()
-	elif TypeElement.FILE == Type:
-		$MarginContainer/HBoxContainer/Panel.hide()
-		$MarginContainer/HBoxContainer/TextIcon.real_text = ""
-		$MarginContainer/HBoxContainer/InfoPanel/Name.real_text = Path.get_file()
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox/Path.real_text = Path
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+Path
-		
-		$MarginContainer/HBoxContainer/InfoPanel/Author.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/Version.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/DisplayName.hide()
+		richLabel.real_text = "[emb][UI.YELLOW]"+Path.get_file()
+		filePathElement.path = Path
+	
+		if TypeElement.FILE == Type:
+			$MarginContainer/HBoxContainer/TextIcon.real_text = "[emb offset=4]  "
+	
 	elif TypeElement.MOD == Type:
 		var data = ModManager.get_mod_data_from_path(Path)
 		
-		$MarginContainer/HBoxContainer/TextIcon.hide()
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox/Path.real_text = Path
-		$MarginContainer/HBoxContainer/InfoPanel/PathBox/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+Path
+		filePathElement.path = Path
 		
+		$MarginContainer/HBoxContainer/TextIcon.hide()
 		$MarginContainer/HBoxContainer/Panel/MarginContainer/ImageIcon.texture = ModManager.get_icon_from_path(Path)
 		
+		var _displayName = "[UI.RED]None"
+		var _name = "[UI.RED]None"
+		var _author = "[UI.RED]None"
+		var _version = "[UI.RED]None"
 		
 		if data != null:
-			if "name" in data:
-				$MarginContainer/HBoxContainer/InfoPanel/Name.real_text = data["name"]
-			else:
-				$MarginContainer/HBoxContainer/InfoPanel/Name.real_text = "None"
-			if "author" in data:
-				$MarginContainer/HBoxContainer/InfoPanel/Author.real_text = data["author"]
-			else:
-				$MarginContainer/HBoxContainer/InfoPanel/Author.real_text = "[UI.RED]None"
-			if "version" in data:
-				$MarginContainer/HBoxContainer/InfoPanel/Version.real_text = data["version"]
-			else:
-				$MarginContainer/HBoxContainer/InfoPanel/Version.real_text = "None"
-			
 			if "displayName" in data:
-				$MarginContainer/HBoxContainer/InfoPanel/DisplayName.real_text = data["displayName"]
-			else:
-				$MarginContainer/HBoxContainer/InfoPanel/DisplayName.real_text = "[UI.RED]None"
-			
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+				_displayName = "[UI.YELLOW]"+data["displayName"]
+			if "name" in data:
+				_name = "[UI.YELLOW]"+data["name"]
+			if "author" in data:
+				_author = "[]"+data["author"]
+			if "version" in data:
+				_version = "[]"+data["version"]
+	
+		richLabel.real_text = "[emb]"+_displayName+"\n"+_name+"\n"+_author+"\n"+_version
 
 func _on_pressed():
 	if TypeElement.FOLDER == Type:
@@ -155,7 +122,7 @@ func _on_pressed():
 	elif TypeElement.MOD == Type:
 		var AllTabButtons = $/root/Main/V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs
 		for i in AllTabButtons.get_children():
-			if i.disabled:
+			if i.tab.disabled:
 				if i.ContentFrame == null:
 					OpenMod.OpenFromPath(i, Path)
 					break
@@ -174,14 +141,3 @@ func _on_resized():
 		
 		$MarginContainer/HBoxContainer/TextIcon.custom_minimum_size.x = size.y-10
 		$MarginContainer/HBoxContainer/TextIcon.custom_minimum_size.y = size.y-10
-	
-
-
-func _on_path_pressed():
-	DisplayServer.clipboard_set(Path)
-	MessageAPI.info("|CustomExplorer.Message.PathCopied|!")
-
-
-func _on_open_folder_pressed():
-	if OS.get_name() == "Windows":
-		OS.execute("explorer.exe", PackedStringArray([ Path.simplify_path().replace("/", "\\")]))

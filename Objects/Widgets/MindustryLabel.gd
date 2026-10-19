@@ -11,12 +11,7 @@ class_name MindustryLabel
 
 func _set_real_tooltip_text(value):
 	real_tooltip_text = value
-	
-	if value == "":
-		mouse_filter = MOUSE_FILTER_IGNORE
-	else:
-		mouse_filter = MOUSE_FILTER_PASS
-
+	tl_upd()
 
 func _set_real_text(value):
 	real_text = value
@@ -44,18 +39,19 @@ func _set_font_color(value):
 func _ready():
 	LocalizationAPI.global_language_changed.connect(func(): real_text = real_text)
 	
-	real_tooltip_text = real_tooltip_text
 	real_text = real_text
 	font_color = font_color
 
 
 
+func _on_mind_tooltip_ready() -> void:
+	tl_upd()
 
-func _on_mouse_entered():
-	if real_tooltip_text != "":
-		$/root/Main/MindustryToolTip.tip(real_tooltip_text,get_viewport().get_mouse_position())
-
-
-func _on_mouse_exited():
-	if real_tooltip_text != "":
-		$/root/Main/MindustryToolTip.untip()
+func tl_upd():
+	var _MindTooltip = get_node_or_null("MindTooltip")
+	if not _MindTooltip:
+		return
+	if real_tooltip_text:
+		_MindTooltip.tooltip_text = "[emb]"+real_tooltip_text
+	else:
+		_MindTooltip.tooltip_text = ""

@@ -1,14 +1,13 @@
-extends Button
+extends PanelContainer
 
+@onready var tab = $Tab
+@export var NameLabel: Node
+@export var ElementChanges: Node
 
 var ModEditor: Node
 
 var RootNode = null
 var ContentFrame = null
-
-
-
-
 
 
 func _data_changed():
@@ -52,32 +51,21 @@ func _set_contentClass(value):
 		ContentFrame = preload("res://Objects/ForEditor/content_frame_rect.tscn").instantiate()
 		RootNode.Editors.add_child(ContentFrame)
 	#ContentFrame.setPath(Path)
+	ContentFrame.TabButton = self
 	ContentFrame.ModEditor = ModEditor
 	ContentFrame.RootNode = RootNode
 	ContentFrame.contentClass = contentClass
-	ContentFrame.TabButton = self
+	
 	#$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
-	$MarginContainer/HBoxContainer/Icon.contentClass = contentClass
-		
+	#$Tab/MarginContainer/HBoxContainer/Icon.contentClass = contentClass
+	
 	
 	RootNode.select_tab(self)
 
-@export var NameLabel: Node
+
 
 func get_only_filename(path):
 	return path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length())
-
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func _on_pressed():
-	RootNode.select_tab(self)
-
-
 
 
 func NSC_CancelButton():
@@ -109,9 +97,8 @@ func NSC_SaveButton():
 	self.queue_free()
 
 
-func _on_close_pressed():
+func _on_tab_close() -> void:
 	if ContentFrame != null:
-		
 		if ContentFrame.needSave:
 			get_node("/root/Main/Windows/NeedSaveContent/Panel/MarginContainer/VBoxContainer/InfoLabel").real_text = "|NeedSaveContent.InfoLabel.text1| <" + contentClass.Data["name"] + ">|NeedSaveContent.InfoLabel.text2|"
 			get_node("/root/Main/Windows/NeedSaveContent/Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel").pressed.connect(NSC_CancelButton)
@@ -125,10 +112,5 @@ func _on_close_pressed():
 		self.queue_free()
 
 
-func _on_margin_container_resized():
-	custom_minimum_size.x = $MarginContainer.size.x
-	size.x = 0
-	
-	
-func _on_h_box_container_resized():
-	$MarginContainer.size.x = 0
+func _on_tab_pressed() -> void:
+	RootNode.select_tab(self)

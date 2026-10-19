@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://lmrimsly8wdg"]
+
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="1_2pgxc"]
+[ext_resource type="Theme" uid="uid://74bv3fejycli" path="res://themes/mindustry.tres" id="1_l7pne"]
+
+[node name="MindIButton" type="Button" unique_id=529493969]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_l7pne")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=32214607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1639273036]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LeftIcon" parent="MarginContainer/HBoxContainer" unique_id=1359297754 instance=ExtResource("1_2pgxc")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme_override_font_sizes/normal_font_size = 26
+text = "[emb offset=3]0"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb offset=3]0"
+
+[node name="MindRTL" parent="MarginContainer/HBoxContainer" unique_id=1969564989 instance=ExtResource("1_2pgxc")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "[emb]MindIButton"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb]MindIButton"
+
+[node name="RightIcon" parent="MarginContainer/HBoxContainer" unique_id=777836022 instance=ExtResource("1_2pgxc")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme_override_font_sizes/normal_font_size = 26
+text = "[emb offset=3]0"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb offset=3]0"

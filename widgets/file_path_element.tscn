@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://8ld788kwrjm6"]
+
+[ext_resource type="Script" uid="uid://tvgefgw52x30" path="res://widgets/file_path_element.gd" id="1_iemcp"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="1_t7olw"]
+[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="2_h2bm6"]
+
+[node name="FilePathElement" type="HBoxContainer" unique_id=1238661133]
+offset_right = 44.0
+offset_bottom = 20.0
+script = ExtResource("1_iemcp")
+path = "/"
+
+[node name="Copy" parent="." unique_id=529493969 instance=ExtResource("1_t7olw")]
+custom_minimum_size = Vector2(25, 25)
+custom_maximum_size = Vector2(-1, 25)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Unborder"
+text = "/"
+clip_text = true
+
+[node name="MarginContainer" parent="Copy" index="0" unique_id=32214607]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" parent="Copy/MarginContainer" index="0" unique_id=1969564989]
+clip_contents = true
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 12
+text = "/"
+scroll_active = false
+horizontal_alignment = 2
+real_text = "[emb]/"
+
+[node name="MindTooltip" parent="Copy" unique_id=259170520 instance=ExtResource("2_h2bm6")]
+tooltip_text = "[center][emb][UI.YELLOW]|CopyPath|!
+[]/"
+position_mode = 3
+anchor = 1
+
+[node name="Open" parent="." unique_id=2114327804 instance=ExtResource("1_t7olw")]
+custom_minimum_size = Vector2(25, 25)
+custom_maximum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_type_variation = &"ButonRectTiny"
+text = ""
+
+[node name="MarginContainer" parent="Open" index="0" unique_id=32214607]
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" parent="Open/MarginContainer" index="0" unique_id=1969564989]
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 12
+text = ""
+real_text = "[emb]"
+
+[node name="MindTooltip" parent="Open" unique_id=1791233051 instance=ExtResource("2_h2bm6")]
+tooltip_text = "[center][emb][UI.YELLOW]|OpenFolder|!
+[]/"
+position_mode = 3
+anchor = 1
+
+[connection signal="pressed" from="Copy" to="." method="_on_copy_pressed"]
+[connection signal="pressed" from="Open" to="." method="_on_open_pressed"]
+
+[editable path="Copy"]
+[editable path="Open"]

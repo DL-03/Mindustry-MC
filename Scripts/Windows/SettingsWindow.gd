@@ -7,7 +7,7 @@ extends Panel
 @export_category("-Settings-")
 @export_category("Information")
 
-@export var EngineVersion_Value: Node
+@export var Information_Description: MindRTL
 
 
 @export_category("Main")
@@ -142,7 +142,8 @@ func on_global_lc():
 	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/LineEdit.placeholder_text = LocalizationAPI.translate_text("|SettingsWindow.Information.Secret.text|")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EngineVersion_Value.text = "Godot Engine " + Engine.get_version_info().string + " [mono]"
+	Information_Description.placeholders["version"] = ProjectSettings.get_setting("application/config/version")
+	Information_Description.placeholders["engine"] = "Godot Engine " + Engine.get_version_info().string + " [mono]"
 	
 	#LocalizationAPI.change_current_language.connect(func():
 	#	LangList.select(LocalizationAPI.current_language)
@@ -198,7 +199,6 @@ func _on_close_pressed():
 
 func _on_github_pressed():
 	OS.shell_open("https://github.com/DL-03/")
-
 
 func _on_discord_pressed():
 	OS.shell_open("https://discord.gg/MCdqTUQAFH")
@@ -272,11 +272,11 @@ func _on_lang_option_button_item_selected(index):
 
 
 func _on_github_mouse_entered():
-	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindustryTextLabel/Github.real_text = "|FollowTheLink|"
+	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github.label.real_text = "[emb]|FollowTheLink|"
 
 
 func _on_github_mouse_exited():
-	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindustryTextLabel/Github.real_text = ""
+	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github.label.real_text = ""
 
 
 

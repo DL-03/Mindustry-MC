@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" format=3 uid="uid://csmn47yeel1hm"]
+
+[ext_resource type="FontFile" uid="uid://dypmks3dcvxk5" path="res://fonts/font.woff" id="1_bfdsa"]
+
+[resource]
+base_font = ExtResource("1_bfdsa")

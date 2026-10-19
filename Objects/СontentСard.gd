@@ -19,11 +19,7 @@ func _set_contentClass(value):
 	value.file_deleted.connect(_file_deleted)
 	contentClass = value
 	
-	
-	$HBoxContainer/VBoxContainer/PathBox/Path.real_text = str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())
-	$HBoxContainer/VBoxContainer/PathBox/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+str(contentClass.Path).substr(0, str(contentClass.Path).length()-("."+str((contentClass.Path.get_extension()).to_upper())).length())+"[UI.YELLOW]."+str((contentClass.Path.get_extension()).to_upper())
-	$HBoxContainer/VBoxContainer/PathBox/Path.real_text_icon_right = ". "+str((contentClass.Path.get_extension()).to_upper())
-
+	$HBoxContainer/VBoxContainer/FilePathElement.path = contentClass.Path
 
 	
 	#$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
@@ -35,14 +31,12 @@ func _set_contentClass(value):
 	if contentClass.Data != null:
 		if typeof(contentClass.Data) == TYPE_DICTIONARY:
 			if "name" in contentClass.Data:
-				$HBoxContainer/VBoxContainer/Name.real_text = str(contentClass.Data["name"])
-				$HBoxContainer/VBoxContainer/Name.real_tooltip_text = str(contentClass.Data["name"])
-				
+				$HBoxContainer/VBoxContainer/Name.real_text = "[emb][UI.YELLOW]"+str(contentClass.Data["name"])
+				#$HBoxContainer/VBoxContainer/Name.real_tooltip_text = str(contentClass.Data["name"])
 				pass
 			else:
-				$HBoxContainer/VBoxContainer/Name.real_text = "[red]none"
+				$HBoxContainer/VBoxContainer/Name.real_text = "[emb][UI.RED]none"
 				pass
-
 
 
 func _on_pressed():
@@ -57,13 +51,3 @@ func _on_rename_pressed():
 	$/root/Main/Windows/RenameDuplicateWindow.open(contentClass, 1)
 func _on_duplicate_pressed():
 	$/root/Main/Windows/RenameDuplicateWindow.open(contentClass, 2)
-
-
-func _on_path_pressed():
-	DisplayServer.clipboard_set(contentClass.Path)
-	MessageAPI.info("|CustomExplorer.Message.PathCopied|!")
-
-
-func _on_open_folder_pressed():
-	if OS.get_name() == "Windows":
-		OS.execute("explorer.exe", PackedStringArray([ contentClass.Path.simplify_path().replace("/", "\\")]))

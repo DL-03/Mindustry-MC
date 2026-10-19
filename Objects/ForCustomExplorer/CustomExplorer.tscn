@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq3mrbwtbd8cv"]
+[gd_scene format=3 uid="uid://cq3mrbwtbd8cv"]
 
-[ext_resource type="Script" path="res://Scripts/ForCustomExplorer/CustomExplorer.gd" id="1_6q2r2"]
+[ext_resource type="Script" uid="uid://djyv5l3b7hj7n" path="res://Scripts/ForCustomExplorer/CustomExplorer.gd" id="1_6q2r2"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="1_tmt2a"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="2_hlrvy"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_y1hpg"]
 
-[node name="CustomExplorer" type="Control"]
+[node name="CustomExplorer" type="Control" unique_id=1051147086]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6q2r2")
 
-[node name="Panels" type="VBoxContainer" parent="."]
+[node name="Panels" type="VBoxContainer" parent="." unique_id=542452893]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,18 +22,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UpPanel" type="HBoxContainer" parent="Panels"]
+[node name="UpPanel" type="HBoxContainer" parent="Panels" unique_id=1239618573]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="UpFolder" parent="Panels/UpPanel" instance=ExtResource("1_tmt2a")]
+[node name="UpFolder" parent="Panels/UpPanel" unique_id=1662995956 instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
 real_text_icon_left = ""
 real_tooltip_text = "|CustomExplorer.TopPanel.UpToFolder.text|"
 
-[node name="Refresh" parent="Panels/UpPanel" instance=ExtResource("1_tmt2a")]
+[node name="Refresh" parent="Panels/UpPanel" unique_id=1521617521 instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
@@ -41,38 +41,39 @@ real_text_icon_left = ""
 icon_size = 32
 real_tooltip_text = "|CustomExplorer.TopPanel.Refresh.text|"
 
-[node name="Home" parent="Panels/UpPanel" instance=ExtResource("1_tmt2a")]
+[node name="Home" parent="Panels/UpPanel" unique_id=870834646 instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
 real_text_icon_left = ""
 real_tooltip_text = "|CustomExplorer.TopPanel.Home.text|"
 
-[node name="LineEdit" type="LineEdit" parent="Panels/UpPanel"]
+[node name="LineEdit" type="LineEdit" parent="Panels/UpPanel" unique_id=1255249893]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("3_y1hpg")
+theme_override_font_sizes/font_size = 18
 
-[node name="Search" parent="Panels/UpPanel" instance=ExtResource("1_tmt2a")]
+[node name="Search" parent="Panels/UpPanel" unique_id=2125586298 instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("2_hlrvy")
 real_text_icon_left = ""
 real_tooltip_text = "|CustomExplorer.TopPanel.Search.text|"
 
-[node name="OptionButton" type="OptionButton" parent="Panels/UpPanel"]
+[node name="OptionButton" type="OptionButton" parent="Panels/UpPanel" unique_id=1757393570]
 layout_mode = 2
 theme = ExtResource("3_y1hpg")
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panels"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panels" unique_id=978029806]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_y1hpg")
 horizontal_scroll_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Panels/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panels/ScrollContainer" unique_id=1670816478]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -81,10 +82,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Flow" type="FlowContainer" parent="Panels/ScrollContainer/MarginContainer"]
+[node name="Flow" type="FlowContainer" parent="Panels/ScrollContainer/MarginContainer" unique_id=219623723]
 layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="Panels/ScrollContainer/MarginContainer"]
+[node name="Box" type="VBoxContainer" parent="Panels/ScrollContainer/MarginContainer" unique_id=1311630497]
 layout_mode = 2
 
 [connection signal="pressed" from="Panels/UpPanel/UpFolder" to="." method="_on_up_folder_pressed"]

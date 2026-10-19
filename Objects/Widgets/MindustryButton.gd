@@ -113,17 +113,6 @@ func _real_text_icon_right(value):
 		Icon_Text_Right_Element.visible = (real_text_icon_right != "")
 
 
-
-
-
-func _ready():
-	
-	pass
-	
-func _full_ready():
-	pass
-
-
 var disabled_d = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -141,19 +130,6 @@ func _process(delta):
 			disabled_d = 0
 
 
-
-
-func _on_mouse_entered():
-	#print("eees")
-	if real_tooltip_text != "":
-		$/root/Main/MindustryToolTip.tip(real_tooltip_text,get_viewport().get_mouse_position())
-
-
-func _on_mouse_exited():
-	if real_tooltip_text != "":
-		$/root/Main/MindustryToolTip.untip()
-
-
 func _on_text_ready():
 	real_text = real_text
 	
@@ -164,7 +140,19 @@ func _on_text_ready():
 func _on_icon_text_left_ready():
 	real_text_icon_left = real_text_icon_left
 
-
-
 func _on_icon_text_right_ready():
 	real_text_icon_right = real_text_icon_right
+
+
+
+func _on_mind_tooltip_ready() -> void:
+	tl_upd()
+
+func tl_upd():
+	var _MindTooltip = get_node_or_null("MindTooltip")
+	if not _MindTooltip:
+		return
+	if real_tooltip_text:
+		_MindTooltip.tooltip_text = "[emb]"+real_tooltip_text
+	else:
+		_MindTooltip.tooltip_text = ""

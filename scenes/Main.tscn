@@ -1,0 +1,347 @@
+[gd_scene format=3 uid="uid://ccckl3aew6vew"]
+
+[ext_resource type="Script" uid="uid://7lrqcema0vij" path="res://scenes/Main.gd" id="1_ft6cd"]
+[ext_resource type="PackedScene" uid="uid://cneaemclmk5bk" path="res://Objects/TabMain.tscn" id="2_bb450"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="3_nfivy"]
+[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="4_1nqs0"]
+[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button.tscn" id="5_1iba3"]
+[ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://mod_manager.tscn" id="7_ebg2g"]
+[ext_resource type="PackedScene" uid="uid://d0ppbqrba56gs" path="res://Objects/Windows/SettingsWindow.tscn" id="8_2ofn6"]
+[ext_resource type="PackedScene" uid="uid://dddth13hrmo52" path="res://scenes/content_editor_key_actions.tscn" id="9_mwfav"]
+[ext_resource type="PackedScene" uid="uid://cjg0xhrkoy7ib" path="res://Objects/Windows/RenameDuplicateWindow.tscn" id="9_xa025"]
+[ext_resource type="PackedScene" uid="uid://bh87acddn33ms" path="res://Objects/Windows/NeedSaveContent.tscn" id="12_ma7h6"]
+[ext_resource type="PackedScene" uid="uid://eu7ssqyyaqgh" path="res://Objects/Windows/CreateContent.tscn" id="13_e2s0e"]
+[ext_resource type="PackedScene" uid="uid://dg2i61br433ln" path="res://Objects/Windows/CreateMod.tscn" id="14_gsxep"]
+[ext_resource type="Theme" uid="uid://74bv3fejycli" path="res://themes/mindustry.tres" id="15_3p2gp"]
+[ext_resource type="PackedScene" uid="uid://vsvpa6ywikp2" path="res://Objects/Windows/DeleteMod.tscn" id="15_v0vrg"]
+[ext_resource type="Script" uid="uid://07fg1xh66iiu" path="res://MessagePanel.gd" id="17_pnhog"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqlb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_right = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn8xc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ptn7"]
+bg_color = Color(0.478431, 0.478431, 0.478431, 0.513726)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reutl"]
+bg_color = Color(0.478431, 0.478431, 0.478431, 0.513726)
+corner_radius_bottom_left = 5
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4iwy"]
+bg_color = Color(0, 0, 0, 0.686275)
+border_width_left = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.686275)
+shadow_size = 15
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_5qeqa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(300, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_5jbhb"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 50), Vector2(300, 84.49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y07iu"]
+_data = {
+&"RESET": SubResource("Animation_5qeqa"),
+&"new_animation": SubResource("Animation_5jbhb")
+}
+
+[node name="Main" type="Control" unique_id=1516285514 node_paths=PackedStringArray("AllTabButtons", "ContentPanel", "modManager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ft6cd")
+AllTabButtons = NodePath("V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs")
+ContentPanel = NodePath("V1/ConentPanel")
+modManager = NodePath("V1/ModManager")
+TabPlaceholder = ExtResource("2_bb450")
+
+[node name="V1" type="VBoxContainer" parent="." unique_id=331031834]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpPanel" type="HBoxContainer" parent="V1" unique_id=776054462]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TabsPanel" type="Panel" parent="V1/UpPanel" unique_id=1420003081]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pnqlb")
+
+[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/TabsPanel" unique_id=596190422]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="V1/UpPanel/TabsPanel/MarginContainer" unique_id=1402937487]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer" unique_id=1539039572]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer" unique_id=503734011]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+
+[node name="Tabs" type="HBoxContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer" unique_id=2031239837]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="NewTab" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer" unique_id=801974202 instance=ExtResource("3_nfivy")]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme = ExtResource("4_1nqs0")
+real_text_icon_left = ""
+icon_size = 24
+real_tooltip_text = "|Main.UpPanel.NewTab.text|"
+
+[node name="ControlPanel" type="Panel" parent="V1/UpPanel" unique_id=192848926]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rn8xc")
+
+[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/ControlPanel" unique_id=195901551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/UpPanel/ControlPanel/MarginContainer" unique_id=1799160628]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Settings" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer" unique_id=529493969 instance=ExtResource("5_1iba3")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Unborder"
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
+
+[node name="LeftIcon" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+text = ""
+hint_underlined = false
+real_text = "[emb offset=3]"
+
+[node name="MindRTL" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="1" unique_id=1969564989]
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+text = "Настройки"
+hint_underlined = false
+real_text = "[emb]|SettingsWindow.Title|"
+
+[node name="RightIcon" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="2" unique_id=777836022]
+visible = false
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+text = "0"
+hint_underlined = false
+
+[node name="ModManager" parent="V1" unique_id=100714254 instance=ExtResource("7_ebg2g")]
+layout_mode = 2
+
+[node name="ConentPanel" type="Control" parent="V1" unique_id=103525213]
+layout_mode = 2
+
+[node name="WindowBoxPart" type="VBoxContainer" parent="." unique_id=2049939963]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleBar" type="Panel" parent="WindowBoxPart" unique_id=1471389177]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Windows" type="Control" parent="." unique_id=2074136863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettingsWindow" parent="Windows" unique_id=1883959433 instance=ExtResource("8_2ofn6")]
+visible = false
+layout_mode = 1
+
+[node name="RenameDuplicateWindow" parent="Windows" unique_id=227586789 instance=ExtResource("9_xa025")]
+visible = false
+layout_mode = 1
+
+[node name="ContentEditorKeyActions" parent="Windows" unique_id=177122460 instance=ExtResource("9_mwfav")]
+visible = false
+layout_mode = 1
+
+[node name="NeedSaveContent" parent="Windows" unique_id=1091514670 instance=ExtResource("12_ma7h6")]
+visible = false
+layout_mode = 1
+
+[node name="CreateContent" parent="Windows" unique_id=1702091045 instance=ExtResource("13_e2s0e")]
+visible = false
+layout_mode = 1
+
+[node name="CreateMod" parent="Windows" unique_id=297150352 instance=ExtResource("14_gsxep")]
+visible = false
+layout_mode = 1
+
+[node name="DeleteMod" parent="Windows" unique_id=1548979296 instance=ExtResource("15_v0vrg")]
+visible = false
+layout_mode = 1
+
+[node name="MessagePanel" type="Panel" parent="." unique_id=785214139]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -927.0
+offset_right = -627.0
+offset_bottom = 50.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4iwy")
+script = ExtResource("17_pnhog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MessagePanel" unique_id=405979607]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MessagePanel" unique_id=1121900999]
+libraries/ = SubResource("AnimationLibrary_y07iu")
+
+[node name="full_ready" type="Node" parent="." unique_id=2013466743]
+
+[node name="Button" type="Button" parent="." unique_id=1373156980]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 175.0
+offset_right = 1066.0
+offset_bottom = 220.0
+theme = ExtResource("4_1nqs0")
+
+[node name="Button2" type="Button" parent="." unique_id=105274588]
+layout_mode = 0
+offset_left = 1074.0
+offset_top = 175.0
+offset_right = 1116.0
+offset_bottom = 220.0
+theme = ExtResource("15_3p2gp")
+theme_type_variation = &"ButonRectTiny"
+
+[node name="Button3" type="Button" parent="." unique_id=746101545]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 224.0
+offset_right = 1066.0
+offset_bottom = 269.0
+theme = ExtResource("15_3p2gp")
+theme_type_variation = &"Unborder"
+
+[connection signal="pressed" from="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab" to="." method="_on_new_tab_pressed"]
+[connection signal="pressed" from="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="gui_input" from="WindowBoxPart/TitleBar" to="." method="TitleBar_input"]
+[connection signal="ready" from="full_ready" to="." method="_on_full_ready_ready"]
+
+[editable path="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings"]

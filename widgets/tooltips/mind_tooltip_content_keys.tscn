@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://cjv1ns30b2oox"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_ooldv"]
+[ext_resource type="Script" uid="uid://bff3qy6erktwn" path="res://widgets/tooltips/mind_tooltip_content_keys.gd" id="2_udlkj"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="3_hbrgx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5oswy"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+shadow_size = 10
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_sgr3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c6shj"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8a33f"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udlkj"]
+_data = {
+&"RESET": SubResource("Animation_sgr3t"),
+&"hide": SubResource("Animation_c6shj"),
+&"show": SubResource("Animation_8a33f")
+}
+
+[node name="TooltipContentKeys" type="PanelContainer" unique_id=336026139 node_paths=PackedStringArray("label")]
+offset_right = 233.0
+offset_bottom = 27.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_ooldv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5oswy")
+script = ExtResource("2_udlkj")
+label = NodePath("MarginContainer/MindRTL")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1930017549]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MindRTL" parent="MarginContainer" unique_id=1359297754 instance=ExtResource("3_hbrgx")]
+layout_mode = 2
+text = "[color=#ffd37f]MindTooltipContentKeys"
+fit_content = true
+autowrap_mode = 0
+real_text = "[emb][UI.YELLOW]MindTooltipContentKeys"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer" unique_id=1340272060]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_udlkj")
+speed_scale = 12.0

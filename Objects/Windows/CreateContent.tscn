@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://eu7ssqyyaqgh"]
+[gd_scene format=3 uid="uid://eu7ssqyyaqgh"]
 
-[ext_resource type="Script" path="res://Scripts/Windows/CreateContent.gd" id="1_xfohq"]
+[ext_resource type="Script" uid="uid://d2kyq5oviak28" path="res://Scripts/Windows/CreateContent.gd" id="1_xfohq"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_aiir5"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_xm7ci"]
 [ext_resource type="PackedScene" uid="uid://bopn2g7v7eofr" path="res://Objects/Widgets/MyndustryCheckBox.tscn" id="4_c8dfg"]
@@ -30,7 +30,7 @@ bg_color = Color(1, 0.827451, 0.498039, 1)
 border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="CreateContent" type="Panel"]
+[node name="CreateContent" type="Panel" unique_id=288554476]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -41,7 +41,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_svh2n")
 script = ExtResource("1_xfohq")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1693501007]
 custom_minimum_size = Vector2(650, 400)
 layout_mode = 1
 anchors_preset = 8
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1545038887]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,117 +69,117 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1981659917]
 layout_mode = 2
 
-[node name="Title" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_aiir5")]
+[node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=255284288 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " Створити Контент "
+text = " Создать Контент "
 horizontal_alignment = 1
 real_text = " |CreateContent.Title.text| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1675741587]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 
-[node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_aiir5")]
+[node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=363310315 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "Створити Файл Контенту"
+text = "Создать Файл Контента"
 horizontal_alignment = 1
 vertical_alignment = 1
 real_text = "|CreateContent.Label.text|"
 
-[node name="ContentType" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="ContentType" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1720958971]
 layout_mode = 2
 
-[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/ContentType" instance=ExtResource("2_aiir5")]
+[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/ContentType" unique_id=2096534144 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Тип Контенту:"
+text = "Тип Контента:"
 real_text = "|CreateContent.ContentType.text|:"
 
-[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/ContentType"]
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/ContentType" unique_id=1887858363]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_xm7ci")
 
-[node name="Type" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Type" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=680702318]
 layout_mode = 2
 
-[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Type" instance=ExtResource("2_aiir5")]
+[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=756305507 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Тип:"
 real_text = "|CreateContent.Type.text|:"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Type"]
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1316049148]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_xm7ci")
 
-[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Type"]
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1697320429]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_xm7ci")
 
-[node name="MindustryLabel2" parent="Panel/MarginContainer/VBoxContainer/Type" instance=ExtResource("2_aiir5")]
+[node name="MindustryLabel2" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1068018687 instance=ExtResource("2_aiir5")]
 layout_mode = 2
-text = "Користувацький:"
+text = "Пользовательский:"
 real_text = "|CreateContent.Custom.text|:"
 
-[node name="CheckCustom" parent="Panel/MarginContainer/VBoxContainer/Type" instance=ExtResource("4_c8dfg")]
+[node name="CheckCustom" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=2001463245 instance=ExtResource("4_c8dfg")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Path" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Path" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=170288561]
 layout_mode = 2
 
-[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" instance=ExtResource("2_aiir5")]
+[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1607397769 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Шлях:"
+text = "Путь:"
 real_text = "|CreateContent.Path.text|:"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Path"]
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1935619838]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_xm7ci")
 theme_override_font_sizes/font_size = 16
 text = "123"
 
-[node name="Name" parent="Panel/MarginContainer/VBoxContainer/Path" instance=ExtResource("2_aiir5")]
+[node name="Name" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1918748633 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 text = "/123.json"
 real_text = "/123.json"
 
-[node name="Name" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Name" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2036596328]
 layout_mode = 2
 
-[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" instance=ExtResource("2_aiir5")]
+[node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=2084341244 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Ім'я:"
+text = "Имя:"
 real_text = "|CreateContent.Name.text|:"
 
-[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name"]
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=1075093972]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_xm7ci")
 theme_override_font_sizes/font_size = 16
 text = "123"
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Name"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=2095008263]
 layout_mode = 2
 theme = ExtResource("3_xm7ci")
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
@@ -189,7 +189,7 @@ text = "."
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Name"]
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=176982075]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -202,40 +202,40 @@ popup/item_0/id = 0
 popup/item_1/text = "HJSON"
 popup/item_1/id = 1
 
-[node name="tip" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_aiir5")]
+[node name="tip" parent="Panel/MarginContainer/VBoxContainer" unique_id=921191377 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.0826556, 0.0816599, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.082655564, 0.08165986, 1)
 text = ""
 horizontal_alignment = 1
 real_text = ""
 font_color = Color(0.945098, 0.32549, 0.321569, 1)
 
-[node name="DownPanel" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="DownPanel" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1991631677]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("4_qk3a1")]
+[node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=1676925057 instance=ExtResource("4_qk3a1")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
 real_text = "|CreateContent.Back.text|"
 
-[node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("4_qk3a1")]
+[node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=549216917 instance=ExtResource("4_qk3a1")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
 real_text = "|CreateContent.ChosePath.text|"
 
-[node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" instance=ExtResource("4_qk3a1")]
+[node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=182233487 instance=ExtResource("4_qk3a1")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 real_text_icon_left = ""
 real_text = "|CreateContent.Create.text|"
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1366534884]
 auto_translate_mode = 1
 title = "Open a Directory"
 initial_position = 2
@@ -244,6 +244,7 @@ theme = ExtResource("3_xm7ci")
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
+use_native_dialog = true
 
 [connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/ContentType/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Type/LineEdit" to="." method="_on_TypeLine_edit_text_changed"]

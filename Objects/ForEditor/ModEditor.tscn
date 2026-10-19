@@ -1,14 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://c7xc004po17sb"]
+[gd_scene format=3 uid="uid://c7xc004po17sb"]
 
-[ext_resource type="Script" path="res://Objects/ForEditor/ModEditor.gd" id="1_845tx"]
+[ext_resource type="Script" uid="uid://b38rg0n4e5mcl" path="res://Objects/ForEditor/ModEditor.gd" id="1_845tx"]
 [ext_resource type="PackedScene" uid="uid://ce1e3yxgjuyas" path="res://Objects/ModCard.tscn" id="2_u0hhs"]
 [ext_resource type="PackedScene" uid="uid://b4f0pxojub5i8" path="res://button_tab_content_editor.tscn" id="3_d6n3b"]
+[ext_resource type="Theme" uid="uid://74bv3fejycli" path="res://themes/mindustry.tres" id="4_7gebq"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="4_p5g38"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_pfa80"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="5_y0pox"]
-[ext_resource type="Script" path="res://Objects/ContentEditor.gd" id="6_rws2k"]
+[ext_resource type="Script" uid="uid://ch0y572lscx7x" path="res://Objects/ContentEditor.gd" id="6_rws2k"]
 [ext_resource type="Texture2D" uid="uid://c3lrs63ysubv0" path="res://resources/PointEvent.png" id="7_67jq7"]
-[ext_resource type="Script" path="res://Objects/ForEditor/Save.gd" id="7_g6evi"]
+[ext_resource type="Script" uid="uid://hi8oibrointw" path="res://Objects/ForEditor/Save.gd" id="7_g6evi"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="10_3higr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odpfj"]
@@ -16,6 +17,12 @@ bg_color = Color(0, 0, 0, 1)
 border_width_right = 5
 border_color = Color(0.270588, 0.270588, 0.270588, 1)
 anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qhmhy"]
+color = Color(1, 0.827451, 0.49803922, 1)
+grow_begin = -10.0
+grow_end = -10.0
+thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5rhb"]
 bg_color = Color(1, 0, 0, 1)
@@ -57,24 +64,12 @@ ScrollContainer/styles/panel = SubResource("StyleBoxFlat_ymwp1")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uj0s5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nba43"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2p1ds"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-anti_aliasing_size = 4.72
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vmab"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_detail = 1
@@ -93,12 +88,24 @@ corner_detail = 1
 anti_aliasing = false
 anti_aliasing_size = 4.72
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2p1ds"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vmab"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
-border_color = Color(0.945098, 0.32549, 0.321569, 1)
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
+anti_aliasing_size = 4.72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nba43"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_detail = 1
@@ -106,7 +113,7 @@ anti_aliasing = false
 anti_aliasing_size = 4.72
 
 [sub_resource type="Curve" id="Curve_4kon5"]
-max_value = 2.5
+_limits = [0.0, 2.5, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 2.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -157,7 +164,7 @@ corner_radius_bottom_right = 5
 corner_detail = 1
 anti_aliasing = false
 
-[node name="ModEditor" type="Control" node_paths=PackedStringArray("ContentEditor")]
+[node name="ModEditor" type="Control" unique_id=847141512 node_paths=PackedStringArray("ContentEditor")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,7 +176,7 @@ size_flags_vertical = 3
 script = ExtResource("1_845tx")
 ContentEditor = NodePath("ModEditor/ContentEditor")
 
-[node name="ModEditor" type="HSplitContainer" parent="."]
+[node name="ModEditor" type="HSplitContainer" parent="." unique_id=2120847586]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,23 +185,24 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+split_offsets = PackedInt32Array(400)
 split_offset = 400
 
-[node name="Panel" type="VBoxContainer" parent="ModEditor"]
+[node name="Panel" type="VBoxContainer" parent="ModEditor" unique_id=68892234]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ModCard" parent="ModEditor/Panel" instance=ExtResource("2_u0hhs")]
+[node name="ModCard" parent="ModEditor/Panel" unique_id=1626140393 instance=ExtResource("2_u0hhs")]
 custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="ModEditor/Panel"]
+[node name="Panel" type="Panel" parent="ModEditor/Panel" unique_id=1274412059]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_odpfj")
 
-[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel" unique_id=844170967]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,77 +212,83 @@ grow_vertical = 2
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer" unique_id=882465088]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=612299364]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1233068698]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1868018986]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="all" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="all" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2091575458 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 disabled = true
 text = "All"
 
-[node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2086577866 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Blocks"
 
-[node name="items" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="items" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=956545184 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Items"
 
-[node name="liquids" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_d6n3b")]
+[node name="liquids" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1870660601 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Liquids"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1367736187]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="status" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="status" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=870817027 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Status"
 
-[node name="units" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="units" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=232813014 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Units"
 
-[node name="weathers" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="weathers" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=381690569 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Weathers"
 
-[node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_d6n3b")]
+[node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1699788681 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Sectors"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1820083869]
+layout_mode = 2
+theme = ExtResource("4_7gebq")
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_qhmhy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=592070029]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_p5g38")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1750386946]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=175553483]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="CreateContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
+[node name="CreateContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1659076572 instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
@@ -283,7 +297,7 @@ real_text = "|ModEditor.CreateContent.text|"
 font_size = 14
 icon_size = 18
 
-[node name="ReloadContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
+[node name="ReloadContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1633291444 instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_y0pox")
@@ -292,20 +306,20 @@ real_text = "|ModEditor.ReloadList.text|"
 font_size = 14
 icon_size = 20
 
-[node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer"]
+[node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1283449374]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_y0pox")
-theme_override_colors/font_hover_pressed_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_hover_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_focus_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_focus_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_hover_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.827451, 0.498039, 1)
 text = "(DEBUG) ContentBank (DEBUG)"
 
-[node name="ContentEditor" type="VBoxContainer" parent="ModEditor" node_paths=PackedStringArray("ModEditor", "Tabs", "Editors", "SaveButton")]
+[node name="ContentEditor" type="VBoxContainer" parent="ModEditor" unique_id=162964593 node_paths=PackedStringArray("ModEditor", "Tabs", "Editors", "SaveButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -5
@@ -315,24 +329,24 @@ Tabs = NodePath("Top/Tabs/ScrollContainer/MarginContainer/HBoxContainer")
 Editors = NodePath("Editors/MarginContainer")
 SaveButton = NodePath("Top/Save")
 
-[node name="Top" type="HBoxContainer" parent="ModEditor/ContentEditor"]
+[node name="Top" type="HBoxContainer" parent="ModEditor/ContentEditor" unique_id=1023525181]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Tabs" type="MarginContainer" parent="ModEditor/ContentEditor/Top"]
+[node name="Tabs" type="MarginContainer" parent="ModEditor/ContentEditor/Top" unique_id=307767434]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/ContentEditor/Top/Tabs"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/ContentEditor/Top/Tabs" unique_id=740185184]
 layout_mode = 2
 theme = SubResource("Theme_mh2fg")
 vertical_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="ModEditor/ContentEditor/Top/Tabs/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/ContentEditor/Top/Tabs/ScrollContainer" unique_id=269000235]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -340,31 +354,31 @@ mouse_filter = 2
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/ContentEditor/Top/Tabs/ScrollContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/ContentEditor/Top/Tabs/ScrollContainer/MarginContainer" unique_id=1888779649]
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="VSeparator" type="VSeparator" parent="ModEditor/ContentEditor/Top"]
+[node name="VSeparator" type="VSeparator" parent="ModEditor/ContentEditor/Top" unique_id=377098429]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
-[node name="Save" parent="ModEditor/ContentEditor/Top" instance=ExtResource("5_pfa80")]
+[node name="Save" parent="ModEditor/ContentEditor/Top" unique_id=1279929389 instance=ExtResource("5_pfa80")]
 z_index = -1
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-theme_override_styles/disabled = SubResource("StyleBoxFlat_nba43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0vmab")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_m25i6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2p1ds")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m25i6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0vmab")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nba43")
 disabled = true
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
 icon_size = 20
 real_tooltip_text = "|ModEditor.ContentEditor.Save.text|"
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="ModEditor/ContentEditor/Top/Save"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ModEditor/ContentEditor/Top/Save" unique_id=1768282274]
 modulate = Color(1, 0, 0, 1)
 z_index = 1
 texture_filter = 1
@@ -372,26 +386,26 @@ texture_repeat = 1
 position = Vector2(25, 25)
 emitting = false
 amount = 1
+texture = ExtResource("7_67jq7")
 lifetime = 5.0
 speed_scale = 2.0
-texture = ExtResource("7_67jq7")
 emission_shape = 3
 emission_rect_extents = Vector2(1, 1)
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_4kon5")
 script = ExtResource("7_g6evi")
 
-[node name="VSeparator2" type="VSeparator" parent="ModEditor/ContentEditor/Top"]
+[node name="VSeparator2" type="VSeparator" parent="ModEditor/ContentEditor/Top" unique_id=2099921646]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
-[node name="Editors" type="Panel" parent="ModEditor/ContentEditor"]
+[node name="Editors" type="Panel" parent="ModEditor/ContentEditor" unique_id=314088627]
 z_index = -1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8c1qk")
 
-[node name="MarginContainer" type="MarginContainer" parent="ModEditor/ContentEditor/Editors"]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/ContentEditor/Editors" unique_id=1078003308]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,15 +415,16 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 15
 
-[node name="Window" type="Window" parent="."]
+[node name="Window" type="Window" parent="." unique_id=1547467563]
 snap_2d_vertices_to_pixel = true
+oversampling_override = 1.0
 title = "ContentBank"
 initial_position = 2
 size = Vector2i(560, 375)
 visible = false
 theme = ExtResource("4_p5g38")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Window"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Window" unique_id=1362215475]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -420,7 +435,7 @@ size_flags_vertical = 3
 bbcode_enabled = true
 autowrap_mode = 0
 
-[node name="LoadingWindow" type="Panel" parent="."]
+[node name="LoadingWindow" type="Panel" parent="." unique_id=2070807674]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -431,7 +446,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cgu5g")
 
-[node name="Panel" type="Panel" parent="LoadingWindow"]
+[node name="Panel" type="Panel" parent="LoadingWindow" unique_id=589750217]
 custom_minimum_size = Vector2(800, 225)
 layout_mode = 1
 anchors_preset = 8
@@ -447,7 +462,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
 
-[node name="MarginContainer" type="MarginContainer" parent="LoadingWindow/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="LoadingWindow/Panel" unique_id=328700143]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -459,34 +474,34 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LoadingWindow/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingWindow/Panel/MarginContainer" unique_id=1652914980]
 layout_mode = 2
 
-[node name="Title" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
+[node name="Title" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=317398809 instance=ExtResource("10_3higr")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " Завантаження "
+text = " Загрузка "
 horizontal_alignment = 1
 real_text = " |ModEditor.LoadingWindow.Title| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="HSeparator" type="HSeparator" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=25764502]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 
-[node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" instance=ExtResource("10_3higr")]
+[node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=934589328 instance=ExtResource("10_3higr")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Завантаження: None
+text = "Загрузка: None
 Контент[0/0]: /none.json"
 vertical_alignment = 2
 autowrap_mode = 3
 real_text = "|ModEditor.LoadingWindow.Label.text|: None
 |ModEditor.LoadingWindow.Content.text|[0/0]: /none.json"
 
-[node name="ProgressBar" type="ProgressBar" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=36730187]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme = ExtResource("4_p5g38")
@@ -495,12 +510,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_q6iog")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rn6io")
 value = 50.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=527868982]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_pfa80")]
+[node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=740808985 instance=ExtResource("5_pfa80")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""

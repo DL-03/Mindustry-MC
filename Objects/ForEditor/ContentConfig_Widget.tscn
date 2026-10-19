@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnsmx158sf2fa"]
+[gd_scene format=3 uid="uid://cnsmx158sf2fa"]
 
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_0hum1"]
-[ext_resource type="Script" path="res://Objects/ForEditor/ContentConfig_Widget.gd" id="1_jynon"]
+[ext_resource type="Script" uid="uid://bnhux2pw0wp2l" path="res://Objects/ForEditor/ContentConfig_Widget.gd" id="1_jynon"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="2_vrnr7"]
 [ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="3_kipmo"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="5_qiwot"]
+[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="5_wn5af"]
+[ext_resource type="PackedScene" uid="uid://cjv1ns30b2oox" path="res://widgets/tooltips/mind_tooltip_content_keys.tscn" id="6_wn5af"]
 
-[node name="ContentConfig_Widget" type="HBoxContainer"]
+[node name="ContentConfig_Widget" type="HBoxContainer" unique_id=387267923 node_paths=PackedStringArray("mindTooltip")]
 custom_minimum_size = Vector2(0, 40)
 anchors_preset = 14
 anchor_top = 0.5
@@ -16,23 +18,33 @@ offset_bottom = -11.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jynon")
+mindTooltip = NodePath("NameLabel/MindTooltip")
 
-[node name="Actions" parent="." instance=ExtResource("2_vrnr7")]
-visible = false
+[node name="Actions" parent="." unique_id=1755305955 instance=ExtResource("2_vrnr7")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme = ExtResource("3_kipmo")
 real_text_icon_left = ""
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="NameLabel" parent="." unique_id=1359297754 instance=ExtResource("5_qiwot")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 1
-mouse_filter = 1
-theme = ExtResource("1_0hum1")
 text = "Key"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
+real_text = "[emb]Key"
+
+[node name="MindTooltip" parent="NameLabel" unique_id=259170520 instance=ExtResource("5_wn5af")]
+tooltip_scene = ExtResource("6_wn5af")
+tooltip_text = "[emb][center][UI.YELLOW]|ClassType.tip_parametr|:[] {parametr}
+[UI.YELLOW]|ClassType.tip_type|:[] {type} [UI.GRAY]︙ [UI.YELLOW]|ClassType.tip_default|:[] \"{value}[]\"
+[left][]{description}"
+preview_in_editor = true
+position_mode = 1
+anchor_offset = Vector2(5, 5)
 
 [connection signal="pressed" from="Actions" to="." method="_on_actions_pressed"]
 [connection signal="mouse_entered" from="NameLabel" to="." method="_on_name_label_mouse_entered"]

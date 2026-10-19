@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b21xyr4fk5agj"]
+
+[ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="1_c6shj"]
+
+[node name="MindTooltip" type="Node" unique_id=259170520]
+script = ExtResource("1_c6shj")
+anchor_offset = Vector2(0, 5)

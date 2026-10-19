@@ -231,10 +231,7 @@ func first_scan_content():
 	thread_first_scan = Thread.new()
 	thread_first_scan.start(revursive_first_scaner_content.bind(Path.path_join("content")),Thread.PRIORITY_HIGH)
 	
-	
-	
-	var sc = preload("res://Objects/CustomFileWathcer.cs")
-	var customFileWathcer = sc.new()
+	var customFileWathcer = CustomFileWatcher.new()
 	add_child(customFileWathcer)
 	customFileWathcer.OnCreated.connect(_OnCreated)
 	customFileWathcer.OnChanged.connect(_OnChanged)

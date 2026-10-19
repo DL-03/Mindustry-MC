@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4f0pxojub5i8"]
+[gd_scene format=3 uid="uid://b4f0pxojub5i8"]
 
-[ext_resource type="FontFile" uid="uid://2vk8ghypliii" path="res://resources/font.ttf" id="1_688l7"]
-[ext_resource type="Script" path="res://button_tab_content_editor.gd" id="2_i3if6"]
+[ext_resource type="FontFile" uid="uid://dypmks3dcvxk5" path="res://fonts/font.woff" id="1_688l7"]
+[ext_resource type="Script" uid="uid://biyjaj2laeupq" path="res://button_tab_content_editor.gd" id="2_i3if6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qypd"]
 

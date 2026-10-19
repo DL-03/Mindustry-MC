@@ -1,12 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://r8tkn8o8hlvy"]
+[gd_scene format=3 uid="uid://r8tkn8o8hlvy"]
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_mt4cl"]
-[ext_resource type="Script" path="res://Objects/ForEditor/TabContent_Button.gd" id="2_d0c7l"]
-[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="3_m7gnr"]
-[ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_vxmjg"]
-[ext_resource type="PackedScene" uid="uid://dipdoen4ju8yg" path="res://Objects/MindustryTextLabel.tscn" id="4_125o7"]
-[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_hyb1r"]
-[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="5_ud2jl"]
+[ext_resource type="Script" uid="uid://docj2ekia3eil" path="res://Objects/ForEditor/TabContent_Button.gd" id="2_d0c7l"]
+[ext_resource type="PackedScene" uid="uid://dysrmuh6iglhw" path="res://widgets/mind_utab.tscn" id="8_aqf6u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v6y8"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbour"]
 content_margin_left = 10.0
@@ -23,135 +32,32 @@ expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10sub"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0.145098, 0.145098, 0.145098, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_git5o"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0.145098, 0.145098, 0.145098, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v6y8"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0.145098, 0.145098, 0.145098, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="Shader" id="Shader_xabsi"]
-code = "shader_type canvas_item;
-
-uniform vec2 object_size;
-uniform vec2 text_size;
-uniform int text_vertical_aligment;
-
-
-void vertex() {
-	if (text_vertical_aligment == 1) {
-		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
-	}
-	if (text_vertical_aligment == 2) {
-		VERTEX.y += object_size.y-text_size.y;
-	}
-}
-
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wmpy"]
-shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(47, 17)
-shader_parameter/text_size = Vector2(202, 17)
-shader_parameter/text_vertical_aligment = 1
-
-[node name="TabButton_ContentEditor" type="Button" node_paths=PackedStringArray("NameLabel")]
+[node name="TabButton_ContentEditor" type="PanelContainer" unique_id=117057271 node_paths=PackedStringArray("NameLabel", "ElementChanges")]
 custom_minimum_size = Vector2(50, 30)
-offset_right = 182.0
+offset_right = 175.0
 offset_bottom = 30.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_mt4cl")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_kbour")
-theme_override_styles/hover = SubResource("StyleBoxFlat_10sub")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_git5o")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8v6y8")
 script = ExtResource("2_d0c7l")
-NameLabel = NodePath("MarginContainer/HBoxContainer/Text")
+NameLabel = NodePath("Tab/MarginContainer/HBoxContainer/Label")
+ElementChanges = NodePath("Tab/MarginContainer/HBoxContainer/Changes")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 124.0
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="Tab" parent="." unique_id=578091389 instance=ExtResource("8_aqf6u")]
 layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 5
+theme_override_styles/normal = SubResource("StyleBoxFlat_8v6y8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8v6y8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8v6y8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kbour")
 
-[node name="Icon" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_vxmjg")]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="MarginContainer" parent="Tab" index="0" unique_id=2088221355]
+offset_top = -13.5
+offset_right = 175.0
+offset_bottom = 13.5
 
-[node name="Text" parent="MarginContainer/HBoxContainer" instance=ExtResource("4_125o7")]
-material = SubResource("ShaderMaterial_2wmpy")
-layout_mode = 2
-text = "[color=e55454ff]None"
-fit_content = true
-real_text = "[UI.RED]None"
-text_vertical_aligment = 1
+[connection signal="close" from="Tab" to="." method="_on_tab_close"]
+[connection signal="pressed" from="Tab" to="." method="_on_tab_pressed"]
 
-[node name="Save" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_ud2jl")]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
-theme_override_font_sizes/font_size = 24
-text = "*"
-real_text = "*"
-font_color = Color(1, 0.827451, 0.498039, 1)
-
-[node name="Close" parent="MarginContainer/HBoxContainer" instance=ExtResource("5_hyb1r")]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("3_m7gnr")
-icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon_left = ""
-icon_size = 20
-real_tooltip_text = "[UI.RED]|Main.UpPanel.Tab.Close.text|"
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]
-[connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]
-[connection signal="resized" from="MarginContainer/HBoxContainer" to="." method="_on_h_box_container_resized"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[editable path="Tab"]
+[editable path="Tab/MarginContainer/HBoxContainer/Close"]

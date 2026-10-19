@@ -2,6 +2,9 @@ class_name ModCard
 extends Button
 
 
+@export var mindRTL: MindRTL
+@export var filePathElement: Node
+
 var CLASS_NAME = "ModCard"
 
 var Path = ""
@@ -13,21 +16,27 @@ var contentClass: ContentClass:
 var mod_explorer
 
 
-
 func _contentClass_updated():
 	if typeof(contentClass.FullData) == TYPE_DICTIONARY:
-		if "displayName" in contentClass.FullData:
-			$MarginContainer/HBoxContainer/VBoxContainer/displayName.real_text = contentClass.FullData["displayName"]
-		if "name" in contentClass.FullData:
-			$MarginContainer/HBoxContainer/VBoxContainer/name.text = contentClass.FullData["name"]
-		if "author" in contentClass.FullData:
-			$MarginContainer/HBoxContainer/VBoxContainer/author.real_text = contentClass.FullData["author"]
-		if "version" in contentClass.FullData:
-			$MarginContainer/HBoxContainer/VBoxContainer/version.text = str(contentClass.FullData["version"])
+		var _displayName = "[UI.RED]None"
+		var _name = "[UI.RED]None"
+		var _author = "[UI.RED]None"
+		var _version = "[UI.RED]None"
+		
+		if contentClass.FullData != null:
+			if "displayName" in contentClass.FullData:
+				_displayName = "[UI.YELLOW]"+contentClass.FullData["displayName"]
+			if "name" in contentClass.FullData:
+				_name = "[UI.YELLOW]"+contentClass.FullData["name"]
+			if "author" in contentClass.FullData:
+				_author = "[]"+contentClass.FullData["author"]
+			if "version" in contentClass.FullData:
+				_version = "[]"+contentClass.FullData["version"]
 	
-	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_text = ModEditor.modClass.Path
-	$MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_tooltip_text = "[UI.YELLOW]|CustomExplorer.Element.CopyPath.text|![WHITE]\n"+ModEditor.modClass.Path
-	
+		mindRTL.real_text = "[emb]"+_displayName+"\n"+_name+"\n"+_author+"\n"+_version
+
+	filePathElement.path = ModEditor.modClass.Path
+
 	if ModEditor.modClass.ModType.to_lower() == "folder":
 		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_text = ""
 		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Text.Folder|"
@@ -102,10 +111,7 @@ func _set_TypeButton(value):
 		$MarginContainer/HBoxContainer/MarginContainer/TextureRect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 		#$MarginContainer/HBoxContainer/MarginContainer/TextureRect.size_flags_horizontal = Control.SizeFlags.SIZE_SHRINK_BEGIN
 		#$MarginContainer/HBoxContainer/MarginContainer/TextureRect.size_flags_vertical = Control.SizeFlags.SIZE_EXPAND_FILL
-		$MarginContainer/HBoxContainer/VBoxContainer/displayName.text_aligment = 0
-		$MarginContainer/HBoxContainer/VBoxContainer/name.horizontal_alignment = 0
-		$MarginContainer/HBoxContainer/VBoxContainer/author.text_aligment = 0
-		$MarginContainer/HBoxContainer/VBoxContainer/version.text_aligment = 0
+		mindRTL.horizontal_alignment = 0
 	else:
 		$MarginContainer/HBoxContainer.vertical = true
 		
@@ -115,18 +121,7 @@ func _set_TypeButton(value):
 		#$MarginContainer/HBoxContainer/MarginContainer/TextureRect.size_flags_horizontal = Control.SizeFlags.SIZE_EXPAND_FILL
 		#$MarginContainer/HBoxContainer/MarginContainer/TextureRect.size_flags_vertical = Control.SizeFlags.SIZE_SHRINK_BEGIN
 		
-		$MarginContainer/HBoxContainer/VBoxContainer/displayName.text_aligment = 1
-		$MarginContainer/HBoxContainer/VBoxContainer/name.horizontal_alignment = 1
-		$MarginContainer/HBoxContainer/VBoxContainer/author.text_aligment = 1
-		$MarginContainer/HBoxContainer/VBoxContainer/version.text_aligment = 1
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func setData():
-	pass
-
+		mindRTL.horizontal_alignment = 1
 
 func open_press():
 	var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
@@ -138,17 +133,13 @@ func open_press():
 	$/root/Main/V1/ModManager.visible = false
 
 
-
-@onready var InfoPanel = $MarginContainer/HBoxContainer/VBoxContainer
 @onready var ControlPanel = $MarginContainer/HBoxContainer/VFlowContainer
 
 func toggle_visible():
 	Visible = not Visible
 	
 	
-	InfoPanel.get_node("author").visible = Visible
-	InfoPanel.get_node("version").visible = Visible
-	InfoPanel.get_node("HBoxContainer").visible = Visible
+	filePathElement.visible = Visible
 
 	
 	if Visible:
@@ -176,17 +167,6 @@ func _on_resized():
 func _on_pressed():
 	if ModEditor != null:
 		ModEditor.ContentEditor.open_from_path(contentClass)
-
-
-func _on_open_folder_pressed():
-	if OS.get_name() == "Windows":
-		OS.execute("explorer.exe", PackedStringArray([ $MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Path.real_text.simplify_path().replace("/", "\\")]))
-		#MessageAPI.info("Path Copied!")
-		#OS.execute("start", ["\"\"", ProjectSettings.globalize_path(InfoPanel.get_node("HBoxContainer/Path").real_text.simplify_path() + "/")])
-func _on_path_copy_pressed():
-	DisplayServer.clipboard_set(InfoPanel.get_node("HBoxContainer/Path").real_text)
-	MessageAPI.info("|CustomExplorer.Message.PathCopied|!")
-
 
 func _on_save_pressed():
 	if ModEditor.modClass.ModType.to_lower() == "archive":
