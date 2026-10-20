@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvvek6slgx1sg"]
 
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_mb7ku"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_mb7ku"]
 [ext_resource type="Script" uid="uid://bc46c3m7xcj6q" path="res://Objects/Widgets/MindustryLabel.gd" id="2_ky5yo"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="3_r36ut"]
 

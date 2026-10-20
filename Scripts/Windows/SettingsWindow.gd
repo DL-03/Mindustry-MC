@@ -209,47 +209,47 @@ func password():
 	var password = $MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/LineEdit.text.to_lower()
 	
 	if password == "0.21" or password == "v0.21":
-		MessageAPI.info("|Secret.0.21|")
+		Notifications.info("|Secret.0.21|")
 
 
 	elif password == "mywidgets":
-		MessageAPI.info("Godot version MMC not have MyWidgets")
+		Notifications.info("Godot version MMC not have MyWidgets")
 	else:
 		if password == "1234":
-			MessageAPI.info("|Secret.1234|")
+			Notifications.info("|Secret.1234|")
 
 
 		elif password == "dl" or password == "dl03":
-			MessageAPI.info("|Secret.DL|")
+			Notifications.info("|Secret.DL|")
 		elif password == "vladislav117" or password == "117":
-			MessageAPI.info("|Secret.Vladislav117|")
+			Notifications.info("|Secret.Vladislav117|")
 		elif password == "exmii" or password == "exmiii":
-			MessageAPI.info("|Secret.Exmii|")
+			Notifications.info("|Secret.Exmii|")
 		elif password == "ivandog11" or password == "ivandog11" or password == "псина сутулая":
-			MessageAPI.info("|Secret.IvanDog11|")
+			Notifications.info("|Secret.IvanDog11|")
 		elif password == "neu" or password == "neu512":
-			MessageAPI.info("|Secret.Neu|")
+			Notifications.info("|Secret.Neu|")
 		elif password == "axy" or password == "axylua":
-			MessageAPI.info("|Secret.axylua|")
+			Notifications.info("|Secret.axylua|")
 		
 		elif password == "jojo":
-			MessageAPI.info("|Secret.jojo|")
+			Notifications.info("|Secret.jojo|")
 
 		elif password == "_ignatusik_" or password == "ignatusik" or password == "игнатусик":
-			MessageAPI.info("|Secret._ignatusik_|")
+			Notifications.info("|Secret._ignatusik_|")
 
 		elif password == "пароль" or password == "password":
-			MessageAPI.info("|Secret.Password|")
+			Notifications.info("|Secret.Password|")
 		elif password == "код" or password == "code":
-			MessageAPI.info("|Secret.Code|")
+			Notifications.info("|Secret.Code|")
 		elif password == "ximalider":
-			MessageAPI.info("|Secret.Ximalider|")
+			Notifications.info("|Secret.Ximalider|")
 		elif password == "travel":
-			MessageAPI.info("|Secret.Travel|")
+			Notifications.info("|Secret.Travel|")
 		elif password == "секрет" or password == "secret":
-			MessageAPI.info("|Secret.Secret|")
+			Notifications.info("|Secret.Secret|")
 		else:
-			MessageAPI.info("|Secret.!else!|")
+			Notifications.info("|Secret.!else!|")
 
 
 func _on_enter_pressed():

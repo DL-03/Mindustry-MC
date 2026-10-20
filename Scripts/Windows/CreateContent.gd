@@ -190,17 +190,17 @@ func _on_chose_path_pressed():
 func _on_file_dialog_dir_selected(dir):
 	if ContentTypeOption.selected == 0:
 		if len(dir.simplify_path()) < len(modClass.Path.simplify_path().path_join("content/blocks")):
-			MessageAPI.error("Error path root false")
+			Notifications.error("Error path root false")
 			return
 		PathLine.text = dir.simplify_path().substr(len(modClass.Path.simplify_path().path_join("content/blocks/")))
 	elif ContentTypeOption.selected == 1:
 		if len(dir.simplify_path()) < len(modClass.Path.simplify_path().path_join("content/items")):
-			MessageAPI.error("Error path root false")
+			Notifications.error("Error path root false")
 			return
 		PathLine.text = dir.simplify_path().substr(len(modClass.Path.simplify_path().path_join("content/items/")))
 	elif ContentTypeOption.selected == 2:
 		if len(dir.simplify_path()) < len(modClass.Path.simplify_path().path_join("content/liquids")):
-			MessageAPI.error("Error path root false")
+			Notifications.error("Error path root false")
 			return
 		PathLine.text = dir.simplify_path().substr(len(modClass.Path.simplify_path().path_join("content/liquids/")))
 		

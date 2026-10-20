@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dysrmuh6iglhw"]
 
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_qcote"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_qcote"]
 [ext_resource type="Script" uid="uid://oq30e2hacfsi" path="res://widgets/mind_utab.gd" id="2_qcote"]
 [ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="3_qcote"]
 [ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="4_uy63y"]
@@ -78,9 +78,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -12.5
-offset_right = 124.0
-offset_bottom = 12.5
+offset_top = -13.5
+offset_right = 175.0
+offset_bottom = 13.5
 grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
@@ -127,7 +127,7 @@ custom_maximum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_type_variation = &"Unborder"
+theme_type_variation = &"ButtonUnborderTiny"
 text = ""
 
 [node name="Label" parent="MarginContainer/HBoxContainer/Close/MarginContainer" parent_id_path=PackedInt32Array(529493969, 32214607) index="0" unique_id=1969564989]

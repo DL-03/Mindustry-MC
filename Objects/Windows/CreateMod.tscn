@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxgsarevo0pkg" path="res://Scripts/Windows/CreateMod.gd" id="1_mmdjo"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_rbyj6"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_vndes"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_vndes"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_6ruhw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svh2n"]
@@ -30,7 +30,6 @@ border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="CreateMod" type="Panel" unique_id=177122460]
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2kyq5oviak28" path="res://Scripts/Windows/CreateContent.gd" id="1_xfohq"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_aiir5"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_xm7ci"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_xm7ci"]
 [ext_resource type="PackedScene" uid="uid://bopn2g7v7eofr" path="res://Objects/Widgets/MyndustryCheckBox.tscn" id="4_c8dfg"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_qk3a1"]
 
@@ -31,7 +31,6 @@ border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="CreateContent" type="Panel" unique_id=288554476]
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkavys7f1pirs"]
 
 [ext_resource type="Script" uid="uid://ebkh2mbriht4" path="res://Objects/ForEditor/content_frame_rect.gd" id="1_xngna"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="2_cvm5d"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="2_cvm5d"]
 [ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_1yhoy"]
 [ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button.tscn" id="3_tqqso"]
 
@@ -119,6 +119,7 @@ layout_mode = 2
 [node name="CreateKey" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel" unique_id=529493969 instance=ExtResource("3_tqqso")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+text = "+ Create Key +"
 
 [node name="LeftIcon" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
 text = "+"

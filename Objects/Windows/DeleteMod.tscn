@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://vsvpa6ywikp2"]
+[gd_scene format=3 uid="uid://vsvpa6ywikp2"]
 
-[ext_resource type="Script" path="res://Scripts/Windows/DeleteMod.gd" id="1_72wha"]
+[ext_resource type="Script" uid="uid://bnh3d4u0n2rcj" path="res://Scripts/Windows/DeleteMod.gd" id="1_72wha"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_cpqxq"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_scntm"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_scntm"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_40crj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgu5g"]
@@ -29,14 +29,14 @@ bg_color = Color(0.945098, 0.32549, 0.321569, 1)
 border_width_top = 2
 border_color = Color(0.945098, 0.32549, 0.321569, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpn5o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8xsv"]
 bg_color = Color(0, 0, 0, 1)
 draw_center = false
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.945098, 0.32549, 0.321569, 1)
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -59,14 +59,14 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8xsv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpn5o"]
 bg_color = Color(0, 0, 0, 1)
 draw_center = false
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -121,8 +121,7 @@ func _process(delta):
 	material.set_shader_parameter(\"texture_size\", size)
 "
 
-[node name="DeleteMod" type="Panel"]
-anchors_preset = 15
+[node name="DeleteMod" type="Panel" unique_id=600546763]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -132,7 +131,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cgu5g")
 script = ExtResource("1_72wha")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1545955802]
 custom_minimum_size = Vector2(500, 200)
 layout_mode = 1
 anchors_preset = 8
@@ -148,7 +147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ogyua")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1311578167]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,53 +159,53 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1765323543]
 layout_mode = 2
 
-[node name="Label" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_cpqxq")]
+[node name="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1341393637 instance=ExtResource("2_cpqxq")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.0826556, 0.0816599, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.082655564, 0.08165986, 1)
 theme_override_font_sizes/font_size = 20
 text = "!  Delete Mod  !"
 horizontal_alignment = 1
 real_text = "!  Delete Mod  !"
 font_color = Color(0.945098, 0.32549, 0.321569, 1)
 
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=272169872]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_ic54b")
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=2027991952]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_scntm")
 text = "Name"
 vertical_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=853308193]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_40crj")]
+[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1002614076 instance=ExtResource("4_40crj")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
 real_text = "|RDW.Cancel.text|"
 
-[node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_40crj")]
+[node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=209904677 instance=ExtResource("4_40crj")]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
 real_text_icon_left = ""
 real_text = "|RDW.Delete.text|"
 h_aligment = null
 
-[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete"]
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" unique_id=793908844]
 z_index = -1
 material = SubResource("ShaderMaterial_6jvfk")
 layout_mode = 1

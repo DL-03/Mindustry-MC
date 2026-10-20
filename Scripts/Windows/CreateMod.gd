@@ -84,7 +84,7 @@ func _on_create_pressed():
 					break
 		$/root/Main/V1/ModManager.visible = false
 		
-		MessageAPI.info("Mod Created")
+		Notifications.info("Mod Created")
 
 
 

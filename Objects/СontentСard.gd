@@ -30,20 +30,18 @@ func _set_contentClass(value):
 	
 	if contentClass.Data != null:
 		if typeof(contentClass.Data) == TYPE_DICTIONARY:
+			var _name = ""
 			if "name" in contentClass.Data:
-				$HBoxContainer/VBoxContainer/Name.real_text = "[emb][UI.YELLOW]"+str(contentClass.Data["name"])
-				#$HBoxContainer/VBoxContainer/Name.real_tooltip_text = str(contentClass.Data["name"])
-				pass
+				if contentClass.Data["name"] == "":
+					_name = contentClass.Path.get_file()
+				else:
+					_name = contentClass.Data["name"]
 			else:
-				$HBoxContainer/VBoxContainer/Name.real_text = "[emb][UI.RED]none"
-				pass
-
+				_name = contentClass.Path.get_file()
+			$HBoxContainer/VBoxContainer/Name.real_text = "[emb][UI.YELLOW]"+_name
 
 func _on_pressed():
 	ContentEditor.open_from_path(contentClass)
-
-
-
 
 func _on_delete_pressed():
 	$/root/Main/Windows/RenameDuplicateWindow.open(contentClass, 0)

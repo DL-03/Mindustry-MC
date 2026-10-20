@@ -1,17 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://h7qbb7eroerv"]
+[gd_scene format=3 uid="uid://h7qbb7eroerv"]
 
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_8qfpr"]
-[ext_resource type="Script" path="res://Objects/Widgets/MyColorEdit.gd" id="1_yr1g5"]
+[ext_resource type="Script" uid="uid://k88lqgkp5t6y" path="res://Objects/Widgets/MyColorEdit.gd" id="1_yr1g5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdefq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fltmy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnp3e"]
 draw_center = false
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li4hr"]
@@ -23,16 +20,18 @@ border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnp3e"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fltmy"]
 draw_center = false
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
+border_color = Color(1, 0.827451, 0.498039, 1)
 anti_aliasing = false
 
-[node name="MyColorEdit" type="HBoxContainer" node_paths=PackedStringArray("Line_Edit", "ColorButton")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gdefq"]
+
+[node name="MyColorEdit" type="HBoxContainer" unique_id=1542268649 node_paths=PackedStringArray("Line_Edit", "ColorButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,23 +43,22 @@ script = ExtResource("1_yr1g5")
 Line_Edit = NodePath("LineEdit")
 ColorButton = NodePath("ColorPickerButton")
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1352384434]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_8qfpr")
 text = "#a020f0ff"
 placeholder_text = "#FF00FF00"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=679004153]
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gdefq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fltmy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_li4hr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xnp3e")
-color = Color(0.627451, 0.12549, 0.941176, 1)
+theme_override_styles/pressed = SubResource("StyleBoxFlat_li4hr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fltmy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gdefq")
+color = Color(0.627451, 0.1254902, 0.9411765, 1)
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

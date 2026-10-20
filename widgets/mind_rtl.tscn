@@ -1,7 +1,230 @@
 [gd_scene format=3 uid="uid://dt75s6lh5d4x0"]
 
 [ext_resource type="Script" uid="uid://b171d0do4m4r2" path="res://widgets/mind_rtl.gd" id="1_kptve"]
-[ext_resource type="Theme" uid="uid://74bv3fejycli" path="res://themes/mindustry.tres" id="2_e8pyo"]
+[ext_resource type="FontVariation" uid="uid://csmn47yeel1hm" path="res://fonts/MindustryFont.tres" id="1_lx4yd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h71u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a34d4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly2cf"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ji18"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.27058825, 0.27058825, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmm32"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8bts"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svsd1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtrt1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72em0"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjfsy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvkd0"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wg8ic"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ohacx"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7ipc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s4i0f"]
+color = Color(1, 0.827451, 0.49803922, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.27058825, 0.27058825, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_jvaal"]
+default_font = ExtResource("1_lx4yd")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/styles/disabled = SubResource("StyleBoxFlat_7h71u")
+Button/styles/focus = SubResource("StyleBoxFlat_a34d4")
+Button/styles/hover = SubResource("StyleBoxFlat_ly2cf")
+Button/styles/normal = SubResource("StyleBoxFlat_0ji18")
+Button/styles/pressed = SubResource("StyleBoxFlat_fmm32")
+ButtonRectTiny/base_type = &"Button"
+ButtonRectTiny/styles/hover = SubResource("StyleBoxFlat_l8bts")
+ButtonRectTiny/styles/normal = SubResource("StyleBoxFlat_svsd1")
+ButtonRectTiny/styles/pressed = SubResource("StyleBoxFlat_wtrt1")
+ButtonUnborder/base_type = &"Button"
+ButtonUnborder/styles/hover = SubResource("StyleBoxFlat_72em0")
+ButtonUnborder/styles/normal = SubResource("StyleBoxEmpty_tjfsy")
+ButtonUnborder/styles/pressed = SubResource("StyleBoxFlat_hvkd0")
+ButtonUnborderTiny/base_type = &"Button"
+ButtonUnborderTiny/styles/hover = SubResource("StyleBoxFlat_wg8ic")
+ButtonUnborderTiny/styles/normal = SubResource("StyleBoxEmpty_ohacx")
+ButtonUnborderTiny/styles/pressed = SubResource("StyleBoxFlat_b7ipc")
+HSeparator/styles/separator = SubResource("StyleBoxLine_s4i0f")
+Panel/styles/panel = SubResource("StyleBoxFlat_sugp2")
 
 [node name="MindRTL" type="RichTextLabel" unique_id=1359297754 node_paths=PackedStringArray("emb_label")]
 clip_contents = false
@@ -13,11 +236,11 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 1
-theme = ExtResource("2_e8pyo")
+theme = SubResource("Theme_jvaal")
 bbcode_enabled = true
-text = "[color=#ffd37f]MindRTL.HI . 123123  123"
+text = "MindRTL"
 script = ExtResource("1_kptve")
-real_text = "[emb][UI.YELLOW]MindRTL.[emb offset=10 color=#700]HI [emb color=#f00]. 123123 [/emb] 123"
+real_text = "[emb]MindRTL"
 emb_label = NodePath("emboss_bottom")
 
 [node name="emboss_bottom" type="Control" parent="." unique_id=1848420830]

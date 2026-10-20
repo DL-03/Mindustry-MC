@@ -86,7 +86,7 @@ func _on_delete_pressed():
 		
 		
 		if final_delete_process >= 7:
-			MessageAPI.info("WIP")
+			Notifications.info("WIP")
 			#DirAccess.remove_absolute(Path)
 			#$/root/Main/V1/ModManager/VBoxContainer/Mod_Explorer.current_path=$/root/Main/V1/ModManager/VBoxContainer/Mod_Explorer.current_path
 			hide()

@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciaryiabwiifg"]
+[gd_scene format=3 uid="uid://ciaryiabwiifg"]
 
-[ext_resource type="Script" path="res://Objects/ObjectIcon.gd" id="1_dmfv7"]
+[ext_resource type="Script" uid="uid://dxfuu5yj0kfx1" path="res://Objects/ObjectIcon.gd" id="1_dmfv7"]
 [ext_resource type="Texture2D" uid="uid://dd3tc3t6hht75" path="res://resources/icons/error.png" id="1_yytgo"]
 
 [sub_resource type="Shader" id="Shader_uvqyj"]
@@ -64,10 +64,10 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3kp4"]
 shader = SubResource("Shader_uvqyj")
-shader_parameter/u_campos = null
+shader_parameter/u_campos = Vector2(0, 0)
 shader_parameter/water_effect = false
 
-[node name="Main" type="TextureRect"]
+[node name="Main" type="TextureRect" unique_id=241438590]
 texture_filter = 1
 material = SubResource("ShaderMaterial_d3kp4")
 offset_left = 251.5
@@ -77,7 +77,7 @@ texture = ExtResource("1_yytgo")
 expand_mode = 1
 script = ExtResource("1_dmfv7")
 
-[node name="Rotator" type="TextureRect" parent="."]
+[node name="Rotator" type="TextureRect" parent="." unique_id=149727607]
 visible = false
 texture_filter = 1
 layout_mode = 1
@@ -89,7 +89,7 @@ grow_vertical = 2
 texture = ExtResource("1_yytgo")
 expand_mode = 1
 
-[node name="Top" type="TextureRect" parent="."]
+[node name="Top" type="TextureRect" parent="." unique_id=36890770]
 visible = false
 texture_filter = 1
 layout_mode = 1

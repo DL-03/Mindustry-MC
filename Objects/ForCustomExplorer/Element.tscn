@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ctvf6s35ig4fm"]
 
-[ext_resource type="Theme" uid="uid://358iq8huos60" path="res://resources/themes/MindustryRect.tres" id="1_j720t"]
-[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="1_ma5oc"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_yd6o6"]
 [ext_resource type="Script" uid="uid://d0gjlyhd3d65s" path="res://Scripts/ForCustomExplorer/Element.gd" id="2_gng34"]
 [ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="3_2euqq"]
 [ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="5_b40nh"]
@@ -16,7 +15,8 @@ offset_bottom = 50.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
-theme = ExtResource("1_j720t")
+theme = ExtResource("1_yd6o6")
+theme_type_variation = &"ButtonRect"
 script = ExtResource("2_gng34")
 richLabel = NodePath("MarginContainer/HBoxContainer/MarginContainer/InfoPanel/MindRTL")
 filePathElement = NodePath("MarginContainer/HBoxContainer/MarginContainer/InfoPanel/FilePathElement")
@@ -56,7 +56,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 1
-theme = ExtResource("1_j720t")
+theme_type_variation = &"PanelRect"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=2045647761]
 layout_mode = 1
@@ -119,7 +119,7 @@ theme_override_constants/v_separation = 0
 [node name="Duplicate" parent="MarginContainer/HBoxContainer/ControlPanel" unique_id=1283043037 instance=ExtResource("5_gap6n")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("1_ma5oc")
+theme_type_variation = &"ButtonUnborder"
 real_text_icon_right = "<null>"
 icon_size = 20
 real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
@@ -127,7 +127,7 @@ real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
 [node name="Rename" parent="MarginContainer/HBoxContainer/ControlPanel" unique_id=492024996 instance=ExtResource("5_gap6n")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("1_ma5oc")
+theme_type_variation = &"ButtonUnborder"
 real_text_icon_right = "<null>"
 icon_size = 20
 real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
@@ -135,7 +135,7 @@ real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
 [node name="Delete" parent="MarginContainer/HBoxContainer/ControlPanel" unique_id=88714318 instance=ExtResource("5_gap6n")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("1_ma5oc")
+theme_type_variation = &"ButtonUnborder"
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_right = "<null>"
 icon_size = 20

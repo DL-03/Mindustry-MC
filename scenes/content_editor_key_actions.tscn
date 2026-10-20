@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfumaq1wxc5fr" path="res://scenes/content_editor_key_actions.gd" id="1_hiqte"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_4xc0a"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_r0jha"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_r0jha"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_qbwpq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svh2n"]
@@ -122,7 +122,6 @@ func _process(delta):
 "
 
 [node name="ContentEditorKeyActions" type="Panel" unique_id=177122460 node_paths=PackedStringArray("NameLine")]
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

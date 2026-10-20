@@ -37,7 +37,7 @@ func upd():
 
 func _on_copy_pressed() -> void:
 	DisplayServer.clipboard_set(path)
-	MessageAPI.info("|PathCopied|!")
+	Notifications.info("|PathCopied|!")
 
 func _on_open_pressed() -> void:
 	OS.shell_show_in_file_manager(path)

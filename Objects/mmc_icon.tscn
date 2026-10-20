@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://brm8hehewj68e"]
+[gd_scene format=3 uid="uid://brm8hehewj68e"]
 
-[ext_resource type="Script" path="res://Objects/mmc_icon.gd" id="1_4s4q7"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="1_xgtn7"]
+[ext_resource type="Script" uid="uid://dnm1cm3o4yi3k" path="res://Objects/mmc_icon.gd" id="1_4s4q7"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_xgtn7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h00mh"]
 bg_color = Color(1, 0.827451, 0.498039, 1)

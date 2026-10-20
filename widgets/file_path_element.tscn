@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://8ld788kwrjm6"]
 
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_4tu0p"]
 [ext_resource type="Script" uid="uid://tvgefgw52x30" path="res://widgets/file_path_element.gd" id="1_iemcp"]
 [ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="1_t7olw"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="2_h2bm6"]
@@ -7,6 +8,7 @@
 [node name="FilePathElement" type="HBoxContainer" unique_id=1238661133]
 offset_right = 44.0
 offset_bottom = 20.0
+theme = ExtResource("1_4tu0p")
 script = ExtResource("1_iemcp")
 path = "/"
 
@@ -16,7 +18,7 @@ custom_maximum_size = Vector2(-1, 25)
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"Unborder"
+theme_type_variation = &"ButtonUnborderTiny"
 text = "/"
 clip_text = true
 
@@ -55,7 +57,7 @@ custom_minimum_size = Vector2(25, 25)
 custom_maximum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_type_variation = &"ButonRectTiny"
+theme_type_variation = &"ButtonRectTiny"
 text = ""
 
 [node name="MarginContainer" parent="Open" index="0" unique_id=32214607]

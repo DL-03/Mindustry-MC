@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://7hscl65ylfo1"]
 
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_f4tgy"]
 [ext_resource type="Script" uid="uid://bks6kuh1on1yf" path="res://widgets/tooltips/mind_tooltip_default.gd" id="1_l3qmc"]
 [ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="2_f4tgy"]
 
@@ -142,6 +143,7 @@ offset_bottom = 27.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 1
+theme = ExtResource("1_f4tgy")
 theme_override_styles/panel = SubResource("StyleBoxFlat_c6shj")
 script = ExtResource("1_l3qmc")
 label = NodePath("MindRTL")

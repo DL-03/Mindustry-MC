@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://stbm820mvq0y"]
+
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="2_mu4oa"]
+[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button.tscn" id="3_lc104"]
+
+[node name="TestUi" type="Control" unique_id=1687013704]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1623617474]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Кнопки" type="VBoxContainer" parent="TabContainer" unique_id=2014139230]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Button" type="Button" parent="TabContainer/Кнопки" unique_id=1541992188]
+layout_mode = 2
+text = "Button"
+
+[node name="Button_ButtonRect" type="Button" parent="TabContainer/Кнопки" unique_id=471957049]
+layout_mode = 2
+theme_type_variation = &"ButtonRect"
+text = "Button.ButtonRect"
+
+[node name="Button_ButonRectTiny" type="Button" parent="TabContainer/Кнопки" unique_id=556118385]
+layout_mode = 2
+theme_type_variation = &"ButtonRectTiny"
+text = "Button.ButtonRectTiny"
+
+[node name="Button_Unborder" type="Button" parent="TabContainer/Кнопки" unique_id=249922721]
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+text = "Button.ButtonUnborder"
+
+[node name="Button_UnborderTiny" type="Button" parent="TabContainer/Кнопки" unique_id=1695311227]
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+text = "Button.ButtonUnborderTiny"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Кнопки" unique_id=78303329]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MindButton" parent="TabContainer/Кнопки" unique_id=529493969 instance=ExtResource("2_mu4oa")]
+layout_mode = 2
+
+[node name="MindIButton" parent="TabContainer/Кнопки" unique_id=168072722 instance=ExtResource("3_lc104")]
+layout_mode = 2
+
+[editable path="TabContainer/Кнопки/MindButton"]

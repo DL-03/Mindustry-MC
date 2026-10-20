@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cdltj63vp0i8n"]
+
+[ext_resource type="Script" uid="uid://7nbbdqfenjhw" path="res://libs/notifications.gd" id="1_2bn2y"]
+[ext_resource type="PackedScene" uid="uid://coxcf0tv1x83" path="res://widgets/notification.tscn" id="3_nbead"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bn2y"]
+bg_color = Color(0, 0, 0, 0.686275)
+border_width_left = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.686275)
+shadow_size = 15
+anti_aliasing = false
+
+[node name="Notifications" type="Control" unique_id=387536133 node_paths=PackedStringArray("listElement")]
+z_index = 200
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_2bn2y")
+notificationPrefab = ExtResource("3_nbead")
+listElement = NodePath("Panel/MarginContainer/List")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=469439036]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -15.0
+offset_right = 15.0
+offset_bottom = 20.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2bn2y")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1244363613]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="List" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=243402920]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[connection signal="child_order_changed" from="Panel/MarginContainer/List" to="." method="_on_list_child_order_changed"]

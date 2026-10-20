@@ -2,40 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bg1dhvfwwl2uc" path="res://Objects/ModCard.gd" id="1_704rw"]
 [ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="1_delpm"]
-[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="2_anmdr"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="2_anmdr"]
 [ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="3_6fml3"]
 [ext_resource type="PackedScene" uid="uid://8ld788kwrjm6" path="res://widgets/file_path_element.tscn" id="4_6fml3"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="5_2i6kr"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_6oqlx"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e46hn"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crk1q"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia014"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xaex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rveqn"]
 draw_center = false
@@ -55,10 +26,8 @@ anchor_right = 1.0
 offset_right = -778.0
 offset_bottom = 130.0
 grow_horizontal = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_e46hn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_crk1q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ia014")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_5xaex")
+theme = ExtResource("2_anmdr")
+theme_type_variation = &"ButtonRect"
 script = ExtResource("1_704rw")
 mindRTL = NodePath("MarginContainer/HBoxContainer/Inforamtion/VBoxContainer/MindRTL")
 filePathElement = NodePath("MarginContainer/HBoxContainer/Inforamtion/VBoxContainer/FilePathElement")
@@ -144,7 +113,7 @@ vertical = true
 [node name="Open" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=274686462 instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("2_anmdr")
+theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "Open"
@@ -152,7 +121,7 @@ real_tooltip_text = "Open"
 [node name="Save" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1415178684 instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("2_anmdr")
+theme_type_variation = &"ButtonUnborderTiny"
 icon_color = Color(0.329412, 0.839216, 0.490196, 1)
 real_text_icon_left = ""
 icon_size = 16
@@ -175,7 +144,7 @@ font_color = Color(1, 0.827451, 0.498039, 1)
 [node name="Delete" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1352830697 instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("2_anmdr")
+theme_type_variation = &"ButtonUnborderTiny"
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
 icon_size = 16
@@ -184,7 +153,7 @@ real_tooltip_text = "[UI.RED]Delete"
 [node name="Visible" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1982066719 instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-theme = ExtResource("2_anmdr")
+theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "Show/Hide"

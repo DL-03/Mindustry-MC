@@ -6,9 +6,6 @@ var ButtonTab = null
 var modClass: ModClass:
 	set = _set_modClass
 
-var ContentDirWathcer = DirectoryWatcher.new()
-
-
 
 @export var ContentEditor: Node
 
@@ -170,7 +167,7 @@ func setPath(path):
 
 		#first_scan_content()
 		
-		MessageAPI.info("|Message.modification_has_been_opened|")
+		Notifications.info("|Message.modification_has_been_opened|")
 		
 
 	

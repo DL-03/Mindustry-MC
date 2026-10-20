@@ -55,9 +55,8 @@ func _set_contentClass(value):
 	ContentFrame.ModEditor = ModEditor
 	ContentFrame.RootNode = RootNode
 	ContentFrame.contentClass = contentClass
-	
-	#$HBoxContainer/MarginContainer/ObjectIcon.modClass = ModEditor.modClass
-	#$Tab/MarginContainer/HBoxContainer/Icon.contentClass = contentClass
+
+	$Tab/MarginContainer/HBoxContainer/ContentIcon.contentClass = contentClass
 	
 	
 	RootNode.select_tab(self)

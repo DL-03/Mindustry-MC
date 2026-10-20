@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjg0xhrkoy7ib"]
+[gd_scene format=3 uid="uid://cjg0xhrkoy7ib"]
 
-[ext_resource type="Script" path="res://Scripts/Windows/RenameDuplicateWindow.gd" id="1_4qhn3"]
+[ext_resource type="Script" uid="uid://bo2uc3xh1ugcq" path="res://Scripts/Windows/RenameDuplicateWindow.gd" id="1_4qhn3"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="2_3rp23"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://resources/themes/MindustryCorners.tres" id="3_cr7sk"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_cr7sk"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="4_h2xpi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgu5g"]
@@ -29,14 +29,14 @@ bg_color = Color(1, 0.827451, 0.498039, 1)
 border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpn5o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8xsv"]
 bg_color = Color(0, 0, 0, 1)
 draw_center = false
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.945098, 0.32549, 0.321569, 1)
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -59,14 +59,14 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8xsv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpn5o"]
 bg_color = Color(0, 0, 0, 1)
 draw_center = false
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
+border_color = Color(0.945098, 0.32549, 0.321569, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -121,8 +121,7 @@ func _process(delta):
 	material.set_shader_parameter(\"texture_size\", size)
 "
 
-[node name="RenameDuplicateWindow" type="Panel"]
-anchors_preset = 15
+[node name="RenameDuplicateWindow" type="Panel" unique_id=838889498]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -132,7 +131,7 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cgu5g")
 script = ExtResource("1_4qhn3")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=922735079]
 custom_minimum_size = Vector2(600, 225)
 layout_mode = 1
 anchors_preset = 8
@@ -148,7 +147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1691596695]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,84 +159,84 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1728366938]
 layout_mode = 2
 
-[node name="Label" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_3rp23")]
+[node name="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1455035245 instance=ExtResource("2_3rp23")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
 text = "Raneme"
 horizontal_alignment = 1
 real_text = "Raneme"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1248119531]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1453289689]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_cr7sk")
 text = "Name"
 vertical_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer" unique_id=1899356494]
 layout_mode = 2
 size_flags_vertical = 2
 theme = ExtResource("3_cr7sk")
 text = "Name"
 placeholder_text = "Name"
 
-[node name="tip" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_3rp23")]
+[node name="tip" parent="Panel/MarginContainer/VBoxContainer" unique_id=332994135 instance=ExtResource("2_3rp23")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.0826556, 0.0816599, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.082655564, 0.08165986, 1)
 text = "sdfsdfsddfsfs"
 horizontal_alignment = 1
 real_text = "sdfsdfsddfsfs"
 font_color = Color(0.945098, 0.32549, 0.321569, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1620241747]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_h2xpi")]
+[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1327207699 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
 real_text = "|RDW.Cancel.text|"
 
-[node name="Rename" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_h2xpi")]
+[node name="Rename" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1421187931 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
 real_text = "|RDW.Rename.text|"
 h_aligment = null
 
-[node name="Duplicate" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_h2xpi")]
+[node name="Duplicate" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=911902560 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
 real_text = "|RDW.Duplicate.text|"
 h_aligment = null
 
-[node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_h2xpi")]
+[node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1607490263 instance=ExtResource("4_h2xpi")]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
 real_text_icon_left = ""
 real_text = "|RDW.Delete.text|"
 h_aligment = null
 
-[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete"]
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" unique_id=171015363]
 z_index = -1
 material = SubResource("ShaderMaterial_aq6ki")
 layout_mode = 1

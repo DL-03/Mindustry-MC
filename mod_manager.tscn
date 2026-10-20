@@ -95,6 +95,7 @@ alignment = 1
 custom_minimum_size = Vector2(200, 60)
 custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
+text = " Открыть Папку 0"
 
 [node name="LeftIcon" parent="VBoxContainer/DownPanel/OpenFolder/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
 text = ""
@@ -106,12 +107,13 @@ real_text = "[emb]|ModManager.OpenFolder.text|"
 
 [node name="RightIcon" parent="VBoxContainer/DownPanel/OpenFolder/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="2" unique_id=777836022]
 visible = false
-text = "0"
 
 [node name="CreateModification" parent="VBoxContainer/DownPanel" unique_id=1660471551 instance=ExtResource("4_wshi1")]
 custom_minimum_size = Vector2(200, 60)
 custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
+text = " Создать
+Модификацию 0"
 
 [node name="LeftIcon" parent="VBoxContainer/DownPanel/CreateModification/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660471551, 1639273036) index="0" unique_id=1359297754]
 text = ""
@@ -124,7 +126,6 @@ real_text = "[emb]|ModManager.CreateModification.text|"
 
 [node name="RightIcon" parent="VBoxContainer/DownPanel/CreateModification/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660471551, 1639273036) index="2" unique_id=777836022]
 visible = false
-text = "0"
 
 [connection signal="pressed" from="VBoxContainer/DownPanel/OpenFolder" to="." method="_on_open_folder_pressed"]
 [connection signal="pressed" from="VBoxContainer/DownPanel/CreateModification" to="." method="_on_create_modification_pressed"]

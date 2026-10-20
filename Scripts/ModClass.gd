@@ -363,7 +363,7 @@ func _OnRenamed(path: String, new_path: String):
 			for i in ContentBank:
 				if i.Path == path:
 					i.Path = new_path
-					MessageAPI.debug("Контент файл перейменован: "+path.get_file()+" => "+new_path.get_file())
+					Notifications.debug("Контент файл перейменован: "+path.get_file()+" => "+new_path.get_file())
 	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
 		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
 		
@@ -384,7 +384,7 @@ func _OnDeleted(path: String):
 					ContentBank.erase(s)
 					
 					s.file_deleted.emit()
-					MessageAPI.debug("Пропал контент: "+path.get_file())
+					Notifications.debug("Пропал контент: "+path.get_file())
 	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
 		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
 

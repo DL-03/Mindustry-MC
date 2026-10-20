@@ -171,7 +171,7 @@ func _on_pressed():
 func _on_save_pressed():
 	if ModEditor.modClass.ModType.to_lower() == "archive":
 		ArchiveMain.Pack(ModEditor.modClass.Path, ModEditor.modClass.SourcePath)
-		MessageAPI.info("Moddification Saved!")
+		Notifications.info("Moddification Saved!")
 
 
 func _on_delete_pressed():

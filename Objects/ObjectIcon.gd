@@ -14,19 +14,14 @@ func _SpriteBank_updated():
 				if FileAccess.file_exists(contentClass.modClass.Path+"/icon.png"):
 					var image = Image.new()
 					image.load(contentClass.modClass.Path+"/icon.png")
-					var t = ImageTexture.new()
-				
-					var Icon = t.create_from_image(image)
-
-					texture = Icon
-			
+					texture = ImageTexture.new().create_from_image(image)
 			else:
 				texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path))
 				$Rotator.texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path)+"-rotator")
 				$Top.texture = contentClass.modClass.get_sprite(get_only_filename(contentClass.Path)+"-top")
-			
-		material = material.duplicate()
-		material.set_shader_parameter("water_effect", false)
+		
+		if material:
+			material.set_shader_parameter("water_effect", false)
 		$Rotator.hide()
 		$Top.hide()
 		
@@ -44,7 +39,8 @@ func _SpriteBank_updated():
 						conveyor_speed = contentClass.FullData["speed"]
 				if contentClass.ContentType == "Floor":
 					if "isLiquid" in contentClass.FullData:
-						material.set_shader_parameter("water_effect", contentClass.FullData["isLiquid"])
+						if material:
+							material.set_shader_parameter("water_effect", contentClass.FullData["isLiquid"])
 
 
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clmkfblck4abs" path="res://Objects/СontentСard.gd" id="2_pe2dx"]
 [ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://Objects/ObjectIcon.tscn" id="3_k7vmj"]
 [ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="4_7p8n1"]
-[ext_resource type="Theme" uid="uid://dhwgnr7skb6bc" path="res://resources/themes/MindustryRectFlat.tres" id="4_ii38n"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="4_ii38n"]
 [ext_resource type="PackedScene" uid="uid://8ld788kwrjm6" path="res://widgets/file_path_element.tscn" id="5_74rsg"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="7_oh4t0"]
 
@@ -18,6 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_ii38n")
+theme_type_variation = &"ButtonUnborder"
 script = ExtResource("2_pe2dx")
 
 [node name="HBoxContainer" type="BoxContainer" parent="." unique_id=966820585]
@@ -43,11 +44,13 @@ alignment = 1
 
 [node name="Name" parent="HBoxContainer/VBoxContainer" unique_id=1359297754 instance=ExtResource("4_7p8n1")]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_horizontal = 1
+size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 13
 text = "[color=#ffd37f]Name"
-fit_content = true
+scroll_active = false
 autowrap_mode = 0
+vertical_alignment = 1
 hint_underlined = false
 real_text = "[emb][UI.YELLOW]Name"
 
@@ -58,7 +61,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("4_ii38n")
+theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
@@ -67,7 +70,7 @@ real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("4_ii38n")
+theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
 real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
@@ -76,7 +79,7 @@ real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
-theme = ExtResource("4_ii38n")
+theme_type_variation = &"ButtonUnborderTiny"
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
 icon_size = 16
