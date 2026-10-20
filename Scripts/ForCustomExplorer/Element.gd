@@ -9,6 +9,7 @@ enum TypeElement {
 
 var Type = null
 var Path = ""
+var _mod_preview: Dictionary = {}
 
 @export var richLabel: MindRTL
 @export var filePathElement: Node
@@ -67,17 +68,22 @@ func table_update():
 
 func set_path(path: String):
 	Path = path.simplify_path()
+	_mod_preview.clear()
 	
-	if ModManager.test_from_path(Path):
-		Type = TypeElement.MOD
-	else:
-		if FileAccess.file_exists(Path):
-			Type = TypeElement.FILE
+	if DirAccess.dir_exists_absolute(Path):
+		if ModManager.is_mod_directory(Path):
+			Type = TypeElement.MOD
 		else:
-			if DirAccess.dir_exists_absolute(Path):
-				Type = TypeElement.FOLDER
-			else:
-				return
+			Type = TypeElement.FOLDER
+	elif FileAccess.file_exists(Path):
+		if ModManager.is_archive_candidate(Path):
+			_mod_preview = ModManager.get_mod_preview(Path)
+		if _mod_preview.get("is_mod", false):
+			Type = TypeElement.MOD
+		else:
+			Type = TypeElement.FILE
+	else:
+		return
 	update_data()
 
 
@@ -92,19 +98,20 @@ func update_data():
 			$MarginContainer/HBoxContainer/TextIcon.real_text = "[emb offset=4]  "
 	
 	elif TypeElement.MOD == Type:
-		var data = ModManager.get_mod_data_from_path(Path)
-		
+		if _mod_preview.is_empty():
+			_mod_preview = ModManager.get_mod_preview(Path)
+		var data: Variant = _mod_preview.get("data")
 		filePathElement.path = Path
 		
 		$MarginContainer/HBoxContainer/TextIcon.hide()
-		$MarginContainer/HBoxContainer/Panel/MarginContainer/ImageIcon.texture = ModManager.get_icon_from_path(Path)
+		$MarginContainer/HBoxContainer/Panel/MarginContainer/ImageIcon.texture = _mod_preview.get("icon")
 		
 		var _displayName = "[UI.RED]None"
 		var _name = "[UI.RED]None"
 		var _author = "[UI.RED]None"
 		var _version = "[UI.RED]None"
 		
-		if data != null:
+		if typeof(data) == TYPE_DICTIONARY:
 			if "displayName" in data:
 				_displayName = "[UI.YELLOW]"+data["displayName"]
 			if "name" in data:

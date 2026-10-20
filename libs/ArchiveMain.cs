@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 
@@ -17,10 +19,56 @@ public partial class ArchiveMain : Node
 	{
 	}
 	
-	public void ExtracteToDirectory(string zipPath, string extractPath)
+	public bool ExtracteToDirectory(string zipPath, string extractPath)
 	{
-		ZipFile.ExtractToDirectory(zipPath, extractPath);
-	} 
+		try
+		{
+			ZipFile.ExtractToDirectory(zipPath, extractPath);
+			return true;
+		}
+		catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidDataException or ArgumentException)
+		{
+			GD.PushError($"Could not extract archive '{zipPath}': {ex.Message}");
+			return false;
+		}
+	}
+
+	public bool IsProcessRunning(int processId)
+	{
+		try
+		{
+			using Process process = Process.GetProcessById(processId);
+			return !process.HasExited;
+		}
+		catch (ArgumentException)
+		{
+			return false;
+		}
+		catch (InvalidOperationException)
+		{
+			return false;
+		}
+		catch (Win32Exception)
+		{
+			return true;
+		}
+	}
+
+	public bool RemoveDirectory(string path)
+	{
+		try
+		{
+			if (Directory.Exists(path))
+				Directory.Delete(path, recursive: true);
+			return true;
+		}
+		catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException)
+		{
+			GD.PushError($"Could not remove temporary directory '{path}': {ex.Message}");
+			return false;
+		}
+	}
+
 	public void Pack(string zipPath, string extractPath)
 	{
 		if (File.Exists(extractPath))

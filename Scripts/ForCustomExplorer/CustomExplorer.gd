@@ -3,6 +3,8 @@ extends Control
 
 
 var current_path = ""
+var _refresh_generation := 0
+const REFRESH_BATCH_SIZE := 16
 
 
 
@@ -50,26 +52,47 @@ func set_path(path: String):
 func addElement(_path):
 	var element = preload("res://Objects/ForCustomExplorer/Element.tscn").instantiate()
 	element.RootNode = self
+	element.table_type = table_type
 	element.set_path(_path)
-	$Panels/ScrollContainer/MarginContainer/Box.add_child(element)
-
+	element.table_update()
+	var container: Node = $Panels/ScrollContainer/MarginContainer/Flow
+	if not container.visible:
+		container = $Panels/ScrollContainer/MarginContainer/Box
+	container.add_child(element)
 
 func refresh():
-	for i in $Panels/ScrollContainer/MarginContainer/Flow.get_children():
-		i.queue_free()
-	for i in $Panels/ScrollContainer/MarginContainer/Box.get_children():
-		i.queue_free()
-	
-	if DirAccess.dir_exists_absolute(current_path):
-		PathLine.add_theme_color_override("font_color", COLORS.get_color("UI.GREEN"))
-		
-		for i in DirAccess.get_directories_at(current_path):
-			addElement(current_path.path_join(i))
-		for i in DirAccess.get_files_at(current_path):
-			addElement(current_path.path_join(i))
-		table_update()
-	else:
+	_refresh_generation += 1
+	var generation := _refresh_generation
+	var flow: Node = $Panels/ScrollContainer/MarginContainer/Flow
+	var box: Node = $Panels/ScrollContainer/MarginContainer/Box
+	for container in [flow, box]:
+		for child in container.get_children():
+			child.queue_free()
+
+	if not DirAccess.dir_exists_absolute(current_path):
 		PathLine.add_theme_color_override("font_color", COLORS.get_color("UI.RED"))
+		return
+
+	PathLine.add_theme_color_override("font_color", COLORS.get_color("UI.GREEN"))
+	var directories := DirAccess.get_directories_at(current_path)
+	var files := DirAccess.get_files_at(current_path)
+	directories.sort()
+	files.sort()
+	var entries: Array[String] = []
+	for directory_name in directories:
+		entries.append(current_path.path_join(directory_name))
+	for file_name in files:
+		entries.append(current_path.path_join(file_name))
+	_populate_directory.call_deferred(generation, entries)
+
+
+func _populate_directory(generation: int, entries: Array[String]) -> void:
+	for index in entries.size():
+		if generation != _refresh_generation:
+			return
+		addElement(entries[index])
+		if (index + 1) % REFRESH_BATCH_SIZE == 0:
+			await get_tree().process_frame
 
 var HOME_PATH = ""
 
@@ -103,8 +126,6 @@ func _ready():
 		"Web":
 			print("Web not support!")
 
-	set_path(HOME_PATH)
-	
 	$Panels/UpPanel/OptionButton.add_item("Huge Icons")
 	$Panels/UpPanel/OptionButton.add_item("Big Icons")
 	$Panels/UpPanel/OptionButton.add_item("Default Icons")
@@ -117,10 +138,11 @@ func _ready():
 	$Panels/UpPanel/OptionButton.add_item("Content")
 	
 	$Panels/UpPanel/OptionButton.select(6)
-	
+	table_update()
 	
 	LocalizationAPI.global_language_changed.connect(l_glc_changed)
 	l_glc_changed()
+	set_path(HOME_PATH)
 
 
 func table_update():

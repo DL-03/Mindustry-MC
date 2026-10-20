@@ -50,6 +50,7 @@ func on_loaded_settings():
 
 @onready var LangContent = $MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Content
 @onready var LangContentElement = $MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Element
+var _language_list_dirty := true
 	
 
 func LangContent_select(index):
@@ -112,6 +113,7 @@ func on_updated_lbu():
 			DescText.get_parent().get_parent().add_theme_stylebox_override("panel", pt)
 			)
 		index += 1
+	_language_list_dirty = false
 	
 	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
 		if "Settings.Language" in SaveDataAPI.data:
@@ -156,10 +158,7 @@ func _ready():
 		)
 	
 				LangList.text = SaveDataAPI.data["Settings"]["Language"]'''
-	LocalizationAPI.language_bank_updated.connect(func():
-		on_updated_lbu()
-	)
-	on_updated_lbu()
+	LocalizationAPI.language_bank_updated.connect(_on_language_bank_updated)
 	
 	SaveDataAPI.data_loaded.connect(func():
 		on_loaded_settings()
@@ -170,26 +169,23 @@ func _ready():
 		on_global_lc()
 	)
 	on_global_lc()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	for tab in Tabs.get_children():
+		tab.pressed.connect(_on_settings_tab_pressed.bind(tab))
 
 
-var Tabs_Panels_is_ready = false
+func _on_settings_tab_pressed(selected_tab: Control) -> void:
+	for tab in Tabs.get_children():
+		tab.disabled = tab == selected_tab
+	for panel in Panels.get_children():
+		panel.visible = selected_tab.name == panel.name
+	if selected_tab.name == "Language" and _language_list_dirty:
+		on_updated_lbu()
 
-func _process(delta):
-	if Tabs_Panels_is_ready == false:
-		if Tabs != null:
-			if Panels != null:
-				Tabs_Panels_is_ready = true
-				
-				for i in Tabs.get_children():
-					i.pressed.connect(func():
-						for j in Tabs.get_children():
-							j.disabled = i==j
-						
-						for j in Panels.get_children():
-							j.visible = i.name==j.name
-						
-						)
+
+func _on_language_bank_updated() -> void:
+	_language_list_dirty = true
+	if visible and $MarginContainer/VBoxContainer/TabPanel/Panels/Language.visible:
+		on_updated_lbu()
 
 
 func _on_close_pressed():

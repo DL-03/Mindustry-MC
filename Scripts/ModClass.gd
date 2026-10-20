@@ -1,18 +1,23 @@
 extends Node
 class_name ModClass
 
+const CONTENT_SCAN_YIELD_INTERVAL := 64
+
 
 var Path = ""
 var SourcePath = ""
 var ModType = ""
+var TempDirectory := ""
 
 var ContentBank = []
+var _content_by_path: Dictionary = {}
 var SpriteBank = {}
 var ModContentClass = ContentClass.new()
 
 
 
 var closing = false
+var scan_in_progress = false
 
 
 
@@ -31,24 +36,23 @@ signal SpriteBank_updated
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 func connect_loaded(function: Callable):
 	if is_loaded:
 		function.call()
+		return
 	loaded.connect(function)
 
 
 
 func close():
 	closing = true
-	
-	if thread_first_scan != null:
-		thread_first_scan.wait_to_finish()
-	
 	queue_free()
+
+
+func _exit_tree() -> void:
+	if not TempDirectory.is_empty():
+		ModManager.remove_archive_temp_directory(TempDirectory)
+		TempDirectory = ""
 
 
 func get_all_files(path: String, file_ext := "", files := [], _max_recursion=99):
@@ -142,35 +146,49 @@ func set_path(_path: String):
 		SourcePath = _path
 		var red = ZIPReader.new()
 		var err := red.open(_path)
-		#ModZipPacker.open(path)
-
 		if err != OK:
-			return PackedByteArray()
-		else:
+			push_error("Could not open mod archive: %s" % _path)
+			return
 
-			
-			
-			var p = ProjectSettings.globalize_path("user://Temp/"+str(MinosUUIDGenerator.generate_new_UUID())+_path.get_file().get_basename())
-			var p1 = ProjectSettings.globalize_path("user://Temp/"+str(MinosUUIDGenerator.generate_new_UUID())+_path.get_file().get_basename())
-			ArchiveMain.ExtracteToDirectory(SourcePath, p)
-			
-			
-			Path = p
-			
-			
-			for i in red.get_files():
-				if i.get_file() in ["mod.json","mod.hjson"]:
-					DirAccess.rename_absolute(p.path_join(i.replace(i.get_file(), ""))+"/", p1+"/")
-					print(p1)
-					print(p.path_join(i.replace(i.get_file(), "")))
-					DirAccess.remove_absolute(p)
-					Path = p1.simplify_path()
-					break
+		var temp_root := ProjectSettings.globalize_path("user://Temp/ModArchives").simplify_path()
+		TempDirectory = temp_root.path_join(
+			"%d-%s" % [OS.get_process_id(), MinosUUIDGenerator.generate_new_UUID()]
+		)
+		err = DirAccess.make_dir_recursive_absolute(TempDirectory)
+		if err != OK:
 			red.close()
-			
-			
-			
-			
+			push_error("Could not create archive working directory: %s" % TempDirectory)
+			TempDirectory = ""
+			return
+
+		var extract_path := TempDirectory.path_join("extracted")
+		err = DirAccess.make_dir_recursive_absolute(extract_path)
+		var extracted: bool = err == OK and ArchiveMain.ExtracteToDirectory(SourcePath, extract_path)
+		if not extracted:
+			red.close()
+			ModManager.remove_archive_temp_directory(TempDirectory)
+			TempDirectory = ""
+			push_error("Could not extract mod archive: %s" % _path)
+			return
+
+		Path = extract_path
+		for archive_path in red.get_files():
+			if archive_path.get_file() not in ["mod.json", "mod.hjson"]:
+				continue
+
+			var manifest_directory := archive_path.get_base_dir()
+			var source_directory := extract_path
+			if not manifest_directory.is_empty() and manifest_directory != ".":
+				source_directory = extract_path.path_join(manifest_directory)
+
+			var mod_directory := TempDirectory.path_join("mod")
+			err = DirAccess.rename_absolute(source_directory, mod_directory)
+			if err == OK:
+				Path = mod_directory
+			else:
+				push_error("Could not prepare extracted mod directory: %s" % source_directory)
+			break
+		red.close()
 
 	var reader = get_all_files(Path, "", [], 1)
 	
@@ -214,22 +232,18 @@ func get_mod_icon():
 
 	return Icon
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-var thread_first_scan
-
 func first_scan_content():
+	if scan_in_progress:
+		return
 	ContentBank = []
+	_content_by_path.clear()
+	is_loaded = false
 	
 	if not DirAccess.dir_exists_absolute( Path.path_join("content") ):
 		DirAccess.make_dir_recursive_absolute( Path.path_join("content") )
 	
-	#revursive_first_scaner_content(Path.path_join("content"))
-	
-	thread_first_scan = Thread.new()
-	thread_first_scan.start(revursive_first_scaner_content.bind(Path.path_join("content")),Thread.PRIORITY_HIGH)
+	scan_in_progress = true
+	call_deferred("_scan_content_directory", Path.path_join("content"))
 	
 	var customFileWathcer = CustomFileWatcher.new()
 	add_child(customFileWathcer)
@@ -240,61 +254,47 @@ func first_scan_content():
 	customFileWathcer.setPath(Path)
 
 
+func _scan_content_directory(root_path: String) -> void:
+	var directories: Array[String] = [root_path]
+	var scanned_entries := 0
 
+	while not directories.is_empty():
+		if closing:
+			return
 
+		var directory_path: String = directories.pop_back()
+		var dir := DirAccess.open(directory_path)
+		if dir == null:
+			push_warning("Could not scan mod content directory: %s" % directory_path)
+			continue
 
-
-func revursive_first_scaner_content(path: String, file_ext := "", files := [], origin=false):
-	if closing:
-		return
-	path = path.simplify_path()
-	var dir = DirAccess.open(path)
-	#print(dir)
-	if dir != null:
 		dir.list_dir_begin()
-
-		var file_name = dir.get_next()
-
-		while file_name != "":
+		var file_name := dir.get_next()
+		while not file_name.is_empty():
 			if closing:
+				dir.list_dir_end()
 				return
-			
+
 			if dir.current_is_dir():
-				dir.get_current_dir()
-				revursive_first_scaner_content(dir.get_current_dir()+"/"+file_name, file_ext, files, true)
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
-			else:
-				if file_ext and file_name.get_extension() != file_ext:
-					file_name = dir.get_next()
-					continue
-				
-				
+				if file_name != "." and file_name != "..":
+					directories.append(directory_path.path_join(file_name))
+			elif file_name.get_extension().to_lower() in ["json", "hjson"]:
+				import_content_from_path(directory_path.path_join(file_name))
 
-				var _path = dir.get_current_dir().path_join(file_name).simplify_path()
-				if _path.get_extension().to_lower() in ["json", "hjson"]:
-					for i in ContentBank:
-						if i.Path == _path:
-							return
+			scanned_entries += 1
+			if scanned_entries % CONTENT_SCAN_YIELD_INTERVAL == 0:
+				await get_tree().process_frame
+				if closing:
+					dir.list_dir_end()
+					return
 
-					
-					var c = ContentClass.new()
-					c.modClass = _modClass
-					c.Path = _path
-					ContentBank.append(c)
-					modClass.add_child(c)
-					
-					ContentBank_added.emit(c)
-		
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
 			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access %s." % path)
-	
-	if not origin:
-		is_loaded = true
-		loaded.emit()
-	
-	return files
+
+		dir.list_dir_end()
+
+	scan_in_progress = false
+	is_loaded = true
+	loaded.emit()
 
 var _modClass = self
 
@@ -305,24 +305,44 @@ var modClass = self
 func import_content_from_path(path: String):
 	path = path.simplify_path()
 	if path.get_extension().to_lower() in ["json", "hjson"]:
-		for i in ContentBank:
-			if i.Path == path:
-				return
+		if _content_by_path.has(path):
+			return
 
-		
 		var c = ContentClass.new()
 		c.modClass = _modClass
 		c.Path = path
 		ContentBank.append(c)
+		_content_by_path[path] = c
 		modClass.add_child(c)
 		
 		ContentBank_added.emit(c)
 		
 		return c
 
+
+func create_content(path: String, content_type: String) -> ContentClass:
+	path = path.simplify_path()
+	if _content_by_path.has(path):
+		return _content_by_path[path]
+
+	var content_class := ContentClass.new()
+	content_class.modClass = self
+	var relative_path := path.trim_prefix(Path.path_join("content") + "/")
+	var path_parts := relative_path.split("/")
+	if path_parts.size() > 1:
+		content_class.FileType = path_parts[0]
+	content_class.ContentType = content_type
+	content_class.create(path, content_type)
+	ContentBank.append(content_class)
+	_content_by_path[path] = content_class
+	add_child(content_class)
+	ContentBank_added.emit(content_class)
+	return content_class
+
+
 func test_content_from_path(path: String):
 	path = path.simplify_path()
-	if path.to_lower() in ["json", "hjson"]:
+	if path.get_extension().to_lower() in ["json", "hjson"]:
 		if FileAccess.file_exists(path):
 			return true
 	return false
@@ -332,9 +352,26 @@ func unload_content(contentClass: ContentClass):
 		contentClass.close()
 
 
+func _is_content_file(path: String) -> bool:
+	var content_directory := Path.path_join("content") + "/"
+	return path.simplify_path().begins_with(content_directory) \
+		and path.get_extension().to_lower() in ["json", "hjson"]
+
+
+func _remove_content_file(path: String) -> void:
+	var content_class: ContentClass = _content_by_path.get(path)
+	if content_class == null:
+		return
+
+	_content_by_path.erase(path)
+	ContentBank.erase(content_class)
+	content_class.file_deleted.emit()
+
+
 
 func _OnCreated(path: String):
-	if path.simplify_path().replace(Path, "").simplify_path().split("/", false)[0] == "content":
+	path = path.simplify_path()
+	if _is_content_file(path):
 		import_content_from_path(path)
 	elif path.simplify_path().replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
 		SpriteBank.merge({path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()): path}, true)
@@ -358,13 +395,21 @@ func _OnRenamed(path: String, new_path: String):
 	path = path.simplify_path()
 	new_path = new_path.simplify_path()
 	
-	if path.replace(Path, "").simplify_path().split("/", false)[0] == "content":
-		if path.to_lower() in ["json", "hjson"]:
-			for i in ContentBank:
-				if i.Path == path:
-					i.Path = new_path
-					Notifications.debug("Контент файл перейменован: "+path.get_file()+" => "+new_path.get_file())
-	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
+	var old_is_content := _is_content_file(path)
+	var new_is_content := _is_content_file(new_path)
+	if old_is_content and new_is_content:
+		var content_class: ContentClass = _content_by_path.get(path)
+		if content_class != null:
+			_content_by_path.erase(path)
+			content_class.Path = new_path
+			_content_by_path[new_path] = content_class
+			Notifications.debug("Контент файл перейменован: "+path.get_file()+" => "+new_path.get_file())
+	elif old_is_content:
+		_remove_content_file(path)
+	elif new_is_content:
+		import_content_from_path(new_path)
+
+	if path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
 		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
 		
 		if new_path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
@@ -376,15 +421,9 @@ func _OnRenamed(path: String, new_path: String):
 func _OnDeleted(path: String):
 	path = path.simplify_path()
 	
-	if path.replace(Path, "").simplify_path().split("/", false)[0] == "content":
-		if path.to_lower() in ["json", "hjson"]:
-			for i in ContentBank:
-				if i.Path == path:
-					var s = i
-					ContentBank.erase(s)
-					
-					s.file_deleted.emit()
-					Notifications.debug("Пропал контент: "+path.get_file())
+	if _is_content_file(path):
+		_remove_content_file(path)
+		Notifications.debug("Пропал контент: "+path.get_file())
 	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
 		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
 

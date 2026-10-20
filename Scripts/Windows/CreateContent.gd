@@ -100,33 +100,27 @@ func _on_back_pressed():
 
 
 func _on_create_pressed():
-	var new_text = NameLine.text
-	
-	if ContentTypeOption.selected == 0:
-		var c = ContentClass.new()
-		c.modClass = modClass
-		modClass.ContentBank.append(c)
-		
-		if TypeCheck.Checked:
-			c.create(modClass.Path.simplify_path().path_join("content/blocks").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower()),TypeLine.text)
-		else:
-			c.create(modClass.Path.simplify_path().path_join("content/blocks").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower()),TypeOption.text)
-			
-		hide()
-	if ContentTypeOption.selected == 1:
-		var c = ContentClass.new()
-		c.modClass = modClass
-		modClass.ContentBank.append(c)
-		c.create(modClass.Path.simplify_path().path_join("content/items").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower()),"Items")
-		
-		hide()
-	if ContentTypeOption.selected == 2:
-		var c = ContentClass.new()
-		c.modClass = modClass
-		modClass.ContentBank.append(c)
-		c.create(modClass.Path.simplify_path().path_join("content/liquids").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower()),"Liquids")
-		
-		hide()
+	var content_directories := ["blocks", "items", "liquids"]
+	if ContentTypeOption.selected < 0 or ContentTypeOption.selected >= content_directories.size():
+		push_error("Cannot create content: invalid content category.")
+		return
+
+	var content_type := ""
+	match ContentTypeOption.selected:
+		0:
+			content_type = TypeLine.text if TypeCheck.Checked else TypeOption.text
+		1:
+			content_type = "Items"
+		2:
+			content_type = "Liquids"
+
+	var file_path := modClass.Path.path_join("content").path_join(
+		content_directories[ContentTypeOption.selected]
+	).path_join(PathLine.text).path_join(
+		NameLine.text + "." + ExtOption.text.to_lower()
+	)
+	modClass.create_content(file_path, content_type)
+	hide()
 
 func _on_option_button_item_selected(index):
 	if index == 0:

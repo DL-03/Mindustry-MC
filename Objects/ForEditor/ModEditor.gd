@@ -38,14 +38,7 @@ var GlobalModCard = null
 
 
 
-func _ModContentClass_changed():
-	pass
 func _ready():
-	#ModContentClass.data_changed.connect(_ModContentClass_changed)
-	
-	
-	await update_content_bank_window()
-	
 	GlobalModCard = $ModEditor/Panel/ModCard
 	
 	#$Panel.add_child(GlobalModCard)
@@ -76,62 +69,6 @@ func _ready():
 	
 	
 	
-
-
-
-func update_content_bank_window():
-	if $Window.visible:
-		$Window/RichTextLabel.text = ""
-		for i in modClass.ContentBank:
-			$Window/RichTextLabel.text += str(i.Data)+'\n'
-	await get_tree().create_timer(5.0).timeout.connect(update_content_bank_window)
-		
-
-func dir_contents(path):
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				pass
-				#print("Found directory: " + file_name)
-			else:
-				pass
-				#print("Found file: " + file_name)
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
-
-func get_all_pathes(path: String, file_ext := "", files := []):
-	path = path.simplify_path()
-	var dir = DirAccess.open(path)
-	#print(dir)
-	if dir != null:
-		dir.list_dir_begin()
-
-		var file_name = dir.get_next()
-
-		while file_name != "":
-			if dir.current_is_dir():
-				dir.get_current_dir()
-				files = get_all_pathes(dir.get_current_dir()+"/"+file_name, file_ext, files)
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
-			else:
-				if file_ext and file_name.get_extension() != file_ext:
-					file_name = dir.get_next()
-					continue
-
-				files.append(dir.get_current_dir()+"/"+file_name)
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access %s." % path)
-
-	return files
-
-
-
 @onready var LoadingWindow = $LoadingWindow
 
 func setPath(path):
@@ -142,15 +79,16 @@ func setPath(path):
 		
 		ButtonTab.modClass = modClass
 		
+		$LoadingWindow.show()
+		$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.indeterminate = true
 		
-		__max_contentData = len(get_all_pathes(modClass.Path.path_join("content")))
-		
-		modClass.connect_loaded(func():
-			LoadingWindow.call_deferred("hide")
-			)
+		modClass.connect_loaded(_on_mod_loaded)
 		modClass.ContentBank_added.connect(
 			func(_contentClass: ContentClass):
 				_content_add(_contentClass)
+				_update_loading_progress()
+				if $Window.visible:
+					_refresh_content_bank_window()
 		)
 			
 		
@@ -170,9 +108,30 @@ func setPath(path):
 		Notifications.info("|Message.modification_has_been_opened|")
 		
 
-	
-	
-	
+func _on_mod_loaded() -> void:
+	var progress_bar: ProgressBar = $LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar
+	progress_bar.indeterminate = false
+	progress_bar.max_value = 1
+	progress_bar.value = 1
+	LoadingWindow.hide()
+
+
+func _update_loading_progress() -> void:
+	if not LoadingWindow.visible or modClass == null:
+		return
+
+	var content_count: int = modClass.ContentBank.size()
+	var label: Node = $LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2
+	var mod_name: String = str(modClass.ModContentClass.FullData.get("name", "None"))
+	var last_path := ""
+	if content_count > 0:
+		last_path = str(modClass.ContentBank[-1].Path).substr(modClass.Path.length())
+
+	label.real_text = "|ModEditor.LoadingWindow.Label.text|: %s\n|ModEditor.LoadingWindow.Content.text|[%d]: %s" % [
+		mod_name,
+		content_count,
+		last_path
+	]
 
 
 
@@ -193,24 +152,16 @@ var ContentTabButtons = []
 
 
 func _content_add(_content_class):
-	if _content_class != null:
-		if typeof(_content_class.Data) == TYPE_DICTIONARY:
+	if _content_class != null \
+	and (current_tab_content == null or current_tab_content == "all" or _content_class.FileType == current_tab_content) \
+	and typeof(_content_class.Data) == TYPE_DICTIONARY:
 		
-			var _s = CONTENT_CARD.instantiate()
-			#print(Data)
-			#_s.modClass = self.modClass
-			_s.ModEditor = self
-			_s.ContentEditor = ContentEditor
-			
-			_s.contentClass = _content_class
-			#_s.Data = _data
-			#_s.Path = _path
-			
-			
-			ListContentElements.call_deferred("add_child", _s)
-			#ListContentElements.add_child(_s)
-			
-			_s.show()
+		var _s = CONTENT_CARD.instantiate()
+		_s.ModEditor = self
+		_s.ContentEditor = ContentEditor
+		_s.contentClass = _content_class
+		ListContentElements.call_deferred("add_child", _s)
+		_s.show()
 
 
 @onready var ListContentElements = $ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
@@ -220,7 +171,7 @@ func refresh_content_list():
 		#i.free()
 	
 	for i in modClass.ContentBank:
-		if current_tab_content == "all":
+		if current_tab_content == null or current_tab_content == "all":
 			if i.File != null:
 				if i.Data != null:
 					_content_add(i)
@@ -270,23 +221,15 @@ func _on_reload_content_pressed():
 
 
 func _on_content_bank_pressed():
+	_refresh_content_bank_window()
 	$Window.show()
 
 
-
-
-var __max_contentData = 0
-
-func _process(delta):
-	if LoadingWindow.visible:
-		if modClass != null:
-			if modClass.ModContentClass != null:
-				#$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.text = str(ModContentClass)
-				if modClass.ModContentClass.FullData != null:
-					$LoadingWindow/Panel/MarginContainer/VBoxContainer/Label2.real_text = "|ModEditor.LoadingWindow.Label.text|: " + str(modClass.ModContentClass.FullData["name"]) + "\n|ModEditor.LoadingWindow.Content.text|["+str(len(modClass.ContentBank))+"/"+str(__max_contentData)+"]: "+ str(modClass.ContentBank[-1].Path).substr(len(modClass.Path))
-					
-					$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.max_value = __max_contentData
-					$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.value = len(modClass.ContentBank)
+func _refresh_content_bank_window() -> void:
+	var content_data: PackedStringArray = []
+	for content_class: ContentClass in modClass.ContentBank:
+		content_data.append(str(content_class.Data))
+	$Window/RichTextLabel.text = "\n".join(content_data)
 
 
 func _on_cancel_loading_pressed():

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ce1e3yxgjuyas" path="res://Objects/ModCard.tscn" id="2_u0hhs"]
 [ext_resource type="PackedScene" uid="uid://b4f0pxojub5i8" path="res://button_tab_content_editor.tscn" id="3_d6n3b"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="4_p5g38"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="5_kupg4"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="5_pfa80"]
 [ext_resource type="Script" uid="uid://ch0y572lscx7x" path="res://Objects/ContentEditor.gd" id="6_rws2k"]
 [ext_resource type="Texture2D" uid="uid://c3lrs63ysubv0" path="res://resources/PointEvent.png" id="7_67jq7"]
@@ -264,6 +265,16 @@ text = "Weathers"
 [node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1699788681 instance=ExtResource("3_d6n3b")]
 layout_mode = 2
 text = "Sectors"
+
+[node name="Filters" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=867230446]
+visible = false
+layout_mode = 2
+
+[node name="SearchLine" type="LineEdit" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=13837515]
+layout_mode = 2
+
+[node name="Advance" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=529493969 instance=ExtResource("5_kupg4")]
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1820083869]
 layout_mode = 2
