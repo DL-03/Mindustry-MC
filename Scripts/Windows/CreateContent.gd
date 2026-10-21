@@ -3,7 +3,7 @@ extends Panel
 
 @onready var ErrorString = $Panel/MarginContainer/VBoxContainer/tip
 
-@onready var ContentTypeOption = $Panel/MarginContainer/VBoxContainer/Type/OptionButton2
+@onready var ContentTypeOption = $Panel/MarginContainer/VBoxContainer/OptionButton2
 
 @onready var TypeOption = $Panel/MarginContainer/VBoxContainer/Type/OptionButton
 @onready var TypeLine = $Panel/MarginContainer/VBoxContainer/Type/LineEdit

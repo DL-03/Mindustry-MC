@@ -47,4 +47,3 @@ anchor_offset = Vector2(5, 5)
 
 [connection signal="pressed" from="Actions" to="." method="_on_actions_pressed"]
 [connection signal="mouse_entered" from="NameLabel" to="." method="_on_name_label_mouse_entered"]
-[connection signal="mouse_exited" from="NameLabel" to="." method="_on_name_label_mouse_exited"]

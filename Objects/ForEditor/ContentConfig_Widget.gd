@@ -102,18 +102,18 @@ func _update():
 		add_child(VALUE_EDIT)
 	
 	
-	# Tooltip upd
+
 	
-	
-	if not "placeholder" in mindTooltip.custom_data:
-		mindTooltip.custom_data["placeholders"] = {}
-	if not mindTooltip.custom_data["placeholders"] is Dictionary:
-		mindTooltip.custom_data["placeholders"] = {}
+func upd_tooltip():
+	var __parametr = ""
+	var __value = ""
+	var __type = ""
+	var __description = ""
 	
 	if LocalizationAPI.has_text("ClassType."+Name):
-		mindTooltip.custom_data["placeholders"]["parametr"] = Name+" ( |ClassType."+Name+"| [])"
+		__parametr = Name+" ( |ClassType."+Name+"| [])"
 	else:
-		mindTooltip.custom_data["placeholders"]["parametr"] = Name
+		__parametr = Name
 	
 	var _type = Type
 	var _color = Color.WHITE
@@ -163,13 +163,21 @@ func _update():
 	if _color_default is Color:
 		_color_default = "#"+_color_default.to_html(false)
 	
-	mindTooltip.custom_data["placeholders"]["type"] = "["+_color+"]"+_type
-	mindTooltip.custom_data["placeholders"]["value"] = "["+_color_default+"]"+str(DefaultData)
+	__type = "["+_color+"]"+_type
+	__value = "["+_color_default+"]"+str(DefaultData)
+	 
 	
 	if LocalizationAPI.has_text("ClassType."+Name+"_desc"):
-		mindTooltip.custom_data["placeholders"]["description"] = "|ClassType."+Name+"_desc|"
+		__description = "|ClassType."+Name+"_desc|"
 	else:
-		mindTooltip.custom_data["placeholders"]["description"] = "[UI.GRAY][center]No description"
+		__description = "[UI.GRAY][center]No description"
+	
+	var _tooltip_text = "[emb][center][UI.YELLOW]|ClassType.tip_parametr|:[] {0}
+[UI.YELLOW]|ClassType.tip_type|:[] {1} [UI.GRAY]︙ [UI.YELLOW]|ClassType.tip_default|:[] \"{2}[]\"
+[left][]{3}".format([__parametr,__type,__value,__description])
+	
+	mindTooltip.tooltip_text = _tooltip_text
+
 
 
 func _set_Name(value):
@@ -197,3 +205,7 @@ func _ready():
 
 func _on_actions_pressed():
 	$/root/Main/Windows/ContentEditorKeyActions.edit(self)
+
+
+func _on_name_label_mouse_entered() -> void:
+	upd_tooltip()

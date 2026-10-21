@@ -42,7 +42,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_svh2n")
 script = ExtResource("1_xfohq")
 
 [node name="Panel" type="Panel" parent="." unique_id=1693501007]
-custom_minimum_size = Vector2(700, 350)
+custom_minimum_size = Vector2(700, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,9 +50,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -350.0
-offset_top = -175.0
+offset_top = -200.0
 offset_right = 350.0
-offset_bottom = 175.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
@@ -77,7 +77,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " CreateContent "
+text = " Создать Контент "
 horizontal_alignment = 1
 real_text = " |CreateContent| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -90,10 +90,17 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "CreateContent"
+text = "Создать Контент"
 horizontal_alignment = 1
 vertical_alignment = 1
 real_text = "|CreateContent|"
+
+[node name="OptionButton2" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=1887858363]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_xm7ci")
 
 [node name="Type" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=680702318]
 layout_mode = 2
@@ -101,20 +108,13 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=756305507 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Type:"
+text = "Тип:"
 real_text = "|Type|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1316049148]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("3_xm7ci")
-
-[node name="OptionButton2" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1887858363]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
 theme = ExtResource("3_xm7ci")
 
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1697320429]
@@ -126,7 +126,7 @@ theme = ExtResource("3_xm7ci")
 
 [node name="MindustryLabel2" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1068018687 instance=ExtResource("2_aiir5")]
 layout_mode = 2
-text = "Custom:"
+text = "Пользовательский:"
 real_text = "|Custom|:"
 
 [node name="CheckCustom" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=2001463245 instance=ExtResource("4_c8dfg")]
@@ -139,7 +139,7 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1607397769 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Path:"
+text = "Путь:"
 real_text = "|Path|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1935619838]
@@ -160,7 +160,7 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=2084341244 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Name:"
+text = "Имя:"
 real_text = "|Name|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=1075093972]
@@ -237,8 +237,8 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
+[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/OptionButton2" to="." method="_on_option_button_item_selected"]
 [connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Type/LineEdit" to="." method="_on_TypeLine_edit_text_changed"]
-[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/Type/OptionButton2" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/Type/OptionButton" to="." method="_on_1option_button_item_selected"]
 [connection signal="state_changed" from="Panel/MarginContainer/VBoxContainer/Type/CheckCustom" to="." method="_on_check_custom_state_changed"]
 [connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Path/LineEdit" to="." method="_on_PathLine_edit_text_changed"]

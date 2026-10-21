@@ -316,6 +316,7 @@ font_size = 14
 icon_size = 20
 
 [node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1283449374]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -491,7 +492,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " Loading "
+text = " Загрузка "
 horizontal_alignment = 1
 real_text = " |Loading| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -503,8 +504,8 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=934589328 instance=ExtResource("10_3higr")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Loading: None
-Контент[0/0]: /none.json"
+text = "Загрузка: None
+ModEditor.LoadingWindow.Content.text[0/0]: /none.json"
 vertical_alignment = 2
 clip_text = true
 real_text = "|Loading|: None
