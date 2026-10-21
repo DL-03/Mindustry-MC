@@ -80,9 +80,8 @@ published with semantic version tags in `vMAJOR.MINOR.PATCH` form.
 
 ## Language packs
 
-Keep language packs in a dedicated `languages` branch and integrate that
-branch into the application repository with Git subtree. The branch root
-contains a directory for each incompatible language-pack format:
+Keep language packs in the `languages` branch of this same repository. The
+branch root contains a directory for each incompatible language-pack format:
 
 ```text
 languages branch
@@ -92,8 +91,10 @@ languages branch
     └── ua.properties
 ```
 
-After integrating the branch, the application repository contains
-`languages/v2/*.properties`. `LANGUAGE_MAJOR_VERSION` in
+The `languages` branch is not a separate repository. Its contents can be
+projected into the `main` checkout under `languages/` with Git subtree for
+convenient editing. `main` then contains `languages/v2/*.properties`.
+`LANGUAGE_MAJOR_VERSION` in
 `libs/LocalizationAPI.gd` selects the compatible pack directory. Keep older
 major-version directories in the `languages` branch when introducing an
 incompatible format; increment the constant when the application adopts the new
@@ -113,32 +114,33 @@ the higher numeric `version`; ties favor the user copy. Only packs matching the
 application's `LANGUAGE_MAJOR_VERSION` are loaded, so packs for an unsupported
 incompatible format are ignored.
 
-The application also checks the remote language-pack repository. A remote pack
-replaces the user copy only when its version is newer than the best compatible
-pack already available locally or in the bundle. Before replacing a pack from a
-different major version, MMC saves the old file under
+The application checks the `vN/` directory on the same repository's remote
+`languages` branch. A remote pack replaces the user copy only when its version
+is newer than the best compatible pack already available locally or in the
+bundle. Before replacing a pack from a different major version, MMC saves the
+old file under
 `user://Languages/backups/vN/<language>.properties`.
 
 The Linux export preset explicitly includes `languages/**/*.properties`, so
 the bundled fallback packs are available in exported builds as well as when
 running from the editor.
 
-### Create and publish the `languages` branch
+### Create and publish the `languages` branch in this repository
 
-Use a separate clone so creating an orphan branch cannot disturb uncommitted
-work in the application checkout. Replace the clone URL with the URL you use to
-access this repository:
+First commit or stash changes in the `main` checkout. Create the branch in the
+existing clone (this does not create another repository):
 
 ```sh
-git clone <repository-url> Mindustry-MC-languages
-cd Mindustry-MC-languages
 git switch --orphan languages
+git rm -rf -- .
 mkdir -p v2
 ```
 
-Copy the existing language files into `v2/` (for example, `en.properties`,
+The `git rm` command clears the tracked `main` files from this orphan branch's
+working tree; it does not delete them from `main`. Copy the language files from
+their existing source into `v2/` (for example, `en.properties`,
 `ru.properties`, and `ua.properties`). Check that each file has the correct
-`majorVersion` and a `version`, then commit and publish the branch:
+`majorVersion` and a `version`, then commit and push the branch:
 
 ```sh
 git add v2
@@ -146,25 +148,25 @@ git commit -m "Add version 2 language packs"
 git push -u origin languages
 ```
 
-### Connect the branch to the main checkout
+### Show the branch contents under `languages/` in `main`
 
-First commit or stash existing changes in the main checkout. Then add the
-branch as the `languages/` directory:
+Switch back to `main` and add the branch contents as the `languages/`
+directory. Both branches are in the same repository and use the same `origin`:
 
 ```sh
-cd Mindustry-MC
+git switch main
 git fetch origin languages
 git subtree add --prefix=languages origin languages --squash
 ```
 
-After making translation changes in the main checkout's `languages/` directory,
-publish them to the dedicated branch with:
+After making translation changes in `main/languages/`, publish those changes
+back to the `languages` branch with:
 
 ```sh
 git subtree push --prefix=languages origin languages
 ```
 
-To bring changes made directly on the `languages` branch back into `main`, run:
+To bring changes made directly on the `languages` branch into `main`, run:
 
 ```sh
 git fetch origin languages
@@ -173,12 +175,12 @@ git subtree pull --prefix=languages origin languages --squash
 
 ### Keep language packs available offline
 
-Commit the language files into the `languages` branch and integrate that branch
+Commit the language files into the `languages` branch and project that branch
 into `main` with the subtree commands above. Once `languages/vN/*.properties`
 are present, Godot can include them in exports and MMC can load them without a
-network connection. Keep the existing remote source configured in
-`LocalizationAPI.gd` for newer translations; the bundled files are the offline
-fallback and are not modified by downloads.
+network connection. The `languages` branch remains the online update source
+for newer translations; bundled files provide the offline fallback and are not
+modified by downloads.
 
 ## Contributing
 

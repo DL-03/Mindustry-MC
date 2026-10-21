@@ -10,7 +10,7 @@ var global_language: String = ""
 const LANGUAGES_DIR: String = "user://Languages"
 const BUNDLED_LANGUAGES_DIR := "res://languages"
 const LANGUAGE_MAJOR_VERSION := 2
-const GITHUB_API_URL: String = "https://api.github.com/repos/DL-03/Mindustry-MC-Upgrade-Files/contents/languages"
+const GITHUB_API_URL: String = "https://api.github.com/repos/DL-03/Mindustry-MC/contents"
 const APP_LATEST_RELEASE_URL: String = "https://api.github.com/repos/DL-03/Mindustry-MC/releases/latest"
 const HTTP_HEADERS: PackedStringArray = [
 	"User-Agent: GodotEngine/4.x",
@@ -256,7 +256,7 @@ func _is_newer_app_version(latest_version: String, current_version: String) -> b
 
 func refresh_lang() -> void:
 	if request_languages and request_languages.get_http_client_status() == HTTPClient.STATUS_DISCONNECTED:
-		request_languages.request("%s/v%d" % [GITHUB_API_URL, LANGUAGE_MAJOR_VERSION], HTTP_HEADERS)
+		request_languages.request("%s/v%d?ref=languages" % [GITHUB_API_URL, LANGUAGE_MAJOR_VERSION], HTTP_HEADERS)
 
 func _on_request_languages_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
