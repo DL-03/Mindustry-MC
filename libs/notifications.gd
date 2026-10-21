@@ -2,6 +2,7 @@ extends Control
 
 @export var notificationPrefab: PackedScene
 @export var listElement: Node
+@export var timer: Timer
 
 var Messages = []
 
@@ -29,11 +30,7 @@ func debug(_text=""):
 func toast(_text="", _type = Type.DEFAULT):
 	if _text=="":
 		return
-	if not notificationPrefab:
-		print_rich(COLORS.colorita(LocalizationAPI.translate_text("[Notification][UI.RED][ERROR][]: Notification prefab not found!")))
-	
-	var s = notificationPrefab.instantiate()
-	
+
 	var _message = _text
 	var _message_for_console = _text
 	
@@ -60,6 +57,17 @@ func toast(_text="", _type = Type.DEFAULT):
 			_message_for_console = "[N]: "+_message_for_console
 	
 	print_rich(COLORS.colorita(LocalizationAPI.translate_text(_message_for_console)))
+	
+	if _type == Type.DEBUG:
+		if "Settings" in SaveDataAPI.data:
+			if "Debug" in SaveDataAPI.data["Settings"]:
+				if not SaveDataAPI.data["Settings"]["Debug"]:
+					return
+	
+	if not notificationPrefab:
+		print_rich(COLORS.colorita(LocalizationAPI.translate_text("[Notification][UI.RED][ERROR][]: Notification prefab not found!")))
+	
+	var s = notificationPrefab.instantiate()
 	s.text = _message
 	
 	listElement.add_child(s)
@@ -68,6 +76,9 @@ func toast(_text="", _type = Type.DEFAULT):
 	Messages.append(s)
 
 func _ready() -> void:
+	SaveDataAPI.data_changed.connect(on_updated_settings)
+	on_updated_settings()
+	
 	upd()
 
 func upd():
@@ -76,3 +87,14 @@ func upd():
 
 func _on_list_child_order_changed() -> void:
 	upd()
+
+func on_updated_settings():
+	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
+		if "Settings" in SaveDataAPI.data:
+			if "saveMessageFrequency" in SaveDataAPI.data["Settings"]:
+				timer.wait_time = SaveDataAPI.data["Settings"]["saveMessageFrequency"]
+				timer.stop()
+				timer.start()
+
+func _on_timer_timeout() -> void:
+	info("|DontForgetSave|")

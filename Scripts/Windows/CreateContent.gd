@@ -3,7 +3,7 @@ extends Panel
 
 @onready var ErrorString = $Panel/MarginContainer/VBoxContainer/tip
 
-@onready var ContentTypeOption = $Panel/MarginContainer/VBoxContainer/ContentType/OptionButton
+@onready var ContentTypeOption = $Panel/MarginContainer/VBoxContainer/Type/OptionButton2
 
 @onready var TypeOption = $Panel/MarginContainer/VBoxContainer/Type/OptionButton
 @onready var TypeLine = $Panel/MarginContainer/VBoxContainer/Type/LineEdit
@@ -21,20 +21,6 @@ extends Panel
 var modClass: ModClass
 
 
-
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-
 func open(_modClass):
 	ContentTypeOption.clear()
 	for i in ["Blocks", "Items", "Liquids"]:
@@ -43,12 +29,9 @@ func open(_modClass):
 	for i in ContentManager.ContentFile["CreateContent"]["Block"]:
 		TypeOption.add_item(i)
 	TypeOption.select(0)
-		
-	
-	
+
 	if _modClass != null:
 		modClass = _modClass
-		
 		
 		PathLine.text = ""
 		
@@ -67,28 +50,21 @@ func update_data():
 	NameString.real_text = "/"+NameLine.text+"."+ExtOption.text.to_lower()
 	$Panel/MarginContainer/VBoxContainer/DownPanel/Create.disabled = true
 	
-	
-	
-	
-	
 	var new_text = NameLine.text
 	
 	if ContentTypeOption.selected == 0:
 		if FileAccess.file_exists(modClass.Path.simplify_path().path_join("content/blocks").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower())):
-			$Panel/MarginContainer/VBoxContainer/tip.real_text = "|CreateContent.tip.PathBusy|"
+			$Panel/MarginContainer/VBoxContainer/tip.real_text = "|PathBusy|"
 			return
 	elif ContentTypeOption.selected == 1:
 		if FileAccess.file_exists(modClass.Path.simplify_path().path_join("content/items").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower())):
-			$Panel/MarginContainer/VBoxContainer/tip.real_text = "|CreateContent.tip.PathBusy|"
+			$Panel/MarginContainer/VBoxContainer/tip.real_text = "|PathBusy|"
 			return
 	elif ContentTypeOption.selected == 2:
 		if FileAccess.file_exists(modClass.Path.simplify_path().path_join("content/liquids").path_join(PathLine.text).path_join(new_text+"."+ExtOption.text.to_lower())):
-			ErrorString.real_text = "|CreateContent.tip.PathBusy|"
+			ErrorString.real_text = "|PathBusy|"
 			return
-	
-	
-	
-	
+
 	ErrorString.real_text = ""
 	$Panel/MarginContainer/VBoxContainer/DownPanel/Create.disabled = false
 
@@ -102,7 +78,7 @@ func _on_back_pressed():
 func _on_create_pressed():
 	var content_directories := ["blocks", "items", "liquids"]
 	if ContentTypeOption.selected < 0 or ContentTypeOption.selected >= content_directories.size():
-		push_error("Cannot create content: invalid content category.")
+		Notifications.error("Cannot create content: invalid content category.")
 		return
 
 	var content_type := ""
@@ -137,11 +113,6 @@ func _on_option_button_item_selected(index):
 	update_data()
 
 
-
-
-
-
-
 func _on_EXT_option_button_item_selected(index):
 	update_data()
 
@@ -163,6 +134,7 @@ func _on_check_custom_state_changed(v):
 		if TypeLine != null:
 			TypeLine.visible = v
 			TypeOption.visible = not v
+			ContentTypeOption.visible = not v
 
 
 func _on_1option_button_item_selected(index):
@@ -197,6 +169,5 @@ func _on_file_dialog_dir_selected(dir):
 			Notifications.error("Error path root false")
 			return
 		PathLine.text = dir.simplify_path().substr(len(modClass.Path.simplify_path().path_join("content/liquids/")))
-		
-	
+
 	update_data()

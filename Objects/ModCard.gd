@@ -39,10 +39,10 @@ func _contentClass_updated():
 
 	if ModEditor.modClass.ModType.to_lower() == "folder":
 		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_text = ""
-		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Text.Folder|"
+		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Folder|"
 	else:
 		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_text = ""
-		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Text.Archive|"
+		$MarginContainer/HBoxContainer/VFlowContainer/Type.real_tooltip_text = "[UI.YELLOW]|Archive|"
 		
 	show_save_button = ModEditor.modClass.ModType.to_lower() == "archive"
 	

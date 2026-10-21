@@ -14,8 +14,6 @@ func get_only_filename(path):
 
 
 
-
-
 func update_data():
 	var new_text = $Panel/MarginContainer/VBoxContainer/LineEdit.text
 	
@@ -62,7 +60,7 @@ func open(_contentClass, _type):
 		
 		$Panel/MarginContainer/VBoxContainer/Label.font_color = COLORS.get_color("UI.YELLOW")
 		if Type == 0:
-			$Panel/MarginContainer/VBoxContainer/Label.real_text = "!  |RDW.Title.Delete|  !"
+			$Panel/MarginContainer/VBoxContainer/Label.real_text = "!  |Delete|  !"
 			$Panel/MarginContainer/VBoxContainer/Label.font_color = COLORS.get_color("UI.RED")
 			
 			
@@ -85,13 +83,20 @@ func open(_contentClass, _type):
 			
 			$Panel.get_theme_stylebox("panel").border_color = COLORS.get_color("UI.RED").to_html()
 			
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|RDW.Delete.text|"
+			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|Delete|"
 			
 			$Panel/MarginContainer/VBoxContainer/LineEdit.hide()
-			$Panel/MarginContainer/VBoxContainer/Label2.text = "You really want delete content\n - <"+str(contentClass.FullData["name"])+">?"
+			
+			var _name = contentClass.Path.get_file()
+			
+			if "name" in contentClass.FullData:
+				if contentClass.FullData["name"] != "":
+					_name = contentClass.FullData["name"]
+			
+			$Panel/MarginContainer/VBoxContainer/Label2.text = "You really want delete content\n - <"+_name+">?"
 			#$Panel/MarginContainer/VBoxContainer/tip.real_text = "You can`t return content after deleting!!!"
 		elif Type == 1:
-			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |RDW.Title.Rename| "
+			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |Rename| "
 			
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.hide()
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.show()
@@ -105,7 +110,7 @@ func open(_contentClass, _type):
 			$Panel/MarginContainer/VBoxContainer/LineEdit.text = get_only_filename(contentClass.Path)
 			$Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text = get_only_filename(contentClass.Path)
 		elif Type == 2:
-			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |RDW.Title.Duplicate| "
+			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |Duplicate| "
 			
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.hide()
 			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.hide()

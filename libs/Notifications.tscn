@@ -55,4 +55,9 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 5
 
+[node name="Timer" type="Timer" parent="." unique_id=1378723501]
+wait_time = 60.0
+autostart = true
+
 [connection signal="child_order_changed" from="Panel/MarginContainer/List" to="." method="_on_list_child_order_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh87acddn33ms"]
+[gd_scene format=3 uid="uid://bh87acddn33ms"]
 
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://Objects/Widgets/MindustryLabel.tscn" id="1_qlw2u"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://Objects/Widgets/MindustryButton.tscn" id="2_uffmq"]
@@ -27,7 +27,7 @@ bg_color = Color(1, 0.827451, 0.498039, 1)
 border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="NeedSaveContent" type="Panel"]
+[node name="NeedSaveContent" type="Panel" unique_id=451520050]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +37,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_svh2n")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=243175890]
 custom_minimum_size = Vector2(500, 175)
 layout_mode = 1
 anchors_preset = 8
@@ -53,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1215070942]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,50 +65,50 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=229163365]
 layout_mode = 2
 
-[node name="Title" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_qlw2u")]
+[node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=236386586 instance=ExtResource("1_qlw2u")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.24, 0.198588, 0.119529, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = "!  Потрібно Зберегти  !"
+text = "!  NeedSave  !"
 horizontal_alignment = 1
-real_text = "!  |NeedSaveContent.Title.text|  !"
+real_text = "!  |NeedSave|  !"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2021179075]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 
-[node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_qlw2u")]
+[node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=232780321 instance=ExtResource("1_qlw2u")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "InfoPanel"
+text = "NeedSave"
 horizontal_alignment = 1
 vertical_alignment = 1
-real_text = "InfoPanel"
+real_text = "|NeedSave|"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1231158281]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Save" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
+[node name="Save" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=870014149 instance=ExtResource("2_uffmq")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|NeedSaveContent.Save.text|"
+real_text = "|Save|"
 
-[node name="Discard" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
+[node name="Discard" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1085605377 instance=ExtResource("2_uffmq")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|NeedSaveContent.Discard.text|"
+real_text = "|Discard|"
 
-[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_uffmq")]
+[node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1368396185 instance=ExtResource("2_uffmq")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|NeedSaveContent.Cancel.text|"
+real_text = "|Cancel|"

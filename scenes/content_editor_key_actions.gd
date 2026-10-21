@@ -35,7 +35,9 @@ var contentClass: ContentClass
 var CCW = null
 
 func edit(object):
-	$Panel/MarginContainer/VBoxContainer/tip.real_text = "No changes"
+	$Panel/MarginContainer/VBoxContainer/tip.real_text = "|NoChanges|"
+	$Panel/MarginContainer/VBoxContainer/Title.real_text = " |KeyActions| "
+	
 	NameLine.text = object.Name
 	s_name = object.Name
 
@@ -59,12 +61,12 @@ func edit(object):
 	delete_process_state = false
 	final_delete_process = 0
 
-	$Panel/MarginContainer/VBoxContainer/DownPanel/Delete.real_text = "|RDW.Delete.text|"
+	$Panel/MarginContainer/VBoxContainer/DownPanel/Delete.real_text = "|Delete|"
 
 
 func create(_RootContentFrame):
-	$Panel/MarginContainer/VBoxContainer/tip.real_text = "No changes"
-	$Panel/MarginContainer/VBoxContainer/Title.real_text = " Create Key "
+	$Panel/MarginContainer/VBoxContainer/tip.real_text = "|NoChanges|"
+	$Panel/MarginContainer/VBoxContainer/Title.real_text = " |Create| |Key| "
 
 	NameLine.text = ""
 	s_name = ""
@@ -152,6 +154,7 @@ func _on_delete_button_up():
 
 
 func _ready():
+	TypeOptionButton.clear()
 	for i in Types:
 		TypeOptionButton.add_item(i)
 
@@ -194,7 +197,7 @@ func _update():
 			$Panel/MarginContainer/VBoxContainer/tip.real_text = "[UI.YELLOW]Warning value key earse after change type!"
 			$Panel/MarginContainer/VBoxContainer/DownPanel/Save.disabled = false
 		else:
-			$Panel/MarginContainer/VBoxContainer/tip.real_text = "No changes"
+			$Panel/MarginContainer/VBoxContainer/tip.real_text = "|NoChanges|"
 
 	elif contentClass.Data.has(new_text):
 		$Panel/MarginContainer/VBoxContainer/tip.real_text = "Key exist!"

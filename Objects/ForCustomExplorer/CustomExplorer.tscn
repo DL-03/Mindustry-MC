@@ -29,7 +29,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
 real_text_icon_left = ""
-real_tooltip_text = "|CustomExplorer.TopPanel.UpToFolder.text|"
+real_tooltip_text = "|UpOneLevel|"
 
 [node name="Refresh" parent="Panels/UpPanel" unique_id=1521617521 instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
@@ -37,14 +37,14 @@ layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
 real_text_icon_left = ""
 icon_size = 32
-real_tooltip_text = "|CustomExplorer.TopPanel.Refresh.text|"
+real_tooltip_text = "|Refresh|"
 
 [node name="Home" parent="Panels/UpPanel" unique_id=870834646 instance=ExtResource("1_tmt2a")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
 real_text_icon_left = ""
-real_tooltip_text = "|CustomExplorer.TopPanel.Home.text|"
+real_tooltip_text = "|ToHome|"
 
 [node name="LineEdit" type="LineEdit" parent="Panels/UpPanel" unique_id=1255249893]
 layout_mode = 2
@@ -57,7 +57,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
 real_text_icon_left = ""
-real_tooltip_text = "|CustomExplorer.TopPanel.Search.text|"
+real_tooltip_text = "|Search|"
 
 [node name="OptionButton" type="OptionButton" parent="Panels/UpPanel" unique_id=1757393570]
 layout_mode = 2

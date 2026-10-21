@@ -125,10 +125,10 @@ func on_updated_lbu():
 
 func DescSelect(lang):
 	DescText.real_text = LocalizationAPI.translate_text(
-'''|SettingsWindow.Language.DescriptionPanel.Name.text|: |displayName|
-|SettingsWindow.Language.DescriptionPanel.File.text|: '''+lang+'''.properties
-|SettingsWindow.Language.DescriptionPanel.Version.text|: |version|
-|SettingsWindow.Language.DescriptionPanel.MajorVersion.text|: 1
+'''|Name|: |displayName|
+|File|: '''+lang+'''.properties
+|Version|: |version|
+|MajorVersion|: |majorVersion|
 
 |description|'''
 , lang)
@@ -141,7 +141,7 @@ func on_global_lc():
 	pt.border_color = COLORS.get_color("UI.GRAY")
 	DescText.get_parent().get_parent().add_theme_stylebox_override("panel", pt)
 	
-	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/LineEdit.placeholder_text = LocalizationAPI.translate_text("|SettingsWindow.Information.Secret.text|")
+	$MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/LineEdit.placeholder_text = LocalizationAPI.translate_text("|Secret|")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Information_Description.placeholders["version"] = ProjectSettings.get_setting("application/config/version")
@@ -194,11 +194,13 @@ func _on_close_pressed():
 
 
 func _on_github_pressed():
-	OS.shell_open("https://github.com/DL-03/")
+	OS.shell_open("https://github.com/DL-03")
 
 func _on_discord_pressed():
 	OS.shell_open("https://discord.gg/MCdqTUQAFH")
 
+func _on_itch_io_pressed():
+	OS.shell_open("https://dl03.itch.io")
 
 
 func password():
@@ -206,46 +208,65 @@ func password():
 	
 	if password == "0.21" or password == "v0.21":
 		Notifications.info("|Secret.0.21|")
+	elif password == "1234":
+		Notifications.info("|Secret.1234|")
+	elif password == "dl" or password == "dl03":
+		Notifications.info("|Secret.DL|")
+	elif password == "vladislav117" or password == "117":
+		Notifications.info("|Secret.Vladislav117|")
+	elif password == "exmii" or password == "exmiii":
+		Notifications.info("|Secret.Exmii|")
+	elif password == "ivandog11" or password == "ivandog11" or password == "псина сутулая":
+		Notifications.info("|Secret.IvanDog11|")
+	elif password == "neu" or password == "neu512":
+		Notifications.info("|Secret.Neu|")
+	elif password == "axy" or password == "axylua":
+		Notifications.info("|Secret.axylua|")
+	
+	elif password == "jojo":
+		Notifications.info("|Secret.jojo|")
 
+	elif password == "_ignatusik_" or password == "ignatusik" or password == "игнатусик":
+		Notifications.info("|Secret._ignatusik_|")
 
-	elif password == "mywidgets":
-		Notifications.info("Godot version MMC not have MyWidgets")
+	elif password == "пароль" or password == "password":
+		Notifications.info("|Secret.Password|")
+	elif password == "код" or password == "code":
+		Notifications.info("|Secret.Code|")
+	elif password == "ximalider":
+		Notifications.info("|Secret.Ximalider|")
+	elif password == "travel":
+		Notifications.info("|Secret.Travel|")
+	elif password == "секрет" or password == "secret":
+		Notifications.info("|Secret.Secret|")
+	elif password == "jojo" or password == "жожа" or password == "jotaro":
+		Notifications.info("|Secret.jojo|")
+	elif password == "ss14" or password == "ss13":
+		Notifications.info("|Secret.ss14|")
+	elif password == "nexus":
+		Notifications.info("|Secret.nexus|")
+	elif password == "linux" or password == "линукс":
+		Notifications.info("|Secret.linux|")
+	elif password == "arch" or password == "arch linux" or password == "archlinux":
+		Notifications.info("|Secret.arch|")
+	elif password == "android":
+		Notifications.info("|Secret.android|")
+	elif password == "ios":
+		Notifications.info("|Secret.ios|")
+	elif password == "windows":
+		Notifications.info("|Secret.windows|")
+	elif password == "mac":
+		Notifications.info("|Secret.mac|")
+	elif password == "nuke" or password == "оперы" or password == "ops" or password == "delta" or password == "дельта":
+		Notifications.info("|Secret.nuke|")
+	elif password == "max" or password == "макс" or password == "стинт" or password == "stint":
+		Notifications.info("|Secret.max|")
+	elif password == "mindsl":
+		Notifications.info("|Secret.mindsl|")
+	elif password == "jsab":
+		Notifications.info("|Secret.jsab|")
 	else:
-		if password == "1234":
-			Notifications.info("|Secret.1234|")
-
-
-		elif password == "dl" or password == "dl03":
-			Notifications.info("|Secret.DL|")
-		elif password == "vladislav117" or password == "117":
-			Notifications.info("|Secret.Vladislav117|")
-		elif password == "exmii" or password == "exmiii":
-			Notifications.info("|Secret.Exmii|")
-		elif password == "ivandog11" or password == "ivandog11" or password == "псина сутулая":
-			Notifications.info("|Secret.IvanDog11|")
-		elif password == "neu" or password == "neu512":
-			Notifications.info("|Secret.Neu|")
-		elif password == "axy" or password == "axylua":
-			Notifications.info("|Secret.axylua|")
-		
-		elif password == "jojo":
-			Notifications.info("|Secret.jojo|")
-
-		elif password == "_ignatusik_" or password == "ignatusik" or password == "игнатусик":
-			Notifications.info("|Secret._ignatusik_|")
-
-		elif password == "пароль" or password == "password":
-			Notifications.info("|Secret.Password|")
-		elif password == "код" or password == "code":
-			Notifications.info("|Secret.Code|")
-		elif password == "ximalider":
-			Notifications.info("|Secret.Ximalider|")
-		elif password == "travel":
-			Notifications.info("|Secret.Travel|")
-		elif password == "секрет" or password == "secret":
-			Notifications.info("|Secret.Secret|")
-		else:
-			Notifications.info("|Secret.!else!|")
+		Notifications.info("|Secret.!else!|")
 
 
 func _on_enter_pressed():
@@ -364,7 +385,6 @@ func _on_auto_open_settings_state_changed(value):
 
 
 func _on_momental_delete_state_changed(value):
-	
 	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
 		if "Settings.MomentalDelete" in SaveDataAPI.data:
 			SaveDataAPI.data["Settings.MomentalDelete"] = value
@@ -380,16 +400,13 @@ func _on_time_for_delete_spin_box_changed():
 
 
 func _on_momental_delete_spin_box_value_changed(value):
-	
-	
 	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
 		if "Settings.TimeForDelete" in SaveDataAPI.data:
 			SaveDataAPI.data["Settings.TimeForDelete"] = value
 			SaveDataAPI.save_data()
 
 
-func _on_itch_io_pressed():
-	OS.shell_open("https://dl03.itch.io/")
+
 	
 
 
@@ -403,5 +420,4 @@ func _on_myndustry_check_box_state_changed(value):
 
 
 func _on_open_folder_mmc_pressed():
-	if OS.get_name() == "Windows":
-		OS.execute("explorer.exe", PackedStringArray([ProjectSettings.globalize_path("user://").replace("/", "\\")]))
+	OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://"))

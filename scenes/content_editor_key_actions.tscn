@@ -122,6 +122,7 @@ func _process(delta):
 "
 
 [node name="ContentEditorKeyActions" type="Panel" unique_id=177122460 node_paths=PackedStringArray("NameLine")]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -168,9 +169,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " Create Key "
+text = " KeyActions "
 horizontal_alignment = 1
-real_text = " Create Key "
+real_text = " |KeyActions| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1383994176]
@@ -183,8 +184,8 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=224284997 instance=ExtResource("2_4xc0a")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Ключ:"
-real_text = "|ContentEditorKeyActions.Key|:"
+text = "Key:"
+real_text = "|Key|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=291073015]
 layout_mode = 2
@@ -198,8 +199,8 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1754296251 instance=ExtResource("2_4xc0a")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Тип:"
-real_text = "|ContentEditorKeyActions.Type|:"
+text = "Type:"
+real_text = "|Type|:"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1178550787]
 layout_mode = 2
@@ -239,7 +240,7 @@ size_flags_vertical = 10
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|RDW.Cancel.text|"
+real_text = "|Cancel|"
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=1135730542 instance=ExtResource("4_qbwpq")]
 z_index = 1
@@ -249,7 +250,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_qt5if")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4od2p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2hboq")
 real_text_icon_left = ""
-real_text = "|RDW.Delete.text|"
+real_text = "|Delete|"
 h_aligment = null
 
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/DownPanel/Delete" unique_id=1293581449]
@@ -269,14 +270,14 @@ script = SubResource("GDScript_40n8v")
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|NeedSaveContent.Save.text|"
+real_text = "|Save|"
 
 [node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=752922974 instance=ExtResource("4_qbwpq")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 real_text_icon_left = ""
-real_text = "|CreateMod.Create.text|"
+real_text = "|Create|"
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=80861453]
 title = "Open a Directory"

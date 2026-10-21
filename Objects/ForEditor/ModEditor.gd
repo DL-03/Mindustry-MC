@@ -105,7 +105,7 @@ func setPath(path):
 
 		#first_scan_content()
 		
-		Notifications.info("|Message.modification_has_been_opened|")
+		Notifications.info("|ModificationOpened|")
 		
 
 func _on_mod_loaded() -> void:
@@ -127,7 +127,7 @@ func _update_loading_progress() -> void:
 	if content_count > 0:
 		last_path = str(modClass.ContentBank[-1].Path).substr(modClass.Path.length())
 
-	label.real_text = "|ModEditor.LoadingWindow.Label.text|: %s\n|ModEditor.LoadingWindow.Content.text|[%d]: %s" % [
+	label.real_text = "|Loading|: %s\n|Content|[%d]: %s" % [
 		mod_name,
 		content_count,
 		last_path

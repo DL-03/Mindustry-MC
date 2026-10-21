@@ -64,7 +64,7 @@ size_flags_vertical = 4
 theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "|CustomExplorer.Element.Duplicate.text|"
+real_tooltip_text = "|Duplicate|"
 
 [node name="Rename" parent="HBoxContainer" unique_id=79672008 instance=ExtResource("7_oh4t0")]
 custom_minimum_size = Vector2(30, 30)
@@ -73,7 +73,7 @@ size_flags_vertical = 4
 theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "|CustomExplorer.Element.Rename.text|"
+real_tooltip_text = "|Rename|"
 
 [node name="Delete" parent="HBoxContainer" unique_id=1421720074 instance=ExtResource("7_oh4t0")]
 custom_minimum_size = Vector2(30, 30)
@@ -83,7 +83,7 @@ theme_type_variation = &"ButtonUnborderTiny"
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "[UI.RED]||CustomExplorer.Element.Delete.text||"
+real_tooltip_text = "[UI.RED]||Delete|"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="pressed" from="HBoxContainer/Duplicate" to="." method="_on_duplicate_pressed"]

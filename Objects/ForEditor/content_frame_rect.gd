@@ -5,12 +5,21 @@ var TabButton = null
 var ModEditor: Node
 var RootNode: Node
 
+@export var _TabContainer: TabContainer
 
 var contentClass: ContentClass:
 	set = _set_contentClass
 
 
-
+func _ready() -> void:
+	_TabContainer.set_tab_title(0, LocalizationAPI.translate_text("|Editor|"))
+	_TabContainer.set_tab_title(1, LocalizationAPI.translate_text("|Textures|"))
+	
+	LocalizationAPI.global_language_changed.connect(
+		func():
+			_TabContainer.set_tab_title(0, LocalizationAPI.translate_text("|Editor|"))
+			_TabContainer.set_tab_title(1, LocalizationAPI.translate_text("|Textures|"))
+	)
 
 
 var writeData = {}
@@ -57,6 +66,8 @@ func changed_data(key,value):
 
 	needSave = len(writeData) > 0
 		
+
+
 
 
 func _SpriteBank_updated():

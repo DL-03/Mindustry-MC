@@ -30,6 +30,7 @@ border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="CreateMod" type="Panel" unique_id=177122460]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -75,9 +76,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " Создать Модификацию "
+text = " CreateMod "
 horizontal_alignment = 1
-real_text = " |CreateMod.Title.text| "
+real_text = " |CreateMod| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1383994176]
@@ -88,10 +89,10 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-text = "Создать Модификацию"
+text = "CreateMod"
 horizontal_alignment = 1
 vertical_alignment = 1
-real_text = "|CreateMod.Title.text|"
+real_text = "|CreateMod|"
 
 [node name="Path" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1961827936]
 layout_mode = 2
@@ -99,8 +100,8 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1754296251 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Путь:"
-real_text = "|CreateMod.Path.text|:"
+text = "Path:"
+real_text = "|Path|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=738417597]
 layout_mode = 2
@@ -120,8 +121,8 @@ layout_mode = 2
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=224284997 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Имя:"
-real_text = "|CreateMod.Name.text|:"
+text = "Name:"
+real_text = "|Name|:"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=291073015]
 layout_mode = 2
@@ -146,20 +147,20 @@ size_flags_vertical = 10
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|CreateMod.Back.text|"
+real_text = "|Back|"
 
 [node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=79395684 instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|CreateMod.ChosePath.text|"
+real_text = "|ChoosePath|"
 
 [node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=752922974 instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
 real_text_icon_left = ""
-real_text = "|CreateMod.Create.text|"
+real_text = "|Create|"
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=80861453]
 title = "Open a Directory"

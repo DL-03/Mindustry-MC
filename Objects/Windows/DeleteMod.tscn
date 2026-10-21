@@ -122,6 +122,7 @@ func _process(delta):
 "
 
 [node name="DeleteMod" type="Panel" unique_id=600546763]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -167,9 +168,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.082655564, 0.08165986, 1)
 theme_override_font_sizes/font_size = 20
-text = "!  Delete Mod  !"
+text = "!  DeleteMod  !"
 horizontal_alignment = 1
-real_text = "!  Delete Mod  !"
+real_text = "!  |DeleteMod|  !"
 font_color = Color(0.945098, 0.32549, 0.321569, 1)
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=272169872]
@@ -192,7 +193,7 @@ size_flags_vertical = 10
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|RDW.Cancel.text|"
+real_text = "|Cancel|"
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=209904677 instance=ExtResource("4_40crj")]
 z_index = 1
@@ -202,7 +203,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
 real_text_icon_left = ""
-real_text = "|RDW.Delete.text|"
+real_text = "|Delete|"
 h_aligment = null
 
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" unique_id=793908844]

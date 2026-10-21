@@ -98,16 +98,16 @@ var HOME_PATH = ""
 
 
 func l_glc_changed():
-	$Panels/UpPanel/OptionButton.set_item_text(0, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.HugeIcons|"))
-	$Panels/UpPanel/OptionButton.set_item_text(1, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.BigIcons|"))
-	$Panels/UpPanel/OptionButton.set_item_text(2, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.DefaultIcons|"))
-	$Panels/UpPanel/OptionButton.set_item_text(3, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.SmallIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(0, LocalizationAPI.translate_text("|HugeIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(1, LocalizationAPI.translate_text("|BigIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(2, LocalizationAPI.translate_text("|DefaultIcons|"))
+	$Panels/UpPanel/OptionButton.set_item_text(3, LocalizationAPI.translate_text("|SmallIcons|"))
 	
-	$Panels/UpPanel/OptionButton.set_item_text(4, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.List|"))
-	$Panels/UpPanel/OptionButton.set_item_text(5, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.Table|"))
+	$Panels/UpPanel/OptionButton.set_item_text(4, LocalizationAPI.translate_text("|List|"))
+	$Panels/UpPanel/OptionButton.set_item_text(5, LocalizationAPI.translate_text("|Table|"))
 	
-	$Panels/UpPanel/OptionButton.set_item_text(6, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.Tile|"))
-	$Panels/UpPanel/OptionButton.set_item_text(7, LocalizationAPI.translate_text("|CustomExplorer.TopPanel.ViewContent.Content|"))
+	$Panels/UpPanel/OptionButton.set_item_text(6, LocalizationAPI.translate_text("|Tile|"))
+	$Panels/UpPanel/OptionButton.set_item_text(7, LocalizationAPI.translate_text("|Content1|"))
 
 func _ready():
 	match OS.get_name():

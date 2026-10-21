@@ -13,7 +13,6 @@ func get_only_filename(path):
 	return path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length())
 
 
-
 func open(path):
 	if path != null:
 		Path = path
@@ -21,21 +20,13 @@ func open(path):
 		delete_process = 0
 		delete_process_state = false
 		final_delete_process = 0
-		
-		
+
 		show()
-		
-		
-				
+
 	
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|RDW.Delete.text|"
-		
+		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|Delete|"
 
 		$Panel/MarginContainer/VBoxContainer/Label2.text = "You really want delete mod\n - <"+str(Path)+">?\nYou can`t return mod after deleting!!!"
-
-
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,23 +36,16 @@ func _ready():
 func update_delete_procces():
 	if final_delete_process == 0:
 		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete/Panel.size.x = delete_process*($Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.size.x / 100)
-		
+
 		if delete_process_state:
 			delete_process = min(100, delete_process + 1)
 		if delete_process >= 100:
 			final_delete_process = 1
 			delete_process = 0
-		
 	else:
 		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete/Panel.size.x = $Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.size.x
 
 	await get_tree().create_timer(0.05).timeout.connect(update_delete_procces)
-			
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _on_cancel_pressed():

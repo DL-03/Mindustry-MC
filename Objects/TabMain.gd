@@ -56,7 +56,7 @@ func reset():
 
 	var LabelElement = tab.get_node_or_null("MarginContainer/HBoxContainer/Label")
 	if LabelElement:
-		LabelElement.real_text = "[emb][UI.YELLOW]|Main.UpPanel.Tab.Explorer.text|"
+		LabelElement.real_text = "[emb][UI.YELLOW]|Explorer|"
 
 
 

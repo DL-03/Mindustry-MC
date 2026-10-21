@@ -122,6 +122,7 @@ func _process(delta):
 "
 
 [node name="RenameDuplicateWindow" type="Panel" unique_id=838889498]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -167,9 +168,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = "Raneme"
+text = "Rename"
 horizontal_alignment = 1
-real_text = "Raneme"
+real_text = "|Rename|"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1248119531]
@@ -209,20 +210,20 @@ size_flags_vertical = 10
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|RDW.Cancel.text|"
+real_text = "|Cancel|"
 
 [node name="Rename" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1421187931 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|RDW.Rename.text|"
+real_text = "|Rename|"
 h_aligment = null
 
 [node name="Duplicate" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=911902560 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|RDW.Duplicate.text|"
+real_text = "|Duplicate|"
 h_aligment = null
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1607490263 instance=ExtResource("4_h2xpi")]
@@ -233,7 +234,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
 real_text_icon_left = ""
-real_text = "|RDW.Delete.text|"
+real_text = "|Delete|"
 h_aligment = null
 
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" unique_id=171015363]

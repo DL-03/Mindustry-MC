@@ -302,7 +302,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
 real_text_icon_left = ""
-real_text = "|ModEditor.CreateContent.text|"
+real_text = "|CreateContent|"
 font_size = 14
 icon_size = 18
 
@@ -311,7 +311,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
 real_text_icon_left = ""
-real_text = "|ModEditor.ReloadList.text|"
+real_text = "|ReloadList|"
 font_size = 14
 icon_size = 20
 
@@ -384,7 +384,7 @@ disabled = true
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
 icon_size = 20
-real_tooltip_text = "|ModEditor.ContentEditor.Save.text|"
+real_tooltip_text = "|Save|"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="ModEditor/ContentEditor/Top/Save" unique_id=1768282274]
 modulate = Color(1, 0, 0, 1)
@@ -463,10 +463,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -100.0
-offset_right = 250.0
-offset_bottom = 100.0
+offset_left = -400.0
+offset_top = -112.5
+offset_right = 400.0
+offset_bottom = 112.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
@@ -491,9 +491,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.19858824, 0.11952936, 1)
 theme_override_font_sizes/font_size = 20
-text = " Загрузка "
+text = " Loading "
 horizontal_alignment = 1
-real_text = " |ModEditor.LoadingWindow.Title| "
+real_text = " |Loading| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="HSeparator" type="HSeparator" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=25764502]
@@ -503,10 +503,11 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=934589328 instance=ExtResource("10_3higr")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Загрузка: None
+text = "Loading: None
 Контент[0/0]: /none.json"
 vertical_alignment = 2
-real_text = "|ModEditor.LoadingWindow.Label.text|: None
+clip_text = true
+real_text = "|Loading|: None
 |ModEditor.LoadingWindow.Content.text|[0/0]: /none.json"
 
 [node name="ProgressBar" type="ProgressBar" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=36730187]
@@ -527,7 +528,7 @@ size_flags_vertical = 10
 layout_mode = 2
 size_flags_horizontal = 3
 real_text_icon_left = ""
-real_text = "|RDW.Cancel.text|"
+real_text = "|Cancel|"
 
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]

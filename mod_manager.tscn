@@ -102,8 +102,8 @@ text = ""
 real_text = "[emb]"
 
 [node name="MindRTL" parent="VBoxContainer/DownPanel/OpenFolder/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="1" unique_id=1969564989]
-text = "Открыть Папку"
-real_text = "[emb]|ModManager.OpenFolder.text|"
+text = "OpenFolder"
+real_text = "[emb]|OpenFolder|"
 
 [node name="RightIcon" parent="VBoxContainer/DownPanel/OpenFolder/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="2" unique_id=777836022]
 visible = false
@@ -120,9 +120,8 @@ text = ""
 real_text = "[emb]"
 
 [node name="MindRTL" parent="VBoxContainer/DownPanel/CreateModification/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660471551, 1639273036) index="1" unique_id=1969564989]
-text = "Создать
-Модификацию"
-real_text = "[emb]|ModManager.CreateModification.text|"
+text = "Create_Mod"
+real_text = "[emb]|Create_Mod|"
 
 [node name="RightIcon" parent="VBoxContainer/DownPanel/CreateModification/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660471551, 1639273036) index="2" unique_id=777836022]
 visible = false

@@ -116,7 +116,7 @@ layout_mode = 2
 theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "Open"
+real_tooltip_text = "|Open|"
 
 [node name="Save" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1415178684 instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
@@ -125,7 +125,7 @@ theme_type_variation = &"ButtonUnborderTiny"
 icon_color = Color(0.329412, 0.839216, 0.490196, 1)
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "Save"
+real_tooltip_text = "|Save|"
 
 [node name="Type" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=331142492 instance=ExtResource("5_2i6kr")]
 custom_minimum_size = Vector2(40, 40)
@@ -138,7 +138,6 @@ text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 real_text = ""
-real_tooltip_text = "Папка"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="Delete" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1352830697 instance=ExtResource("5_6oqlx")]
@@ -148,7 +147,7 @@ theme_type_variation = &"ButtonUnborderTiny"
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "[UI.RED]Delete"
+real_tooltip_text = "[UI.RED]|Delete|"
 
 [node name="Visible" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1982066719 instance=ExtResource("5_6oqlx")]
 custom_minimum_size = Vector2(40, 40)
@@ -156,7 +155,7 @@ layout_mode = 2
 theme_type_variation = &"ButtonUnborderTiny"
 real_text_icon_left = ""
 icon_size = 16
-real_tooltip_text = "Show/Hide"
+real_tooltip_text = "|Show|/|Hide|"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="resized" from="." to="." method="_on_resized"]

@@ -132,7 +132,7 @@ text = ""
 real_text = "[emb offset=3]"
 
 [node name="MindTooltip" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab" unique_id=259170520 instance=ExtResource("7_ft6cd")]
-tooltip_text = "|Main.UpPanel.NewTab.text|"
+tooltip_text = "|NewTab|"
 position_mode = 3
 anchor = 1
 
@@ -162,7 +162,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
-text = " Настройки 0"
+text = " Settings 0"
 
 [node name="LeftIcon" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(455915402, 1639273036) index="0" unique_id=1359297754]
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
@@ -176,9 +176,9 @@ real_text = "[emb offset=3]"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
-text = "Настройки"
+text = "Settings"
 hint_underlined = false
-real_text = "[emb]|SettingsWindow.Title|"
+real_text = "[emb]|Settings|"
 
 [node name="RightIcon" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(455915402, 1639273036) index="2" unique_id=777836022]
 visible = false
@@ -222,12 +222,10 @@ layout_mode = 1
 [node name="RenameDuplicateWindow" parent="Windows" unique_id=227586789 instance=ExtResource("9_xa025")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="ContentEditorKeyActions" parent="Windows" unique_id=177122460 instance=ExtResource("9_mwfav")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="NeedSaveContent" parent="Windows" unique_id=1091514670 instance=ExtResource("12_ma7h6")]
 visible = false
@@ -236,17 +234,14 @@ layout_mode = 1
 [node name="CreateContent" parent="Windows" unique_id=1702091045 instance=ExtResource("13_e2s0e")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="CreateMod" parent="Windows" unique_id=297150352 instance=ExtResource("14_gsxep")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="DeleteMod" parent="Windows" unique_id=1548979296 instance=ExtResource("15_v0vrg")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="full_ready" type="Node" parent="." unique_id=2013466743]
 

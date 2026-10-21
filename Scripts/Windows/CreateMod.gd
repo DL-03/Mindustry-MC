@@ -13,20 +13,19 @@ extends Panel
 @onready var SelectFolder = $FileDialog
 
 
+var path = ""
 
-func open():
-	var _path = ProjectSettings.globalize_path(OS.get_environment("APPDATA")+"\\Mindustry\\mods\\").simplify_path()
+
+func open(_path):
+	path = _path
 	
-	PathLine.text = _path
+	PathLine.text = path
 	NameLine.text = "name"
 	
 	NameString.real_text = "name"
-	
-	
-	
+
 	SelectFolder.hide()
-	
-	
+		
 	update_data()
 	
 	show()
@@ -39,26 +38,14 @@ func update_data():
 	NameString.real_text = "/"+NameLine.text
 	
 	if NameLine.text == "":
-		ErrorString.real_text = "|CreateMod.tip.ModInvalid|"
+		ErrorString.real_text = "|ModNameInvalid|"
 		return
 	if DirAccess.dir_exists_absolute(full_path):
-		ErrorString.real_text = "|CreateMod.tip.PathBusy|"
+		ErrorString.real_text = "|PathBusy|"
 		return
 
 	$Panel/MarginContainer/VBoxContainer/DownPanel/Create.disabled = false
 	ErrorString.real_text = ""
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-
 
 
 
@@ -74,17 +61,16 @@ func _on_create_pressed():
 	f.store_string( str(ContentManager.get_content("mod")) )
 	
 	if ModManager.test_from_path(PathLine.text.path_join(NameLine.text).simplify_path()):
-		#var m = ModManager.open_from_path(PathLine.text.path_join(NameLine.text).simplify_path())
-		
-		var AllTabButtons = $/root/Main/V1/HBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer2/HBoxContainer
+		var AllTabButtons = $/root/Main/V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs
 		for i in AllTabButtons.get_children():
-			if i.disabled:
+			if i.tab.disabled:
 				if i.ContentFrame == null:
 					OpenMod.OpenFromPath(i, PathLine.text.path_join(NameLine.text).simplify_path())
 					break
 		$/root/Main/V1/ModManager.visible = false
 		
 		Notifications.info("Mod Created")
+		hide()
 
 
 

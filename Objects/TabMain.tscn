@@ -10,11 +10,11 @@ script = ExtResource("1_a6qjs")
 custom_minimum_size = Vector2(159, 30)
 layout_mode = 2
 
+[node name="MarginContainer" parent="Tab" index="0" unique_id=2088221355]
+offset_right = 159.0
+
 [node name="Changes" parent="Tab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="2" unique_id=1626496899]
 visible = false
-
-[node name="Close" parent="Tab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="3" unique_id=529493969]
-text = ""
 
 [connection signal="close" from="Tab" to="." method="_on_tab_close"]
 [connection signal="pressed" from="Tab" to="." method="_on_tab_pressed"]
