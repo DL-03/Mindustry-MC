@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cnsmx158sf2fa"]
+
+[ext_resource type="Script" uid="uid://bnhux2pw0wp2l" path="res://scenes/content_editor/content_key_widget.gd" id="1_g7oro"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="2_mflxu"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="3_uri7i"]
+[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="4_glcg7"]
+[ext_resource type="PackedScene" uid="uid://cjv1ns30b2oox" path="res://widgets/tooltips/mind_tooltip_content_keys.tscn" id="5_2gp30"]
+
+[node name="ContentKeyWidget" type="HBoxContainer" unique_id=387267923 node_paths=PackedStringArray("mindTooltip")]
+custom_minimum_size = Vector2(0, 40)
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -51.5
+offset_bottom = -11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g7oro")
+mindTooltip = NodePath("NameLabel/MindTooltip")
+
+[node name="Actions" parent="." unique_id=1755305955 instance=ExtResource("2_mflxu")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text_icon_left = ""
+
+[node name="NameLabel" parent="." unique_id=1359297754 instance=ExtResource("3_uri7i")]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Key"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+real_text = "[emb]Key"
+
+[node name="MindTooltip" parent="NameLabel" unique_id=259170520 instance=ExtResource("4_glcg7")]
+tooltip_scene = ExtResource("5_2gp30")
+tooltip_text = "[emb][center][UI.YELLOW]|ClassType.tip_parametr|:[] {parametr}
+[UI.YELLOW]|ClassType.tip_type|:[] {type} [UI.GRAY]︙ [UI.YELLOW]|ClassType.tip_default|:[] \"{value}[]\"
+[left][]{description}"
+preview_in_editor = true
+position_mode = 1
+anchor_offset = Vector2(5, 5)
+
+[connection signal="pressed" from="Actions" to="." method="_on_actions_pressed"]
+[connection signal="mouse_entered" from="NameLabel" to="." method="_on_name_label_mouse_entered"]

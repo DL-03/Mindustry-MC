@@ -2,8 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_4tu0p"]
 [ext_resource type="Script" uid="uid://tvgefgw52x30" path="res://widgets/file_path_element.gd" id="1_iemcp"]
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="1_t7olw"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="1_t7olw"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="2_h2bm6"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="5_4jb66"]
 
 [node name="FilePathElement" type="HBoxContainer" unique_id=1238661133]
 offset_right = 44.0
@@ -52,26 +53,13 @@ tooltip_text = "[center][emb][UI.YELLOW]|CopyPath|!
 position_mode = 3
 anchor = 1
 
-[node name="Open" parent="." unique_id=2114327804 instance=ExtResource("1_t7olw")]
+[node name="Open" parent="." unique_id=1135730542 instance=ExtResource("5_4jb66")]
 custom_minimum_size = Vector2(25, 25)
 custom_maximum_size = Vector2(25, 25)
 layout_mode = 2
-size_flags_horizontal = 8
 theme_type_variation = &"ButtonRectTiny"
-text = ""
-
-[node name="MarginContainer" parent="Open" index="0" unique_id=32214607]
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Label" parent="Open/MarginContainer" index="0" unique_id=1969564989]
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_font_sizes/normal_font_size = 12
-text = ""
 real_text = "[emb]"
+font_size = 12
 
 [node name="MindTooltip" parent="Open" unique_id=1791233051 instance=ExtResource("2_h2bm6")]
 tooltip_text = "[center][emb][UI.YELLOW]|OpenFolder|!
@@ -83,4 +71,3 @@ anchor = 1
 [connection signal="pressed" from="Open" to="." method="_on_open_pressed"]
 
 [editable path="Copy"]
-[editable path="Open"]

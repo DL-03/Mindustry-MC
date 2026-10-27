@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://stbm820mvq0y"]
 
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="2_mu4oa"]
-[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button.tscn" id="3_lc104"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="2_mu4oa"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_hfxbw"]
+[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button_rtl.tscn" id="3_lc104"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="4_agviq"]
 
 [node name="TestUi" type="Control" unique_id=1687013704]
 layout_mode = 3
@@ -52,10 +54,19 @@ text = "Button.ButtonUnborderTiny"
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MindButton" parent="TabContainer/Кнопки" unique_id=529493969 instance=ExtResource("2_mu4oa")]
+[node name="MindButtonRTL" parent="TabContainer/Кнопки" unique_id=529493969 instance=ExtResource("2_mu4oa")]
 layout_mode = 2
 
-[node name="MindIButton" parent="TabContainer/Кнопки" unique_id=168072722 instance=ExtResource("3_lc104")]
+[node name="MindIButtonRTL" parent="TabContainer/Кнопки" unique_id=168072722 instance=ExtResource("3_lc104")]
 layout_mode = 2
 
-[editable path="TabContainer/Кнопки/MindButton"]
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/Кнопки" unique_id=3214385]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MindButton" parent="TabContainer/Кнопки" unique_id=1135730542 instance=ExtResource("3_hfxbw")]
+layout_mode = 2
+font_color_disabled = Color(0.27058825, 0.27058825, 0.27058825, 1)
+
+[node name="MindIButton" parent="TabContainer/Кнопки" unique_id=709750827 instance=ExtResource("4_agviq")]
+layout_mode = 2

@@ -1,6 +1,6 @@
 extends Node
 
-@export var CLASS_ModEditor = preload("res://Objects/ForEditor/ModEditor.tscn")
+@export var CLASS_ModEditor = preload("res://scenes/mod_editor/mod_editor.tscn")
 
 
 func OpenFromPath(TabButton, Path, Type = null) -> void :

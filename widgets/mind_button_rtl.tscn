@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bb2wr3gygyr44"]
+
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="2_ml550"]
+[ext_resource type="Script" uid="uid://h7tcscynm8uq" path="res://widgets/mind_button_rtl.gd" id="2_rsayv"]
+
+[node name="MindButtonRTL" type="Button" unique_id=529493969 node_paths=PackedStringArray("label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0)
+text = "MindButtonRTL"
+script = ExtResource("2_rsayv")
+label = NodePath("MarginContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=32214607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" parent="MarginContainer" unique_id=1969564989 instance=ExtResource("2_ml550")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "MindButtonRTL"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb]MindButtonRTL"
+
+[connection signal="finished" from="MarginContainer/Label" to="." method="_on_label_finished"]

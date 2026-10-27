@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://bkavys7f1pirs"]
+
+[ext_resource type="Script" uid="uid://ebkh2mbriht4" path="res://scenes/content_editor/content_editor.gd" id="1_4iiko"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="2_3o5ww"]
+[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button_rtl.tscn" id="3_knikt"]
+[ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://prefabs/ObjectIcon.tscn" id="4_a42hq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlbwk"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h65s"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_detail = 1
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5slg"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ContentEditor" type="Control" unique_id=1583303146 node_paths=PackedStringArray("_TabContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_4iiko")
+_TabContainer = NodePath("TabContainer")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1420272480]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3o5ww")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jlbwk")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_7h65s")
+current_tab = 0
+
+[node name="Editor" type="VBoxContainer" parent="TabContainer" unique_id=885073394]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Editor" unique_id=1883898489]
+layout_mode = 2
+
+[node name="ContentType" type="Label" parent="TabContainer/Editor/HBoxContainer" unique_id=1955366547]
+layout_mode = 2
+theme = ExtResource("2_3o5ww")
+theme_override_font_sizes/font_size = 24
+text = "ContentType:"
+
+[node name="d1" type="Label" parent="TabContainer/Editor" unique_id=99104128]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_3o5ww")
+theme_override_font_sizes/font_size = 12
+text = "d1"
+justification_flags = 171
+
+[node name="d2" type="Label" parent="TabContainer/Editor" unique_id=530173256]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_3o5ww")
+theme_override_font_sizes/font_size = 12
+text = "d2"
+justification_flags = 171
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Editor" unique_id=685330011]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Editor/MarginContainer" unique_id=774346931]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_3o5ww")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer" unique_id=1848567299]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 5
+
+[node name="Panel" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer" unique_id=1671509943]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel" unique_id=1481200009]
+layout_mode = 2
+
+[node name="CreateKey" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel" unique_id=529493969 instance=ExtResource("3_knikt")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "+ Создать Ключ +"
+
+[node name="LeftIcon" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
+text = "+"
+real_text = "[emb offset=3]+"
+
+[node name="Label" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="1" unique_id=1969564989]
+text = "Создать Ключ"
+real_text = "[emb]|Create| |Key|"
+
+[node name="RightIcon" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="2" unique_id=777836022]
+text = "+"
+real_text = "[emb offset=3]+"
+
+[node name="Textures" type="MarginContainer" parent="TabContainer" unique_id=1610877115]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Textures" unique_id=219722210]
+layout_mode = 2
+theme = ExtResource("2_3o5ww")
+
+[node name="Flow" type="HFlowContainer" parent="TabContainer/Textures/ScrollContainer" unique_id=1727366899]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Textures/ScrollContainer/Flow" unique_id=1490823378]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ObjectIcon" parent="TabContainer/Textures/ScrollContainer/Flow/MarginContainer" unique_id=1071832861 instance=ExtResource("4_a42hq")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon" unique_id=157463381]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5slg")
+
+[connection signal="pressed" from="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey" to="." method="_on_create_key_pressed"]
+
+[editable path="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey"]

@@ -15,6 +15,30 @@ mods and edit their content files.
 - Browse and edit content from several categories.
 - Use the interface in different languages.
 
+## Project structure
+
+```text
+libs/
+  classes/          ModClass and ContentClass data models
+  tooltip/          Tooltip manager
+  *.gd, *.cs        Autoloads and platform helpers
+scenes/
+  Main.tscn         Main window and tab bar
+  mod_manager/      Mod folder browser
+  mod_editor/       Opened-mod editor
+  content_editor/   Content file editor and its widgets
+  explorer/         File system explorer
+  popups/           Settings, creation, rename and delete dialogs
+prefabs/            Reusable mod/content cards and icons
+widgets/            Custom Mindustry-styled controls
+resources/          Content type schema, icons and sounds
+themes/             Mindustry UI theme
+languages/v2/       Translation packs
+```
+
+Autoloads are registered in `project.godot`. Content type definitions live in
+`resources/ContentType.json` and drive the generated property editors.
+
 ## Supported platforms
 
 | Platform | Status |

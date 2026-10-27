@@ -1,26 +1,27 @@
-[gd_scene format=3 uid="uid://lmrimsly8wdg"]
+[gd_scene format=3 uid="uid://cr6bawc8angch"]
 
-[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="1_2pgxc"]
-[ext_resource type="Script" uid="uid://gfid88xcrrg3" path="res://widgets/mind_i_button.gd" id="2_2apnr"]
+[ext_resource type="Script" uid="uid://dfcpxwein47t4" path="res://widgets/mind_i_button.gd" id="1_2apnr"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="2_ncsyv"]
+[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="3_a67hb"]
 
-[node name="MindIButton" type="Button" unique_id=529493969]
+[node name="MindIButton" type="Button" unique_id=1135730542 node_paths=PackedStringArray("left_icon", "label", "right_icon")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_outline_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-text = "0 MindIButton 0"
-script = ExtResource("2_2apnr")
+script = ExtResource("1_2apnr")
+left_icon = NodePath("MarginContainer/HBoxContainer/LeftIcon")
+label = NodePath("MarginContainer/HBoxContainer/Label")
+right_icon = NodePath("MarginContainer/HBoxContainer/RightIcon")
+font_color_disabled = Color(0.270588, 0.270588, 0.270588, 1)
+icon_color_disabled = Color(0.270588, 0.270588, 0.270588, 1)
+real_text_icon_left = "0"
+real_text_icon_right = "0"
+real_text = "MindButton"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=32214607]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1448793387]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,42 +32,48 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
+metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1639273036]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=754186938]
 layout_mode = 2
 theme_override_constants/separation = 5
+alignment = 1
 
-[node name="LeftIcon" parent="MarginContainer/HBoxContainer" unique_id=1359297754 instance=ExtResource("1_2pgxc")]
+[node name="LeftIcon" parent="MarginContainer/HBoxContainer" unique_id=634390729 instance=ExtResource("2_ncsyv")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme_override_font_sizes/normal_font_size = 26
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 26
 text = "0"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-real_text = "[emb offset=3]0"
+real_text = "0"
 
-[node name="MindRTL" parent="MarginContainer/HBoxContainer" unique_id=1969564989 instance=ExtResource("1_2pgxc")]
+[node name="Label" parent="MarginContainer/HBoxContainer" unique_id=240515307 instance=ExtResource("2_ncsyv")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "MindIButton"
-fit_content = true
-autowrap_mode = 0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 16
+text = "MindButton"
 horizontal_alignment = 1
 vertical_alignment = 1
-real_text = "[emb]MindIButton"
+clip_text = true
+real_text = "MindButton"
 
-[node name="RightIcon" parent="MarginContainer/HBoxContainer" unique_id=777836022 instance=ExtResource("1_2pgxc")]
+[node name="RightIcon" parent="MarginContainer/HBoxContainer" unique_id=164127229 instance=ExtResource("2_ncsyv")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme_override_font_sizes/normal_font_size = 26
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 26
 text = "0"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-real_text = "[emb offset=3]0"
+real_text = "0"
+
+[node name="_MindTooltip" parent="." unique_id=259170520 instance=ExtResource("3_a67hb")]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/LeftIcon" to="." method="_on_icon_text_left_ready"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/Label" to="." method="_on_text_ready"]
+[connection signal="ready" from="MarginContainer/HBoxContainer/RightIcon" to="." method="_on_icon_text_right_ready"]
+[connection signal="ready" from="_MindTooltip" to="." method="_on_mind_tooltip_ready"]

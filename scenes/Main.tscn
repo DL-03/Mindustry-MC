@@ -2,18 +2,18 @@
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_cvmbd"]
 [ext_resource type="Script" uid="uid://7lrqcema0vij" path="res://scenes/Main.gd" id="1_ft6cd"]
-[ext_resource type="PackedScene" uid="uid://cneaemclmk5bk" path="res://Objects/TabMain.tscn" id="2_bb450"]
-[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button.tscn" id="5_1iba3"]
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button.tscn" id="6_ft6cd"]
-[ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://mod_manager.tscn" id="7_ebg2g"]
+[ext_resource type="PackedScene" uid="uid://cneaemclmk5bk" path="res://prefabs/TabMain.tscn" id="2_bb450"]
+[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button_rtl.tscn" id="5_1iba3"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="6_ft6cd"]
+[ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://scenes/mod_manager/mod_manager.tscn" id="7_ebg2g"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="7_ft6cd"]
-[ext_resource type="PackedScene" uid="uid://d0ppbqrba56gs" path="res://Objects/Windows/SettingsWindow.tscn" id="8_2ofn6"]
-[ext_resource type="PackedScene" uid="uid://dddth13hrmo52" path="res://scenes/content_editor_key_actions.tscn" id="9_mwfav"]
-[ext_resource type="PackedScene" uid="uid://cjg0xhrkoy7ib" path="res://Objects/Windows/RenameDuplicateWindow.tscn" id="9_xa025"]
-[ext_resource type="PackedScene" uid="uid://bh87acddn33ms" path="res://Objects/Windows/NeedSaveContent.tscn" id="12_ma7h6"]
-[ext_resource type="PackedScene" uid="uid://eu7ssqyyaqgh" path="res://Objects/Windows/CreateContent.tscn" id="13_e2s0e"]
-[ext_resource type="PackedScene" uid="uid://dg2i61br433ln" path="res://Objects/Windows/CreateMod.tscn" id="14_gsxep"]
-[ext_resource type="PackedScene" uid="uid://vsvpa6ywikp2" path="res://Objects/Windows/DeleteMod.tscn" id="15_v0vrg"]
+[ext_resource type="PackedScene" uid="uid://d0ppbqrba56gs" path="res://scenes/popups/SettingsWindow.tscn" id="8_2ofn6"]
+[ext_resource type="PackedScene" uid="uid://dddth13hrmo52" path="res://scenes/content_editor/panel_content_key_actions.tscn" id="9_mwfav"]
+[ext_resource type="PackedScene" uid="uid://cjg0xhrkoy7ib" path="res://scenes/popups/RenameDuplicateWindow.tscn" id="9_xa025"]
+[ext_resource type="PackedScene" uid="uid://bh87acddn33ms" path="res://scenes/popups/NeedSaveContent.tscn" id="12_ma7h6"]
+[ext_resource type="PackedScene" uid="uid://eu7ssqyyaqgh" path="res://scenes/popups/CreateContent.tscn" id="13_e2s0e"]
+[ext_resource type="PackedScene" uid="uid://dg2i61br433ln" path="res://scenes/popups/CreateMod.tscn" id="14_gsxep"]
+[ext_resource type="PackedScene" uid="uid://vsvpa6ywikp2" path="res://scenes/popups/DeleteMod.tscn" id="15_v0vrg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqlb"]
 bg_color = Color(0, 0, 0, 1)
@@ -162,7 +162,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
-text = " Settings 0"
+text = " Настройки"
 
 [node name="LeftIcon" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(455915402, 1639273036) index="0" unique_id=1359297754]
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
@@ -172,11 +172,11 @@ text = ""
 hint_underlined = false
 real_text = "[emb offset=3]"
 
-[node name="MindRTL" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(455915402, 1639273036) index="1" unique_id=1969564989]
+[node name="Label" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(455915402, 1639273036) index="1" unique_id=1969564989]
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
-text = "Settings"
+text = "Настройки"
 hint_underlined = false
 real_text = "[emb]|Settings|"
 
@@ -218,30 +218,37 @@ mouse_filter = 2
 [node name="SettingsWindow" parent="Windows" unique_id=1883959433 instance=ExtResource("8_2ofn6")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="RenameDuplicateWindow" parent="Windows" unique_id=227586789 instance=ExtResource("9_xa025")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="ContentEditorKeyActions" parent="Windows" unique_id=177122460 instance=ExtResource("9_mwfav")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="NeedSaveContent" parent="Windows" unique_id=1091514670 instance=ExtResource("12_ma7h6")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="CreateContent" parent="Windows" unique_id=1702091045 instance=ExtResource("13_e2s0e")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="CreateMod" parent="Windows" unique_id=297150352 instance=ExtResource("14_gsxep")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="DeleteMod" parent="Windows" unique_id=1548979296 instance=ExtResource("15_v0vrg")]
 visible = false
 layout_mode = 1
+anchors_preset = 15
 
 [node name="full_ready" type="Node" parent="." unique_id=2013466743]
 

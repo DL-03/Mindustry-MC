@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://cq3mrbwtbd8cv"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_vvlfh"]
+[ext_resource type="Script" uid="uid://djyv5l3b7hj7n" path="res://scenes/explorer/explorer.gd" id="1_wsiob"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_4k4ha"]
+[ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="4_vvlfh"]
+
+[node name="CustomExplorer" type="Control" unique_id=1051147086 node_paths=PackedStringArray("n_path_line", "n_flow_container", "n_box_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vvlfh")
+script = ExtResource("1_wsiob")
+n_path_line = NodePath("Panels/UpPanel/LineEdit")
+n_flow_container = NodePath("Panels/ScrollContainer/MarginContainer/Flow")
+n_box_container = NodePath("Panels/ScrollContainer/MarginContainer/Box")
+
+[node name="Panels" type="VBoxContainer" parent="." unique_id=542452893]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpPanel" type="HBoxContainer" parent="Panels" unique_id=1239618573]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="UpFolder" parent="Panels/UpPanel" unique_id=1135730542 instance=ExtResource("3_4k4ha")]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=3]"
+font_size = 26
+
+[node name="MindTooltip" type="Node" parent="Panels/UpPanel/UpFolder" unique_id=665198621]
+script = ExtResource("4_vvlfh")
+tooltip_text = "|UpOneLevel|"
+position_mode = 3
+anchor = 1
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="Refresh" parent="Panels/UpPanel" unique_id=1310447704 instance=ExtResource("3_4k4ha")]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=3]"
+font_size = 24
+
+[node name="MindTooltip" type="Node" parent="Panels/UpPanel/Refresh" unique_id=1346898835]
+script = ExtResource("4_vvlfh")
+tooltip_text = "|Refresh|"
+position_mode = 3
+anchor = 1
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="Home" parent="Panels/UpPanel" unique_id=361336422 instance=ExtResource("3_4k4ha")]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=3]"
+font_size = 24
+
+[node name="MindTooltip" type="Node" parent="Panels/UpPanel/Home" unique_id=1022015609]
+script = ExtResource("4_vvlfh")
+tooltip_text = "|ToHome|"
+position_mode = 3
+anchor = 1
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="LineEdit" type="LineEdit" parent="Panels/UpPanel" unique_id=1255249893]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+keep_editing_on_text_submit = true
+clear_button_enabled = true
+select_all_on_focus = true
+
+[node name="Search" parent="Panels/UpPanel" unique_id=1061879211 instance=ExtResource("3_4k4ha")]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=3]"
+font_size = 24
+
+[node name="MindTooltip" type="Node" parent="Panels/UpPanel/Search" unique_id=1963669249]
+script = ExtResource("4_vvlfh")
+tooltip_text = "|Search|"
+position_mode = 3
+anchor = 1
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="OptionButton" type="OptionButton" parent="Panels/UpPanel" unique_id=1757393570]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panels" unique_id=978029806]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panels/ScrollContainer" unique_id=1670816478]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Flow" type="FlowContainer" parent="Panels/ScrollContainer/MarginContainer" unique_id=219623723]
+layout_mode = 2
+
+[node name="Box" type="VBoxContainer" parent="Panels/ScrollContainer/MarginContainer" unique_id=1311630497]
+layout_mode = 2
+
+[connection signal="pressed" from="Panels/UpPanel/UpFolder" to="." method="_on_up_folder_pressed"]
+[connection signal="pressed" from="Panels/UpPanel/Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="Panels/UpPanel/Home" to="." method="_on_home_pressed"]
+[connection signal="text_changed" from="Panels/UpPanel/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Panels/UpPanel/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Panels/UpPanel/Search" to="." method="_on_search_pressed"]
+[connection signal="item_selected" from="Panels/UpPanel/OptionButton" to="." method="_on_option_button_item_selected"]

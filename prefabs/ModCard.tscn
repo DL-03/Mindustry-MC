@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://ce1e3yxgjuyas"]
+
+[ext_resource type="Script" uid="uid://bg1dhvfwwl2uc" path="res://prefabs/ModCard.gd" id="1_704rw"]
+[ext_resource type="Texture2D" uid="uid://df4ipu6fwojc6" path="res://resources/icons/noneMod.png" id="1_delpm"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="2_anmdr"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="3_6fml3"]
+[ext_resource type="PackedScene" uid="uid://8ld788kwrjm6" path="res://widgets/file_path_element.tscn" id="4_6fml3"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="5_2i6kr"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="5_6oqlx"]
+[ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="8_o2ght"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rveqn"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ModCard" type="Button" unique_id=1983103974 node_paths=PackedStringArray("mindRTL", "filePathElement")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -778.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme = ExtResource("2_anmdr")
+theme_type_variation = &"ButtonRect"
+script = ExtResource("1_704rw")
+mindRTL = NodePath("MarginContainer/HBoxContainer/Inforamtion/VBoxContainer/MindRTL")
+filePathElement = NodePath("MarginContainer/HBoxContainer/Inforamtion/VBoxContainer/FilePathElement")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=541020799]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="BoxContainer" parent="MarginContainer" unique_id=802098895]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1556357917]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=652532936]
+layout_mode = 2
+texture = ExtResource("1_delpm")
+expand_mode = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/MarginContainer/TextureRect" unique_id=1899761345]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rveqn")
+
+[node name="Inforamtion" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=325989558]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Inforamtion" unique_id=1756934908]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MindRTL" parent="MarginContainer/HBoxContainer/Inforamtion/VBoxContainer" unique_id=1359297754 instance=ExtResource("3_6fml3")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+text = "[color=#ffd37f]Display Name
+Name
+[color=#ffffff]Author
+Version"
+scroll_active = false
+vertical_alignment = 3
+real_text = "[emb][UI.YELLOW]Display Name
+Name
+[]Author
+Version"
+
+[node name="FilePathElement" parent="MarginContainer/HBoxContainer/Inforamtion/VBoxContainer" unique_id=1238661133 instance=ExtResource("4_6fml3")]
+layout_mode = 2
+
+[node name="VFlowContainer" type="FlowContainer" parent="MarginContainer/HBoxContainer" unique_id=127032130]
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 9
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+alignment = 2
+vertical = true
+
+[node name="Open" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=274686462 instance=ExtResource("5_6oqlx")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text_icon_left = ""
+icon_size = 16
+real_tooltip_text = "|Open|"
+
+[node name="Save" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1415178684 instance=ExtResource("5_6oqlx")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+icon_color = Color(0.329412, 0.839216, 0.490196, 1)
+real_text_icon_left = ""
+icon_size = 16
+real_tooltip_text = "|Save|"
+
+[node name="Type" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=331142492 instance=ExtResource("5_2i6kr")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/font_size = 16
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = ""
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="MindTooltip" type="Node" parent="MarginContainer/HBoxContainer/VFlowContainer/Type" unique_id=654946833]
+script = ExtResource("8_o2ght")
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="Delete" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1352830697 instance=ExtResource("5_6oqlx")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+icon_color = Color(0.945098, 0.32549, 0.321569, 1)
+real_text_icon_left = ""
+icon_size = 16
+real_tooltip_text = "[UI.RED]|Delete|"
+
+[node name="Visible" parent="MarginContainer/HBoxContainer/VFlowContainer" unique_id=1982066719 instance=ExtResource("5_6oqlx")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text_icon_left = ""
+icon_size = 16
+real_tooltip_text = "|Show|/|Hide|"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VFlowContainer/Visible" to="." method="_on_visible_pressed"]
