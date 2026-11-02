@@ -115,7 +115,10 @@ vertical = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborderTiny"
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 icon_size = 16
 real_tooltip_text = "|Open|"
 
@@ -123,8 +126,11 @@ real_tooltip_text = "|Open|"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborderTiny"
+text = " "
 icon_color = Color(0.329412, 0.839216, 0.490196, 1)
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 icon_size = 16
 real_tooltip_text = "|Save|"
 
@@ -150,8 +156,11 @@ metadata/_custom_type_script = "uid://dp832bngs7aix"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborderTiny"
+text = " "
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 icon_size = 16
 real_tooltip_text = "[UI.RED]|Delete|"
 
@@ -159,7 +168,10 @@ real_tooltip_text = "[UI.RED]|Delete|"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborderTiny"
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 icon_size = 16
 real_tooltip_text = "|Show|/|Hide|"
 

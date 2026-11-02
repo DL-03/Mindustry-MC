@@ -13,7 +13,7 @@ config_version=5
 config/name="Mindustry Mod Construct"
 config/version="0.3.0"
 config/tags=PackedStringArray("123")
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Mindustry Mod Construct"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
@@ -48,6 +48,7 @@ settings/gdscript/max_call_stack=2047
 
 window/hdr/request_hdr_output=true
 window/energy_saving/keep_screen_on=false
+display_server/driver.linuxbsd="wayland"
 window/vsync/vsync_mode=0
 window/ios/allow_high_refresh_rate=false
 
@@ -74,6 +75,7 @@ folder_colors={
 "res://scenes/mod_editor/": "pink",
 "res://scenes/mod_manager/": "cyan",
 "res://scenes/popups/": "red",
+"res://scenes/popups/settings/": "yellow",
 "res://widgets/": "orange"
 }
 

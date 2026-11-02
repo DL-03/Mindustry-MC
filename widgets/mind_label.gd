@@ -48,6 +48,7 @@ func _set_font_color(value: Color) -> void:
 
 func _update_styled_text() -> void:
 	var display_text := _replace_placeholders(real_text)
+	
 	if LocalizationAPI:
 		display_text = LocalizationAPI.translate_text(display_text)
 

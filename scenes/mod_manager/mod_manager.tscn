@@ -95,7 +95,7 @@ alignment = 1
 custom_minimum_size = Vector2(200, 60)
 custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
-text = " Открыть папку 0"
+text = " Открыть папку"
 
 [node name="LeftIcon" parent="VBoxContainer/DownPanel/OpenFolder/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
 text = ""
@@ -113,7 +113,7 @@ custom_minimum_size = Vector2(200, 60)
 custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
 text = " Создать
-Модификацию 0"
+Модификацию"
 
 [node name="LeftIcon" parent="VBoxContainer/DownPanel/CreateModification/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660471551, 1639273036) index="0" unique_id=1359297754]
 text = ""

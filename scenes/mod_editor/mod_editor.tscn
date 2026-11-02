@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://b38rg0n4e5mcl" path="res://scenes/mod_editor/mod_editor.gd" id="2_3umv1"]
 [ext_resource type="PackedScene" uid="uid://ce1e3yxgjuyas" path="res://prefabs/ModCard.tscn" id="3_gtyln"]
 [ext_resource type="PackedScene" uid="uid://b4f0pxojub5i8" path="res://scenes/mod_editor/content_filter_button.tscn" id="4_qd1t2"]
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="5_cac0f"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="5_3umv1"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="6_qqi7h"]
+[ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="7_0eox3"]
 [ext_resource type="Script" uid="uid://ch0y572lscx7x" path="res://scenes/content_editor/content_editor_tabs.gd" id="7_76ai2"]
+[ext_resource type="PackedScene" uid="uid://bisoxq31kfb17" path="res://scenes/popups/content_explorer_filters_cm.tscn" id="8_gtyln"]
 [ext_resource type="Texture2D" uid="uid://c3lrs63ysubv0" path="res://resources/PointEvent.png" id="8_sllpc"]
 [ext_resource type="Script" uid="uid://hi8oibrointw" path="res://scenes/mod_editor/save_button_effect.gd" id="9_ia4ow"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="10_0e4wo"]
@@ -197,6 +199,35 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel" unique_id=1720377872]
+layout_mode = 2
+
+[node name="Tabs" type="HBoxContainer" parent="ModEditor/Panel/VBoxContainer" unique_id=42188880]
+layout_mode = 2
+
+[node name="Content" parent="ModEditor/Panel/VBoxContainer/Tabs" unique_id=1135730542 instance=ExtResource("6_qqi7h")]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Content"
+font_color_disabled = Color(1, 0.827451, 0.49803922, 1)
+icon_color_disabled = Color(1, 0.827451, 0.49803922, 1)
+real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = "[emb]Content"
+
+[node name="FileManager" parent="ModEditor/Panel/VBoxContainer/Tabs" unique_id=618725529 instance=ExtResource("6_qqi7h")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FileManager"
+real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = "[emb]FileManager"
+
+[node name="Tree" type="Tree" parent="ModEditor/Panel/VBoxContainer" unique_id=1901638843]
+visible = false
+layout_mode = 2
+
 [node name="Panel" type="Panel" parent="ModEditor/Panel" unique_id=1274412059]
 layout_mode = 2
 size_flags_vertical = 3
@@ -221,64 +252,91 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1233068698]
+[node name="HFlowContainer" type="HFlowContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1453697051]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1868018986]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="all" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2091575458 instance=ExtResource("4_qd1t2")]
+[node name="all" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=2091575458 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 disabled = true
 text = "All"
 
-[node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2086577866 instance=ExtResource("4_qd1t2")]
+[node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=2086577866 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Blocks"
 
-[node name="items" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=956545184 instance=ExtResource("4_qd1t2")]
+[node name="items" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=956545184 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Items"
 
-[node name="liquids" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1870660601 instance=ExtResource("4_qd1t2")]
+[node name="liquids" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=1870660601 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Liquids"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1367736187]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="status" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=870817027 instance=ExtResource("4_qd1t2")]
+[node name="status" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=870817027 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Status"
 
-[node name="units" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=232813014 instance=ExtResource("4_qd1t2")]
+[node name="units" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=232813014 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Units"
 
-[node name="weathers" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=381690569 instance=ExtResource("4_qd1t2")]
+[node name="weathers" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=381690569 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Weathers"
 
-[node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1699788681 instance=ExtResource("4_qd1t2")]
+[node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=1699788681 instance=ExtResource("4_qd1t2")]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 text = "Sectors"
 
 [node name="Filters" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=867230446]
-visible = false
 layout_mode = 2
 
 [node name="SearchLine" type="LineEdit" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=13837515]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Advance" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=529493969 instance=ExtResource("5_cac0f")]
+[node name="Filters" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=829152818 instance=ExtResource("5_3umv1")]
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
 layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=3]"
+font_size = 20
+
+[node name="MindTooltip" type="Node" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1113625911]
+script = ExtResource("7_0eox3")
+tooltip_text = "[emb]|Filters|"
+allow_empty_text = null
+position_mode = 3
+anchor = 1
+hide_delay = 0.2
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="PopupMindTooltip" type="Node" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1999632167]
+script = ExtResource("7_0eox3")
+tooltip_scene = ExtResource("8_gtyln")
+allow_empty_text = true
+position_mode = 3
+anchor = 3
+anchor_offset = Vector2(5, 0)
+show_mode = 1
+hide_mode = 1
+hide_delay = 0.2
+metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="HSeparator" type="HSeparator" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1820083869]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_qhmhy")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=592070029]
@@ -301,7 +359,9 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
+text = " Создать Контент"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|CreateContent|"
 font_size = 14
 icon_size = 18
@@ -310,7 +370,9 @@ icon_size = 18
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
+text = " Обновить Список"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|ReloadList|"
 font_size = 14
 icon_size = 20
@@ -372,20 +434,18 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uj0s5")
 
-[node name="Save" parent="ModEditor/ContentEditor/Top" unique_id=1279929389 instance=ExtResource("6_qqi7h")]
+[node name="Save" parent="ModEditor/ContentEditor/Top" unique_id=1523386577 instance=ExtResource("5_3umv1")]
 z_index = -1
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_2p1ds")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_m25i6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0vmab")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_nba43")
 disabled = true
-icon_color = Color(0.945098, 0.32549, 0.321569, 1)
-real_text_icon_left = ""
-icon_size = 20
-real_tooltip_text = "|Save|"
+font_color = Color(0.94509804, 0.3254902, 0.32156864, 1)
+real_text = "[emb]"
+font_size = 18
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="ModEditor/ContentEditor/Top/Save" unique_id=1768282274]
 modulate = Color(1, 0, 0, 1)
@@ -403,6 +463,15 @@ emission_rect_extents = Vector2(1, 1)
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_4kon5")
 script = ExtResource("9_ia4ow")
+
+[node name="MindTooltip" type="Node" parent="ModEditor/ContentEditor/Top/Save" unique_id=1716804521]
+script = ExtResource("7_0eox3")
+tooltip_text = "[emb][UI.YELLOW]|Save|"
+preview_in_editor = true
+position_mode = 3
+anchor = 1
+anchor_offset = Vector2(0, 5)
+metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="VSeparator2" type="VSeparator" parent="ModEditor/ContentEditor/Top" unique_id=2099921646]
 layout_mode = 2
@@ -490,7 +559,8 @@ layout_mode = 2
 [node name="Title" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=317398809 instance=ExtResource("10_0e4wo")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
 text = " Загрузка "
 horizontal_alignment = 1
@@ -504,6 +574,8 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="Label2" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer" unique_id=934589328 instance=ExtResource("10_0e4wo")]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "Загрузка: None
 ModEditor.LoadingWindow.Content.text[0/0]: /none.json"
 vertical_alignment = 2
@@ -528,9 +600,12 @@ size_flags_vertical = 10
 [node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=740808985 instance=ExtResource("6_qqi7h")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Отменить 0"
 real_text_icon_left = ""
 real_text = "|Cancel|"
 
+[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" to="." method="_on_filters_pressed"]
+[connection signal="tooltip_will_show" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters/PopupMindTooltip" to="." method="_on_popup_mind_tooltip_tooltip_will_show"]
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]
 [connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ContentBank" to="." method="_on_content_bank_pressed"]

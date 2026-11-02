@@ -32,6 +32,8 @@ class_name MindIButton
 
 @export_multiline var real_tooltip_text = ""
 
+var regex = RegEx.new()
+
 func _set_icon_color(value):
 	if value != null:
 		icon_color = value
@@ -83,11 +85,8 @@ func _set_h_aligment(value):
 
 func _set_real_text(value):
 	real_text = value
-	
-	if label:
-		label.real_text = real_text
+	upd()
 
-	
 func _real_text_icon_left(value):
 	real_text_icon_left = str(value)
 	
@@ -95,6 +94,7 @@ func _real_text_icon_left(value):
 		left_icon.real_text = real_text_icon_left
 		
 		left_icon.visible = (real_text_icon_left != "")
+	upd()
 func _real_text_icon_right(value):
 	real_text_icon_right = str(value)
 	
@@ -102,15 +102,37 @@ func _real_text_icon_right(value):
 		right_icon.real_text = real_text_icon_right
 		
 		right_icon.visible = (real_text_icon_right != "")
+	upd()
 
 
 var disabled_d = 0
 
 func _ready() -> void:
-	label.real_text = real_text
+	regex.compile("\\[.*?\\]")
+	upd()
 	
 	font_size = font_size
 	h_aligment = h_aligment
+
+func upd():
+	if label:
+		label.real_text = real_text
+		if not regex.is_valid():
+			regex.compile("\\[.*?\\]")
+		var _text = ""
+		
+		if left_icon.visible:
+			_text += left_icon.text
+		if label.visible:
+			if left_icon.visible:
+				_text += " "
+			_text += label.text
+		if right_icon.visible:
+			if label.visible:
+				_text += " "
+			_text += right_icon.text
+		
+		text = regex.sub(_text, "", true)
 
 func _process(delta):
 	if disabled:

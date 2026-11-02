@@ -142,7 +142,7 @@ offset_right = 77.0
 offset_bottom = 27.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-mouse_filter = 1
+mouse_filter = 2
 theme = ExtResource("1_f4tgy")
 theme_override_styles/panel = SubResource("StyleBoxFlat_c6shj")
 script = ExtResource("1_l3qmc")
@@ -150,6 +150,7 @@ label = NodePath("MindRTL")
 
 [node name="MindRTL" parent="." unique_id=1359297754 instance=ExtResource("2_f4tgy")]
 layout_mode = 2
+mouse_filter = 2
 text = "[color=#ffd37f]MindRT"
 fit_content = true
 autowrap_mode = 0

@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bisoxq31kfb17"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_gsp25"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="2_puhlr"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_ddq4n"]
+[ext_resource type="PackedScene" uid="uid://d2idvmdvvtgqx" path="res://widgets/mind_category.tscn" id="4_ddq4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddq4n"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[node name="ContentExplorerFiltersCM" type="PanelContainer" unique_id=26762038]
+offset_right = 507.0
+offset_bottom = 198.0
+theme = ExtResource("1_gsp25")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ddq4n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=836603525]
+layout_mode = 2
+
+[node name="GlobalTypeContent" type="HBoxContainer" parent="VBoxContainer" unique_id=1388182830]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MindLabel" parent="VBoxContainer/GlobalTypeContent" unique_id=1661976189 instance=ExtResource("2_puhlr")]
+layout_mode = 2
+text = "Global Type Content: "
+real_text = "[emb]Global Type Content: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/GlobalTypeContent" unique_id=1968213012]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Block" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1135730542 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="Item" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=411614779 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="Liquid" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=416772169 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="Status" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1939243356 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="Unit" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1176313897 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="Weather" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=77269873 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="Sector" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=613551302 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(30, 30)
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborderTiny"
+real_text = "[emb]"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/GlobalTypeContent" unique_id=1157394668]
+layout_mode = 2
+
+[node name="Category" type="HBoxContainer" parent="VBoxContainer" unique_id=225114013]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Category" parent="VBoxContainer/Category" unique_id=27368172 instance=ExtResource("2_puhlr")]
+layout_mode = 2
+text = "Category: "
+real_text = "[emb]Category: "
+
+[node name="MindCategory" parent="VBoxContainer/Category" unique_id=472848063 instance=ExtResource("4_ddq4n")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ContentType" type="HBoxContainer" parent="VBoxContainer" unique_id=1837176881]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MindLabel" parent="VBoxContainer/ContentType" unique_id=846761360 instance=ExtResource("2_puhlr")]
+layout_mode = 2
+text = "Content Type: "
+real_text = "[emb]Content Type: "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/ContentType" unique_id=43024086]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Wall"

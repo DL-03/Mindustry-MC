@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cq3mrbwtbd8cv"]
 
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_vvlfh"]
 [ext_resource type="Script" uid="uid://djyv5l3b7hj7n" path="res://scenes/explorer/explorer.gd" id="1_wsiob"]
 [ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_4k4ha"]
 [ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="4_vvlfh"]
@@ -12,7 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_vvlfh")
 script = ExtResource("1_wsiob")
 n_path_line = NodePath("Panels/UpPanel/LineEdit")
 n_flow_container = NodePath("Panels/ScrollContainer/MarginContainer/Flow")

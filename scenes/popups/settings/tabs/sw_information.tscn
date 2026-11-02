@@ -1,0 +1,607 @@
+[gd_scene format=3 uid="uid://6jr7ixl0b5em"]
+
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="1_bp0kx"]
+[ext_resource type="Script" uid="uid://bb01rcory7fj1" path="res://scenes/popups/settings/tabs/sw_information.gd" id="1_yikx7"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="2_yikx7"]
+[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="3_1dan5"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="4_0yja3"]
+[ext_resource type="Texture2D" uid="uid://c0x3c87reupnn" path="res://resources/icons/github-mark-white.svg" id="5_kdn8a"]
+[ext_resource type="FontVariation" uid="uid://csmn47yeel1hm" path="res://fonts/MindustryFont.tres" id="6_bj0de"]
+[ext_resource type="Texture2D" uid="uid://5804us4hobk6" path="res://resources/icons/itchio-textless-white.svg" id="7_mifyi"]
+[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="8_jt6pg"]
+[ext_resource type="Texture2D" uid="uid://cn3p2a6t2uaa5" path="res://resources/icons/discord-mark-white.svg" id="9_ioywo"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="10_nqtjg"]
+[ext_resource type="PackedScene" uid="uid://brm8hehewj68e" path="res://prefabs/mmc_icon.tscn" id="11_5m6v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osrcn"]
+draw_center = false
+border_width_top = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="Shader" id="Shader_xabsi"]
+code = "shader_type canvas_item;
+
+uniform vec2 object_size;
+uniform vec2 text_size;
+uniform int text_vertical_aligment;
+
+void vertex() {
+	if (text_vertical_aligment == 1) {
+		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
+	}
+	if (text_vertical_aligment == 2) {
+		VERTEX.y += object_size.y-text_size.y;
+	}
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o5ik"]
+shader = SubResource("Shader_xabsi")
+shader_parameter/object_size = Vector2(250, 25)
+shader_parameter/text_size = Vector2(413, 17)
+shader_parameter/text_vertical_aligment = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4mdu"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxjuo"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.686275)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kngd5"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.686275)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h71u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a34d4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly2cf"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ji18"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.27058825, 0.27058825, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmm32"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8bts"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svsd1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtrt1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72em0"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjfsy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvkd0"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wg8ic"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ohacx"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7ipc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_s4i0f"]
+color = Color(1, 0.827451, 0.49803922, 1)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.27058825, 0.27058825, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_jvaal"]
+default_font = ExtResource("6_bj0de")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/styles/disabled = SubResource("StyleBoxFlat_7h71u")
+Button/styles/focus = SubResource("StyleBoxFlat_a34d4")
+Button/styles/hover = SubResource("StyleBoxFlat_ly2cf")
+Button/styles/normal = SubResource("StyleBoxFlat_0ji18")
+Button/styles/pressed = SubResource("StyleBoxFlat_fmm32")
+ButtonRectTiny/base_type = &"Button"
+ButtonRectTiny/styles/hover = SubResource("StyleBoxFlat_l8bts")
+ButtonRectTiny/styles/normal = SubResource("StyleBoxFlat_svsd1")
+ButtonRectTiny/styles/pressed = SubResource("StyleBoxFlat_wtrt1")
+ButtonUnborder/base_type = &"Button"
+ButtonUnborder/styles/hover = SubResource("StyleBoxFlat_72em0")
+ButtonUnborder/styles/normal = SubResource("StyleBoxEmpty_tjfsy")
+ButtonUnborder/styles/pressed = SubResource("StyleBoxFlat_hvkd0")
+ButtonUnborderTiny/base_type = &"Button"
+ButtonUnborderTiny/styles/hover = SubResource("StyleBoxFlat_wg8ic")
+ButtonUnborderTiny/styles/normal = SubResource("StyleBoxEmpty_ohacx")
+ButtonUnborderTiny/styles/pressed = SubResource("StyleBoxFlat_b7ipc")
+HSeparator/styles/separator = SubResource("StyleBoxLine_s4i0f")
+Panel/styles/panel = SubResource("StyleBoxFlat_sugp2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao4ht"]
+bg_color = Color(0.98039216, 0.36078432, 0.36078432, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lusue"]
+bg_color = Color(0.98039216, 0.36078432, 0.36078432, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlm05"]
+bg_color = Color(0.98039216, 0.36078432, 0.36078432, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lg3l"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.345098, 0.396078, 0.94902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttab0"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.345098, 0.396078, 0.94902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkpf4"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.345098, 0.396078, 0.94902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[node name="Information" type="VBoxContainer" unique_id=1525669766 node_paths=PackedStringArray("Description", "SecretLine", "GithubLink")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_yikx7")
+Description = NodePath("VBoxContainer/MindRTL")
+SecretLine = NodePath("VBoxContainer/HBoxContainer/LineEdit")
+GithubLink = NodePath("VBoxContainer/Author/MindRTL/Github")
+
+[node name="Title" parent="." unique_id=1661976189 instance=ExtResource("1_bp0kx")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_font_sizes/font_size = 20
+text = " Информация "
+horizontal_alignment = 1
+real_text = "[emb] |Information| "
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1453746693]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=450344469]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Author" type="HBoxContainer" parent="VBoxContainer" unique_id=1119869693]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="MindRTL" parent="VBoxContainer/Author" unique_id=1359297754 instance=ExtResource("2_yikx7")]
+material = SubResource("ShaderMaterial_2o5ik")
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 24
+text = "  [color=#ffd37f]Создатель: [color=#38d667]DL"
+autowrap_mode = 0
+real_text = "  [emb][ui.yellow]|Creator|: [green]DL"
+
+[node name="Github" parent="VBoxContainer/Author/MindRTL" unique_id=529493969 instance=ExtResource("3_1dan5")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+offset_top = -12.5
+offset_bottom = 12.5
+theme = ExtResource("4_0yja3")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_t4mdu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jxjuo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kngd5")
+text = ""
+icon = ExtResource("5_kdn8a")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Label" parent="VBoxContainer/Author/MindRTL/Github/MarginContainer" parent_id_path=PackedInt32Array(529493969, 32214607) index="0" unique_id=1969564989]
+text = ""
+horizontal_alignment = 0
+real_text = ""
+
+[node name="Itch_io" type="Button" parent="VBoxContainer/Author" unique_id=1953326651]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_jvaal")
+theme_override_constants/icon_max_width = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_ao4ht")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lusue")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dlm05")
+icon = ExtResource("7_mifyi")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MindTooltip" parent="VBoxContainer/Author/Itch_io" unique_id=259170520 instance=ExtResource("8_jt6pg")]
+tooltip_text = "[center][emb]|[UI.YELLOW]|FollowTheLink|
+[#fa5c5c]Itch.io []Profile"
+position_mode = 3
+anchor = 1
+
+[node name="Discord" type="Button" parent="VBoxContainer/Author" unique_id=658951807]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_jvaal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8lg3l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ttab0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xkpf4")
+icon = ExtResource("9_ioywo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MindTooltip" parent="VBoxContainer/Author/Discord" unique_id=1545511379 instance=ExtResource("8_jt6pg")]
+tooltip_text = "[center][emb]|[UI.YELLOW]|FollowTheLink|
+[#5865F2]Discord []Group"
+position_mode = 3
+anchor = 1
+
+[node name="MindRTL" parent="VBoxContainer" unique_id=1646038785 instance=ExtResource("2_yikx7")]
+layout_mode = 2
+text = "[color=#ffd37f]Mindustry Mod Construct [color=#ffffff]или (Mindustry MC) — 
+это программа, с помощью которой вы можете легко
+управлять модами, созданными для игры [color=#ffd37f]Mindustry[color=#ffffff].
+
+Версия: [color=#ffd37f]Pre-Beta 3.0 ( 0.3.0 )[color=#ffffff]
+Версия ClassType: [color=#ffd37f]0.2 - Offline[color=#ffffff]
+Сделано в: [color=#00aaff]Placeholder"
+fit_content = true
+autowrap_mode = 0
+real_text = "[emb]|DescriptionMMC|
+
+|Version|: [UI.YELLOW]Pre-Beta 3.0 ( {version} )[]
+|Version| ClassType: [UI.YELLOW]0.2 - Offline[]
+|MadeIn|: [#00aaff]{engine}"
+placeholders = {
+"engine": "Placeholder",
+"version": "0.3.0"
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1914124020]
+layout_mode = 2
+alignment = 1
+
+[node name="MindRTL" parent="VBoxContainer/HBoxContainer" unique_id=2013190735 instance=ExtResource("2_yikx7")]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/normal_font_size = 24
+text = "Секрет: "
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+real_text = "[emb]|Secret|: "
+
+[node name="MindTooltip" parent="VBoxContainer/HBoxContainer/MindRTL" unique_id=1381572938 instance=ExtResource("8_jt6pg")]
+tooltip_text = "[emb]|Secret.tip|"
+preview_in_editor = true
+position_mode = 3
+anchor_offset = Vector2(-100, 5)
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=673101459]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_0yja3")
+placeholder_text = "Секрет"
+
+[node name="Enter" parent="VBoxContainer/HBoxContainer" unique_id=1135730542 instance=ExtResource("10_nqtjg")]
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=4]"
+font_size = 32
+
+[node name="MindTooltip" parent="VBoxContainer/HBoxContainer/Enter" unique_id=1354695042 instance=ExtResource("8_jt6pg")]
+tooltip_text = "|Check|"
+position_mode = 3
+anchor = 1
+
+[node name="MMC_Icon" parent="." unique_id=1729325055 instance=ExtResource("11_5m6v0")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="mouse_entered" from="VBoxContainer/Author/MindRTL/Github" to="." method="_on_github_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Author/MindRTL/Github" to="." method="_on_github_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Author/MindRTL/Github" to="." method="_on_github_pressed"]
+[connection signal="pressed" from="VBoxContainer/Author/Itch_io" to="." method="_on_itch_io_pressed"]
+[connection signal="pressed" from="VBoxContainer/Author/Discord" to="." method="_on_discord_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Enter" to="." method="_on_enter_pressed"]
+
+[editable path="VBoxContainer/Author/MindRTL/Github"]

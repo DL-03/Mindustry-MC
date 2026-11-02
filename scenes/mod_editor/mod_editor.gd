@@ -52,16 +52,16 @@ func _ready():
 	
 	
 	ContentTabButtons = [
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/all,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/all,
 	
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/blocks,
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/items,
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/liquids,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/blocks,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/items,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/liquids,
 		
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/status,
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/units,
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/weathers,
-		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/sectors
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/status,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/units,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/weathers,
+		$ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer/sectors
 	]
 	
 	for i in ContentTabButtons:
@@ -234,3 +234,7 @@ func _refresh_content_bank_window() -> void:
 func _on_cancel_loading_pressed():
 	$LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel.disabled = true
 	Close()
+
+
+func _on_popup_mind_tooltip_tooltip_will_show(tooltip: Node) -> void:
+	pass # Replace with function body.

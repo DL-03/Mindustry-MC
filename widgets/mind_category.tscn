@@ -86,7 +86,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
 disabled = true
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="liquid" parent="HFlowContainer" unique_id=391172858 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -96,7 +99,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="defense" parent="HFlowContainer" unique_id=116226061 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -106,7 +112,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="units" parent="HFlowContainer" unique_id=941243786 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -116,7 +125,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="logic" parent="HFlowContainer" unique_id=917032685 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -126,7 +138,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="turret" parent="HFlowContainer" unique_id=1507579249 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -136,7 +151,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="distribution" parent="HFlowContainer" unique_id=910112080 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -146,7 +164,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="power" parent="HFlowContainer" unique_id=639568123 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -156,7 +177,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="crafting" parent="HFlowContainer" unique_id=1877991196 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -166,7 +190,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="effect" parent="HFlowContainer" unique_id=2044769394 instance=ExtResource("1_m4bge")]
 custom_minimum_size = Vector2(40, 40)
@@ -176,7 +203,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mm5an")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xwuj2")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_mevix")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y5gcf")
+text = " "
 real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = ""
 
 [node name="Panel" type="Panel" parent="." unique_id=1580128587]
 custom_minimum_size = Vector2(175, 40)
@@ -197,6 +227,8 @@ grow_vertical = 2
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_tgj8f")
 text = ""
@@ -207,5 +239,7 @@ real_text = ""
 [node name="Text" parent="Panel/HBoxContainer" unique_id=1322899586 instance=ExtResource("2_8q1ts")]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "Production"
 real_text = "Production"

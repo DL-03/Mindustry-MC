@@ -9,6 +9,7 @@
 
 [node name="Element" type="Button" unique_id=402133567 node_paths=PackedStringArray("richLabel", "filePathElement")]
 custom_minimum_size = Vector2(400, 50)
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 50.0
 grow_horizontal = 2
@@ -119,6 +120,7 @@ theme_override_constants/v_separation = 0
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
+text = "0 MindButton "
 real_text_icon_right = ""
 icon_size = 20
 real_tooltip_text = "|Duplicate|"
@@ -127,6 +129,7 @@ real_tooltip_text = "|Duplicate|"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
+text = "0 MindButton "
 real_text_icon_right = ""
 icon_size = 20
 real_tooltip_text = "|Rename|"
@@ -135,6 +138,7 @@ real_tooltip_text = "|Rename|"
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_type_variation = &"ButtonUnborder"
+text = "0 MindButton "
 icon_color = Color(0.945098, 0.32549, 0.321569, 1)
 real_text_icon_right = ""
 icon_size = 20

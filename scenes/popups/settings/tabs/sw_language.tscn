@@ -1,546 +1,16 @@
-[gd_scene format=4 uid="uid://d0ppbqrba56gs"]
+[gd_scene format=4 uid="uid://564m41behd5d"]
 
-[ext_resource type="Script" uid="uid://e6m5jvmwajeu" path="res://scenes/popups/SettingsWindow.gd" id="1_4a58h"]
-[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="2_4xn72"]
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_yyeru"]
-[ext_resource type="PackedScene" uid="uid://bopn2g7v7eofr" path="res://widgets/mind_check_box.tscn" id="4_bvumk"]
-[ext_resource type="Texture2D" uid="uid://c0x3c87reupnn" path="res://resources/icons/github-mark-white.svg" id="5_eavg2"]
-[ext_resource type="Texture2D" uid="uid://cn3p2a6t2uaa5" path="res://resources/icons/discord-mark-white.svg" id="5_hew36"]
-[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="5_o21by"]
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="6_ohacx"]
-[ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="7_154vj"]
-[ext_resource type="Texture2D" uid="uid://5804us4hobk6" path="res://resources/icons/itchio-textless-white.svg" id="7_hlian"]
-[ext_resource type="FontVariation" uid="uid://csmn47yeel1hm" path="res://fonts/MindustryFont.tres" id="8_hlian"]
-[ext_resource type="PackedScene" uid="uid://brm8hehewj68e" path="res://prefabs/mmc_icon.tscn" id="9_mhy1b"]
-[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="9_x8ccs"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4o5m1"]
-bg_color = Color(0, 0, 0, 0.882353)
-corner_detail = 1
-anti_aliasing = false
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="1_c67ya"]
+[ext_resource type="Script" uid="uid://crypmriqtx8tx" path="res://scenes/popups/settings/tabs/sw_language.gd" id="1_g66kl"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="2_g66kl"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="3_kmr1e"]
+[ext_resource type="FontVariation" uid="uid://csmn47yeel1hm" path="res://fonts/MindustryFont.tres" id="4_4ryc5"]
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="5_aqr24"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osrcn"]
 draw_center = false
 border_width_top = 3
 border_color = Color(1, 0.827451, 0.498039, 1)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipgh1"]
-draw_center = false
-border_width_right = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_detail = 1
-expand_margin_top = 10.0
-expand_margin_right = 5.0
-expand_margin_bottom = 10.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq18a"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_bottom_right = 10
-corner_detail = 1
-expand_margin_left = 50.0
-expand_margin_top = 50.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwggc"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4frfe"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyh0"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w17cf"]
-bg_color = Color(0.145098, 0.145098, 0.145098, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-expand_margin_left = 25.0
-expand_margin_right = 5.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5nci"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7oip8"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42doi"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g210m"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="Shader" id="Shader_xabsi"]
-code = "shader_type canvas_item;
-
-uniform vec2 object_size;
-uniform vec2 text_size;
-uniform int text_vertical_aligment;
-
-void vertex() {
-	if (text_vertical_aligment == 1) {
-		VERTEX.y += object_size.y/2.0-text_size.y/2.0;
-	}
-	if (text_vertical_aligment == 2) {
-		VERTEX.y += object_size.y-text_size.y;
-	}
-}
-
-void fragment() {
-	// Called for every pixel the material is visible on.
-}
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o5ik"]
-shader = SubResource("Shader_xabsi")
-shader_parameter/object_size = Vector2(250, 25)
-shader_parameter/text_size = Vector2(413, 17)
-shader_parameter/text_vertical_aligment = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4mdu"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-draw_center = false
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxjuo"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 0.686275)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kngd5"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 0.686275)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h71u"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a34d4"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly2cf"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.49803922, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ji18"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.27058825, 0.27058825, 0.27058825, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmm32"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8bts"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svsd1"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtrt1"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72em0"]
-bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjfsy"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvkd0"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.49803922, 1)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wg8ic"]
-bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ohacx"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7ipc"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.827451, 0.49803922, 1)
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_s4i0f"]
-color = Color(1, 0.827451, 0.49803922, 1)
-thickness = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.27058825, 0.27058825, 0.27058825, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="Theme" id="Theme_jvaal"]
-default_font = ExtResource("8_hlian")
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/font_outline_color = Color(0, 0, 0, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_focus_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_color = Color(1, 1, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-Button/colors/icon_normal_color = Color(1, 1, 1, 1)
-Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
-Button/constants/align_to_largest_stylebox = 0
-Button/constants/h_separation = 4
-Button/constants/icon_max_width = 0
-Button/constants/outline_size = 0
-Button/font_sizes/font_size = 16
-Button/styles/disabled = SubResource("StyleBoxFlat_7h71u")
-Button/styles/focus = SubResource("StyleBoxFlat_a34d4")
-Button/styles/hover = SubResource("StyleBoxFlat_ly2cf")
-Button/styles/normal = SubResource("StyleBoxFlat_0ji18")
-Button/styles/pressed = SubResource("StyleBoxFlat_fmm32")
-ButtonRectTiny/base_type = &"Button"
-ButtonRectTiny/styles/hover = SubResource("StyleBoxFlat_l8bts")
-ButtonRectTiny/styles/normal = SubResource("StyleBoxFlat_svsd1")
-ButtonRectTiny/styles/pressed = SubResource("StyleBoxFlat_wtrt1")
-ButtonUnborder/base_type = &"Button"
-ButtonUnborder/styles/hover = SubResource("StyleBoxFlat_72em0")
-ButtonUnborder/styles/normal = SubResource("StyleBoxEmpty_tjfsy")
-ButtonUnborder/styles/pressed = SubResource("StyleBoxFlat_hvkd0")
-ButtonUnborderTiny/base_type = &"Button"
-ButtonUnborderTiny/styles/hover = SubResource("StyleBoxFlat_wg8ic")
-ButtonUnborderTiny/styles/normal = SubResource("StyleBoxEmpty_ohacx")
-ButtonUnborderTiny/styles/pressed = SubResource("StyleBoxFlat_b7ipc")
-HSeparator/styles/separator = SubResource("StyleBoxLine_s4i0f")
-Panel/styles/panel = SubResource("StyleBoxFlat_sugp2")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao4ht"]
-bg_color = Color(0.98039216, 0.36078432, 0.36078432, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lusue"]
-bg_color = Color(0.98039216, 0.36078432, 0.36078432, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlm05"]
-bg_color = Color(0.98039216, 0.36078432, 0.36078432, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lg3l"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.345098, 0.396078, 0.94902, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttab0"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.345098, 0.396078, 0.94902, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkpf4"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.345098, 0.396078, 0.94902, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
@@ -4775,7 +4245,7 @@ corner_detail = 1
 anti_aliasing = false
 
 [sub_resource type="Theme" id="Theme_1bpcv"]
-default_font = ExtResource("8_hlian")
+default_font = ExtResource("4_4ryc5")
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 5
 Button/fonts/font = SubResource("FontFile_cpvcl")
@@ -4798,547 +4268,58 @@ border_color = Color(1, 0.827451, 0.498039, 1)
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="GDScript" id="GDScript_hlian"]
-script/source = "extends HBoxContainer
-
-@export var line: LineEdit
-@export var optionButton: OptionButton
-
-func _ready() -> void:
-	for i in Notifications.Type.keys():
-		optionButton.add_item(i)
-
-func _on_topic_pressed() -> void:
-	Notifications.toast(line.text, optionButton.selected)
-"
-
-[node name="SettingsWindow" type="Panel" unique_id=536717459 node_paths=PackedStringArray("Information_Description", "LangList", "AutoOpenSettings", "TimeForDelete", "MomentalDelete", "DEBUG", "DescText")]
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("3_yyeru")
-theme_override_styles/panel = SubResource("StyleBoxFlat_4o5m1")
-script = ExtResource("1_4a58h")
-Information_Description = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/MindRTL")
-LangList = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/LangParam/OptionButton")
-AutoOpenSettings = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/autoOpenSettingsParam/MindCheckBox")
-TimeForDelete = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/TimeForDelete/SpinBox")
-MomentalDelete = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/MomentalDelete/MindCheckBox")
-DEBUG = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/debug/MindCheckBox")
-DescText = NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/MarginContainer/Desc/MarginContainer/MindRTL")
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1374549149]
-layout_mode = 1
+[node name="Language" type="VBoxContainer" unique_id=530353101 node_paths=PackedStringArray("LangContent", "ElementPlaceholder", "DescText")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=874335536]
-layout_mode = 2
-
-[node name="Title" parent="MarginContainer/VBoxContainer" unique_id=1246502133 instance=ExtResource("2_4xn72")]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
-theme_override_font_sizes/font_size = 20
-text = " SettingsWindow.Title "
-horizontal_alignment = 1
-real_text = " |SettingsWindow.Title| "
-font_color = Color(1, 0.827451, 0.498039, 1)
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=46064272]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="TabPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1442650126]
-layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DecorTabs" type="Panel" parent="MarginContainer/VBoxContainer/TabPanel" unique_id=1905453223]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ipgh1")
-
-[node name="Decor2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs" unique_id=169630960]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = -0.5
-offset_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Control" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2" unique_id=468036273]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Panel" unique_id=1408791535]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
-
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Panel/MarginContainer" unique_id=1349010310]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hq18a")
-
-[node name="Title2" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Panel/MarginContainer/Panel" unique_id=607077221 instance=ExtResource("2_4xn72")]
-layout_mode = 1
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
-theme_override_font_sizes/font_size = 28
-text = " Настройки"
-real_text = " |Settings|"
-font_color = Color(1, 0.827451, 0.498039, 1)
-
-[node name="Tabs" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2" unique_id=1488711268]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Information" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs" unique_id=1170079916 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mwggc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_4frfe")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fqyh0")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_w17cf")
-disabled = true
-font_color_disabled = Color(1, 1, 1, 1)
-icon_color_disabled = Color(1, 1, 1, 1)
-real_text_icon_left = ""
-real_text = "|Information|"
-
-[node name="Language" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs" unique_id=1694297562 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mwggc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_e5nci")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7oip8")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_w17cf")
-font_color_disabled = Color(1, 1, 1, 1)
-icon_color_disabled = Color(1, 1, 1, 1)
-real_text_icon_left = ""
-real_text = "|Language|"
-
-[node name="Main" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs" unique_id=895063351 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mwggc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_e5nci")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7oip8")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_w17cf")
-font_color_disabled = Color(1, 1, 1, 1)
-icon_color_disabled = Color(1, 1, 1, 1)
-real_text_icon_left = ""
-real_text = "|Main|"
-
-[node name="Debug" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs" unique_id=377529879 instance=ExtResource("5_o21by")]
-visible = false
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_mwggc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_42doi")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g210m")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_w17cf")
-font_color = Color(1, 0, 1, 1)
-icon_color = Color(1, 0, 1, 1)
-font_color_disabled = Color(1, 0, 1, 1)
-icon_color_disabled = Color(1, 0, 1, 1)
-real_text_icon_left = ""
-real_text = "Debug"
-icon_size = 18
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2" unique_id=397252936]
-layout_mode = 2
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 10
-
-[node name="Close" parent="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/MarginContainer" unique_id=973122268 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(200, 60)
-layout_mode = 2
-real_text_icon_left = ""
-real_text = "|Back|"
-font_size = 18
-
-[node name="Panels" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel" unique_id=831760024]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Information" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels" unique_id=245936847]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information" unique_id=1268910524]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="Title" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information" unique_id=226979749 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
-theme_override_font_sizes/font_size = 20
-text = " Информация "
-horizontal_alignment = 1
-real_text = " |Information| "
-font_color = Color(1, 0.827451, 0.498039, 1)
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information" unique_id=193447503]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information" unique_id=705958833]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Author" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer" unique_id=849473326]
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="MindRTL" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author" unique_id=1359297754 instance=ExtResource("9_x8ccs")]
-material = SubResource("ShaderMaterial_2o5ik")
-custom_minimum_size = Vector2(250, 25)
-layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 4
-theme_override_font_sizes/normal_font_size = 24
-text = "  [color=#ffd37f]Создатель: [color=#38d667]DL"
-autowrap_mode = 0
-real_text = "  [emb][ui.yellow]|Creator|: [green]DL"
-
-[node name="Github" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL" unique_id=529493969 instance=ExtResource("6_ohacx")]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 1
-offset_top = -12.5
-offset_bottom = 12.5
-theme = ExtResource("3_yyeru")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_t4mdu")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jxjuo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kngd5")
-text = ""
-icon = ExtResource("5_eavg2")
-icon_alignment = 2
-expand_icon = true
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github/MarginContainer" parent_id_path=PackedInt32Array(529493969, 32214607) index="0" unique_id=1969564989]
-text = ""
-horizontal_alignment = 0
-real_text = ""
-
-[node name="Itch_io" type="Button" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author" unique_id=30804931]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = SubResource("Theme_jvaal")
-theme_override_constants/icon_max_width = 26
-theme_override_styles/normal = SubResource("StyleBoxFlat_ao4ht")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lusue")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dlm05")
-icon = ExtResource("7_hlian")
-icon_alignment = 1
-expand_icon = true
-
-[node name="MindTooltip" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/Itch_io" unique_id=259170520 instance=ExtResource("7_154vj")]
-tooltip_text = "[center][emb]|[UI.YELLOW]|FollowTheLink|
-[#fa5c5c]Itch.io []Profile"
-position_mode = 3
-anchor = 1
-
-[node name="Discord" type="Button" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author" unique_id=1010595445]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = SubResource("Theme_jvaal")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8lg3l")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ttab0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xkpf4")
-icon = ExtResource("5_hew36")
-icon_alignment = 1
-expand_icon = true
-
-[node name="MindTooltip" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/Discord" unique_id=1999827347 instance=ExtResource("7_154vj")]
-tooltip_text = "[center][emb]|[UI.YELLOW]|FollowTheLink|
-[#5865F2]Discord []Group"
-position_mode = 3
-anchor = 1
-
-[node name="MindRTL" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer" unique_id=175583129 instance=ExtResource("9_x8ccs")]
-layout_mode = 2
-text = "[color=#ffd37f]Mindustry Mod Construct [color=#ffffff]или (Mindustry MC) — 
-это программа, с помощью которой вы можете легко
-управлять модами, созданными для игры [color=#ffd37f]Mindustry[color=#ffffff].
-
-Версия: [color=#ffd37f]Pre-Beta 3.0 ( 0.3.0 )[color=#ffffff]
-Версия ClassType: [color=#ffd37f]0.2 - Offline[color=#ffffff]
-Сделано в: [color=#00aaff]Placeholder"
-fit_content = true
-autowrap_mode = 0
-real_text = "[emb]|DescriptionMMC|
-
-|Version|: [UI.YELLOW]Pre-Beta 3.0 ( {version} )[]
-|Version| ClassType: [UI.YELLOW]0.2 - Offline[]
-|MadeIn|: [#00aaff]{engine}"
-placeholders = {
-"engine": "Placeholder",
-"version": "0.3.0"
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer" unique_id=2040317039]
-layout_mode = 2
-alignment = 1
-
-[node name="MindRTL" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer" unique_id=271090168 instance=ExtResource("9_x8ccs")]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/normal_font_size = 24
-text = "Секрет: "
-fit_content = true
-autowrap_mode = 0
-vertical_alignment = 1
-real_text = "[emb]|Secret|: "
-
-[node name="MindTooltip" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/MindRTL" unique_id=1825209057 instance=ExtResource("7_154vj")]
-tooltip_text = "[emb]|Secret.tip|"
-preview_in_editor = true
-position_mode = 3
-anchor_offset = Vector2(-100, 5)
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer" unique_id=898722343]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("3_yyeru")
-placeholder_text = "Секрет"
-
-[node name="Enter" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer" unique_id=265199598 instance=ExtResource("6_ohacx")]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-theme_type_variation = &"ButtonUnborder"
-text = ""
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/Enter/MarginContainer" parent_id_path=PackedInt32Array(265199598, 32214607) index="0" unique_id=1969564989]
-theme_override_font_sizes/normal_font_size = 32
-text = ""
-real_text = "[emb offset=4]"
-
-[node name="MindTooltip" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/Enter" unique_id=1700957600 instance=ExtResource("7_154vj")]
-tooltip_text = "|Check|"
-position_mode = 3
-anchor = 1
-
-[node name="MMC_Icon" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Information" unique_id=193163696 instance=ExtResource("9_mhy1b")]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="Main" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels" unique_id=1889302347]
-visible = false
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main" unique_id=1573152742]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="Title" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main" unique_id=1305458420 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
-theme_override_font_sizes/font_size = 20
-text = " Основное "
-horizontal_alignment = 1
-real_text = " |Main| "
-font_color = Color(1, 0.827451, 0.498039, 1)
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main" unique_id=1565683185]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main" unique_id=993410005]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="LangParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer" unique_id=1012475755]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/LangParam" unique_id=2017465759 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "SettingsWindow.Main.Language.text: "
-horizontal_alignment = 1
-real_text = "|SettingsWindow.Main.Language.text|: "
-
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/LangParam" unique_id=1873952143]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("3_yyeru")
-alignment = 1
-selected = 0
-item_count = 2
-popup/item_0/text = "en"
-popup/item_0/id = 0
-popup/item_1/text = "ru"
-popup/item_1/id = 1
-
-[node name="Reload" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/LangParam" unique_id=1124587736 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(125, 40)
-layout_mode = 2
-size_flags_vertical = 4
-real_text_icon_left = "<null>"
-real_text_icon_right = "<null>"
-real_text = "|SettingsWindow.Information.UpdateVersions.text|"
-icon_size = 20
-
-[node name="perSaveMessageParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer" unique_id=411184797]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/perSaveMessageParam" unique_id=625068820]
-layout_mode = 2
-theme = ExtResource("3_yyeru")
-max_value = 100000000000.0
-value = 60.0
-allow_greater = true
-update_on_text_changed = true
-suffix = "s"
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/perSaveMessageParam" unique_id=1655404357 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Периодичность сообщения о сохранении"
-horizontal_alignment = 1
-real_text = "|SaveMessageFrequency|"
-
-[node name="TimeForDelete" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer" unique_id=1727275536]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/TimeForDelete" unique_id=1354926837]
-layout_mode = 2
-theme = ExtResource("3_yyeru")
-max_value = 100000000000.0
-value = 5.0
-allow_greater = true
-update_on_text_changed = true
-suffix = "s"
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/TimeForDelete" unique_id=1519749189 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Время для удаления"
-horizontal_alignment = 1
-real_text = "|TimeForDelete|"
-
-[node name="MomentalDelete" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer" unique_id=366529281]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="MindCheckBox" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/MomentalDelete" unique_id=760882426 instance=ExtResource("4_bvumk")]
-layout_mode = 2
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/MomentalDelete" unique_id=2038978781 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Моментальное удаление"
-horizontal_alignment = 1
-real_text = "|MomentalDelete|"
-
-[node name="autoOpenSettingsParam" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer" unique_id=722707515]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="MindCheckBox" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/autoOpenSettingsParam" unique_id=1298075969 instance=ExtResource("4_bvumk")]
-layout_mode = 2
-Checked = true
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/autoOpenSettingsParam" unique_id=1795342857 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Авто открытие настроек"
-horizontal_alignment = 1
-real_text = "|AutoOpenSettings|"
-
-[node name="debug" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer" unique_id=1756160057]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="MindCheckBox" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/debug" unique_id=2054594031 instance=ExtResource("4_bvumk")]
-layout_mode = 2
-
-[node name="Label" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/debug" unique_id=669545487 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
-theme_override_font_sizes/font_size = 24
-text = "DEBUG"
-horizontal_alignment = 1
-real_text = "DEBUG"
-font_color = Color(1, 0.827451, 0.498039, 1)
-
-[node name="Language" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels" unique_id=1499199189]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language" unique_id=1819191422]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="Title" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language" unique_id=1101652943 instance=ExtResource("2_4xn72")]
+script = ExtResource("1_g66kl")
+LangContent = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer/Content")
+ElementPlaceholder = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Element")
+DescText = NodePath("MarginContainer/HBoxContainer/MarginContainer/Desc/MarginContainer/MindRTL")
+
+[node name="Title" parent="." unique_id=1661976189 instance=ExtResource("1_c67ya")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
 theme_override_font_sizes/font_size = 20
 text = " Язык "
 horizontal_alignment = 1
-real_text = " |Language| "
+real_text = "[emb] |Language| "
 font_color = Color(1, 0.827451, 0.498039, 1)
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language" unique_id=1374875319]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1092646736]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language" unique_id=1851621367]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=512770612]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 30
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=379215428]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer" unique_id=1956329184]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=457911089]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer" unique_id=1465977927]
-custom_minimum_size = Vector2(300, 0)
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=896899581]
+custom_minimum_size = Vector2(325, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 3
-theme = ExtResource("3_yyeru")
+theme = ExtResource("2_g66kl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel" unique_id=350749653]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel" unique_id=660810379]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -5352,12 +4333,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer" unique_id=466564817]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer" unique_id=254864176]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer" unique_id=945068864]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer" unique_id=271282327]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -5366,15 +4347,18 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer" unique_id=616969455]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer" unique_id=1905626251]
 layout_mode = 2
 
-[node name="Element" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1327667325 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(0, 50)
+[node name="Element" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1135730542 instance=ExtResource("3_kmr1e")]
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 theme = SubResource("Theme_1bpcv")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_flxxe")
 disabled = true
+text = "en English v0.1"
 icon_color = Color(1, 0.827451, 0.498039, 1)
 font_color_disabled = Color(1, 1, 1, 1)
 icon_color_disabled = Color(1, 0.827451, 0.498039, 1)
@@ -5382,28 +4366,35 @@ real_text_icon_left = "en"
 real_text_icon_right = "v0.1"
 real_text = "English"
 
-[node name="Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=172700562]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=792335304]
 layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="Reload" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer" unique_id=1828436871 instance=ExtResource("5_o21by")]
+[node name="Content" type="HFlowContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1889151073]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Reload" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=507405491 instance=ExtResource("3_kmr1e")]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-real_text_icon_left = ""
-real_text = "|Update|"
+text = " Обновить "
+real_text_icon_left = "[emb offset=3]"
+real_text_icon_right = "[emb offset=3]"
+real_text = "[emb]|Update|"
 font_size = 18
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer" unique_id=1145341583]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1766627351]
 layout_mode = 2
 
-[node name="Desc" type="Panel" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/MarginContainer" unique_id=741354722]
+[node name="Desc" type="Panel" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1403267535]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("3_yyeru")
+theme = ExtResource("2_g66kl")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/MarginContainer/Desc" unique_id=302776920]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/Desc" unique_id=793672767]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -5415,7 +4406,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MindRTL" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/MarginContainer/Desc/MarginContainer" unique_id=754969270 instance=ExtResource("9_x8ccs")]
+[node name="MindRTL" parent="MarginContainer/HBoxContainer/MarginContainer/Desc/MarginContainer" unique_id=1359297754 instance=ExtResource("5_aqr24")]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -5430,136 +4421,5 @@ Version: 0.1
 
 [ui.yellow]Translator: [green]DL"
 
-[node name="Debug" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels" unique_id=170208139]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=1644657668]
-visible = false
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="Title" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=808408861 instance=ExtResource("2_4xn72")]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0, 0.3, 1)
-theme_override_font_sizes/font_size = 20
-text = "DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG"
-horizontal_alignment = 1
-clip_text = true
-real_text = "DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG // DEBUG"
-font_color = Color(1, 0, 1, 1)
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=150249224]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
-
-[node name="OpenFolderMMC" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=503304518 instance=ExtResource("5_o21by")]
-custom_minimum_size = Vector2(250, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-real_text_icon_left = ""
-real_text_icon_right = ""
-real_text = "|OpenFolder| 
-MMC"
-
-[node name="UpPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=517785451]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("3_yyeru")
-
-[node name="ModBank" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/UpPanel" unique_id=2120344226]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/UpPanel/ModBank" unique_id=1094720547]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ContentBank" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/UpPanel" unique_id=763349243]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/UpPanel/ContentBank" unique_id=976508195]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Tree" type="Tree" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/UpPanel" unique_id=1343454634]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ActionPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=1985778530]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_yyeru")
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/ActionPanel" unique_id=1245151231]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-
-[node name="Open" type="Button" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/ActionPanel" unique_id=893876482]
-layout_mode = 2
-text = "Open"
-
-[node name="Close" type="Button" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/ActionPanel" unique_id=2078884246]
-layout_mode = 2
-disabled = true
-text = "Close"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug" unique_id=1336438241 node_paths=PackedStringArray("line", "optionButton")]
-layout_mode = 2
-script = SubResource("GDScript_hlian")
-line = NodePath("LineEdit")
-optionButton = NodePath("OptionButton")
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/HBoxContainer" unique_id=1291902378]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/HBoxContainer" unique_id=1396219010]
-layout_mode = 2
-
-[node name="Topic" type="Button" parent="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/HBoxContainer" unique_id=1015771542]
-layout_mode = 2
-text = "topic"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabPanel" unique_id=1489946305]
-layout_mode = 2
-
-[node name="ActionPanel" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=979493900]
-visible = false
-layout_mode = 2
-size_flags_vertical = 8
-alignment = 1
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/MarginContainer/Close" to="." method="_on_close_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github" to="." method="_on_github_mouse_entered"]
-[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github" to="." method="_on_github_mouse_exited"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github" to="." method="_on_github_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/Itch_io" to="." method="_on_itch_io_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/Discord" to="." method="_on_discord_pressed"]
-[connection signal="text_submitted" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/Enter" to="." method="_on_enter_pressed"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/LangParam/OptionButton" to="." method="_on_lang_option_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/LangParam/Reload" to="." method="_on_lang_reload_pressed"]
-[connection signal="changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/perSaveMessageParam/SpinBox" to="." method="_on_spin_box_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/perSaveMessageParam/SpinBox" to="." method="_on_save_message_frequenc_spin_box_value_changed"]
-[connection signal="changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/TimeForDelete/SpinBox" to="." method="_on_time_for_delete_spin_box_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/TimeForDelete/SpinBox" to="." method="_on_momental_delete_spin_box_value_changed"]
-[connection signal="state_changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/MomentalDelete/MindCheckBox" to="." method="_on_momental_delete_state_changed"]
-[connection signal="state_changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/autoOpenSettingsParam/MindCheckBox" to="." method="_on_auto_open_settings_state_changed"]
-[connection signal="state_changed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Main/VBoxContainer/debug/MindCheckBox" to="." method="_on_debug_check_box_state_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Language/HBoxContainer/VBoxContainer/Reload" to="." method="_on_lang_reload_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/OpenFolderMMC" to="." method="_on_open_folder_mmc_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/ActionPanel/Open" to="." method="_on_db_open_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/ActionPanel/Close" to="." method="_on_db_close_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/HBoxContainer/Topic" to="MarginContainer/VBoxContainer/TabPanel/Panels/Debug/HBoxContainer" method="_on_topic_pressed"]
-
-[editable path="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/Author/MindRTL/Github"]
-[editable path="MarginContainer/VBoxContainer/TabPanel/Panels/Information/VBoxContainer/HBoxContainer/Enter"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Reload" to="." method="_on_reload_pressed"]

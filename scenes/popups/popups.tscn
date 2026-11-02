@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bxiqvd5pl3oyu"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_32ag8"]
+[ext_resource type="Script" uid="uid://dvwucypxfsg3e" path="res://scenes/popups/popups.gd" id="2_edhhg"]
+[ext_resource type="PackedScene" uid="uid://lgv0sgeke64b" path="res://scenes/popups/content_card_cm.tscn" id="3_gr7yw"]
+[ext_resource type="PackedScene" uid="uid://bisoxq31kfb17" path="res://scenes/popups/content_explorer_filters_cm.tscn" id="4_edhhg"]
+
+[node name="Popups" type="Control" unique_id=1113662675 node_paths=PackedStringArray("ContentCardCM", "ContentExplorerFiltersCM")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_32ag8")
+script = ExtResource("2_edhhg")
+ContentCardCM = NodePath("ContentCardCM")
+ContentExplorerFiltersCM = NodePath("ContentExplorerFiltersCM")
+
+[node name="ContentCardCM" parent="." unique_id=1425198293 instance=ExtResource("3_gr7yw")]
+
+[node name="ContentExplorerFiltersCM" parent="." unique_id=1220184315 instance=ExtResource("4_edhhg")]

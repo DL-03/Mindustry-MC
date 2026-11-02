@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://ccklywla1mscx"]
+
+[ext_resource type="Script" uid="uid://b4tjm7d8oin1v" path="res://scenes/popups/settings/tabs/sw_debug.gd" id="1_2o5rw"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="1_7hkhh"]
+[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="2_2o5rw"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_ubc14"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osrcn"]
+draw_center = false
+border_width_top = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[node name="Debug" type="VBoxContainer" unique_id=1789804815 node_paths=PackedStringArray("not_line", "not_optionButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2o5rw")
+not_line = NodePath("HBoxContainer/LineEdit")
+not_optionButton = NodePath("HBoxContainer/OptionButton")
+
+[node name="Title" parent="." unique_id=1661976189 instance=ExtResource("1_7hkhh")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4117647, 0.7058824, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0.12352942, 0.21176472, 1)
+theme_override_font_sizes/font_size = 20
+text = " DEBUG "
+horizontal_alignment = 1
+clip_text = true
+real_text = "[emb][PINK] DEBUG "
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1233407149]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
+
+[node name="OpenFolderMMC" parent="." unique_id=1135730542 instance=ExtResource("2_2o5rw")]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+real_text_icon_left = ""
+real_text_icon_right = ""
+real_text = "|OpenFolder| 
+MMC"
+
+[node name="UpPanel" type="HBoxContainer" parent="." unique_id=1553557920]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_ubc14")
+
+[node name="ModBank" type="ScrollContainer" parent="UpPanel" unique_id=1525743106]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpPanel/ModBank" unique_id=1663328692]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ContentBank" type="ScrollContainer" parent="UpPanel" unique_id=1583478885]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpPanel/ContentBank" unique_id=1531831048]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Tree" type="Tree" parent="UpPanel" unique_id=107004872]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionPanel" type="HBoxContainer" parent="." unique_id=1001761903]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_ubc14")
+
+[node name="LineEdit" type="LineEdit" parent="ActionPanel" unique_id=1199148120]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Open" type="Button" parent="ActionPanel" unique_id=1715453113]
+layout_mode = 2
+text = "Open"
+
+[node name="Close" type="Button" parent="ActionPanel" unique_id=1029346915]
+layout_mode = 2
+disabled = true
+text = "Close"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=477739944]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" unique_id=1886482921]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer" unique_id=18134145]
+layout_mode = 2
+
+[node name="Topic" type="Button" parent="HBoxContainer" unique_id=575053230]
+layout_mode = 2
+text = "topic"
+
+[connection signal="pressed" from="OpenFolderMMC" to="." method="_on_open_folder_mmc_pressed"]
+[connection signal="pressed" from="ActionPanel/Open" to="." method="_on_open_pressed"]
+[connection signal="text_submitted" from="HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/Topic" to="." method="_on_topic_pressed"]

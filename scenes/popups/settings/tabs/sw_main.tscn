@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://ylcrxo6lbm64"]
+
+[ext_resource type="Script" uid="uid://ih2rarikyvy5" path="res://scenes/popups/settings/tabs/sw_main.gd" id="1_t5bpw"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="1_ve7mt"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="2_e30yq"]
+[ext_resource type="PackedScene" uid="uid://bopn2g7v7eofr" path="res://widgets/mind_check_box.tscn" id="4_3c4gs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osrcn"]
+draw_center = false
+border_width_top = 3
+border_color = Color(1, 0.827451, 0.498039, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[node name="Main" type="VBoxContainer" unique_id=872714640 node_paths=PackedStringArray("PerSaveMessageParam", "AutoOpenSettings", "TimeForDelete", "MomentalDelete", "DEBUG")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_t5bpw")
+PerSaveMessageParam = NodePath("VBoxContainer/perSaveMessageParam/SpinBox")
+AutoOpenSettings = NodePath("VBoxContainer/autoOpenSettingsParam/MindCheckBox")
+TimeForDelete = NodePath("VBoxContainer/TimeForDelete/SpinBox")
+MomentalDelete = NodePath("VBoxContainer/MomentalDelete/MindCheckBox")
+DEBUG = NodePath("VBoxContainer/debug/MindCheckBox")
+
+[node name="Title" parent="." unique_id=1661976189 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_font_sizes/font_size = 20
+text = " Основное "
+horizontal_alignment = 1
+real_text = "[emb] |Main| "
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1149954973]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_osrcn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2135895403]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="perSaveMessageParam" type="HBoxContainer" parent="VBoxContainer" unique_id=1956892363]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/perSaveMessageParam" unique_id=310819480]
+layout_mode = 2
+theme = ExtResource("2_e30yq")
+max_value = 100000000000.0
+value = 60.0
+allow_greater = true
+update_on_text_changed = true
+suffix = "s"
+
+[node name="Label" parent="VBoxContainer/perSaveMessageParam" unique_id=1647462410 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Периодичность сообщения о сохранении"
+horizontal_alignment = 1
+real_text = "[emb]|SaveMessageFrequency|"
+
+[node name="TimeForDelete" type="HBoxContainer" parent="VBoxContainer" unique_id=1939036805]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TimeForDelete" unique_id=1182406039]
+layout_mode = 2
+theme = ExtResource("2_e30yq")
+max_value = 100000000000.0
+value = 5.0
+allow_greater = true
+update_on_text_changed = true
+suffix = "s"
+
+[node name="Label" parent="VBoxContainer/TimeForDelete" unique_id=1200664600 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Время для удаления"
+horizontal_alignment = 1
+real_text = "[emb]|TimeForDelete|"
+
+[node name="MomentalDelete" type="HBoxContainer" parent="VBoxContainer" unique_id=977735275]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MindCheckBox" parent="VBoxContainer/MomentalDelete" unique_id=679402399 instance=ExtResource("4_3c4gs")]
+layout_mode = 2
+
+[node name="Label" parent="VBoxContainer/MomentalDelete" unique_id=1640412715 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Моментальное удаление"
+horizontal_alignment = 1
+real_text = "[emb]|MomentalDelete|"
+
+[node name="autoOpenSettingsParam" type="HBoxContainer" parent="VBoxContainer" unique_id=131132825]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MindCheckBox" parent="VBoxContainer/autoOpenSettingsParam" unique_id=1819911397 instance=ExtResource("4_3c4gs")]
+layout_mode = 2
+Checked = true
+
+[node name="Label" parent="VBoxContainer/autoOpenSettingsParam" unique_id=838540925 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Авто открытие настроек"
+horizontal_alignment = 1
+real_text = "[emb]|AutoOpenSettings|"
+
+[node name="debug" type="HBoxContainer" parent="VBoxContainer" unique_id=1545804528]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MindCheckBox" parent="VBoxContainer/debug" unique_id=189949301 instance=ExtResource("4_3c4gs")]
+layout_mode = 2
+
+[node name="Label" parent="VBoxContainer/debug" unique_id=33487849 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4117647, 0.7058824, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0.12352942, 0.21176472, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 24
+text = "DEBUG"
+horizontal_alignment = 1
+real_text = "[emb offset=3][PINK]DEBUG"
+font_color = Color(1, 0.827451, 0.498039, 1)
+
+[connection signal="value_changed" from="VBoxContainer/perSaveMessageParam/SpinBox" to="." method="_on_save_message_frequenc_spin_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/TimeForDelete/SpinBox" to="." method="_on_momental_delete_spin_box_value_changed"]
+[connection signal="state_changed" from="VBoxContainer/MomentalDelete/MindCheckBox" to="." method="_on_momental_delete_state_changed"]
+[connection signal="state_changed" from="VBoxContainer/autoOpenSettingsParam/MindCheckBox" to="." method="_on_auto_open_settings_state_changed"]
+[connection signal="state_changed" from="VBoxContainer/debug/MindCheckBox" to="." method="_on_debug_check_box_state_changed"]
