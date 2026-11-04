@@ -12,7 +12,7 @@ border_color = Color(1, 0.827451, 0.498039, 1)
 corner_detail = 1
 anti_aliasing = false
 
-[node name="Main" type="VBoxContainer" unique_id=872714640 node_paths=PackedStringArray("PerSaveMessageParam", "AutoOpenSettings", "TimeForDelete", "MomentalDelete", "DEBUG")]
+[node name="Main" type="VBoxContainer" unique_id=872714640 node_paths=PackedStringArray("PerSaveMessageParam", "AutoOpenSettings", "TimeForDelete", "MomentalDelete", "HorizontalTabs", "DEBUG")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,6 +25,7 @@ PerSaveMessageParam = NodePath("VBoxContainer/perSaveMessageParam/SpinBox")
 AutoOpenSettings = NodePath("VBoxContainer/autoOpenSettingsParam/MindCheckBox")
 TimeForDelete = NodePath("VBoxContainer/TimeForDelete/SpinBox")
 MomentalDelete = NodePath("VBoxContainer/MomentalDelete/MindCheckBox")
+HorizontalTabs = NodePath("VBoxContainer/HorizontalTabs/MindCheckBox")
 DEBUG = NodePath("VBoxContainer/debug/MindCheckBox")
 
 [node name="Title" parent="." unique_id=1661976189 instance=ExtResource("1_ve7mt")]
@@ -32,7 +33,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
 theme_override_font_sizes/font_size = 20
-text = " Основное "
+text = " Main "
 horizontal_alignment = 1
 real_text = "[emb] |Main| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -61,7 +62,7 @@ suffix = "s"
 [node name="Label" parent="VBoxContainer/perSaveMessageParam" unique_id=1647462410 instance=ExtResource("1_ve7mt")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Периодичность сообщения о сохранении"
+text = "Save message frequency"
 horizontal_alignment = 1
 real_text = "[emb]|SaveMessageFrequency|"
 
@@ -81,7 +82,7 @@ suffix = "s"
 [node name="Label" parent="VBoxContainer/TimeForDelete" unique_id=1200664600 instance=ExtResource("1_ve7mt")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Время для удаления"
+text = "Time For Delete"
 horizontal_alignment = 1
 real_text = "[emb]|TimeForDelete|"
 
@@ -95,7 +96,7 @@ layout_mode = 2
 [node name="Label" parent="VBoxContainer/MomentalDelete" unique_id=1640412715 instance=ExtResource("1_ve7mt")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Моментальное удаление"
+text = "Momental Delete"
 horizontal_alignment = 1
 real_text = "[emb]|MomentalDelete|"
 
@@ -110,9 +111,24 @@ Checked = true
 [node name="Label" parent="VBoxContainer/autoOpenSettingsParam" unique_id=838540925 instance=ExtResource("1_ve7mt")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Авто открытие настроек"
+text = "Auto Open Settings"
 horizontal_alignment = 1
 real_text = "[emb]|AutoOpenSettings|"
+
+[node name="HorizontalTabs" type="HBoxContainer" parent="VBoxContainer" unique_id=1535445194]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MindCheckBox" parent="VBoxContainer/HorizontalTabs" unique_id=2130876400 instance=ExtResource("4_3c4gs")]
+layout_mode = 2
+Checked = true
+
+[node name="Label" parent="VBoxContainer/HorizontalTabs" unique_id=1374929671 instance=ExtResource("1_ve7mt")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HorizontalTabs"
+horizontal_alignment = 1
+real_text = "[emb]|HorizontalTabs|"
 
 [node name="debug" type="HBoxContainer" parent="VBoxContainer" unique_id=1545804528]
 layout_mode = 2
@@ -136,4 +152,5 @@ font_color = Color(1, 0.827451, 0.498039, 1)
 [connection signal="value_changed" from="VBoxContainer/TimeForDelete/SpinBox" to="." method="_on_momental_delete_spin_box_value_changed"]
 [connection signal="state_changed" from="VBoxContainer/MomentalDelete/MindCheckBox" to="." method="_on_momental_delete_state_changed"]
 [connection signal="state_changed" from="VBoxContainer/autoOpenSettingsParam/MindCheckBox" to="." method="_on_auto_open_settings_state_changed"]
+[connection signal="state_changed" from="VBoxContainer/HorizontalTabs/MindCheckBox" to="." method="_on_mind_check_box_state_changed"]
 [connection signal="state_changed" from="VBoxContainer/debug/MindCheckBox" to="." method="_on_debug_check_box_state_changed"]

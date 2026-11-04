@@ -7,70 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="5_55wej"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="6_8kuwh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v6y8"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_git5o"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10sub"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbour"]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color(0.145098, 0.145098, 0.145098, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_detail = 1
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
-anti_aliasing = false
-
 [node name="MindUTab" type="Button" unique_id=578091389]
-custom_minimum_size = Vector2(175, 30)
+custom_minimum_size = Vector2(175, 35)
 offset_right = 175.0
-offset_bottom = 30.0
+offset_bottom = 45.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_qcote")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8v6y8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_git5o")
-theme_override_styles/hover = SubResource("StyleBoxFlat_10sub")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_kbour")
+theme_type_variation = &"VTab"
 script = ExtResource("2_qcote")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2088221355]

@@ -1,9 +1,15 @@
 extends PanelContainer
 
-var ContentFrame = null
-
+var controller: Node
 @onready var tab = $Tab
-@onready var AllTabButtons = get_parent()
+signal close
+
+var disabled = false:
+	set = _set_disabled
+
+func _set_disabled(v):
+	disabled = v
+	tab.disabled = v
 
 var modClass: ModClass:
 	set = _set_modClass
@@ -46,8 +52,8 @@ func _set_modClass(value):
 		else:
 			IconElement.hide()
 		)
+
 func reset():
-	ContentFrame = null
 	modClass = null
 	
 	var IconElement = tab.get_node_or_null("MarginContainer/HBoxContainer/Icon")
@@ -59,57 +65,9 @@ func reset():
 		LabelElement.real_text = "[emb][UI.YELLOW]|Explorer|"
 
 
+func _on_tab_close() -> void:
+	close.emit()
+
 
 func _on_tab_pressed() -> void:
-	for i in AllTabButtons.get_children():
-		i.tab.disabled = false
-		if i.ContentFrame != null:
-			i.ContentFrame.visible = false
-			
-	tab.disabled = true
-	if ContentFrame != null:
-		ContentFrame.visible = true
-		$/root/Main/V1/ModManager.visible = false
-	else:
-		$/root/Main/V1/ModManager.visible = true
-
-
-func _on_tab_close() -> void:
-	if AllTabButtons.get_child_count() == 1:
-		if AllTabButtons.get_child(0).ContentFrame == null:
-			return
-		else:
-			ContentFrame.Close()
-			reset()
-			$/root/Main/V1/ModManager.show()
-			return
-
-
-	if ContentFrame == null:
-		tab.disabled = false
-		for i in AllTabButtons.get_children():
-			if i != self:
-				if not i.tab.disabled:
-					i.tab.pressed.emit()
-					i.tab.disabled = true
-		queue_free()
-	else:
-		var err = ContentFrame.Close()
-		if err == 1:
-			pass
-		else:
-			pass
-			
-		
-		if AllTabButtons.get_child_count() == 1:
-			reset()
-			$/root/Main/V1/ModManager.show()
-			return
-		else:
-			tab.disabled = false
-			for i in AllTabButtons.get_children():
-				if i != self:
-					if not i.tab.disabled:
-						i.tab.pressed.emit()
-						i.tab.disabled = true
-			queue_free()
+	controller.set_tab(self)

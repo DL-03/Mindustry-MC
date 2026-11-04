@@ -1,46 +1,41 @@
 extends Control
 
-var ButtonTab = null
-
+var ButtonTab:
+	set = _set_button_tab
 
 var modClass: ModClass:
 	set = _set_modClass
 
 
 @export var ContentEditor: Node
+@export var GlobalModCard: Node
 
+func _set_button_tab(v):
+	if ButtonTab:
+		if ButtonTab.has_signal("close"):
+			if ButtonTab.close.is_connected(close):
+				ButtonTab.close.disconnect(close)
 
+	ButtonTab = v
+	if ButtonTab.has_signal("close"):
+		if not ButtonTab.close.is_connected(close):
+			ButtonTab.close.connect(close)
 
-func Close():
+func close():
 	ModManager.close_mod(modClass)
-	queue_free()
-	#if ButtonTab != null:
-	#	ButtonTab.queue_free()
-
-
-
+	ButtonTab.controller.free_tab(ButtonTab)
+	
 
 
 func _set_modClass(value):
 	modClass = value
 
 
-
 var ModType = ""
-
-#@export var GlobalModCard = preload("res://prefabs/ModCard.tscn").instantiate()
-var GlobalModCard = null
-# Called when the node enters the scene tree for the first time.
-
-
-
-
 
 
 
 func _ready():
-	GlobalModCard = $ModEditor/Panel/ModCard
-	
 	#$Panel.add_child(GlobalModCard)
 	#$Panel.move_child(GlobalModCard,0)
 	
@@ -67,19 +62,16 @@ func _ready():
 	for i in ContentTabButtons:
 		i.RootManager = self
 	
-	
-	
-@onready var LoadingWindow = $LoadingWindow
+@export var LoadingWindow: Node
 
 func setPath(path):
-	
 	if ModManager.test_from_path(path):
 		modClass = ModManager.open_from_path(path)
 		
 		
 		ButtonTab.modClass = modClass
 		
-		$LoadingWindow.show()
+		LoadingWindow.show()
 		$LoadingWindow/Panel/MarginContainer/VBoxContainer/ProgressBar.indeterminate = true
 		
 		modClass.connect_loaded(_on_mod_loaded)
@@ -145,7 +137,7 @@ func pressed_button_content():
 var ContentTabButtons = []
 
 
-@onready var CONTENT_CARD = preload("uid://dxllrpipx487b")
+var CONTENT_CARD = preload("uid://dxllrpipx487b")
 
 
 
@@ -162,8 +154,7 @@ func _content_add(_content_class):
 		ListContentElements.call_deferred("add_child", _s)
 		_s.show()
 
-
-@onready var ListContentElements = $ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
+@export var ListContentElements: Node
 
 func refresh_content_list():
 	
@@ -233,7 +224,7 @@ func _refresh_content_bank_window() -> void:
 
 func _on_cancel_loading_pressed():
 	$LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel.disabled = true
-	Close()
+	close()
 
 
 func _on_popup_mind_tooltip_tooltip_will_show(tooltip: Node) -> void:

@@ -165,7 +165,7 @@ corner_radius_bottom_right = 5
 corner_detail = 1
 anti_aliasing = false
 
-[node name="ModEditor" type="Control" unique_id=847141512 node_paths=PackedStringArray("ContentEditor")]
+[node name="ModEditor" type="Control" unique_id=847141512 node_paths=PackedStringArray("ContentEditor", "GlobalModCard", "LoadingWindow", "ListContentElements")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,6 +177,9 @@ size_flags_vertical = 3
 theme = ExtResource("1_3umv1")
 script = ExtResource("2_3umv1")
 ContentEditor = NodePath("ModEditor/ContentEditor")
+GlobalModCard = NodePath("ModEditor/Panel/ModCard")
+LoadingWindow = NodePath("LoadingWindow")
+ListContentElements = NodePath("ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
 
 [node name="ModEditor" type="HSplitContainer" parent="." unique_id=2120847586]
 layout_mode = 1
@@ -316,7 +319,6 @@ font_size = 20
 [node name="MindTooltip" type="Node" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1113625911]
 script = ExtResource("7_0eox3")
 tooltip_text = "[emb]|Filters|"
-allow_empty_text = null
 position_mode = 3
 anchor = 1
 hide_delay = 0.2
@@ -359,7 +361,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
-text = " Создать Контент"
+text = " Create Content"
 real_text_icon_left = ""
 real_text_icon_right = ""
 real_text = "|CreateContent|"
@@ -370,7 +372,7 @@ icon_size = 18
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
-text = " Обновить Список"
+text = " Reload List"
 real_text_icon_left = ""
 real_text_icon_right = ""
 real_text = "|ReloadList|"
@@ -562,7 +564,7 @@ theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
-text = " Загрузка "
+text = " Loading "
 horizontal_alignment = 1
 real_text = " |Loading| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -576,7 +578,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
-text = "Загрузка: None
+text = "Loading: None
 ModEditor.LoadingWindow.Content.text[0/0]: /none.json"
 vertical_alignment = 2
 clip_text = true
@@ -600,7 +602,7 @@ size_flags_vertical = 10
 [node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=740808985 instance=ExtResource("6_qqi7h")]
 layout_mode = 2
 size_flags_horizontal = 3
-text = " Отменить 0"
+text = " Cancel 0"
 real_text_icon_left = ""
 real_text = "|Cancel|"
 

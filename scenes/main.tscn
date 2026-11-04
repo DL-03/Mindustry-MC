@@ -3,9 +3,8 @@
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://7lrqcema0vij" path="res://scenes/main.gd" id="2_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cneaemclmk5bk" path="res://prefabs/TabMain.tscn" id="3_jbj1t"]
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="4_muem4"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="4_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="5_dp3eg"]
-[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="6_0ld40"]
 [ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://scenes/mod_manager/mod_manager.tscn" id="7_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://d0ppbqrba56gs" path="res://scenes/popups/settings/settings_window.tscn" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cjg0xhrkoy7ib" path="res://scenes/popups/RenameDuplicateWindow.tscn" id="9_jscy8"]
@@ -17,40 +16,33 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqlb"]
 bg_color = Color(0, 0, 0, 1)
-border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_bottom_right = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn8xc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbj1t"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ptn7"]
-bg_color = Color(0.478431, 0.478431, 0.478431, 0.513726)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_bottom_left = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
 corner_detail = 1
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reutl"]
-bg_color = Color(0.478431, 0.478431, 0.478431, 0.513726)
-corner_radius_bottom_left = 5
-corner_detail = 1
-anti_aliasing = false
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jbj1t"]
+color = Color(1, 0.827451, 0.49803922, 1)
+grow_begin = -10.0
+grow_end = -10.0
+vertical = true
 
-[node name="Main" type="Control" unique_id=1516285514 node_paths=PackedStringArray("AllTabButtons", "ContentPanel", "modManager")]
+[node name="Main" type="Control" unique_id=1516285514 node_paths=PackedStringArray("ContentPanel", "modManager", "tabsDict", "tabs_container", "first_tab", "home_tab", "settings_tab", "tabs_panel", "V1", "V1_wrapp", "V1_wrapp_vs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,119 +51,122 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_a8y0u")
 script = ExtResource("2_a8y0u")
-AllTabButtons = NodePath("V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs")
 ContentPanel = NodePath("V1/ConentPanel")
-modManager = NodePath("V1/ModManager")
+modManager = NodePath("V1/ConentPanel/ModManager")
 TabPlaceholder = ExtResource("3_jbj1t")
+tabsDict = {
+NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Home"): NodePath("V1/ConentPanel/ModManager"),
+NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Settings"): NodePath("V1/ConentPanel/SettingsWindow")
+}
+tabs_container = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/Tabs")
+first_tab = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Home")
+home_tab = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Home")
+settings_tab = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Settings")
+tabs_panel = NodePath("V1/TabsPanel")
+V1 = NodePath("V1")
+V1_wrapp = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer")
+V1_wrapp_vs = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/VSeparator")
 
-[node name="V1" type="VBoxContainer" parent="." unique_id=331031834]
+[node name="V1" type="BoxContainer" parent="." unique_id=1946052073]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+vertical = true
 
-[node name="UpPanel" type="HBoxContainer" parent="V1" unique_id=776054462]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="TabsPanel" type="Panel" parent="V1/UpPanel" unique_id=1420003081]
+[node name="TabsPanel" type="PanelContainer" parent="V1" unique_id=2024011855]
+custom_minimum_size = Vector2(0, 55)
 clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_pnqlb")
 
-[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/TabsPanel" unique_id=596190422]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="V1/TabsPanel" unique_id=596190422]
+layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="V1/UpPanel/TabsPanel/MarginContainer" unique_id=1402937487]
+[node name="HBoxContainer" type="BoxContainer" parent="V1/TabsPanel/MarginContainer" unique_id=735077062]
 layout_mode = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
+theme_override_constants/separation = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer" unique_id=1539039572]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer" unique_id=503734011]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 3
-
-[node name="Tabs" type="HBoxContainer" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer" unique_id=2031239837]
+[node name="Home" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=1135730542 instance=ExtResource("4_jkv2x")]
+custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 3
+size_flags_vertical = 8
+theme_type_variation = &"VTab"
+theme_override_styles/normal = SubResource("StyleBoxFlat_jbj1t")
+font_color_disabled = Color(1, 1, 1, 1)
+real_text = "[emb offset=3]"
+font_size = 20
 
-[node name="NewTab" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer" unique_id=529493969 instance=ExtResource("4_muem4")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_type_variation = &"ButtonUnborderTiny"
-text = ""
-
-[node name="Label" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab/MarginContainer" parent_id_path=PackedInt32Array(529493969, 32214607) index="0" unique_id=1969564989]
-theme_override_constants/line_separation = 2
-theme_override_font_sizes/normal_font_size = 24
-text = ""
-real_text = "[emb offset=3]"
-
-[node name="MindTooltip" parent="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab" unique_id=259170520 instance=ExtResource("5_dp3eg")]
-tooltip_text = "|NewTab|"
+[node name="MindTooltip" parent="V1/TabsPanel/MarginContainer/HBoxContainer/Home" unique_id=259170520 instance=ExtResource("5_dp3eg")]
+tooltip_text = "[emb]|Home|"
+preview_in_editor = true
 position_mode = 3
 anchor = 1
 
-[node name="ControlPanel" type="Panel" parent="V1/UpPanel" unique_id=192848926]
-custom_minimum_size = Vector2(180, 0)
+[node name="Settings" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=17511694 instance=ExtResource("4_jkv2x")]
+custom_minimum_size = Vector2(45, 40)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rn8xc")
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_type_variation = &"VTab"
+theme_override_styles/normal = SubResource("StyleBoxFlat_jbj1t")
+font_color_disabled = Color(1, 1, 1, 1)
+real_text = "[emb offset=3]"
+font_size = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="V1/UpPanel/ControlPanel" unique_id=195901551]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MindTooltip" parent="V1/TabsPanel/MarginContainer/HBoxContainer/Settings" unique_id=1530242758 instance=ExtResource("5_dp3eg")]
+tooltip_text = "[emb]|Settings|"
+preview_in_editor = true
+position_mode = 3
+anchor = 1
+
+[node name="VSeparator" type="VSeparator" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=1095932611]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_jbj1t")
+
+[node name="MarginContainer" type="MarginContainer" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=1539039572]
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_bottom = 5
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="V1/UpPanel/ControlPanel/MarginContainer" unique_id=1799160628]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Settings" parent="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer" unique_id=1135730542 instance=ExtResource("6_0ld40")]
+[node name="ScrollContainer" type="ScrollContainer" parent="V1/TabsPanel/MarginContainer/HBoxContainer/MarginContainer" unique_id=1402937487]
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"ButtonUnborder"
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8ptn7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_reutl")
-text = " Настройки"
-real_text_icon_left = "[emb offset=3]"
-real_text_icon_right = ""
-real_text = "[emb]|Settings|"
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
 
-[node name="ModManager" parent="V1" unique_id=100714254 instance=ExtResource("7_gqmmt")]
+[node name="Tabs" type="BoxContainer" parent="V1/TabsPanel/MarginContainer/HBoxContainer/MarginContainer/ScrollContainer" unique_id=967212134]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 5
 
 [node name="ConentPanel" type="Control" parent="V1" unique_id=103525213]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ModManager" parent="V1/ConentPanel" unique_id=100714254 instance=ExtResource("7_gqmmt")]
+layout_mode = 1
+
+[node name="SettingsWindow" parent="V1/ConentPanel" unique_id=1883959433 node_paths=PackedStringArray("tabsDict") instance=ExtResource("8_yc10j")]
+visible = false
+z_index = -1
+layout_mode = 1
+tabsDict = {
+NodePath("TabPanel/DecorTabs/Decor2/Tabs/Information"): NodePath("TabPanel/Panel/Panels/Information"),
+NodePath("TabPanel/DecorTabs/Decor2/Tabs/Language"): NodePath("TabPanel/Panel/Panels/Language"),
+NodePath("TabPanel/DecorTabs/Decor2/Tabs/Main"): NodePath("TabPanel/Panel/Panels/Main"),
+NodePath("TabPanel/DecorTabs/Decor2/Tabs/Debug"): NodePath("TabPanel/Panel/Panels/Debug")
+}
 
 [node name="WindowBoxPart" type="VBoxContainer" parent="." unique_id=2049939963]
 visible = false
@@ -187,6 +182,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Windows" type="Control" parent="." unique_id=2074136863]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,16 +190,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="SettingsWindow" parent="Windows" unique_id=1883959433 node_paths=PackedStringArray("tabsDict") instance=ExtResource("8_yc10j")]
-visible = false
-layout_mode = 1
-tabsDict = {
-NodePath("MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs/Information"): NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Information"),
-NodePath("MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs/Language"): NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Language"),
-NodePath("MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs/Main"): NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Main"),
-NodePath("MarginContainer/VBoxContainer/TabPanel/DecorTabs/Decor2/Tabs/Debug"): NodePath("MarginContainer/VBoxContainer/TabPanel/Panels/Debug")
-}
 
 [node name="RenameDuplicateWindow" parent="Windows" unique_id=227586789 instance=ExtResource("9_jscy8")]
 visible = false
@@ -235,11 +221,6 @@ visible = false
 layout_mode = 1
 anchors_preset = 15
 
-[node name="full_ready" type="Node" parent="." unique_id=2013466743]
-
-[connection signal="pressed" from="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab" to="." method="_on_new_tab_pressed"]
-[connection signal="pressed" from="V1/UpPanel/ControlPanel/MarginContainer/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="gui_input" from="WindowBoxPart/TitleBar" to="." method="TitleBar_input"]
-[connection signal="ready" from="full_ready" to="." method="_on_full_ready_ready"]
-
-[editable path="V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/NewTab"]

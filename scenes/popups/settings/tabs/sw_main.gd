@@ -1,11 +1,12 @@
 extends VBoxContainer
 
-@export var DebugTab: Button
+var DebugTab: Button
 
 @export var PerSaveMessageParam: Node
 @export var AutoOpenSettings: Node
 @export var TimeForDelete: Node
 @export var MomentalDelete: Node
+@export var HorizontalTabs: Node
 @export var DEBUG: Node
 
 
@@ -24,10 +25,12 @@ func on_loaded_settings():
 			MomentalDelete.Checked = SaveDataAPI.data["Settings.MomentalDelete"]
 		if "Settings.TimeForDelete" in SaveDataAPI.data:
 			TimeForDelete.value = SaveDataAPI.data["Settings.TimeForDelete"]
+		if "Settings.HorizontalTabsInMainWindow" in SaveDataAPI.data:
+			HorizontalTabs.Checked = SaveDataAPI.data["Settings.HorizontalTabsInMainWindow"]
 		if "Settings.Debug" in SaveDataAPI.data:
 			DEBUG.Checked = SaveDataAPI.data["Settings.Debug"]
 			DebugTab.visible = SaveDataAPI.data["Settings.Debug"]
-
+		
 
 func _on_save_message_frequenc_spin_box_value_changed(value):
 	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
@@ -58,4 +61,11 @@ func _on_debug_check_box_state_changed(value):
 		if "Settings.Debug" in SaveDataAPI.data:
 			SaveDataAPI.data["Settings.Debug"] = value
 			DebugTab.visible = value
+			SaveDataAPI.save_data()
+
+
+func _on_mind_check_box_state_changed(value) -> void:
+	if typeof(SaveDataAPI.data) == TYPE_DICTIONARY:
+		if "Settings.HorizontalTabsInMainWindow" in SaveDataAPI.data:
+			SaveDataAPI.data["Settings.HorizontalTabsInMainWindow"] = value
 			SaveDataAPI.save_data()

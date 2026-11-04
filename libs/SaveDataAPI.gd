@@ -11,6 +11,7 @@ var defaultData = {
 	"Settings.TimeForDelete": 5,
 	"Settings.MomentalDelete": false,
 	"Settings.SaveMessageFrequency": 60,
+	"Settings.HorizontalTabsInMainWindow": false,
 	"Settings.Debug": false
 }
 var data = {}
@@ -26,12 +27,12 @@ func load_data():
 	if not FileAccess.file_exists("user://saveData.json"):
 		var s = FileAccess.open("user://saveData.json", FileAccess.WRITE)
 		s.store_string(JSON.stringify(data))
-		data = defaultData
+		data = defaultData.duplicate(true)
 		s.close()
 	else:
 		var s = FileAccess.open("user://saveData.json", FileAccess.READ)
-		data = defaultData
-		data.merge(JSON.parse_string(s.get_as_text()), true)
+		data = JSON.parse_string(s.get_as_text())
+		data.merge(defaultData)
 		s.close()
 	data_loaded.emit()
 	data_changed.emit()

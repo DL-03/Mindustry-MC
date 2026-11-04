@@ -127,13 +127,8 @@ func _on_pressed():
 	if TypeElement.FOLDER == Type:
 		RootNode.set_path(Path)
 	elif TypeElement.MOD == Type:
-		var AllTabButtons = $/root/Main/V1/UpPanel/TabsPanel/MarginContainer/ScrollContainer/MarginContainer/HBoxContainer/Tabs
-		for i in AllTabButtons.get_children():
-			if i.tab.disabled:
-				if i.ContentFrame == null:
-					OpenMod.OpenFromPath(i, Path)
-					break
-		$/root/Main/V1/ModManager.visible = false
+		OpenMod.OpenFromPath(Path)
+
 
 func _on_resized():
 	if (table_type in [TableType.HUGE_ICONS,TableType.BIG_ICONS,TableType.DEFAULT_ICONS,TableType.SMALL_ICONS]):

@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dysrmuh6iglhw" path="res://widgets/mind_utab.tscn" id="1_glfba"]
 
 [node name="Tab" type="PanelContainer" unique_id=714916886]
+size_flags_horizontal = 0
+size_flags_vertical = 8
 script = ExtResource("1_a6qjs")
 
 [node name="Tab" parent="." unique_id=578091389 instance=ExtResource("1_glfba")]
-custom_minimum_size = Vector2(159, 30)
+custom_minimum_size = Vector2(159, 35)
 layout_mode = 2
 
 [node name="MarginContainer" parent="Tab" index="0" unique_id=2088221355]
