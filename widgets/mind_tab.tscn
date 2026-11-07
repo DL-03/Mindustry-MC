@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cnvqyjgbhj0o6"]
+
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_7iosh"]
+[ext_resource type="Script" uid="uid://d2kho3rs5s1cl" path="res://widgets/mind_tab.gd" id="2_of8mp"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="5_k41e6"]
+
+[node name="MindTab" type="Button" unique_id=578091389 node_paths=PackedStringArray("label", "marginContainer")]
+custom_minimum_size = Vector2(85, 22)
+propagate_maximum_size = true
+offset_right = 85.0
+offset_bottom = 22.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_7iosh")
+theme_type_variation = &"VTab"
+script = ExtResource("2_of8mp")
+label = NodePath("MarginContainer/HBoxContainer/Label")
+marginContainer = NodePath("MarginContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2088221355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1201070992]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Label" parent="MarginContainer/HBoxContainer" unique_id=1661976189 instance=ExtResource("5_k41e6")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MindTab"
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb]MindTab"
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="item_rect_changed" from="MarginContainer" to="." method="_on_margin_container_item_rect_changed"]
+[connection signal="resized" from="MarginContainer" to="." method="_on_margin_container_resized"]
+[connection signal="resized" from="MarginContainer/HBoxContainer" to="." method="_on_h_box_container_resized"]
+[connection signal="resized" from="MarginContainer/HBoxContainer/Label" to="." method="_on_label_resized"]

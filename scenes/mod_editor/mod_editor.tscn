@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_3umv1"]
 [ext_resource type="Script" uid="uid://b38rg0n4e5mcl" path="res://scenes/mod_editor/mod_editor.gd" id="2_3umv1"]
 [ext_resource type="PackedScene" uid="uid://ce1e3yxgjuyas" path="res://prefabs/ModCard.tscn" id="3_gtyln"]
-[ext_resource type="PackedScene" uid="uid://b4f0pxojub5i8" path="res://scenes/mod_editor/content_filter_button.tscn" id="4_qd1t2"]
+[ext_resource type="PackedScene" uid="uid://cnvqyjgbhj0o6" path="res://widgets/mind_tab.tscn" id="4_cac0f"]
 [ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="5_3umv1"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="6_qqi7h"]
 [ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="7_0eox3"]
@@ -15,15 +15,12 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odpfj"]
 bg_color = Color(0, 0, 0, 1)
+border_width_top = 5
 border_width_right = 5
-border_color = Color(0.270588, 0.270588, 0.270588, 1)
+border_color = Color(1, 0.827451, 0.49803922, 1)
+corner_radius_top_right = 10
+corner_detail = 1
 anti_aliasing = false
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_qhmhy"]
-color = Color(1, 0.827451, 0.49803922, 1)
-grow_begin = -10.0
-grow_end = -10.0
-thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5rhb"]
 bg_color = Color(1, 0, 0, 1)
@@ -179,7 +176,7 @@ script = ExtResource("2_3umv1")
 ContentEditor = NodePath("ModEditor/ContentEditor")
 GlobalModCard = NodePath("ModEditor/Panel/ModCard")
 LoadingWindow = NodePath("LoadingWindow")
-ListContentElements = NodePath("ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer")
+ListContentElements = NodePath("ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer")
 
 [node name="ModEditor" type="HSplitContainer" parent="." unique_id=2120847586]
 layout_mode = 1
@@ -196,7 +193,7 @@ split_offset = 400
 [node name="Panel" type="VBoxContainer" parent="ModEditor" unique_id=68892234]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="ModCard" parent="ModEditor/Panel" unique_id=1626140393 instance=ExtResource("3_gtyln")]
 custom_minimum_size = Vector2(0, 130)
@@ -204,111 +201,84 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel" unique_id=1720377872]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="Tabs" type="HBoxContainer" parent="ModEditor/Panel/VBoxContainer" unique_id=42188880]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/VBoxContainer" unique_id=461768298]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 20
+
+[node name="Tabs" type="HBoxContainer" parent="ModEditor/Panel/VBoxContainer/MarginContainer" unique_id=42188880]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="Content" parent="ModEditor/Panel/VBoxContainer/Tabs" unique_id=1135730542 instance=ExtResource("6_qqi7h")]
+[node name="Content" parent="ModEditor/Panel/VBoxContainer/MarginContainer/Tabs" unique_id=578091389 instance=ExtResource("4_cac0f")]
+custom_minimum_size = Vector2(74, 22)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 disabled = true
-text = "Content"
-font_color_disabled = Color(1, 0.827451, 0.49803922, 1)
-icon_color_disabled = Color(1, 0.827451, 0.49803922, 1)
-real_text_icon_left = ""
-real_text_icon_right = ""
-real_text = "[emb]Content"
 
-[node name="FileManager" parent="ModEditor/Panel/VBoxContainer/Tabs" unique_id=618725529 instance=ExtResource("6_qqi7h")]
+[node name="Label" parent="ModEditor/Panel/VBoxContainer/MarginContainer/Tabs/Content/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="0" unique_id=1661976189]
+text = "Контент"
+real_text = "[emb]|Content|"
+
+[node name="FileManager" parent="ModEditor/Panel/VBoxContainer/MarginContainer/Tabs" unique_id=1872912529 instance=ExtResource("4_cac0f")]
+custom_minimum_size = Vector2(179, 22)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "FileManager"
-real_text_icon_left = ""
-real_text_icon_right = ""
-real_text = "[emb]FileManager"
+size_flags_vertical = 1
 
-[node name="Tree" type="Tree" parent="ModEditor/Panel/VBoxContainer" unique_id=1901638843]
-visible = false
-layout_mode = 2
+[node name="Label" parent="ModEditor/Panel/VBoxContainer/MarginContainer/Tabs/FileManager/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1872912529, 1201070992) index="0" unique_id=1661976189]
+text = "Файловый менеджер"
+real_text = "[emb]|FileManager|"
 
-[node name="Panel" type="Panel" parent="ModEditor/Panel" unique_id=1274412059]
+[node name="Panel" type="PanelContainer" parent="ModEditor/Panel/VBoxContainer" unique_id=2016193616]
+z_index = -1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_odpfj")
 
-[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel" unique_id=844170967]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 10
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/VBoxContainer/Panel" unique_id=981962820]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer" unique_id=844170967]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer" unique_id=882465088]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=882465088]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=612299364]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-
-[node name="HFlowContainer" type="HFlowContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1453697051]
-layout_mode = 2
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 0
-
-[node name="all" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=2091575458 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-disabled = true
-text = "All"
-
-[node name="blocks" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=2086577866 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Blocks"
-
-[node name="items" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=956545184 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Items"
-
-[node name="liquids" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=1870660601 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Liquids"
-
-[node name="status" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=870817027 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Status"
-
-[node name="units" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=232813014 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Units"
-
-[node name="weathers" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=381690569 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Weathers"
-
-[node name="sectors" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/MarginContainer/HFlowContainer" unique_id=1699788681 instance=ExtResource("4_qd1t2")]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-text = "Sectors"
-
-[node name="Filters" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=867230446]
+[node name="Filters" type="HBoxContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=867230446]
 layout_mode = 2
 
-[node name="SearchLine" type="LineEdit" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=13837515]
+[node name="Search" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters" unique_id=1135730542 instance=ExtResource("5_3umv1")]
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
+real_text = "[emb offset=3]"
+font_size = 20
+
+[node name="MindTooltip" type="Node" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Search" unique_id=184350015]
+script = ExtResource("7_0eox3")
+tooltip_text = "[emb]|Search|"
+position_mode = 3
+anchor = 1
+hide_delay = 0.2
+metadata/_custom_type_script = "uid://dp832bngs7aix"
+
+[node name="SearchLine" type="LineEdit" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters" unique_id=13837515]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Filters" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters" unique_id=829152818 instance=ExtResource("5_3umv1")]
+[node name="Filters" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters" unique_id=829152818 instance=ExtResource("5_3umv1")]
 custom_minimum_size = Vector2(40, 40)
 custom_maximum_size = Vector2(40, 40)
 layout_mode = 2
@@ -316,7 +286,7 @@ theme_type_variation = &"ButtonUnborder"
 real_text = "[emb offset=3]"
 font_size = 20
 
-[node name="MindTooltip" type="Node" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1113625911]
+[node name="MindTooltip" type="Node" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1113625911]
 script = ExtResource("7_0eox3")
 tooltip_text = "[emb]|Filters|"
 position_mode = 3
@@ -324,7 +294,7 @@ anchor = 1
 hide_delay = 0.2
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
-[node name="PopupMindTooltip" type="Node" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1999632167]
+[node name="PopupMindTooltip" type="Node" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1999632167]
 script = ExtResource("7_0eox3")
 tooltip_scene = ExtResource("8_gtyln")
 allow_empty_text = true
@@ -336,51 +306,56 @@ hide_mode = 1
 hide_delay = 0.2
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
-[node name="HSeparator" type="HSeparator" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1820083869]
-layout_mode = 2
-theme_override_constants/separation = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_qhmhy")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=592070029]
+[node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=592070029]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_3umv1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1750386946]
+[node name="MarginContainer" type="MarginContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1543300600]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1750386946]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=175553483]
+[node name="Tree" type="Tree" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1901638843]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer" unique_id=175553483]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="CreateContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1659076572 instance=ExtResource("6_qqi7h")]
+[node name="CreateContent" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1659076572 instance=ExtResource("6_qqi7h")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
-text = " Create Content"
+text = " Создать Контент"
 real_text_icon_left = ""
 real_text_icon_right = ""
 real_text = "|CreateContent|"
 font_size = 14
 icon_size = 18
 
-[node name="ReloadContent" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1633291444 instance=ExtResource("6_qqi7h")]
+[node name="ReloadContent" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1633291444 instance=ExtResource("6_qqi7h")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborder"
-text = " Reload List"
+text = " Обновить Список"
 real_text_icon_left = ""
 real_text_icon_right = ""
 real_text = "|ReloadList|"
 font_size = 14
 icon_size = 20
 
-[node name="ContentBank" type="Button" parent="ModEditor/Panel/Panel/MarginContainer/VBoxContainer" unique_id=1283449374]
-visible = false
+[node name="ContentBank" type="Button" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer" unique_id=1283449374]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
@@ -564,7 +539,7 @@ theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
-text = " Loading "
+text = " Загрузка "
 horizontal_alignment = 1
 real_text = " |Loading| "
 font_color = Color(1, 0.827451, 0.498039, 1)
@@ -578,7 +553,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
-text = "Loading: None
+text = "Загрузка: None
 ModEditor.LoadingWindow.Content.text[0/0]: /none.json"
 vertical_alignment = 2
 clip_text = true
@@ -602,15 +577,20 @@ size_flags_vertical = 10
 [node name="Cancel" parent="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=740808985 instance=ExtResource("6_qqi7h")]
 layout_mode = 2
 size_flags_horizontal = 3
-text = " Cancel 0"
+text = " Отменить 0"
 real_text_icon_left = ""
 real_text = "|Cancel|"
 
-[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters" to="." method="_on_filters_pressed"]
-[connection signal="tooltip_will_show" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/Filters/Filters/PopupMindTooltip" to="." method="_on_popup_mind_tooltip_tooltip_will_show"]
-[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
-[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]
-[connection signal="pressed" from="ModEditor/Panel/Panel/MarginContainer/VBoxContainer/ContentBank" to="." method="_on_content_bank_pressed"]
+[connection signal="pressed" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Search" to="." method="_on_search_pressed"]
+[connection signal="text_changed" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/SearchLine" to="." method="_on_search_line_text_changed"]
+[connection signal="pressed" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Filters" to="." method="_on_filters_pressed"]
+[connection signal="tooltip_will_show" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Filters/PopupMindTooltip" to="." method="_on_popup_mind_tooltip_tooltip_will_show"]
+[connection signal="pressed" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/CreateContent" to="." method="_on_create_content_pressed"]
+[connection signal="pressed" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/ReloadContent" to="." method="_on_reload_content_pressed"]
+[connection signal="pressed" from="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/ContentBank" to="." method="_on_content_bank_pressed"]
 [connection signal="pressed" from="ModEditor/ContentEditor/Top/Save" to="ModEditor/ContentEditor" method="_on_save_pressed"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
 [connection signal="pressed" from="LoadingWindow/Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_loading_pressed"]
+
+[editable path="ModEditor/Panel/VBoxContainer/MarginContainer/Tabs/Content"]
+[editable path="ModEditor/Panel/VBoxContainer/MarginContainer/Tabs/FileManager"]

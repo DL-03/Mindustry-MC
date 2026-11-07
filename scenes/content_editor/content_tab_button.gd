@@ -31,7 +31,7 @@ func _set_contentClass(value):
 	
 	if contentClass != null:
 		if typeof(contentClass.FullData) == TYPE_DICTIONARY:
-			if contentClass.FileType == "mod":
+			if contentClass.ClassType == "mod":
 				if contentClass.FullData["displayName"] != "":
 					NameLabel.real_text = contentClass.FullData["displayName"]
 				else:

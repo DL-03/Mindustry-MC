@@ -71,3 +71,8 @@ func _on_tab_close() -> void:
 
 func _on_tab_pressed() -> void:
 	controller.set_tab(self)
+
+
+func _on_theme_changed() -> void:
+	if tab:
+		tab.theme_type_variation = theme_type_variation

@@ -62,6 +62,7 @@ theme = ExtResource("2_3o5ww")
 theme_override_styles/panel = SubResource("StyleBoxFlat_jlbwk")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_7h65s")
 current_tab = 0
+drag_to_rearrange_enabled = true
 
 [node name="Editor" type="VBoxContainer" parent="TabContainer" unique_id=885073394]
 layout_mode = 2

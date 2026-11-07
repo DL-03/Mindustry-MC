@@ -12,6 +12,9 @@ var list_images = []
 @export var tabsDict: Dictionary[Node, Node] = {}
 @export var tabs_container: Node
 @export var first_tab: Node
+@export var margin_panel: MarginContainer
+
+@export var menu_button: MindButton
 
 @export var home_tab: Node
 @export var settings_tab: Node
@@ -20,7 +23,7 @@ var list_images = []
 @export var V1: BoxContainer
 @export var V1_wrapp: BoxContainer
 @export var V1_wrapp_vs: VSeparator
-
+@export var V1_wrapp_vs2: VSeparator
 
 
 var horizontal_tabs = false:
@@ -33,6 +36,8 @@ func _set_horizontal_tabs(v):
 	V1.vertical = not v
 	V1_wrapp.vertical = v
 	tabs_container.vertical = v
+	menu_button.visible = v
+	V1_wrapp_vs2.visible = v
 	
 	V1_wrapp_vs.get_theme_stylebox("separator").vertical = not v
 	var tpp = tabs_panel.get_theme_stylebox("panel")
@@ -41,14 +46,30 @@ func _set_horizontal_tabs(v):
 		tpp.border_width_right = 5
 		tpp.border_width_bottom = 0
 		
+		margin_panel.add_theme_constant_override("margin_left", 0)
+		margin_panel.add_theme_constant_override("margin_top", 10)
+		margin_panel.add_theme_constant_override("margin_right", 0)
+		margin_panel.add_theme_constant_override("margin_bottom", 10)
+		
 		home_tab.theme_type_variation = "HTab"
 		settings_tab.theme_type_variation = "HTab"
 	else:
 		tpp.border_width_right = 0
 		tpp.border_width_bottom = 5
 		
+		margin_panel.add_theme_constant_override("margin_left", 10)
+		margin_panel.add_theme_constant_override("margin_top", 0)
+		margin_panel.add_theme_constant_override("margin_right", 10)
+		margin_panel.add_theme_constant_override("margin_bottom", 0)
+		
 		home_tab.theme_type_variation = "VTab"
 		settings_tab.theme_type_variation = "VTab"
+	
+	for _tab in tabsDict.keys():
+		if v:
+			_tab.theme_type_variation = "HTab"
+		else:
+			_tab.theme_type_variation = "VTab"
 
 
 

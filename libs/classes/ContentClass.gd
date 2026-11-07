@@ -3,6 +3,7 @@ extends Node
 
 
 var modClass: ModClass
+var has_changes = false    # Если есть изменения > true для архивов
 
 
 signal content_loaded
@@ -12,7 +13,8 @@ signal data_changed
 signal file_deleted
 
 
-
+func _ready():
+	file_deleted.connect(queue_free)
 
 
 func rename_filename(new_name):
@@ -34,15 +36,8 @@ var WriteData = {}:
 	set = _set_WriteData
 
 
-
-
-
-
 func set_path(path: String):
 	path = path.simplify_path()
-	
-
-
 
 
 
@@ -65,7 +60,8 @@ func _set_WriteData(value):
 	
 
 var FileType = ""
-var ContentType = ""
+var ContentType: ContentCore.ContentType
+var ClassType = ""
 
 
 func _set_Path(_path):
@@ -75,32 +71,22 @@ func _set_Path(_path):
 			Path = _path
 			if FileAccess.file_exists(_path):
 				Path = _path
-				
-				
 
 				if len(_path.substr(1+len(modClass.Path.simplify_path())).split("/")) > 1:
 					FileType = _path.substr(1+len(modClass.Path.simplify_path())).split("/")[1]
-				#print("AAASS: ",_path.substr(1+len(modClass.Path)))
-				if _path.substr(1+len(modClass.Path)) == "mod.json":
-					FileType = "mod"
-				if _path.substr(1+len(modClass.Path)) == "mod.hjson":
-					FileType = "mod"
+
+				if _path.substr(1+len(modClass.Path)) in ["mod.json", "mod.hjson"]:
+					ContentType = ContentCore.ContentType.MOD
+					ClassType = "mod"
+				elif FileType in ContentCore.ContentTypePath.values():
+					ContentType = ContentCore.ContentTypePath.find_key(FileType)
 				
-				
-				if FileType == "liquids":
-					ContentType = "Liquid"
-				elif FileType == "mod":
-					ContentType = "mod"
-				elif FileType == "items":
-					ContentType = "Item"
 				File = FileAccess.open(Path, FileAccess.READ)
-func create(path, type):
+func create(path, type, class_type):
 	Path = path
 	
-	if type in ["Items", "Liquids"]:
-		WriteData = {"name":get_only_filename(path)}
-	else:
-		WriteData = {"name":get_only_filename(path),"type":type}
+	WriteData = {"name":get_only_filename(path),"type":class_type}
+
 
 func _set_File(value):
 	File = value
@@ -126,11 +112,11 @@ func _set_Data(value):
 	if typeof(Data) != TYPE_DICTIONARY:
 		Data = {}
 	if "type" in Data:
-		ContentType = Data["type"]
+		ClassType = Data["type"]
 	
 	var DATA = {}
 
-	DefaultData = ContentManager.get_content(ContentType)
+	DefaultData = ContentManager.get_content(ClassType)
 	
 	
 	DATA = Data
@@ -155,18 +141,3 @@ func _set_Data(value):
 
 func get_only_filename(path):
 	return path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length())
-
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	file_deleted.connect(func(): queue_free())
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-#DirectoryWatcher

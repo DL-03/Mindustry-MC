@@ -1,4 +1,18 @@
-extends Panel
+extends PanelContainer
+
+
+@export var TitleLabel: MindLabel
+@export var ContentLabel: MindLabel
+@export var TipLabel: MindLabel
+
+@export var CLineEdit: LineEdit
+
+@export var HSep: HSeparator
+
+@export var CancelButton: MindIButton
+@export var RenameButton: MindIButton
+@export var DuplicateButton: MindIButton
+@export var DeleteButton: MindIButton
 
 
 
@@ -15,31 +29,28 @@ func get_only_filename(path):
 
 
 func update_data():
-	var new_text = $Panel/MarginContainer/VBoxContainer/LineEdit.text
+	var new_text = CLineEdit.text
 	
 	print(FileAccess.file_exists(contentClass.Path.substr(0, len(contentClass.Path)-len(contentClass.Path.get_file()))+new_text+"."+contentClass.Path.get_extension()))
 	
 	if Type == 0:
-		$Panel/MarginContainer/VBoxContainer/tip.real_text = "You can`t return content after deleting!!!"
+		TipLabel.real_text = "[emb]|YouCantReturnContentAfterDeleting|"
 		return
 	
-	if new_text == $Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text:
-		$Panel/MarginContainer/VBoxContainer/tip.real_text = "Its Old Name!!!"
-		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", COLORS.)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
+	if new_text == CLineEdit.placeholder_text:
+		TipLabel.real_text = "[emb]|ItsOldName|"
+		RenameButton.disabled = true
+		DuplicateButton.disabled = true
 		return
 	if FileAccess.file_exists(contentClass.Path.substr(0, len(contentClass.Path)-len(contentClass.Path.get_file()))+new_text+"."+contentClass.Path.get_extension()):
-		$Panel/MarginContainer/VBoxContainer/tip.real_text = " A file with this name already exists!!!"
-		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.FIREBRICK)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
+		TipLabel.real_text = "[emb]|FileWithThisNameAlreadyExists|"
+		RenameButton.disabled = true
+		DuplicateButton.disabled = true
 		return
 	else:
-		$Panel/MarginContainer/VBoxContainer/tip.real_text = ""
-		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.SEA_GREEN)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = false
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = false
+		TipLabel.real_text = ""
+		RenameButton.disabled = false
+		DuplicateButton.disabled = false
 		return
 
 
@@ -48,21 +59,22 @@ func open(_contentClass, _type):
 		contentClass = _contentClass
 		Type = _type
 		
-		
-		
-		
 		show()
 		
-		
 		#$Panel/MarginContainer/VBoxContainer/LineEdit.add_theme_color_override("font_color", Color.GOLD)
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.disabled = true
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.disabled = true
+		RenameButton.disabled = true
+		DuplicateButton.disabled = true
 		
-		$Panel/MarginContainer/VBoxContainer/Label.font_color = COLORS.get_color("UI.YELLOW")
 		if Type == 0:
-			$Panel/MarginContainer/VBoxContainer/Label.real_text = "!  |Delete|  !"
-			$Panel/MarginContainer/VBoxContainer/Label.font_color = COLORS.get_color("UI.RED")
+			HSep.get_theme_stylebox("separator").border_color = COLORS.get_color("UI.RED").to_html()
+			$Panel.get_theme_stylebox("panel").border_color = COLORS.get_color("UI.RED").to_html()
+		else:
+			HSep.get_theme_stylebox("separator").border_color = COLORS.get_color("UI.YELLOW").to_html()
+			$Panel.get_theme_stylebox("panel").border_color = COLORS.get_color("UI.YELLOW").to_html()
 			
+		
+		if Type == 0:
+			TitleLabel.real_text = "[emb][UI.RED]!  |Delete|  !"
 			
 			delete_process = 0
 			delete_process_state = false
@@ -75,17 +87,13 @@ func open(_contentClass, _type):
 					final_delete_process = 1
 					delete_process = 0
 			
+			DeleteButton.show()
+			RenameButton.hide()
+			DuplicateButton.hide()
 			
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.show()
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.hide()
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.hide()
+			DeleteButton.real_text = "[emb]|Delete|"
 			
-			
-			$Panel.get_theme_stylebox("panel").border_color = COLORS.get_color("UI.RED").to_html()
-			
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|Delete|"
-			
-			$Panel/MarginContainer/VBoxContainer/LineEdit.hide()
+			CLineEdit.hide()
 			
 			var _name = contentClass.Path.get_file()
 			
@@ -93,37 +101,31 @@ func open(_contentClass, _type):
 				if contentClass.FullData["name"] != "":
 					_name = contentClass.FullData["name"]
 			
-			$Panel/MarginContainer/VBoxContainer/Label2.text = "You really want delete content\n - <"+_name+">?"
-			#$Panel/MarginContainer/VBoxContainer/tip.real_text = "You can`t return content after deleting!!!"
+			ContentLabel.real_text = "[emb]|YouReallyWantDeleteContent|\n - <"+_name+">"
 		elif Type == 1:
-			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |Rename| "
+			TitleLabel.real_text = "[emb] |Rename| "
 			
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.hide()
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.show()
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.hide()
+			DeleteButton.hide()
+			RenameButton.show()
+			DuplicateButton.hide()
 			
-			$Panel.get_theme_stylebox("panel").border_color = COLORS.get_color("UI.YELLOW").to_html()
+			CLineEdit.show()
+			ContentLabel.real_text = "[emb]|OldFileName|: <"+str(get_only_filename(contentClass.Path))+">"
 			
-			$Panel/MarginContainer/VBoxContainer/LineEdit.show()
-			$Panel/MarginContainer/VBoxContainer/Label2.text = "Old file name: <"+str(get_only_filename(contentClass.Path))+">"
-			
-			$Panel/MarginContainer/VBoxContainer/LineEdit.text = get_only_filename(contentClass.Path)
-			$Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text = get_only_filename(contentClass.Path)
+			CLineEdit.text = get_only_filename(contentClass.Path)
+			CLineEdit.placeholder_text = get_only_filename(contentClass.Path)
 		elif Type == 2:
-			$Panel/MarginContainer/VBoxContainer/Label.real_text = " |Duplicate| "
+			TitleLabel.real_text = "[emb] |Duplicate| "
 			
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.hide()
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename.hide()
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate.show()
+			DeleteButton.hide()
+			RenameButton.hide()
+			DuplicateButton.show()
 			
-			$Panel.get_theme_stylebox("panel").border_color = COLORS.get_color("UI.YELLOW").to_html()
+			CLineEdit.show()
+			ContentLabel.real_text = "[emb]|OldFileName|: <"+str(get_only_filename(contentClass.Path))+">"
 			
-			$Panel/MarginContainer/VBoxContainer/LineEdit.show()
-			$Panel/MarginContainer/VBoxContainer/Label2.text = "Old file name: <"+str(get_only_filename(contentClass.Path))+">"
-			
-			$Panel/MarginContainer/VBoxContainer/LineEdit.text = get_only_filename(contentClass.Path)
-			$Panel/MarginContainer/VBoxContainer/LineEdit.placeholder_text = get_only_filename(contentClass.Path)
-			
+			CLineEdit.text = get_only_filename(contentClass.Path)
+			CLineEdit.placeholder_text = get_only_filename(contentClass.Path)
 		else:
 			hide()
 			return
@@ -160,12 +162,6 @@ func update_delete_procces():
 		await get_tree().create_timer(5/100).timeout.connect(update_delete_procces)
 		
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_cancel_pressed():
 	hide()
 
@@ -179,29 +175,29 @@ func _on_delete_pressed():
 		
 		final_delete_process += 1
 		if final_delete_process == 1:
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "|RDW.Delete.text|? - 5"
+			DeleteButton.real_text = "[emb]|RDW.Delete.text|? - 5"
 		if final_delete_process == 2:
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "Really? - 4"
+			DeleteButton.real_text = "[emb]Really? - 4"
 		if final_delete_process == 3:
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "Danger!! - 3"
+			DeleteButton.real_text = "[emb]Danger!! - 3"
 		if final_delete_process == 4:
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "YOU REALLY WANT?! - 2"
+			DeleteButton.real_text = "[emb]YOU REALLY WANT?! - 2"
 		if final_delete_process == 5:
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "LAST CHANCE!!! - 1"
+			DeleteButton.real_text = "[emb]LAST CHANCE!!! - 1"
 		if final_delete_process == 6:
-			$Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete.real_text = "DELETE - 0"
+			DeleteButton.real_text = "[emb]DELETE - 0"
 		
 		
 		if final_delete_process >= 7:
 			contentClass.delete()
 			hide()
 func _on_rename_pressed():
-	contentClass.rename_filename($Panel/MarginContainer/VBoxContainer/LineEdit.text)
+	contentClass.rename_filename(CLineEdit.text)
 	hide()
 
 
 func _on_duplicate_pressed():
-	contentClass.duplicate_file($Panel/MarginContainer/VBoxContainer/LineEdit.text)
+	contentClass.duplicate_file(CLineEdit.text)
 	hide()
 
 

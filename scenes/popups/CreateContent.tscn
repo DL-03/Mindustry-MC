@@ -31,6 +31,7 @@ border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="CreateContent" type="Panel" unique_id=288554476]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -74,7 +75,8 @@ layout_mode = 2
 [node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=255284288 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
 text = " Создать Контент "
 horizontal_alignment = 1
@@ -88,24 +90,29 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=363310315 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Создать Контент"
 horizontal_alignment = 1
 vertical_alignment = 1
 real_text = "|CreateContent|"
 
-[node name="OptionButton2" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=1887858363]
+[node name="ContentType" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=1887858363]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_xm7ci")
+search_bar_enabled = true
 
 [node name="Type" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=680702318]
 layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=756305507 instance=ExtResource("2_aiir5")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Тип:"
 real_text = "|Type|:"
@@ -122,9 +129,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_xm7ci")
+search_bar_enabled = true
 
 [node name="MindustryLabel2" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1068018687 instance=ExtResource("2_aiir5")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "Пользовательский:"
 real_text = "|Custom|:"
 
@@ -137,6 +147,8 @@ layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1607397769 instance=ExtResource("2_aiir5")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Путь:"
 real_text = "|Path|:"
@@ -150,6 +162,8 @@ text = "123"
 
 [node name="Name" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1918748633 instance=ExtResource("2_aiir5")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "/123.json"
 real_text = "/123.json"
 
@@ -158,6 +172,8 @@ layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=2084341244 instance=ExtResource("2_aiir5")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Имя:"
 real_text = "|Name|:"
@@ -195,7 +211,8 @@ popup/item_1/id = 1
 [node name="tip" parent="Panel/MarginContainer/VBoxContainer" unique_id=921191377 instance=ExtResource("2_aiir5")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.2835294, 0.097647004, 0.096470706, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = ""
 horizontal_alignment = 1
 real_text = ""
@@ -209,20 +226,26 @@ size_flags_vertical = 10
 [node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=1676925057 instance=ExtResource("4_qk3a1")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Назад"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Back|"
 
 [node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=549216917 instance=ExtResource("4_qk3a1")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Выбрать путь"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|ChoosePath|"
 
 [node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=182233487 instance=ExtResource("4_qk3a1")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
+text = " Создать"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Create|"
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=1366534884]
@@ -236,7 +259,7 @@ file_mode = 2
 access = 2
 use_native_dialog = true
 
-[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/OptionButton2" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/ContentType" to="." method="_on_option_button_item_selected"]
 [connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Type/LineEdit" to="." method="_on_TypeLine_edit_text_changed"]
 [connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/Type/OptionButton" to="." method="_on_1option_button_item_selected"]
 [connection signal="state_changed" from="Panel/MarginContainer/VBoxContainer/Type/CheckCustom" to="." method="_on_check_custom_state_changed"]

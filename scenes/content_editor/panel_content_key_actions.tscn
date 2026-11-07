@@ -122,6 +122,7 @@ func _process(delta):
 "
 
 [node name="ContentEditorKeyActions" type="Panel" unique_id=177122460 node_paths=PackedStringArray("NameLine")]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -166,7 +167,8 @@ layout_mode = 2
 [node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=668548202 instance=ExtResource("2_4xc0a")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
 text = " Действия с ключем "
 horizontal_alignment = 1
@@ -182,6 +184,8 @@ layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=224284997 instance=ExtResource("2_4xc0a")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Ключ:"
 real_text = "|Key|:"
@@ -197,6 +201,8 @@ layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Type" unique_id=1754296251 instance=ExtResource("2_4xc0a")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Тип:"
 real_text = "|Type|:"
@@ -224,7 +230,8 @@ popup/item_5/id = 5
 [node name="tip" parent="Panel/MarginContainer/VBoxContainer" unique_id=1008217234 instance=ExtResource("2_4xc0a")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.2835294, 0.097647004, 0.096470706, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "Tip"
 horizontal_alignment = 1
 real_text = "Tip"
@@ -238,7 +245,9 @@ size_flags_vertical = 10
 [node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=675656981 instance=ExtResource("4_qbwpq")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Отменить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Cancel|"
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=1135730542 instance=ExtResource("4_qbwpq")]
@@ -248,7 +257,9 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_qt5if")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4od2p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2hboq")
+text = " Удалить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Delete|"
 h_aligment = null
 
@@ -268,14 +279,18 @@ script = SubResource("GDScript_40n8v")
 [node name="Save" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=610727817 instance=ExtResource("4_qbwpq")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Сохранить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Save|"
 
 [node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=752922974 instance=ExtResource("4_qbwpq")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
+text = " Создать"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Create|"
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=80861453]

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="2_3rp23"]
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="3_cr7sk"]
 [ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="4_h2xpi"]
+[ext_resource type="Script" uid="uid://bc46c3m7xcj6q" path="res://widgets/mind_label.gd" id="4_sjdgt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgu5g"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -121,39 +122,36 @@ func _process(delta):
 	material.set_shader_parameter(\"texture_size\", size)
 "
 
-[node name="RenameDuplicateWindow" type="Panel" unique_id=838889498]
+[node name="RenameDuplicateWindow" type="PanelContainer" unique_id=988413188 node_paths=PackedStringArray("TitleLabel", "ContentLabel", "TipLabel", "CLineEdit", "HSep", "CancelButton", "RenameButton", "DuplicateButton", "DeleteButton")]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_cr7sk")
 theme_override_styles/panel = SubResource("StyleBoxFlat_cgu5g")
 script = ExtResource("1_4qhn3")
+TitleLabel = NodePath("Panel/MarginContainer/VBoxContainer/Title")
+ContentLabel = NodePath("Panel/MarginContainer/VBoxContainer/Label")
+TipLabel = NodePath("Panel/MarginContainer/VBoxContainer/tip")
+CLineEdit = NodePath("Panel/MarginContainer/VBoxContainer/LineEdit")
+HSep = NodePath("Panel/MarginContainer/VBoxContainer/HSeparator")
+CancelButton = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/Cancel")
+RenameButton = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/Rename")
+DuplicateButton = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/Duplicate")
+DeleteButton = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete")
 
-[node name="Panel" type="Panel" parent="." unique_id=922735079]
+[node name="Panel" type="PanelContainer" parent="." unique_id=857607898]
 custom_minimum_size = Vector2(600, 225)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -100.0
-offset_right = 250.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_c8tgq")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1691596695]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -162,26 +160,28 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1728366938]
 layout_mode = 2
 
-[node name="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1455035245 instance=ExtResource("2_3rp23")]
+[node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=1455035245 instance=ExtResource("2_3rp23")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
 theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
 theme_override_font_sizes/font_size = 20
 text = "Переименовать"
 horizontal_alignment = 1
-real_text = "|Rename|"
+real_text = "[emb]|Rename|"
 font_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1248119531]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1453289689]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=499180436]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_cr7sk")
 text = "Name"
 vertical_alignment = 2
+script = ExtResource("4_sjdgt")
+real_text = "[emb]Name"
+metadata/_custom_type_script = "uid://bc46c3m7xcj6q"
 
 [node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer" unique_id=1899356494]
 layout_mode = 2
@@ -195,9 +195,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
 theme_override_colors/font_shadow_color = Color(0.2835294, 0.097647004, 0.096470706, 1)
-text = "sdfsdfsddfsfs"
+text = "Tip"
 horizontal_alignment = 1
-real_text = "sdfsdfsddfsfs"
+real_text = "[emb]|Tip|"
 font_color = Color(0.945098, 0.32549, 0.321569, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1620241747]
@@ -208,21 +208,27 @@ size_flags_vertical = 10
 [node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1327207699 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon_left = ""
-real_text = "|Cancel|"
+text = " Отменить"
+real_text_icon_left = "[emb offset=3]"
+real_text_icon_right = ""
+real_text = "[emb]|Cancel|"
 
 [node name="Rename" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1421187931 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon_left = ""
-real_text = "|Rename|"
+text = " Переименовать"
+real_text_icon_left = "[emb offset=3]"
+real_text_icon_right = ""
+real_text = "[emb]|Rename|"
 h_aligment = null
 
 [node name="Duplicate" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=911902560 instance=ExtResource("4_h2xpi")]
 layout_mode = 2
 size_flags_horizontal = 3
-real_text_icon_left = ""
-real_text = "|Duplicate|"
+text = " Дублировать"
+real_text_icon_left = "[emb offset=3]"
+real_text_icon_right = ""
+real_text = "[emb]|Duplicate|"
 h_aligment = null
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1607490263 instance=ExtResource("4_h2xpi")]
@@ -232,8 +238,10 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
-real_text_icon_left = ""
-real_text = "|Delete|"
+text = " Удалить"
+real_text_icon_left = "[emb offset=3]"
+real_text_icon_right = ""
+real_text = "[emb]|Delete|"
 h_aligment = null
 
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Delete" unique_id=171015363]

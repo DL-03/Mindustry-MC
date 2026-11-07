@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bisoxq31kfb17"]
 
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_gsp25"]
+[ext_resource type="Script" uid="uid://bohorg3galge3" path="res://scenes/popups/content_explorer_filters_cm.gd" id="2_cnotk"]
 [ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="2_puhlr"]
 [ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_ddq4n"]
 [ext_resource type="PackedScene" uid="uid://d2idvmdvvtgqx" path="res://widgets/mind_category.tscn" id="4_ddq4n"]
@@ -19,103 +20,196 @@ corner_radius_bottom_left = 10
 corner_detail = 1
 anti_aliasing = false
 
-[node name="ContentExplorerFiltersCM" type="PanelContainer" unique_id=26762038]
+[node name="ContentExplorerFiltersCM" type="PanelContainer" unique_id=26762038 node_paths=PackedStringArray("ContentTypeButtons")]
+custom_minimum_size = Vector2(550, 0)
 offset_right = 507.0
-offset_bottom = 198.0
+offset_bottom = 173.0
 theme = ExtResource("1_gsp25")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ddq4n")
+script = ExtResource("2_cnotk")
+ContentTypeButtons = {
+0: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/items"),
+1: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/blocks"),
+2: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/bullets"),
+3: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/liquids"),
+4: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/statuses"),
+5: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/units"),
+6: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/weathers"),
+7: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/sectors"),
+8: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/planets"),
+9: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/teams"),
+10: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/unitCommands"),
+11: NodePath("MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/unitStances")
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=836603525]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1863087275]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=836603525]
 layout_mode = 2
 
-[node name="GlobalTypeContent" type="HBoxContainer" parent="VBoxContainer" unique_id=1388182830]
+[node name="GlobalTypeContent" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1877649987]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MindLabel" parent="VBoxContainer/GlobalTypeContent" unique_id=1661976189 instance=ExtResource("2_puhlr")]
+[node name="MindLabel" parent="MarginContainer/VBoxContainer/GlobalTypeContent" unique_id=1661976189 instance=ExtResource("2_puhlr")]
 layout_mode = 2
-text = "Global Type Content: "
-real_text = "[emb]Global Type Content: "
+theme_override_colors/font_color = Color(1, 0.827451, 0.49803922, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941177, 1)
+text = " Content Type "
+horizontal_alignment = 1
+real_text = "[emb][UI.YELLOW] Content Type "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/GlobalTypeContent" unique_id=1968213012]
+[node name="HBoxContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/GlobalTypeContent" unique_id=550444997]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Block" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1135730542 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="blocks" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1135730542 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Blocks"
 
-[node name="Item" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=411614779 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="items" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=411614779 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Items"
 
-[node name="Liquid" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=416772169 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="liquids" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=416772169 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Liquids"
 
-[node name="Status" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1939243356 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="bullets" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1617292961 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Bullets"
 
-[node name="Unit" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1176313897 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="statuses" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1939243356 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Statuses"
 
-[node name="Weather" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=77269873 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="units" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1176313897 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Units"
 
-[node name="Sector" parent="VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=613551302 instance=ExtResource("3_ddq4n")]
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
+[node name="weathers" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=77269873 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"ButtonUnborderTiny"
-real_text = "[emb]"
+toggle_mode = true
+real_text = "[emb] Weathers"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/GlobalTypeContent" unique_id=1157394668]
+[node name="sectors" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=613551302 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonUnborderTiny"
+toggle_mode = true
+real_text = "[emb] Sectors"
+
+[node name="planets" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1330344968 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonUnborderTiny"
+toggle_mode = true
+real_text = "[emb] Planets"
+
+[node name="teams" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1024472298 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonUnborderTiny"
+toggle_mode = true
+real_text = "[emb] Teams"
+
+[node name="unitCommands" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1991525174 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonUnborderTiny"
+toggle_mode = true
+real_text = "[emb] Unit Commands"
+
+[node name="unitStances" parent="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer" unique_id=1032158310 instance=ExtResource("3_ddq4n")]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ButtonUnborderTiny"
+toggle_mode = true
+real_text = "[emb] Unit Stances"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1489060523]
+visible = false
 layout_mode = 2
 
-[node name="Category" type="HBoxContainer" parent="VBoxContainer" unique_id=225114013]
+[node name="ClassType" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1837176881]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Category" parent="VBoxContainer/Category" unique_id=27368172 instance=ExtResource("2_puhlr")]
+[node name="MindLabel" parent="MarginContainer/VBoxContainer/ClassType" unique_id=846761360 instance=ExtResource("2_puhlr")]
+layout_mode = 2
+text = "Class Type: "
+real_text = "[emb]Class Type: "
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ClassType" unique_id=43024086]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Wall"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1269964970]
+visible = false
+layout_mode = 2
+
+[node name="Category" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=225114013]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Category" parent="MarginContainer/VBoxContainer/Category" unique_id=27368172 instance=ExtResource("2_puhlr")]
 layout_mode = 2
 text = "Category: "
 real_text = "[emb]Category: "
 
-[node name="MindCategory" parent="VBoxContainer/Category" unique_id=472848063 instance=ExtResource("4_ddq4n")]
+[node name="MindCategory" parent="MarginContainer/VBoxContainer/Category" unique_id=472848063 instance=ExtResource("4_ddq4n")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="ContentType" type="HBoxContainer" parent="VBoxContainer" unique_id=1837176881]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="MindLabel" parent="VBoxContainer/ContentType" unique_id=846761360 instance=ExtResource("2_puhlr")]
-layout_mode = 2
-text = "Content Type: "
-real_text = "[emb]Content Type: "
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/ContentType" unique_id=43024086]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-placeholder_text = "Wall"
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/blocks" to="." method="_on_blocks_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/items" to="." method="_on_items_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/liquids" to="." method="_on_liquids_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/bullets" to="." method="_on_bullets_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/statuses" to="." method="_on_statuses_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/units" to="." method="_on_units_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/weathers" to="." method="_on_weathers_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/sectors" to="." method="_on_sectors_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/planets" to="." method="_on_planets_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/teams" to="." method="_on_teams_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/unitCommands" to="." method="_on_unit_commands_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GlobalTypeContent/HBoxContainer/unitStances" to="." method="_on_unit_stances_toggled"]

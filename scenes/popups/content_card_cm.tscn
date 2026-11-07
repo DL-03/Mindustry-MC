@@ -216,8 +216,7 @@ script = ExtResource("4_acgtj")
 tooltip_text = "[emb][font_size=12]/content/blocks/diamond-conveyor.hjson"
 preview_in_editor = true
 position_mode = 3
-anchor = 1
-anchor_offset = Vector2(0, -10)
+anchor_offset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="CopyAbsolutePath" parent="MarginContainer/VBoxContainer" unique_id=597627229 instance=ExtResource("1_22h0m")]
@@ -236,8 +235,7 @@ script = ExtResource("4_acgtj")
 tooltip_text = "[emb][font_size=12]/content/blocks/diamond-conveyor.hjson"
 preview_in_editor = true
 position_mode = 3
-anchor = 1
-anchor_offset = Vector2(0, -10)
+anchor_offset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="OpenInExplorer" parent="MarginContainer/VBoxContainer" unique_id=518570715 instance=ExtResource("1_22h0m")]

@@ -1,6 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://bxc3gmqn4ue45"]
 
 [ext_resource type="FontVariation" uid="uid://csmn47yeel1hm" path="res://fonts/MindustryFont.tres" id="1_n5cv7"]
+[ext_resource type="Texture2D" uid="uid://knyd67dtrv83" path="res://resources/icons/checkbox_normal_hover.tres" id="1_u2sas"]
+[ext_resource type="Texture2D" uid="uid://c5uv757086khy" path="res://resources/icons/checkbox_checked_hover.tres" id="1_wyw6y"]
+[ext_resource type="Texture2D" uid="uid://co5leglsjpqg4" path="res://resources/icons/checkbox_normal.tres" id="2_qncoh"]
+[ext_resource type="Texture2D" uid="uid://c56lf7kerqoj3" path="res://resources/icons/checkbox_checked.tres" id="3_1ea26"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivdy7"]
 content_margin_left = 10.0
@@ -320,6 +324,33 @@ border_color = Color(1, 0.827451, 0.498039, 1)
 corner_detail = 1
 anti_aliasing = false
 
+[sub_resource type="DPITexture" id="DPITexture_wpndd"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#e0e0e0\" d=\"M10.168 8.754a5 5 0 1 0-1.414 1.414l4.316 4.316 1.414-1.414zM6 3a3 3 0 0 1 0 6 3 3 0 0 1 0-6z\"/></svg>
+"
+
+[sub_resource type="DPITexture" id="DPITexture_etsxq"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"16\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".45\" stroke-width=\"2\" d=\"m2.5 11 3-3-3-3\"/></svg>
+"
+
+[sub_resource type="DPITexture" id="DPITexture_0tfhj"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"16\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".45\" stroke-width=\"2\" d=\"m5.5 11-3-3 3-3\"/></svg>
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brg04"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+corner_detail = 1
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_w3bjp"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.5, 0.5, 0.5, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xdbs"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -343,18 +374,11 @@ color = Color(1, 0.827451, 0.498039, 1)
 thickness = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmmqc"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 0.827451, 0.498039, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 11
-corner_radius_bottom_left = 10
-corner_detail = 1
-anti_aliasing = false
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.12225223, 0.12225223, 0.12225228, 0.5882353)
 
 [sub_resource type="Image" id="Image_n5cv7"]
 data = {
@@ -575,6 +599,17 @@ border_color = Color(0.270588, 0.270588, 0.270588, 1)
 corner_detail = 1
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce723"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqy5r"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtyln"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g28ko"]
+bg_color = Color(0.49019608, 0.49019608, 0.49019608, 0.52156866)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufca6"]
 content_margin_top = 20.0
 content_margin_bottom = 20.0
@@ -719,6 +754,8 @@ ButtonUnborderTiny/styles/disabled = SubResource("StyleBoxEmpty_cvmbd")
 ButtonUnborderTiny/styles/hover = SubResource("StyleBoxFlat_ip088")
 ButtonUnborderTiny/styles/normal = SubResource("StyleBoxEmpty_0tkg8")
 ButtonUnborderTiny/styles/pressed = SubResource("StyleBoxFlat_n5cv7")
+CheckBox/icons/checked = ExtResource("1_wyw6y")
+CheckBox/icons/unchecked = ExtResource("1_u2sas")
 HScrollBar/styles/grabber = SubResource("StyleBoxFlat_d214b")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_assxd")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_6f5rd")
@@ -736,7 +773,6 @@ Label/colors/font_shadow_color = Color(0.392157, 0.392157, 0.392157, 1)
 Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 2
 Label/constants/shadow_outline_size = 1
-LineEdit/font_sizes/font_size = 22
 LineEdit/styles/focus = SubResource("StyleBoxFlat_f0qxm")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_sqemx")
 OptionButton/constants/arrow_margin = 10
@@ -746,6 +782,35 @@ Panel/styles/panel = SubResource("StyleBoxFlat_lhd87")
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_3rcd8")
 PanelRect/base_type = &"Panel"
 PanelRect/styles/panel = SubResource("StyleBoxFlat_g7w3a")
+PopupMenu/colors/font_accelerator_color = Color(0.7, 0.7, 0.7, 0.8)
+PopupMenu/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
+PopupMenu/colors/font_hover_color = Color(0.875, 0.875, 0.875, 1)
+PopupMenu/colors/font_outline_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_separator_color = Color(0.875, 0.875, 0.875, 1)
+PopupMenu/colors/font_separator_outline_color = Color(0, 0, 0, 1)
+PopupMenu/constants/h_separation = 5
+PopupMenu/constants/item_end_padding = 5
+PopupMenu/constants/item_start_padding = 5
+PopupMenu/constants/outline_size = 0
+PopupMenu/constants/search_bar_separation = 5
+PopupMenu/constants/v_separation = 5
+PopupMenu/font_sizes/font_separator_size = 16
+PopupMenu/font_sizes/font_size = 16
+PopupMenu/icons/checked = ExtResource("1_wyw6y")
+PopupMenu/icons/checked_disabled = ExtResource("3_1ea26")
+PopupMenu/icons/radio_checked = ExtResource("1_wyw6y")
+PopupMenu/icons/radio_checked_disabled = ExtResource("3_1ea26")
+PopupMenu/icons/radio_unchecked = ExtResource("1_u2sas")
+PopupMenu/icons/radio_unchecked_disabled = ExtResource("2_qncoh")
+PopupMenu/icons/search = SubResource("DPITexture_wpndd")
+PopupMenu/icons/submenu = SubResource("DPITexture_etsxq")
+PopupMenu/icons/submenu_mirrored = SubResource("DPITexture_0tfhj")
+PopupMenu/icons/unchecked = ExtResource("1_u2sas")
+PopupMenu/icons/unchecked_disabled = ExtResource("2_qncoh")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_brg04")
+PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_w3bjp")
+PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_w3bjp")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_0xdbs")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_qmh6g")
 PopupPanel/styles/panel = SubResource("StyleBoxFlat_dmmqc")
@@ -780,6 +845,20 @@ TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_wfdqr")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_5p02b")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_2how5")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_somsh")
+Tree/constants/children_hl_line_width = 5
+Tree/constants/draw_relationship_lines = 1
+Tree/constants/h_separation = 5
+Tree/constants/inner_item_margin_left = 10
+Tree/constants/inner_item_margin_right = 10
+Tree/constants/outline_size = 5
+Tree/constants/scrollbar_h_separation = 5
+Tree/constants/v_separation = 5
+Tree/icons/checked = ExtResource("1_wyw6y")
+Tree/icons/unchecked = ExtResource("1_u2sas")
+Tree/styles/hovered = SubResource("StyleBoxFlat_ce723")
+Tree/styles/hovered_selected = SubResource("StyleBoxFlat_uqy5r")
+Tree/styles/panel = SubResource("StyleBoxEmpty_gtyln")
+Tree/styles/selected = SubResource("StyleBoxFlat_g28ko")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_ufca6")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_gvuxi")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_wqg0a")

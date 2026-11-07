@@ -83,13 +83,13 @@ func _SpriteBank_updated():
 	var s = preload("res://scenes/content_editor/texture_preview.tscn").instantiate()
 	$TabContainer/Textures/ScrollContainer/Flow.add_child(s)
 	
-	if contentClass.FileType == "mod":
+	if contentClass.ClassType == "mod":
 		s.get_node("TextureRect").texture = contentClass.modClass.get_mod_icon()
 	else:
 		s.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path))
 	s.get_node("Label").text = get_only_filename(contentClass.Path)
 	
-	if contentClass.ContentType in ["Drill"]:
+	if contentClass.ClassType in ["Drill"]:
 		var st = preload("res://scenes/content_editor/texture_preview.tscn").instantiate()
 		$TabContainer/Textures/ScrollContainer/Flow.add_child(st)
 		
@@ -102,10 +102,8 @@ func _SpriteBank_updated():
 		
 		stt.get_node("TextureRect").texture = ModEditor.modClass.get_sprite(get_only_filename(contentClass.Path)+"-top")
 		stt.get_node("Label").text = get_only_filename(contentClass.Path)+"-top"
-	if contentClass.ContentType in ["Conveyor"]:
-		
-		
-		
+	
+	if contentClass.ClassType in ["Conveyor"]:
 		for r in [0,1,2,3]:
 			for f in [0,1,2,3]:
 				var sk = preload("res://scenes/content_editor/texture_preview.tscn").instantiate()
@@ -129,7 +127,7 @@ func _set_contentClass(value):
 	
 	writeData = {}
 	
-	$TabContainer/Editor/HBoxContainer/ContentType.text = "ContentType: " + str(contentClass.ContentType)
+	$TabContainer/Editor/HBoxContainer/ContentType.text = "ClassType: " + str(contentClass.ContentType)
 	
 	for i in $TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/Content.get_children():
 		i.queue_free()
@@ -142,7 +140,6 @@ func _set_contentClass(value):
 		var _FlowContainer: HFlowContainer
 		for i in DATA.keys():
 			if i != "type":
-			
 				var s = preload("uid://cnsmx158sf2fa").instantiate()
 				var _data = DATA[i]
 				s.Name = str(i)

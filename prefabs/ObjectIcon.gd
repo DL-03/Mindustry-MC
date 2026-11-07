@@ -28,7 +28,7 @@ func _SpriteBank_updated():
 
 		if contentClass.FullData != null:
 			if typeof(contentClass.FullData) == TYPE_DICTIONARY:
-				if contentClass.ContentType == "Drill":
+				if contentClass.ClassType == "Drill":
 					$Rotator.show()
 					$Top.show()
 					
@@ -37,7 +37,7 @@ func _SpriteBank_updated():
 				if contentClass.ContentType in ["Conveyor", "ArmoredConveyor"]:
 					if "speed" in contentClass.FullData:
 						conveyor_speed = contentClass.FullData["speed"]
-				if contentClass.ContentType == "Floor":
+				if contentClass.ClassType == "Floor":
 					if "isLiquid" in contentClass.FullData:
 						if material:
 							material.set_shader_parameter("water_effect", contentClass.FullData["isLiquid"])
@@ -91,7 +91,7 @@ func _process(delta):
 	
 	
 	if contentClass != null:
-		if contentClass.ContentType == "Drill":
+		if contentClass.ClassType == "Drill":
 			$Rotator.set_rotation_degrees($Rotator.get_rotation_degrees()-(60*delta))
 			$Rotator.pivot_offset = $Rotator.size/2
 			

@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://cnsmx158sf2fa"]
 
 [ext_resource type="Script" uid="uid://bnhux2pw0wp2l" path="res://scenes/content_editor/content_key_widget.gd" id="1_g7oro"]
-[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="2_mflxu"]
+[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="2_qy50g"]
+[ext_resource type="Script" uid="uid://dp832bngs7aix" path="res://widgets/mind_tooltip.gd" id="3_qy50g"]
 [ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="3_uri7i"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="4_glcg7"]
 [ext_resource type="PackedScene" uid="uid://cjv1ns30b2oox" path="res://widgets/tooltips/mind_tooltip_content_keys.tscn" id="5_2gp30"]
 
 [node name="ContentKeyWidget" type="HBoxContainer" unique_id=387267923 node_paths=PackedStringArray("mindTooltip")]
 custom_minimum_size = Vector2(0, 40)
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -18,11 +20,25 @@ grow_vertical = 2
 script = ExtResource("1_g7oro")
 mindTooltip = NodePath("NameLabel/MindTooltip")
 
-[node name="Actions" parent="." unique_id=1755305955 instance=ExtResource("2_mflxu")]
+[node name="Actions" parent="." unique_id=1135730542 instance=ExtResource("2_qy50g")]
 custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_type_variation = &"ButtonUnborderTiny"
-real_text_icon_left = ""
+real_text = "[emb offset=3]"
+font_size = 26
+
+[node name="MindTooltip" type="Node" parent="Actions" unique_id=216180365]
+script = ExtResource("3_qy50g")
+tooltip_text = "[emb][UI.YELLOW]|Actions|"
+preview_in_editor = true
+position_mode = 3
+anchor = 1
+anchor_offset = Vector2(0, 5)
+hide_delay = 0.2
+metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="NameLabel" parent="." unique_id=1359297754 instance=ExtResource("3_uri7i")]
 custom_minimum_size = Vector2(150, 0)

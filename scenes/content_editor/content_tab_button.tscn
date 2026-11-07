@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://ciaryiabwiifg" path="res://prefabs/ObjectIcon.tscn" id="3_p46im"]
 [ext_resource type="PackedScene" uid="uid://dysrmuh6iglhw" path="res://widgets/mind_utab.tscn" id="8_aqf6u"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qh3vv"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v6y8"]
 content_margin_left = 10.0
 content_margin_right = 10.0
@@ -39,6 +41,7 @@ offset_bottom = 30.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qh3vv")
 script = ExtResource("2_d0c7l")
 NameLabel = NodePath("Tab/MarginContainer/HBoxContainer/Label")
 ElementChanges = NodePath("Tab/MarginContainer/HBoxContainer/Changes")
@@ -64,6 +67,14 @@ size_flags_vertical = 4
 
 [node name="Icon" parent="Tab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="1" unique_id=1600658513]
 visible = false
+
+[node name="Label" parent="Tab/MarginContainer/HBoxContainer/Close/MarginContainer" parent_id_path=PackedInt32Array(578091389, 1135730542, 1448793387) index="0" unique_id=240515307]
+theme_override_colors/font_color = Color(0.8980392, 0.32941177, 0.32941177, 1)
+theme_override_colors/font_shadow_color = Color(0.26941177, 0.09882354, 0.09882354, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 20
+text = ""
+real_text = "[emb offset=3][UI.RED]"
 
 [connection signal="close" from="Tab" to="." method="_on_tab_close"]
 [connection signal="pressed" from="Tab" to="." method="_on_tab_pressed"]

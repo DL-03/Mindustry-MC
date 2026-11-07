@@ -30,6 +30,7 @@ border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="CreateMod" type="Panel" unique_id=177122460]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -73,7 +74,8 @@ layout_mode = 2
 [node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=668548202 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
 text = " Создать Модификацию "
 horizontal_alignment = 1
@@ -87,6 +89,8 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=1426645539 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Создать Модификацию"
 horizontal_alignment = 1
@@ -98,6 +102,8 @@ layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=1754296251 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Путь:"
 real_text = "|Path|:"
@@ -110,6 +116,8 @@ theme_override_font_sizes/font_size = 13
 
 [node name="NameMod" parent="Panel/MarginContainer/VBoxContainer/Path" unique_id=378252527 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 16
 text = "/"
 real_text = "/"
@@ -119,6 +127,8 @@ layout_mode = 2
 
 [node name="MindustryLabel" parent="Panel/MarginContainer/VBoxContainer/Name" unique_id=224284997 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 24
 text = "Имя:"
 real_text = "|Name|:"
@@ -131,7 +141,8 @@ theme = ExtResource("3_vndes")
 [node name="tip" parent="Panel/MarginContainer/VBoxContainer" unique_id=1008217234 instance=ExtResource("2_rbyj6")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.2835294, 0.097647004, 0.096470706, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "sdfsdfsddfsfs"
 horizontal_alignment = 1
 real_text = "sdfsdfsddfsfs"
@@ -145,20 +156,26 @@ size_flags_vertical = 10
 [node name="Back" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=675656981 instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Назад"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Back|"
 
 [node name="ChosePath" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=79395684 instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Выбрать путь"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|ChoosePath|"
 
 [node name="Create" parent="Panel/MarginContainer/VBoxContainer/DownPanel" unique_id=752922974 instance=ExtResource("5_6ruhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 disabled = true
+text = " Создать"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Create|"
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=80861453]

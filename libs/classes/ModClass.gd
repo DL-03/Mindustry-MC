@@ -19,7 +19,8 @@ var ModContentClass = ContentClass.new()
 var closing = false
 var scan_in_progress = false
 
-
+#var changes = []
+var has_changes = false   # Если хоть что-то изменено в моде > true для ахривов
 
 
 signal loaded
@@ -69,8 +70,7 @@ func get_all_files(path: String, file_ext := "", files := [], _max_recursion=99)
 			while file_name != "":
 				if dir.current_is_dir():
 					dir.get_current_dir()
-					files = get_all_files(dir.get_current_dir()+"/"+file_name, file_ext, files,_max_recursion-1)
-					#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
+					files = get_all_files(dir.get_current_dir().path_join(file_name), file_ext, files,_max_recursion-1)
 				else:
 					if file_ext and file_name.get_extension() != file_ext:
 						file_name = dir.get_next()
@@ -115,22 +115,26 @@ func get_all_pathes(path: String, file_ext := "", files := []):
 
 
 
-
 func get_sprite(key):
 	if key in SpriteBank:
 		if FileAccess.file_exists(SpriteBank[key]):
 			var image = Image.new()
-			image.load(SpriteBank[key])
-			var t = ImageTexture.new()
-			var Icon = t.create_from_image(image)
-			
-			return Icon
-	return preload("res://resources/icons/error.png")
+			var er = image.load(SpriteBank[key])
+			if er == OK:
+				return ImageTexture.new().create_from_image(image)
+			else:
+				image.free()
+	return preload("uid://dd3tc3t6hht75")
 
-
-
-
-
+func get_mod_icon():
+	if FileAccess.file_exists(Path.path_join("icon.png")):
+		var image = Image.new()
+		var er = image.load(Path.path_join("icon.png"))
+		if er == OK:
+			return ImageTexture.new().create_from_image(image)
+		else:
+			image.free()
+	return preload("uid://df4ipu6fwojc6")
 
 
 
@@ -219,18 +223,7 @@ func set_path(_path: String):
 	
 	print("[ModClass][set_path]: Loaded")
 
-func get_mod_icon():
-	
-	var image = Image.new()
-	if FileAccess.file_exists(Path.path_join("icon.png")):
-		image.load(Path.path_join("icon.png"))
-	else:
-		image.load("res://resources/icons/noneMod.png")
-	var t = ImageTexture.new()
 
-	var Icon = t.create_from_image(image)
-
-	return Icon
 
 func first_scan_content():
 	if scan_in_progress:
@@ -320,7 +313,7 @@ func import_content_from_path(path: String):
 		return c
 
 
-func create_content(path: String, content_type: String) -> ContentClass:
+func create_content(path: String, content_type: ContentCore.ContentType, class_type="") -> ContentClass:
 	path = path.simplify_path()
 	if _content_by_path.has(path):
 		return _content_by_path[path]
@@ -332,7 +325,7 @@ func create_content(path: String, content_type: String) -> ContentClass:
 	if path_parts.size() > 1:
 		content_class.FileType = path_parts[0]
 	content_class.ContentType = content_type
-	content_class.create(path, content_type)
+	content_class.create(path, content_type, class_type)
 	ContentBank.append(content_class)
 	_content_by_path[path] = content_class
 	add_child(content_class)

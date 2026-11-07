@@ -3,9 +3,13 @@
 [ext_resource type="Script" uid="uid://c50glsfbq6adu" path="res://prefabs/TabMain.gd" id="1_a6qjs"]
 [ext_resource type="PackedScene" uid="uid://dysrmuh6iglhw" path="res://widgets/mind_utab.tscn" id="1_glfba"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trceg"]
+
 [node name="Tab" type="PanelContainer" unique_id=714916886]
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_type_variation = &"VTab"
+theme_override_styles/panel = SubResource("StyleBoxEmpty_trceg")
 script = ExtResource("1_a6qjs")
 
 [node name="Tab" parent="." unique_id=578091389 instance=ExtResource("1_glfba")]
@@ -18,6 +22,7 @@ offset_right = 159.0
 [node name="Changes" parent="Tab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(578091389, 1201070992) index="2" unique_id=1626496899]
 visible = false
 
+[connection signal="theme_changed" from="." to="." method="_on_theme_changed"]
 [connection signal="close" from="Tab" to="." method="_on_tab_close"]
 [connection signal="pressed" from="Tab" to="." method="_on_tab_pressed"]
 

@@ -31,6 +31,10 @@ func _set_contentClass(value):
 	
 	if contentClass.Data != null:
 		if typeof(contentClass.Data) == TYPE_DICTIONARY:
+			var mp = contentClass.modClass.Path.simplify_path()
+			var cp = contentClass.Path.simplify_path()
+			var _text = cp.erase(0, len(cp)-(len(cp)-len(mp)))
+	
 			var _name = ""
 			if "name" in contentClass.Data:
 				if contentClass.Data["name"] == "":
@@ -39,7 +43,7 @@ func _set_contentClass(value):
 					_name = contentClass.Data["name"]
 			else:
 				_name = contentClass.Path.get_file()
-			$HBoxContainer/Name.real_text = "[emb][UI.YELLOW]"+_name
+			$HBoxContainer/Name.real_text = "[emb][UI.YELLOW]"+_name+"\n[][font_size=12]"+_text
 
 func _on_pressed():
 	ContentEditor.open_from_path(contentClass)

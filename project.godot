@@ -25,6 +25,7 @@ config/windows_native_icon="res://resources/MMC_ICON.ico"
 
 [autoload]
 
+ContentCore="*uid://n782bodfi6kx"
 PropertiesReader="*res://libs/PropertiesReader.gd"
 COLORS="*res://libs/COLORS.gd"
 SaveDataAPI="*res://libs/SaveDataAPI.gd"
