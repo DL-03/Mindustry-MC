@@ -22,6 +22,22 @@ func _set_button_tab(v):
 			ButtonTab.close.connect(close)
 
 func close():
+	if _is_closing:
+		return
+	_is_closing = true
+	_content_list_refresh_revision += 1
+	_file_tree_generation += 1
+	_file_tree_filter_generation += 1
+	if is_instance_valid(ContentEditor):
+		ContentEditor.close_mod(modClass)
+	_file_tree_icon_cache.clear()
+	var file_tree: Tree = $ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Tree
+	file_tree.clear()
+	for card: Node in ListLoadedContentCards.values():
+		if is_instance_valid(card):
+			card.queue_free()
+	ListLoadedContentCards.clear()
+	_content_by_path.clear()
 	ModManager.close_mod(modClass)
 	ButtonTab.controller.free_tab(ButtonTab)
 	
@@ -34,6 +50,7 @@ func _set_modClass(value):
 var ModType = ""
 
 var _search_query := ""
+var _is_closing := false
 var _file_tree_generation := 0
 var _file_tree_filter_generation := 0
 var _content_by_path: Dictionary = {}
@@ -327,6 +344,10 @@ func setPath(path):
 		modClass.connect_loaded(_on_mod_loaded)
 		modClass.ContentBank_added.connect(
 			func(_contentClass: ContentClass):
+				if not modClass.is_loaded:
+					if modClass.ContentBank.size() % 32 == 0:
+						_update_loading_progress()
+					return
 				_register_content_class(_contentClass)
 				_update_content_card_visibility(_contentClass)
 				_update_loading_progress()
@@ -450,7 +471,7 @@ var ListLoadedContentCards = {}
 
 
 func refresh_content_list():
-	if modClass == null:
+	if modClass == null or _is_closing:
 		return
 
 	_content_list_refresh_revision += 1
@@ -462,12 +483,15 @@ func _refresh_content_list_incrementally() -> void:
 	_content_list_refresh_running = true
 
 	while true:
+		if _is_closing:
+			_content_list_refresh_running = false
+			return
 		var refresh_revision := _content_list_refresh_revision
 		var content_bank: Array = modClass.ContentBank.duplicate()
 		var processed_count := 0
 
 		for content_class: ContentClass in content_bank:
-			if refresh_revision != _content_list_refresh_revision:
+			if _is_closing or refresh_revision != _content_list_refresh_revision:
 				break
 
 			_update_content_card_visibility(content_class)
@@ -476,6 +500,9 @@ func _refresh_content_list_incrementally() -> void:
 			if processed_count >= CONTENT_LIST_REFRESH_BATCH_SIZE:
 				processed_count = 0
 				await get_tree().process_frame
+				if _is_closing:
+					_content_list_refresh_running = false
+					return
 
 		if refresh_revision == _content_list_refresh_revision:
 			break
@@ -493,7 +520,6 @@ func _update_content_card_visibility(content_class: ContentClass) -> void:
 	var should_show: bool = (
 		content_class.ContentType in ContentCore.ContentType.values()
 		and FContentType.get(content_class.ContentType, false)
-		and content_class.File != null
 		and content_class.Data != null
 		and typeof(content_class.Data) == TYPE_DICTIONARY
 		and _matches_content_search(content_class)
@@ -582,7 +608,7 @@ func _populate_file_tree(generation: int) -> void:
 	var visited := 0
 
 	while not directories.is_empty():
-		if generation != _file_tree_generation:
+		if _is_closing or generation != _file_tree_generation:
 			return
 
 		var current: Dictionary = directories.pop_back()
@@ -614,7 +640,7 @@ func _populate_file_tree(generation: int) -> void:
 			visited += 1
 			if visited % CONTENT_LIST_REFRESH_BATCH_SIZE == 0:
 				await get_tree().process_frame
-				if generation != _file_tree_generation:
+				if _is_closing or generation != _file_tree_generation:
 					return
 
 		for file_name: String in file_names:
@@ -632,14 +658,14 @@ func _populate_file_tree(generation: int) -> void:
 			visited += 1
 			if visited % CONTENT_LIST_REFRESH_BATCH_SIZE == 0:
 				await get_tree().process_frame
-				if generation != _file_tree_generation:
+				if _is_closing or generation != _file_tree_generation:
 					return
 
 	_apply_file_tree_filters()
 
 
 func _apply_file_tree_filters() -> void:
-	if not _is_file_manager_visible():
+	if _is_closing or not _is_file_manager_visible():
 		return
 
 	_file_tree_filter_generation += 1
@@ -664,7 +690,7 @@ func _update_file_tree_filter_visibility(generation: int) -> void:
 
 	var processed := 0
 	for index in range(items.size() - 1, -1, -1):
-		if generation != _file_tree_filter_generation:
+		if _is_closing or generation != _file_tree_filter_generation:
 			return
 
 		var item := items[index]

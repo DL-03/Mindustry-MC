@@ -28,6 +28,7 @@ border_width_top = 2
 border_color = Color(1, 0.827451, 0.498039, 1)
 
 [node name="NeedSaveContent" type="Panel" unique_id=451520050]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -70,7 +71,8 @@ layout_mode = 2
 [node name="Title" parent="Panel/MarginContainer/VBoxContainer" unique_id=236386586 instance=ExtResource("1_qlw2u")]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.827451, 0.498039, 1)
-theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941171, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
 text = "!  Нужно Сохранить  !"
 horizontal_alignment = 1
@@ -84,6 +86,8 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_o7acp")
 [node name="InfoLabel" parent="Panel/MarginContainer/VBoxContainer" unique_id=232780321 instance=ExtResource("1_qlw2u")]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 text = "Нужно Сохранить"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -97,17 +101,23 @@ size_flags_vertical = 10
 [node name="Save" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=870014149 instance=ExtResource("2_uffmq")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Сохранить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Save|"
 
 [node name="Discard" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1085605377 instance=ExtResource("2_uffmq")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Отклонить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Discard|"
 
 [node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1368396185 instance=ExtResource("2_uffmq")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Отменить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Cancel|"

@@ -187,7 +187,10 @@ func _on_create_pressed() -> void:
 		ErrorString.real_text = "Не удалось создать каталог контента"
 		return
 
-	modClass.create_content(target_path, content_type, class_type)
+	var created_content := modClass.create_content(target_path, content_type, class_type)
+	if not is_instance_valid(created_content):
+		ErrorString.real_text = "Не удалось создать файл контента"
+		return
 	hide()
 
 

@@ -271,7 +271,6 @@ script = ExtResource("7_0eox3")
 tooltip_text = "[emb]|Search|"
 position_mode = 3
 anchor = 1
-hide_delay = 0.2
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="SearchLine" type="LineEdit" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters" unique_id=13837515]
@@ -291,7 +290,6 @@ script = ExtResource("7_0eox3")
 tooltip_text = "[emb]|Filters|"
 position_mode = 3
 anchor = 1
-hide_delay = 0.2
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="PopupMindTooltip" type="Node" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/Filters/Filters" unique_id=1999632167]
@@ -303,7 +301,6 @@ anchor = 3
 anchor_offset = Vector2(5, 0)
 show_mode = 1
 hide_mode = 1
-hide_delay = 0.2
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ModEditor/Panel/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=592070029]

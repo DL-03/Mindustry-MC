@@ -14,13 +14,14 @@ var list_images = []
 @export var first_tab: Node
 @export var margin_panel: MarginContainer
 
+@export var menu_label: MindLabel
 @export var menu_button: MindButton
 
 @export var home_tab: Node
 @export var settings_tab: Node
 
 @export var tabs_panel: PanelContainer
-@export var V1: BoxContainer
+@export var V1: SplitContainer
 @export var V1_wrapp: BoxContainer
 @export var V1_wrapp_vs: VSeparator
 @export var V1_wrapp_vs2: VSeparator
@@ -66,12 +67,37 @@ func _set_horizontal_tabs(v):
 		settings_tab.theme_type_variation = "VTab"
 	
 	for _tab in tabsDict.keys():
-		if v:
-			_tab.theme_type_variation = "HTab"
+		update_tab(_tab)
+		
+	
+	update_tabs()
+
+func update_tab(_tab):
+	if horizontal_tabs:
+		_tab.theme_type_variation = "HTab"
+	else:
+		_tab.theme_type_variation = "VTab"
+
+func update_tabs():
+	menu_label.get_parent().visible = horizontal_tabs
+	if horizontal_tabs:
+		menu_label.visible = not tabs_minimized
+		
+		if tabs_minimized:
+			tabs_panel.custom_minimum_size.x = 55
+			home_tab.real_text = "[emb offset=3]"
+			settings_tab.real_text = "[emb offset=3]"
+			V1.collapsed = true
 		else:
-			_tab.theme_type_variation = "VTab"
-
-
+			tabs_panel.custom_minimum_size.x = 150
+			home_tab.real_text = "[emb offset=3] |Home|"
+			settings_tab.real_text = "[emb offset=3] |Settings|"
+			V1.collapsed = false
+	else:
+		tabs_panel.custom_minimum_size = Vector2(55,55)
+		home_tab.real_text = "[emb offset=3]"
+		settings_tab.real_text = "[emb offset=3]"
+		V1.collapsed = true
 
 func on_data_changed():
 	if "Settings.HorizontalTabsInMainWindow" in SaveDataAPI.data:
@@ -114,6 +140,7 @@ func create_tab():
 	var c = TabPlaceholder.instantiate()
 	c.controller = self
 	tabs_container.add_child(c)
+	update_tab(c)
 	return c
 
 func set_tab(_tab: Node) -> void:
@@ -148,3 +175,11 @@ func _on_home_pressed() -> void:
 
 func _on_settings_pressed() -> void:
 	set_tab(settings_tab)
+
+var tabs_minimized = true
+
+func _on_menu_pressed() -> void:
+	tabs_minimized = not tabs_minimized
+	update_tabs()
+	
+	

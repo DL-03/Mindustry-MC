@@ -53,36 +53,41 @@ func open_from_path(_contentClass):
 	select_tab(tab)
 
 
+func close_mod(mod_class: ModClass) -> void:
+	for tab: Node in Tabs.get_children():
+		var content_class: ContentClass = tab.contentClass
+		if not is_instance_valid(content_class) or content_class.modClass != mod_class:
+			continue
+		if is_instance_valid(tab.ContentFrame):
+			tab.ContentFrame.queue_free()
+		tab.queue_free()
+
+
 
 func save_content(_contentClass):
 	for i in Tabs.get_children():
 		if i.contentClass == _contentClass:
+			if not i.ContentFrame.prepare_text_for_save():
+				return
 			if i.ContentFrame.needSave:
+				var data: Dictionary = i.contentClass.Data.duplicate(true)
+				for key: String in i.ContentFrame.writeData:
+					var value: Variant = i.ContentFrame.writeData[key]
+					if value == null:
+						data.erase(key)
+					else:
+						data[key] = value
+
+				if not i.contentClass.save_data(
+					data,
+					i.ContentFrame.get_source_text_override(),
+					i.ContentFrame.has_visual_changes_after_text_edit()
+				):
+					return
+
+				i.ContentFrame.writeData.clear()
+				i.ContentFrame.clear_source_text_override()
 				i.ContentFrame.needSave = false
-				
-				#i.contentClass.WriteData = i.ContentFrame.writeData
-				
-				var _data = i.contentClass.Data.duplicate()
-				_data.merge(i.ContentFrame.writeData, true)
-				
-				
-				var defaultData = i.contentClass.DefaultData
-				
-				print("[ContentEditor][save_content][WrietData]: ", i.ContentFrame.writeData)
-				print("[ContentEditor][save_content][Data]: ", _data)
-				print("[ContentEditor][save_content][DefaultData]: : ", defaultData)
-				
-				
-				
-				
-				for k in _data.keys():
-					if k in defaultData:
-						if typeof(_data[k]) == typeof(defaultData[k]):
-							if _data[k] == defaultData[k]:
-								_data.erase(k)
-				
-				i.contentClass.WriteData = _data
-				
 				SaveButton.disabled = true
 
 

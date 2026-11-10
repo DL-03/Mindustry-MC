@@ -39,7 +39,7 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="ContentEditor" type="Control" unique_id=1583303146 node_paths=PackedStringArray("_TabContainer")]
+[node name="ContentEditor" type="Control" unique_id=1583303146 node_paths=PackedStringArray("_TabContainer", "_content_type_label", "_content_fields", "_texture_flow", "_object_icon")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +50,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_4iiko")
 _TabContainer = NodePath("TabContainer")
+_content_type_label = NodePath("TabContainer/Editor/HBoxContainer/ContentType")
+_content_fields = NodePath("TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Content")
+_texture_flow = NodePath("TabContainer/Textures/ScrollContainer/Flow")
+_object_icon = NodePath("TabContainer/Textures/ScrollContainer/Flow/MarginContainer/ObjectIcon")
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1420272480]
 layout_mode = 1
@@ -77,22 +81,6 @@ theme = ExtResource("2_3o5ww")
 theme_override_font_sizes/font_size = 24
 text = "ContentType:"
 
-[node name="d1" type="Label" parent="TabContainer/Editor" unique_id=99104128]
-visible = false
-layout_mode = 2
-theme = ExtResource("2_3o5ww")
-theme_override_font_sizes/font_size = 12
-text = "d1"
-justification_flags = 171
-
-[node name="d2" type="Label" parent="TabContainer/Editor" unique_id=530173256]
-visible = false
-layout_mode = 2
-theme = ExtResource("2_3o5ww")
-theme_override_font_sizes/font_size = 12
-text = "d2"
-justification_flags = 171
-
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Editor" unique_id=685330011]
 layout_mode = 2
 size_flags_vertical = 3
@@ -112,28 +100,56 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_right = 5
 
-[node name="Panel" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer" unique_id=1671509943]
+[node name="Content" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer" unique_id=1481200009]
 layout_mode = 2
 
-[node name="Content" type="VBoxContainer" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel" unique_id=1481200009]
-layout_mode = 2
-
-[node name="CreateKey" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel" unique_id=529493969 instance=ExtResource("3_knikt")]
+[node name="CreateKey" parent="TabContainer/Editor" unique_id=529493969 instance=ExtResource("3_knikt")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_type_variation = &"ButtonUnborder"
 text = "+ Создать Ключ +"
 
-[node name="LeftIcon" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
+[node name="LeftIcon" parent="TabContainer/Editor/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="0" unique_id=1359297754]
 text = "+"
 real_text = "[emb offset=3]+"
 
-[node name="Label" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="1" unique_id=1969564989]
+[node name="Label" parent="TabContainer/Editor/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="1" unique_id=1969564989]
 text = "Создать Ключ"
 real_text = "[emb]|Create| |Key|"
 
-[node name="RightIcon" parent="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="2" unique_id=777836022]
+[node name="RightIcon" parent="TabContainer/Editor/CreateKey/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(529493969, 1639273036) index="2" unique_id=777836022]
 text = "+"
 real_text = "[emb offset=3]+"
+
+[node name="Text" type="MarginContainer" parent="TabContainer" unique_id=970318988]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Text" unique_id=714208877]
+layout_mode = 2
+
+[node name="Error" type="Label" parent="TabContainer/Text/VBoxContainer" unique_id=498267127]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.25, 0.25, 1)
+text = "Invalid JSON/HJSON content."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Text/VBoxContainer" unique_id=2024269368]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_3o5ww")
+
+[node name="Content" type="CodeEdit" parent="TabContainer/Text/VBoxContainer/ScrollContainer" unique_id=67090055]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+gutters_draw_line_numbers = true
+auto_brace_completion_enabled = true
 
 [node name="Textures" type="MarginContainer" parent="TabContainer" unique_id=1610877115]
 visible = false
@@ -142,7 +158,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Textures" unique_id=219722210]
 layout_mode = 2
@@ -176,6 +192,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j5slg")
 
-[connection signal="pressed" from="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey" to="." method="_on_create_key_pressed"]
+[connection signal="pressed" from="TabContainer/Editor/CreateKey" to="." method="_on_create_key_pressed"]
 
-[editable path="TabContainer/Editor/MarginContainer/ScrollContainer/MarginContainer/Panel/CreateKey"]
+[editable path="TabContainer/Editor/CreateKey"]

@@ -1,7 +1,7 @@
 extends Node
 class_name ModClass
 
-const CONTENT_SCAN_YIELD_INTERVAL := 64
+const SCAN_FRAME_BUDGET_USEC := 4000
 
 
 var Path = ""
@@ -12,6 +12,10 @@ var TempDirectory := ""
 var ContentBank = []
 var _content_by_path: Dictionary = {}
 var SpriteBank = {}
+var _sprite_texture_cache: Dictionary[String, Texture2D] = {}
+var _mod_icon_texture: Texture2D
+var _file_watcher: Node
+var _sprite_scan_revision := 0
 var ModContentClass = ContentClass.new()
 
 
@@ -46,11 +50,35 @@ func connect_loaded(function: Callable):
 
 
 func close():
+	if closing:
+		return
 	closing = true
+	_release_cached_resources()
 	queue_free()
 
 
 func _exit_tree() -> void:
+	closing = true
+	_release_cached_resources()
+	if is_instance_valid(ModContentClass) and ModContentClass.get_parent() == null:
+		ModContentClass.free()
+	ModContentClass = null
+
+
+func _release_cached_resources() -> void:
+	if is_instance_valid(_file_watcher):
+		_file_watcher.StopWatching()
+	_sprite_scan_revision += 1
+	_sprite_texture_cache.clear()
+	_mod_icon_texture = null
+	SpriteBank.clear()
+	_content_by_path.clear()
+	for content_class: ContentClass in ContentBank:
+		if is_instance_valid(content_class):
+			content_class.release_data()
+	ContentBank.clear()
+	if is_instance_valid(ModContentClass):
+		ModContentClass.release_data()
 	if not TempDirectory.is_empty():
 		ModManager.remove_archive_temp_directory(TempDirectory)
 		TempDirectory = ""
@@ -88,60 +116,62 @@ func get_all_files(path: String, file_ext := "", files := [], _max_recursion=99)
 
 
 func get_all_pathes(path: String, file_ext := "", files := []):
-	path = path.simplify_path()
-	var dir = DirAccess.open(path)
-	#print(dir)
-	if dir != null:
+	var directories: Array[String] = [path.simplify_path()]
+	while not directories.is_empty():
+		var directory_path: String = directories.pop_back()
+		var dir := DirAccess.open(directory_path)
+		if dir == null:
+			continue
+
 		dir.list_dir_begin()
-
-		var file_name = dir.get_next()
-
-		while file_name != "":
+		var file_name := dir.get_next()
+		while not file_name.is_empty():
 			if dir.current_is_dir():
-				dir.get_current_dir()
-				files = get_all_pathes(dir.get_current_dir()+"/"+file_name, file_ext, files)
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
-			else:
-				if file_ext and file_name.get_extension() != file_ext:
-					file_name = dir.get_next()
-					continue
-
-				files.append(dir.get_current_dir()+"/"+file_name)
-				#print(file_name, " ", dir.get_current_dir()+"/"+file_name)
+				if file_name not in [".", ".."]:
+					directories.append(directory_path.path_join(file_name))
+			elif file_ext.is_empty() or file_name.get_extension().to_lower() == file_ext.to_lower():
+				files.append(directory_path.path_join(file_name))
 			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access %s." % path)
+		dir.list_dir_end()
 	return files
 
 
-
-func get_sprite(key):
-	if key in SpriteBank:
-		if FileAccess.file_exists(SpriteBank[key]):
-			var image = Image.new()
-			var er = image.load(SpriteBank[key])
-			if er == OK:
-				return ImageTexture.new().create_from_image(image)
-			else:
-				image.free()
+func get_sprite(key: String) -> Texture2D:
+	if _sprite_texture_cache.has(key) and is_instance_valid(_sprite_texture_cache[key]):
+		return _sprite_texture_cache[key]
+	if SpriteBank.has(key) and FileAccess.file_exists(SpriteBank[key]):
+		var image := Image.new()
+		var error := image.load(SpriteBank[key])
+		if error == OK:
+			var texture := ImageTexture.create_from_image(image)
+			_sprite_texture_cache[key] = texture
+			return texture
+		push_warning("Could not load sprite %s: %s" % [SpriteBank[key], error_string(error)])
 	return preload("uid://dd3tc3t6hht75")
 
-func get_mod_icon():
-	if FileAccess.file_exists(Path.path_join("icon.png")):
-		var image = Image.new()
-		var er = image.load(Path.path_join("icon.png"))
-		if er == OK:
-			return ImageTexture.new().create_from_image(image)
-		else:
-			image.free()
+
+func get_mod_icon() -> Texture2D:
+	if is_instance_valid(_mod_icon_texture):
+		return _mod_icon_texture
+
+	var icon_path := Path.path_join("icon.png")
+	if FileAccess.file_exists(icon_path):
+		var image := Image.new()
+		var error := image.load(icon_path)
+		if error == OK:
+			_mod_icon_texture = ImageTexture.create_from_image(image)
+			return _mod_icon_texture
+		push_warning("Could not load mod icon %s: %s" % [icon_path, error_string(error)])
 	return preload("uid://df4ipu6fwojc6")
 
 
 
 func set_path(_path: String):
 	_path = _path.simplify_path()
-	
-	print("[ModClass][set_path]: Start")
+	SpriteBank.clear()
+	_sprite_texture_cache.clear()
+	_mod_icon_texture = null
+
 	if DirAccess.dir_exists_absolute(_path):
 		Path = _path
 		ModType = "folder"
@@ -195,10 +225,6 @@ func set_path(_path: String):
 		red.close()
 
 	var reader = get_all_files(Path, "", [], 1)
-	
-	print("[reader]:" + str(reader))
-		
-	
 	for i in reader:
 		if i.get_file() in ["mod.json","mod.hjson"]:
 			Path = Path.path_join(i.replace(i.get_file(), "")).simplify_path()
@@ -207,21 +233,50 @@ func set_path(_path: String):
 			ModContentClass.modClass = self
 			ModContentClass.Path = Path.path_join(i)
 			
-			print("[ModClass][set_path][ModContentClass]: Loaded")
-			print("[ModClass][set_path][ModContentClass][Path]:" + Path)
-			
 			break
-	
-	
 
-	var lis = get_all_pathes(Path.path_join("sprites"))
-	for i in lis:
-		SpriteBank.merge({i.get_file().substr(0, -1+i.get_file().length()-i.get_file().get_extension().length()): i}, true)
-	#print(SpriteDictonary)
+	call_deferred("_scan_sprite_directory", Path.path_join("sprites"))
 	
 	first_scan_content()
-	
-	print("[ModClass][set_path]: Loaded")
+
+
+func _scan_sprite_directory(root_path: String) -> void:
+	_sprite_scan_revision += 1
+	var revision := _sprite_scan_revision
+	var directories: Array[String] = [root_path]
+	var frame_start_usec := Time.get_ticks_usec()
+
+	while not directories.is_empty():
+		if closing or revision != _sprite_scan_revision:
+			return
+
+		var directory_path: String = directories.pop_back()
+		var dir := DirAccess.open(directory_path)
+		if dir == null:
+			continue
+
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while not file_name.is_empty():
+			if dir.current_is_dir():
+				if file_name not in [".", ".."]:
+					directories.append(directory_path.path_join(file_name))
+			else:
+				var sprite_path := directory_path.path_join(file_name)
+				if FileAccess.file_exists(sprite_path):
+					_set_sprite_path(sprite_path)
+
+			if Time.get_ticks_usec() - frame_start_usec >= SCAN_FRAME_BUDGET_USEC:
+				await get_tree().process_frame
+				frame_start_usec = Time.get_ticks_usec()
+				if closing or revision != _sprite_scan_revision:
+					dir.list_dir_end()
+					return
+
+			file_name = dir.get_next()
+		dir.list_dir_end()
+
+	SpriteBank_updated.emit()
 
 
 
@@ -238,18 +293,19 @@ func first_scan_content():
 	scan_in_progress = true
 	call_deferred("_scan_content_directory", Path.path_join("content"))
 	
-	var customFileWathcer = CustomFileWatcher.new()
-	add_child(customFileWathcer)
-	customFileWathcer.OnCreated.connect(_OnCreated)
-	customFileWathcer.OnChanged.connect(_OnChanged)
-	customFileWathcer.OnRenamed.connect(_OnRenamed)
-	customFileWathcer.OnDeleted.connect(_OnDeleted)
-	customFileWathcer.setPath(Path)
+	if not is_instance_valid(_file_watcher):
+		_file_watcher = CustomFileWatcher.new()
+		add_child(_file_watcher)
+		_file_watcher.OnCreated.connect(_OnCreated)
+		_file_watcher.OnChanged.connect(_OnChanged)
+		_file_watcher.OnRenamed.connect(_OnRenamed)
+		_file_watcher.OnDeleted.connect(_OnDeleted)
+	_file_watcher.setPath(Path)
 
 
 func _scan_content_directory(root_path: String) -> void:
 	var directories: Array[String] = [root_path]
-	var scanned_entries := 0
+	var frame_start_usec := Time.get_ticks_usec()
 
 	while not directories.is_empty():
 		if closing:
@@ -274,9 +330,9 @@ func _scan_content_directory(root_path: String) -> void:
 			elif file_name.get_extension().to_lower() in ["json", "hjson"]:
 				import_content_from_path(directory_path.path_join(file_name))
 
-			scanned_entries += 1
-			if scanned_entries % CONTENT_SCAN_YIELD_INTERVAL == 0:
+			if Time.get_ticks_usec() - frame_start_usec >= SCAN_FRAME_BUDGET_USEC:
 				await get_tree().process_frame
+				frame_start_usec = Time.get_ticks_usec()
 				if closing:
 					dir.list_dir_end()
 					return
@@ -325,7 +381,9 @@ func create_content(path: String, content_type: ContentCore.ContentType, class_t
 	if path_parts.size() > 1:
 		content_class.FileType = path_parts[0]
 	content_class.ContentType = content_type
-	content_class.create(path, content_type, class_type)
+	if not content_class.create(path, content_type, class_type):
+		content_class.free()
+		return null
 	ContentBank.append(content_class)
 	_content_by_path[path] = content_class
 	add_child(content_class)
@@ -351,6 +409,28 @@ func _is_content_file(path: String) -> bool:
 		and path.get_extension().to_lower() in ["json", "hjson"]
 
 
+func _is_sprite_path(path: String) -> bool:
+	var relative_path := path.simplify_path().trim_prefix(Path.simplify_path().trim_suffix("/") + "/")
+	return relative_path == "sprites" or relative_path.begins_with("sprites/")
+
+
+func _sprite_key(path: String) -> String:
+	return path.get_file().get_basename()
+
+
+func _set_sprite_path(path: String) -> void:
+	var key := _sprite_key(path)
+	SpriteBank[key] = path.simplify_path()
+	_sprite_texture_cache.erase(key)
+
+
+func _invalidate_mod_icon(path: String) -> bool:
+	if path.simplify_path() != Path.path_join("icon.png").simplify_path():
+		return false
+	_mod_icon_texture = null
+	return true
+
+
 func _remove_content_file(path: String) -> void:
 	var content_class: ContentClass = _content_by_path.get(path)
 	if content_class == null:
@@ -363,28 +443,32 @@ func _remove_content_file(path: String) -> void:
 
 
 func _OnCreated(path: String):
+	if closing:
+		return
 	path = path.simplify_path()
 	if _is_content_file(path):
 		import_content_from_path(path)
-	elif path.simplify_path().replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
-		SpriteBank.merge({path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()): path}, true)
+	elif _is_sprite_path(path):
+		_set_sprite_path(path)
 		SpriteBank_updated.emit()
-	
-	print_rich("[color=green][_OnCreated][/color]: ",path.simplify_path().replace(Path, "").simplify_path())
-	#import_content_from_path(path)
+	elif _invalidate_mod_icon(path):
+		SpriteBank_updated.emit()
 
 
 func _OnChanged(path: String):
+	if closing:
+		return
 	path = path.simplify_path()
-	
-	if path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
-		#SpriteBank.merge({path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()): path}, true)
-		#SpriteBank_updated.emit()
-		pass
-	
-	print_rich("[color=blue][_OnChanged][/color]: ",path.simplify_path().replace(Path, "").simplify_path())
-	
+	if _is_sprite_path(path) and FileAccess.file_exists(path):
+		_set_sprite_path(path)
+		SpriteBank_updated.emit()
+	elif _invalidate_mod_icon(path):
+		SpriteBank_updated.emit()
+
+
 func _OnRenamed(path: String, new_path: String):
+	if closing:
+		return
 	path = path.simplify_path()
 	new_path = new_path.simplify_path()
 	
@@ -402,24 +486,35 @@ func _OnRenamed(path: String, new_path: String):
 	elif new_is_content:
 		import_content_from_path(new_path)
 
-	if path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
-		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
-		
-		if new_path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
-			SpriteBank.merge({new_path.get_file().substr(0, -1+new_path.get_file().length()-new_path.get_file().get_extension().length()): new_path}, true)
+	var sprite_bank_changed := false
+	if _is_sprite_path(path):
+		var old_key := _sprite_key(path)
+		SpriteBank.erase(old_key)
+		_sprite_texture_cache.erase(old_key)
+		sprite_bank_changed = true
+	if _is_sprite_path(new_path):
+		_set_sprite_path(new_path)
+		sprite_bank_changed = true
+	var mod_icon_changed := _invalidate_mod_icon(path)
+	if _invalidate_mod_icon(new_path):
+		mod_icon_changed = true
+	if mod_icon_changed:
+		sprite_bank_changed = true
+	if sprite_bank_changed:
 		SpriteBank_updated.emit()
-	
-	print_rich("[color=yellow][_OnRenamed][/color]: ",path.simplify_path().replace(Path, "").simplify_path(), " => ", new_path.simplify_path().replace(Path, "").simplify_path())
-	
+
+
 func _OnDeleted(path: String):
+	if closing:
+		return
 	path = path.simplify_path()
-	
 	if _is_content_file(path):
 		_remove_content_file(path)
 		Notifications.debug("Пропал контент: "+path.get_file())
-	elif path.replace(Path, "").simplify_path().split("/", false)[0] == "sprites":
-		SpriteBank.erase(path.get_file().substr(0, -1+path.get_file().length()-path.get_file().get_extension().length()))
-
+	elif _is_sprite_path(path):
+		var key := _sprite_key(path)
+		SpriteBank.erase(key)
+		_sprite_texture_cache.erase(key)
 		SpriteBank_updated.emit()
-		
-	print_rich("[color=red][_OnDeleted][/color]: ",path.simplify_path().replace(Path, "").simplify_path())
+	elif _invalidate_mod_icon(path):
+		SpriteBank_updated.emit()

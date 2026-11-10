@@ -122,6 +122,7 @@ func _process(delta):
 "
 
 [node name="DeleteMod" type="Panel" unique_id=600546763]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -165,7 +166,8 @@ layout_mode = 2
 [node name="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1341393637 instance=ExtResource("2_cpqxq")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.945098, 0.32549, 0.321569, 1)
-theme_override_colors/font_shadow_color = Color(0.2835294, 0.097647004, 0.096470706, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 20
 text = "!  DeleteMod  !"
 horizontal_alignment = 1
@@ -191,7 +193,9 @@ size_flags_vertical = 10
 [node name="Cancel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1002614076 instance=ExtResource("4_40crj")]
 layout_mode = 2
 size_flags_horizontal = 3
+text = " Отменить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Cancel|"
 
 [node name="Delete" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=209904677 instance=ExtResource("4_40crj")]
@@ -201,7 +205,9 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_s8xsv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dh2b8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpn5o")
+text = " Удалить"
 real_text_icon_left = ""
+real_text_icon_right = ""
 real_text = "|Delete|"
 h_aligment = null
 

@@ -31,7 +31,7 @@ func _contentClass_updated():
 			if "author" in contentClass.FullData:
 				_author = "[]"+contentClass.FullData["author"]
 			if "version" in contentClass.FullData:
-				_version = "[]"+contentClass.FullData["version"]
+				_version = "[]"+str(contentClass.FullData["version"])
 	
 		mindRTL.real_text = "[emb]"+_displayName+"\n"+_name+"\n"+_author+"\n"+_version
 

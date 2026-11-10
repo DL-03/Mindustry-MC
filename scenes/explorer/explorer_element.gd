@@ -119,7 +119,7 @@ func update_data():
 			if "author" in data:
 				_author = "[]"+data["author"]
 			if "version" in data:
-				_version = "[]"+data["version"]
+				_version = "[]"+str(data["version"])
 	
 		richLabel.real_text = "[emb]"+_displayName+"\n"+_name+"\n"+_author+"\n"+_version
 

@@ -2,6 +2,7 @@ extends Node
 
 var ContentFile = preload("res://resources/ContentType.json").data
 var ClassType = ContentFile["ClassType"]
+var _content_cache: Dictionary = {}
 
 
 func reverseDict(_dict):
@@ -18,39 +19,42 @@ func reverseDict(_dict):
 
 
 func get_content(_type=null):
-	
-	if _type != null:
-		#if _type in ClassType:
-		var _podType = null
-		for i in ClassType.keys():
-			if i.to_lower() == _type.to_lower():
-				_podType = i
-		if _podType != null:
-			var classDefault = reverseDict(ClassType[_podType])
-			var _mod = classDefault.duplicate()
-			var _mod1 = {}
-			var _tt = true
-			if "extend" in _mod:
-				_mod1 = reverseDict(ClassType[_mod["extend"]])
-				_mod.merge(_mod1)
+	if _type == null:
+		return null
 
-			while _tt:
-				if "extend" in _mod1:
-					if _mod1["extend"] in ClassType:
-						#print(_mod1["extend"])
-						_mod1 = reverseDict(ClassType[_mod1["extend"]])
-						_mod.merge(_mod1)
-					
-				else:
-					_tt = false
+	var cache_key := str(_type).to_lower()
+	if _content_cache.has(cache_key):
+		return _content_cache[cache_key].duplicate()
 
-			if "extend" in _mod:
-				_mod.erase("extend")
+	var pod_type: Variant
+	for key: Variant in ClassType:
+		if str(key).to_lower() == cache_key:
+			pod_type = key
+			break
 
-			return reverseDict(_mod)
-		else:
-			return reverseDict({})
-	return null
+	var result: Dictionary
+	if pod_type == null:
+		result = reverseDict({})
+	else:
+		var class_default: Dictionary = reverseDict(ClassType[pod_type])
+		var merged: Dictionary = class_default.duplicate()
+		var inherited: Dictionary = {}
+		if merged.has("extend"):
+			inherited = reverseDict(ClassType[merged["extend"]])
+			merged.merge(inherited)
+
+		while inherited.has("extend"):
+			var parent_type: Variant = inherited["extend"]
+			if not ClassType.has(parent_type):
+				break
+			inherited = reverseDict(ClassType[parent_type])
+			merged.merge(inherited)
+
+		merged.erase("extend")
+		result = reverseDict(merged)
+
+	_content_cache[cache_key] = result
+	return result.duplicate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

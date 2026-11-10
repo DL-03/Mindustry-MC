@@ -21,8 +21,6 @@ func delete_data():
 	queue_free()
 
 func LineEdit_text_changed(value):
-	print("[ContentCnfig][LineEdit_text_changed][value]: ", value)
-	#var value = VALUE_EDIT.text
 	if typeof(DefaultData) == TYPE_DICTIONARY:
 		RootContentFrame.changed_data(Name, JSON.parse_string(value))
 	elif typeof(DefaultData) == TYPE_FLOAT:

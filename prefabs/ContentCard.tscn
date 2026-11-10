@@ -27,7 +27,6 @@ tooltip_scene = ExtResource("9_actions_popup")
 allow_empty_text = true
 show_mode = 2
 hide_mode = 1
-hide_delay = 0.2
 
 [node name="HBoxContainer" type="BoxContainer" parent="." unique_id=966820585]
 layout_mode = 1
@@ -72,7 +71,6 @@ preview_in_editor = true
 position_mode = 3
 anchor = 3
 anchor_offset = Vector2(5, 0)
-hide_delay = 0.2
 metadata/_custom_type_script = "uid://dp832bngs7aix"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

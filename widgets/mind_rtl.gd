@@ -44,6 +44,7 @@ var _placeholder_regex := RegEx.new()
 var _last_visible_text := ""
 var _last_segments: Array[Dictionary] = []
 var _last_alignment := Vector2i(-1, -1)
+var _has_rendered_text := false
 var _batch_content_update := false
 var _emboss_rebuild_pending := false
 
@@ -54,7 +55,6 @@ func _init() -> void:
 	_placeholder_regex.compile(PLACEHOLDER_REGEX)
 
 func _ready() -> void:
-	set_process(true)
 	if LocalizationAPI and LocalizationAPI.has_signal("global_language_changed"):
 		var update_callback = Callable(self, "_text_update")
 		if not LocalizationAPI.global_language_changed.is_connected(update_callback):
@@ -140,8 +140,14 @@ func _text_update() -> void:
 
 	var visible_text := "".join(visible_parts)
 	segments.sort_custom(_sort_emboss_segments)
+	if _has_rendered_text and visible_text == _last_visible_text and segments == _last_segments:
+		return
+
+	_has_rendered_text = true
 	_last_visible_text = visible_text
 	_last_segments = segments
+	_last_alignment = Vector2i(horizontal_alignment, vertical_alignment)
+	set_process(not segments.is_empty() and is_instance_valid(emb_label))
 	text = visible_text
 	_schedule_emboss_rebuild()
 
@@ -187,10 +193,12 @@ func _sync_properties() -> void:
 		_sync_shadow_label(shadow_label)
 
 func _notification(what: int) -> void:
-	if what in [NOTIFICATION_POST_ENTER_TREE, NOTIFICATION_RESIZED, NOTIFICATION_THEME_CHANGED]:
+	if what in [NOTIFICATION_POST_ENTER_TREE, NOTIFICATION_THEME_CHANGED]:
 		_sync_properties()
 		if is_node_ready():
 			_schedule_emboss_rebuild()
+	elif what == NOTIFICATION_RESIZED and is_node_ready():
+		_schedule_emboss_rebuild()
 
 func _process(_delta: float) -> void:
 	var alignment := Vector2i(horizontal_alignment, vertical_alignment)
@@ -215,6 +223,10 @@ func _rebuild_emboss_layers(visible_text: String, segments: Array[Dictionary]) -
 
 	var parsed_text := get_parsed_text()
 	var character_count := get_total_character_count()
+	if segments.is_empty():
+		for clip in _emboss_clips:
+			clip.visible = false
+		return
 	if character_count == 0:
 		for clip in _emboss_clips:
 			clip.visible = false
@@ -224,26 +236,22 @@ func _rebuild_emboss_layers(visible_text: String, segments: Array[Dictionary]) -
 	for segment in segments:
 		var start_index: int = clampi(segment["start"], 0, character_count)
 		var end_index: int = clampi(segment["end"], start_index, character_count)
-		var run_start := start_index
-		var run_line := get_character_line(run_start)
-
-		for character_index in range(start_index + 1, end_index + 1):
-			var next_line := -1
-			if character_index < end_index:
-				next_line = get_character_line(character_index)
-			if character_index == end_index or next_line != run_line:
-				_create_emboss_layer(
-					visible_text,
-					parsed_text,
-					run_start,
-					character_index,
-					run_line,
-					segment,
-					layer_index
-				)
-				layer_index += 1
-				run_start = character_index
-				run_line = next_line
+		for line_index in range(get_line_count()):
+			var line_range := get_line_range(line_index)
+			var run_start := maxi(start_index, line_range.x)
+			var run_end := mini(end_index, line_range.y)
+			if run_end <= run_start:
+				continue
+			_create_emboss_layer(
+				visible_text,
+				parsed_text,
+				run_start,
+				run_end,
+				line_index,
+				segment,
+				layer_index
+			)
+			layer_index += 1
 	for unused_index in range(layer_index, _emboss_clips.size()):
 		_emboss_clips[unused_index].visible = false
 

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://stbm820mvq0y"]
 
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_hfxbw"]
 [ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="2_mu4oa"]
 [ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_hfxbw"]
 [ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button_rtl.tscn" id="3_lc104"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_hfxbw")
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1623617474]
 layout_mode = 1
@@ -20,9 +22,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Кнопки" type="VBoxContainer" parent="TabContainer" unique_id=2014139230]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -66,7 +69,14 @@ theme_override_constants/separation = 10
 
 [node name="MindButton" parent="TabContainer/Кнопки" unique_id=1135730542 instance=ExtResource("3_hfxbw")]
 layout_mode = 2
-font_color_disabled = Color(0.27058825, 0.27058825, 0.27058825, 1)
 
 [node name="MindIButton" parent="TabContainer/Кнопки" unique_id=709750827 instance=ExtResource("4_agviq")]
 layout_mode = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="TabContainer" unique_id=524636307]
+layout_mode = 2
+text = "{
+	TETS: OHOHO
+}"
+gutters_draw_line_numbers = true
+metadata/_tab_index = 1

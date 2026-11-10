@@ -3,8 +3,10 @@
 [ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_a8y0u"]
 [ext_resource type="Script" uid="uid://7lrqcema0vij" path="res://scenes/main.gd" id="2_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cneaemclmk5bk" path="res://prefabs/TabMain.tscn" id="3_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="4_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="4_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://b21xyr4fk5agj" path="res://widgets/mind_tooltip.tscn" id="5_dp3eg"]
+[ext_resource type="FontFile" uid="uid://1bcndybhwhxc" path="res://fonts/tech.ttf" id="5_muem4"]
 [ext_resource type="PackedScene" uid="uid://bhb04uet46lh" path="res://scenes/mod_manager/mod_manager.tscn" id="7_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://d0ppbqrba56gs" path="res://scenes/popups/settings/settings_window.tscn" id="8_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cjg0xhrkoy7ib" path="res://scenes/popups/RenameDuplicateWindow.tscn" id="9_jscy8"]
@@ -27,7 +29,7 @@ grow_begin = -10.0
 grow_end = -10.0
 vertical = true
 
-[node name="Main" type="Control" unique_id=1516285514 node_paths=PackedStringArray("ContentPanel", "modManager", "tabsDict", "tabs_container", "first_tab", "margin_panel", "menu_button", "home_tab", "settings_tab", "tabs_panel", "V1", "V1_wrapp", "V1_wrapp_vs", "V1_wrapp_vs2")]
+[node name="Main" type="Control" unique_id=1516285514 node_paths=PackedStringArray("ContentPanel", "modManager", "tabsDict", "tabs_container", "first_tab", "margin_panel", "menu_label", "menu_button", "home_tab", "settings_tab", "tabs_panel", "V1", "V1_wrapp", "V1_wrapp_vs", "V1_wrapp_vs2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,7 +48,8 @@ NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Settings"): NodePath("V1/Co
 tabs_container = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/MarginContainer/ScrollContainer/Tabs")
 first_tab = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Home")
 margin_panel = NodePath("V1/TabsPanel/MarginContainer")
-menu_button = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Menu")
+menu_label = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/HBoxContainer/MindLabel")
+menu_button = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/HBoxContainer/Menu")
 home_tab = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Home")
 settings_tab = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/Settings")
 tabs_panel = NodePath("V1/TabsPanel")
@@ -55,13 +58,14 @@ V1_wrapp = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer")
 V1_wrapp_vs = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/VSeparator")
 V1_wrapp_vs2 = NodePath("V1/TabsPanel/MarginContainer/HBoxContainer/VSeparator2")
 
-[node name="V1" type="BoxContainer" parent="." unique_id=1946052073]
+[node name="V1" type="SplitContainer" parent="." unique_id=1103684824]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+collapsed = true
 vertical = true
 
 [node name="TabsPanel" type="PanelContainer" parent="V1" unique_id=2024011855]
@@ -79,7 +83,21 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Menu" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=1135730542 instance=ExtResource("4_jkv2x")]
+[node name="HBoxContainer" type="HBoxContainer" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=1371759033]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MindLabel" parent="V1/TabsPanel/MarginContainer/HBoxContainer/HBoxContainer" unique_id=1661976189 instance=ExtResource("4_jbj1t")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.49803922, 1)
+theme_override_colors/font_shadow_color = Color(0.3, 0.2482353, 0.14941177, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("5_muem4")
+theme_override_font_sizes/font_size = 24
+text = "MMC"
+real_text = "[emb offset=4][UI.YELLOW]MMC"
+
+[node name="Menu" parent="V1/TabsPanel/MarginContainer/HBoxContainer/HBoxContainer" unique_id=1135730542 instance=ExtResource("4_jkv2x")]
 custom_minimum_size = Vector2(35, 35)
 custom_maximum_size = Vector2(35, 35)
 layout_mode = 2
@@ -140,8 +158,6 @@ theme_override_constants/margin_top = 5
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
 
 [node name="Tabs" type="BoxContainer" parent="V1/TabsPanel/MarginContainer/HBoxContainer/MarginContainer/ScrollContainer" unique_id=967212134]
 layout_mode = 2
@@ -202,7 +218,6 @@ layout_mode = 1
 [node name="NeedSaveContent" parent="Windows" unique_id=1091514670 instance=ExtResource("11_y6deb")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
 [node name="CreateContent" parent="Windows" unique_id=1702091045 instance=ExtResource("12_og1vs")]
 visible = false
@@ -215,8 +230,8 @@ layout_mode = 1
 [node name="DeleteMod" parent="Windows" unique_id=1548979296 instance=ExtResource("14_vxglm")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 
+[connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/Home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="gui_input" from="WindowBoxPart/TitleBar" to="." method="TitleBar_input"]

@@ -91,6 +91,12 @@ public partial class CustomFileWatcher : Node
 			_watcher.Dispose();
 			_watcher = null;
 		}
+		WatchedPath = string.Empty;
+	}
+
+	public void StopWatching()
+	{
+		StopWatcher();
 	}
 
 	private void _OnChanged(object sender, FileSystemEventArgs e)
