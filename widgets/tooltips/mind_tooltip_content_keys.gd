@@ -1,6 +1,8 @@
 @tool
 extends Control
+class_name MindTooltipContentKeys
 
+@export_group("Content")
 @export var label: MindRTL
 
 func tip(data: Dictionary):

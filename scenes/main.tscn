@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://eu7ssqyyaqgh" path="res://scenes/popups/CreateContent.tscn" id="12_og1vs"]
 [ext_resource type="PackedScene" uid="uid://dg2i61br433ln" path="res://scenes/popups/CreateMod.tscn" id="13_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://vsvpa6ywikp2" path="res://scenes/popups/DeleteMod.tscn" id="14_vxglm"]
+[ext_resource type="Script" uid="uid://c4u6u88kojwwy" path="res://widgets/tab_workspace.gd" id="16_muem4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqlb"]
 bg_color = Color(0, 0, 0, 1)
@@ -104,6 +105,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"ButtonUnborderTiny"
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0)
+text = ""
 real_text = "[emb offset=3]"
 
 [node name="VSeparator2" type="VSeparator" parent="V1/TabsPanel/MarginContainer/HBoxContainer" unique_id=361367509]
@@ -117,8 +126,16 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_type_variation = &"VTab"
-font_color_disabled = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0)
+text = ""
 real_text = "[emb offset=3]"
+font_color_disabled = Color(1, 1, 1, 1)
 font_size = 20
 
 [node name="MindTooltip" parent="V1/TabsPanel/MarginContainer/HBoxContainer/Home" unique_id=259170520 instance=ExtResource("5_dp3eg")]
@@ -133,8 +150,16 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_type_variation = &"VTab"
-font_color_disabled = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0)
+text = ""
 real_text = "[emb offset=3]"
+font_color_disabled = Color(1, 1, 1, 1)
 font_size = 20
 
 [node name="MindTooltip" parent="V1/TabsPanel/MarginContainer/HBoxContainer/Settings" unique_id=1530242758 instance=ExtResource("5_dp3eg")]
@@ -230,6 +255,24 @@ layout_mode = 1
 [node name="DeleteMod" parent="Windows" unique_id=1548979296 instance=ExtResource("14_vxglm")]
 visible = false
 layout_mode = 1
+
+[node name="TabWorkspace" type="Control" parent="." unique_id=1974890449]
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 223.0
+offset_right = 570.0
+offset_bottom = 439.0
+script = ExtResource("16_muem4")
+metadata/_custom_type_script = "uid://c4u6u88kojwwy"
+
+[node name="TabWorkspace2" type="Control" parent="." unique_id=846375199]
+anchors_preset = 0
+offset_left = 580.0
+offset_top = 219.0
+offset_right = 934.0
+offset_bottom = 435.0
+script = ExtResource("16_muem4")
+metadata/_custom_type_script = "uid://c4u6u88kojwwy"
 
 [connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="V1/TabsPanel/MarginContainer/HBoxContainer/Home" to="." method="_on_home_pressed"]

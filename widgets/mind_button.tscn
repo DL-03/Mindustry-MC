@@ -20,7 +20,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 script = ExtResource("1_ml550")
 label = NodePath("MarginContainer/Label")
 font_color_disabled = Color(0.27058825, 0.27058825, 0.27058825, 1)
-real_text = "[emb]MindButton"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1448793387]
 clip_contents = true

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c8g3j4d5n1x2p"]
+
+[ext_resource type="PackedScene" uid="uid://dt75s6lh5d4x0" path="res://widgets/mind_rtl.tscn" id="1_rtl"]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LeftIcon" parent="HBoxContainer" instance=ExtResource("1_rtl")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme_override_font_sizes/normal_font_size = 26
+text = "0"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb offset=3]0"
+
+[node name="Label" parent="HBoxContainer" instance=ExtResource("1_rtl")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "MindIButtonRTL"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb]MindIButtonRTL"
+
+[node name="RightIcon" parent="HBoxContainer" instance=ExtResource("1_rtl")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme_override_font_sizes/normal_font_size = 26
+text = "0"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+real_text = "[emb offset=3]0"

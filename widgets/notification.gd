@@ -1,41 +1,50 @@
+@tool
 extends HBoxContainer
+class_name MindNotification
 
+@export_group("Nodes")
 @export var animationPlayer: AnimationPlayer
 @export var label: MindRTL
 @export var closeElement: Button
 @export var timer: Timer
-@export var text = "":
+
+@export_group("Content")
+@export_multiline var text: String = "":
 	set = _set_text
 
-var _close_pressed = 0
+var _close_pressed := 0
 
-func _set_text(v):
-	text = v
-	label.real_text = text
+func _set_text(value: String) -> void:
+	text = value
+	if is_instance_valid(label):
+		label.real_text = text
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	label.real_text = text
-	animationPlayer.play("show")
+	if is_instance_valid(label):
+		label.real_text = text
+	if not Engine.is_editor_hint() and is_instance_valid(animationPlayer):
+		animationPlayer.play("show")
 
 func _on_mind_button_pressed() -> void:
 	if _close_pressed > 0:
 		queue_free()
-	else:
+	elif is_instance_valid(animationPlayer):
 		animationPlayer.play("hide")
 	_close_pressed += 1
 
 func _on_timer_timeout() -> void:
-	animationPlayer.play("hide")
+	if is_instance_valid(animationPlayer):
+		animationPlayer.play("hide")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hide":
 		queue_free()
-	if anim_name == "show":
+	elif anim_name == "show" and is_instance_valid(label):
 		label.scroll_active = true
-
 
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if anim_name == "hide":
-		timer.stop()
-		label.scroll_active = false
+		if is_instance_valid(timer):
+			timer.stop()
+		if is_instance_valid(label):
+			label.scroll_active = false

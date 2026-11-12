@@ -74,9 +74,9 @@ func _set_horizontal_tabs(v):
 
 func update_tab(_tab):
 	if horizontal_tabs:
-		_tab.theme_type_variation = "HTab"
-	else:
 		_tab.theme_type_variation = "VTab"
+	else:
+		_tab.theme_type_variation = "HTab"
 
 func update_tabs():
 	menu_label.get_parent().visible = horizontal_tabs

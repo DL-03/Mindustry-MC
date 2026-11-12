@@ -2,12 +2,16 @@
 extends Label
 class_name MindLabel
 
+signal display_text_changed(value: String)
+
+@export_group("Text")
 @export_multiline var real_text: String = "":
 	set = _set_real_text
 
 @export var placeholders: Dictionary = {}:
 	set = _set_placeholders
 
+@export_group("Appearance")
 @export var font_color: Color = Color.WHITE:
 	set = _set_font_color
 
@@ -81,6 +85,7 @@ func _update_styled_text() -> void:
 		display_text = display_text.substr(color_match.get_end())
 	display_text = display_text.replace("[/color]", "")
 
+	var changed := text != display_text
 	text = display_text
 	add_theme_color_override("font_color", resolved_text_color)
 	add_theme_constant_override("shadow_offset_x", 0)
@@ -92,6 +97,8 @@ func _update_styled_text() -> void:
 		add_theme_color_override("font_shadow_color", shadow_color)
 	else:
 		add_theme_color_override("font_shadow_color", Color.TRANSPARENT)
+	if changed:
+		display_text_changed.emit(text)
 
 func _replace_placeholders(source: String) -> String:
 	if placeholders.is_empty():

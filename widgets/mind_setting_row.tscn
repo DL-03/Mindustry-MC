@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c0u2h0n3saa1f"]
+
+[ext_resource type="Script" path="res://widgets/mind_setting_row.gd" id="1_row"]
+[ext_resource type="PackedScene" uid="uid://bvvek6slgx1sg" path="res://widgets/mind_label.tscn" id="2_label"]
+
+[node name="MindSettingRow" type="PanelContainer" node_paths=PackedStringArray("title_label", "description_label", "control_slot")]
+custom_minimum_size = Vector2(0, 64)
+script = ExtResource("1_row")
+title_label = NodePath("Margin/Content/Text/Title")
+description_label = NodePath("Margin/Content/Text/Description")
+control_slot = NodePath("Margin/Content/ControlSlot")
+
+[node name="Margin" type="MarginContainer" parent="."]
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Content" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Text" type="VBoxContainer" parent="Margin/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Title" parent="Margin/Content/Text" instance=ExtResource("2_label")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+
+[node name="Description" parent="Margin/Content/Text" instance=ExtResource("2_label")]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="ControlSlot" type="CenterContainer" parent="Margin/Content"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -114,10 +114,6 @@ enum HideMode {
 	set(value):
 		mouse_offset = value
 		_on_position_settings_changed()
-@export var show_mode: ShowMode = ShowMode.HOVER
-@export var hide_mode: HideMode = HideMode.MOUSE_EXIT
-@export var show_delay: float = 0.0
-@export var hide_delay: float = 0.0
 @export var clamp_to_screen: bool = true:
 	set(value):
 		clamp_to_screen = value
@@ -126,6 +122,12 @@ enum HideMode {
 	set(value):
 		screen_padding = value
 		_on_position_settings_changed()
+
+@export_group("Activation")
+@export var show_mode: ShowMode = ShowMode.HOVER
+@export var hide_mode: HideMode = HideMode.MOUSE_EXIT
+@export_range(0.0, 10.0, 0.05, "or_greater", "suffix:s") var show_delay: float = 0.0
+@export_range(0.0, 10.0, 0.05, "or_greater", "suffix:s") var hide_delay: float = 0.0
 
 var _parent_control: Control
 var _tooltip_instance: Control = null # Используется только для LOCAL режима

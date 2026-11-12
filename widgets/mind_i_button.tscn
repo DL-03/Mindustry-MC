@@ -23,11 +23,10 @@ script = ExtResource("1_2apnr")
 left_icon = NodePath("MarginContainer/HBoxContainer/LeftIcon")
 label = NodePath("MarginContainer/HBoxContainer/Label")
 right_icon = NodePath("MarginContainer/HBoxContainer/RightIcon")
+show_left_icon = true
+show_right_icon = true
 font_color_disabled = Color(0.270588, 0.270588, 0.270588, 1)
 icon_color_disabled = Color(0.270588, 0.270588, 0.270588, 1)
-real_text_icon_left = "0"
-real_text_icon_right = "0"
-real_text = "MindButton"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1448793387]
 layout_mode = 1
@@ -55,7 +54,7 @@ theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 26
 text = "0"
-real_text = "0"
+real_text = "[emb offset=3]0"
 
 [node name="Label" parent="MarginContainer/HBoxContainer" unique_id=240515307 instance=ExtResource("2_ncsyv")]
 layout_mode = 2
@@ -65,11 +64,11 @@ mouse_filter = 1
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 16
-text = "MindButton"
+text = "MindIButton"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-real_text = "MindButton"
+real_text = "[emb]MindIButton"
 
 [node name="RightIcon" parent="MarginContainer/HBoxContainer" unique_id=164127229 instance=ExtResource("2_ncsyv")]
 layout_mode = 2
@@ -79,7 +78,7 @@ theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
 theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/font_size = 26
 text = "0"
-real_text = "0"
+real_text = "[emb offset=3]0"
 
 [node name="_MindTooltip" parent="." unique_id=259170520 instance=ExtResource("3_a67hb")]
 

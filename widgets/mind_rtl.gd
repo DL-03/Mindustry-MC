@@ -2,13 +2,16 @@
 extends RichTextLabel
 class_name MindRTL
 
+signal display_text_changed(value: String)
 
+@export_group("Text")
 @export_multiline var real_text: String = "":
 	set = _set_real_text
 
 @export var placeholders: Dictionary = {}:
 	set = _set_placeholders
 
+@export_group("Emboss")
 @export var emb_label: Control
 
 const EMBOSS_TAG_REGEX := r"\[(/?)emb(?:\s+([^\]]*))?\]"
@@ -149,6 +152,7 @@ func _text_update() -> void:
 	_last_alignment = Vector2i(horizontal_alignment, vertical_alignment)
 	set_process(not segments.is_empty() and is_instance_valid(emb_label))
 	text = visible_text
+	display_text_changed.emit(visible_text)
 	_schedule_emboss_rebuild()
 
 func _replace_placeholders(source: String) -> String:

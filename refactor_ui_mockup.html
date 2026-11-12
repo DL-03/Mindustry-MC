@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MMC — сцены интерфейса</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111310;
+      --panel: #191c18;
+      --panel-2: #222720;
+      --panel-3: #2a3028;
+      --line: #373d33;
+      --text: #eef0e8;
+      --muted: #9da496;
+      --gold: #e5bd70;
+      --gold-dim: #493c25;
+      --green: #9dc58c;
+      --red: #df8378;
+      --blue: #9dbed1;
+      --radius: 11px;
+      font: 14px/1.45 Inter, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: var(--bg); }
+    button { color: inherit; font: inherit; }
+    .page { width: min(1440px, 100%); margin: auto; }
+    .intro { padding: 28px clamp(16px, 4vw, 48px) 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--gold); font-weight: 800; letter-spacing: .06em; }
+    .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid #816c43; border-radius: 8px; }
+    h1 { margin: 19px 0 7px; font-size: clamp(25px, 4vw, 38px); line-height: 1.1; letter-spacing: -.04em; }
+    .intro p { max-width: 800px; margin: 0; color: #b2b8ab; font-size: 13px; }
+    .scene-index { position: sticky; z-index: 4; top: 0; display: flex; gap: 6px; overflow-x: auto; padding: 10px clamp(12px, 3vw, 36px); border-block: 1px solid var(--line); background: #151713ee; backdrop-filter: blur(10px); }
+    .scene-index a { flex: 0 0 auto; padding: 8px 11px; border: 1px solid transparent; border-radius: 7px; color: #c7cbbf; font-size: 11px; text-decoration: none; }
+    .scene-index a:hover { border-color: #51452f; color: var(--gold); }
+    .scene { padding: 30px clamp(12px, 3vw, 36px) 38px; border-bottom: 1px solid #292e27; scroll-margin-top: 60px; }
+    .scene-kicker { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .scene h2 { margin: 5px 0 5px; font-size: 22px; letter-spacing: -.025em; }
+    .scene-desc { margin: 0 0 17px; color: var(--muted); font-size: 12px; }
+    .caption { margin: 12px 0 0; color: var(--muted); font-size: 10px; }
+
+    .window { overflow: hidden; border: 1px solid #474b3f; border-radius: 11px; background: var(--panel); box-shadow: 0 14px 40px #0005; }
+    .titlebar { display: flex; min-height: 42px; align-items: center; gap: 9px; padding: 0 12px; border-bottom: 1px solid var(--line); background: #151713; }
+    .titlebar .brand-mark { width: 23px; height: 23px; font-size: 10px; }
+    .titlebar strong { font-size: 10px; letter-spacing: .04em; }
+    .titlebar .current { overflow: hidden; margin-left: 9px; color: var(--muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+    .titlebar .dots { display: flex; gap: 5px; margin-left: auto; }
+    .titlebar .dots i { width: 7px; height: 7px; border-radius: 50%; background: #555b50; }
+    .app-body { display: grid; min-height: 360px; grid-template-columns: 190px minmax(0, 1fr); }
+    .activity { display: flex; flex-direction: column; padding: 10px 8px; border-right: 1px solid var(--line); background: #151713; }
+    .activity-label, .eyebrow { margin: 5px 8px 8px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    .activity button, .activity .tab {
+      display: flex;
+      min-height: 36px;
+      align-items: center;
+      gap: 9px;
+      padding: 0 9px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      color: #c7cbbf;
+      text-align: left;
+      font-size: 10px;
+    }
+    .activity .selected { border-color: #51452f; background: #302a20; color: var(--gold); }
+    .icon { width: 17px; color: var(--gold); text-align: center; }
+    .activity .tab-label { overflow: hidden; flex: 1; text-overflow: ellipsis; white-space: nowrap; }
+    .activity .tab-mark { color: var(--gold); }
+    .grow { flex: 1; }
+    main { min-width: 0; padding: 20px; }
+    .heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+    .heading h3, .heading h4 { margin: 0; font-size: 18px; }
+    .sub { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 7px; }
+    .btn { min-height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel-2); font-size: 10px; font-weight: 700; }
+    .btn.primary { border-color: #8d7446; background: #d7ad60; color: #211b10; }
+    .btn.quiet { background: transparent; }
+    .segmented { display: flex; gap: 4px; overflow-x: auto; margin: 16px 0 13px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .segmented span { flex: 0 0 auto; padding: 7px 10px; border-radius: 6px; color: var(--muted); font-size: 10px; }
+    .segmented .on { background: var(--panel-3); color: var(--text); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+    .stack { display: grid; align-content: start; gap: 11px; }
+    .card { min-width: 0; padding: 13px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, #1d211c, #181b17); }
+    .card h4 { margin: 0; font-size: 11px; }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .link { color: var(--gold); font-size: 9px; }
+    .small { color: var(--muted); font-size: 9px; }
+    .list { display: grid; gap: 6px; margin-top: 10px; }
+    .row { display: flex; min-width: 0; min-height: 40px; align-items: center; gap: 9px; padding: 7px 9px; border: 1px solid #30362e; border-radius: 7px; background: #1b1f1a; }
+    .row.selected { border-color: #655438; background: #29271f; }
+    .row > .symbol { width: 22px; color: var(--gold); text-align: center; }
+    .row-main { min-width: 0; flex: 1; }
+    .row-title { overflow: hidden; font-size: 10px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .row-path { overflow: hidden; margin-top: 3px; color: var(--muted); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+    .status { flex: 0 0 auto; color: var(--green); font-size: 9px; }
+    .status.missing { color: var(--red); }
+    .pill { padding: 4px 7px; border: 1px solid #3b4137; border-radius: 20px; color: #c2c8bc; font-size: 8px; }
+    .filterbar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 3px; }
+    .filter { min-height: 28px; padding: 0 9px; border: 1px solid #383e35; border-radius: 6px; background: #141713; color: #b9beb3; font-size: 9px; }
+    .search { min-width: 110px; flex: 1; }
+    .toolbar { display: flex; align-items: center; gap: 6px; padding: 7px; border-bottom: 1px solid var(--line); background: #1b1f1a; }
+    .toolbar .group-title { margin-right: auto; color: var(--muted); font-size: 9px; }
+    .tabs { display: flex; gap: 3px; min-width: 0; overflow-x: auto; padding: 6px; border-bottom: 1px solid var(--line); background: #171a16; }
+    .tab { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; min-height: 29px; padding: 0 9px; border: 1px solid transparent; border-radius: 6px; color: var(--muted); font-size: 9px; white-space: nowrap; }
+    .tab.active { border-color: #51452f; background: #302a20; color: var(--gold); }
+    .tab.unsaved::after { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); content: ""; }
+    .split { display: grid; min-height: 260px; grid-template-columns: minmax(160px, 25%) minmax(0, 1fr); }
+    .split-nav { padding: 10px 7px; border-right: 1px solid var(--line); background: #151713; }
+    .split-nav .row { min-height: 31px; border: 0; background: transparent; font-size: 9px; }
+    .split-nav .row.selected { background: #302a20; }
+    .editor { min-width: 0; padding: 12px; }
+    .editor-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .editor-head h4 { margin: 0; font-size: 11px; }
+    .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+    .field { min-width: 0; }
+    .field label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 8px; }
+    .value { overflow: hidden; min-height: 30px; padding: 7px 8px; border: 1px solid #343a31; border-radius: 6px; background: #121511; color: #dce0d5; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+    .field.full { grid-column: 1 / -1; }
+    .code {
+      overflow: auto;
+      min-height: 175px;
+      margin: 10px 0 0;
+      padding: 12px;
+      border: 1px solid #343a31;
+      border-radius: 7px;
+      background: #11140f;
+      color: #d8ddce;
+      font: 10px/1.7 "Cascadia Code", Consolas, monospace;
+      white-space: pre-wrap;
+    }
+    .code .key { color: #a9c5d6; }
+    .code .str { color: #c6d995; }
+    .callout { margin-top: 10px; padding: 9px 10px; border: 1px solid #4d4934; border-radius: 7px; background: #28251e; color: #d6cba8; font-size: 9px; }
+    .two-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 11px; }
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone {
+      width: min(100%, 360px);
+      overflow: hidden;
+      border: 5px solid #343830;
+      border-radius: 26px;
+      background: var(--panel);
+      box-shadow: 0 14px 36px #0007;
+    }
+    .phone-top { height: 16px; background: #151713; }
+    .phone-header { display: flex; align-items: center; gap: 9px; padding: 11px 13px; border-bottom: 1px solid var(--line); }
+    .phone-header .brand-mark { width: 23px; height: 23px; font-size: 10px; }
+    .phone-header strong { font-size: 10px; }
+    .phone-content { padding: 14px 12px 15px; }
+    .phone-content h3 { margin: 0; font-size: 21px; }
+    .phone-content > p { margin: 4px 0 12px; color: var(--muted); font-size: 9px; }
+    .phone .btn { min-height: 40px; }
+    .phone .grid { grid-template-columns: 1fr; gap: 8px; }
+    .phone .card { padding: 11px; }
+    .phone .row { min-height: 46px; }
+    .bottom-nav { display: flex; justify-content: space-around; padding: 7px 4px max(8px, env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: #151713; }
+    .bottom-nav div { display: grid; justify-items: center; gap: 2px; min-width: 54px; color: var(--muted); font-size: 8px; }
+    .bottom-nav .on { color: var(--gold); }
+    .bottom-nav b { font-size: 13px; font-weight: 500; }
+    .desktop-mobile { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(250px, .7fr); align-items: start; gap: 18px; }
+    footer { padding: 18px; color: var(--muted); text-align: center; font-size: 9px; }
+
+    @media (max-width: 760px) {
+      .app-body { grid-template-columns: 54px minmax(0, 1fr); }
+      .activity { align-items: center; padding-inline: 5px; }
+      .activity-label, .activity .tab-label, .activity .tab-mark, .activity .group-tabs { display: none; }
+      .activity button, .activity .tab { justify-content: center; width: 40px; padding: 0; }
+      main { padding: 14px; }
+      .desktop-mobile { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .scene { padding-inline: 10px; }
+      .intro { padding-inline: 14px; }
+      .app-body { grid-template-columns: minmax(0, 1fr); }
+      .app-body > .activity { display: none; }
+      .heading { align-items: flex-start; }
+      .heading h3 { font-size: 16px; }
+      .grid, .two-split { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .split-nav { display: flex; gap: 4px; overflow-x: auto; padding: 6px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .split-nav .eyebrow { display: none; }
+      .split-nav .row { flex: 0 0 auto; }
+      .fields { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .scene h2 { font-size: 19px; }
+      .row-path { max-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="intro">
+      <div class="brand"><span class="brand-mark">M</span> MINDUSTRY MOD CONSTRUCT</div>
+      <h1>Несколько сцен рабочего пространства</h1>
+      <p>Эскиз на основе текущего стиля MMC: игровые цвета и панели, но приоритет у понятной навигации и доступных действий. Вкладка может быть документом, пунктом навигации или группой — документ за каждой вкладкой не обязателен.</p>
+    </header>
+
+    <nav class="scene-index" aria-label="Сцены макета">
+      <a href="#workspace">01 · Группы</a>
+      <a href="#home-recent">02 · Дом</a>
+      <a href="#home-folders">03 · Каталоги</a>
+      <a href="#mod-editor">04 · Мод</a>
+      <a href="#open-choice">05 · Выбор файла</a>
+      <a href="#standalone">06 · JSON/HJSON</a>
+      <a href="#mobile">07 · Телефон</a>
+      <a href="#languages">08 · Языки</a>
+    </nav>
+
+    <section class="scene" id="workspace">
+      <div class="scene-kicker">01 · Главная сцена</div>
+      <h2>Группы вкладок и настраиваемые панели</h2>
+      <p class="scene-desc">Вкладки можно переставлять в пределах группы или переносить между разрешёнными группами. Пункты «Дом» и «Поиск» — навигационные, им не требуется отдельный документ.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Рабочее место · Раскладка: Разработка мода</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="app-body">
+          <aside class="activity">
+            <div class="activity-label">Навигация</div>
+            <button class="selected"><span class="icon">⌂</span><span class="tab-label">Дом</span></button>
+            <button><span class="icon">⌕</span><span class="tab-label">Поиск</span></button>
+            <button><span class="icon">▦</span><span class="tab-label">Моды</span></button>
+            <div class="grow"></div>
+            <button><span class="icon">⚙</span><span class="tab-label">Настройки</span></button>
+          </aside>
+          <main style="padding:0">
+            <div class="toolbar"><span class="group-title">Группа A · Основная</span><span class="pill">Список вкладок</span><button class="btn quiet">＋ Группа</button><button class="btn quiet">Раскладка ▾</button></div>
+            <div class="tabs">
+              <div class="tab active">⌂ Дом</div>
+              <div class="tab">✦ Copper Age <span class="tab-mark">●</span></div>
+              <div class="tab unsaved">▤ mod.json</div>
+              <div class="tab">＋ Новая вкладка</div>
+            </div>
+            <div class="two-split" style="padding:10px">
+              <section class="card">
+                <div class="card-head"><h4>Группа A · Основная</h4><span class="small">3 вкладки</span></div>
+                <div class="list">
+                  <div class="row selected"><span class="symbol">⌂</span><div class="row-main"><div class="row-title">Дом</div><div class="row-path">Навигационный экран</div></div><span class="pill">без документа</span></div>
+                  <div class="row"><span class="symbol">✦</span><div class="row-main"><div class="row-title">Copper Age</div><div class="row-path">Редактор мода</div></div><span class="status">●</span></div>
+                  <div class="row"><span class="symbol">▤</span><div class="row-main"><div class="row-title">mod.json</div><div class="row-path">Самостоятельный файл</div></div><span class="status missing">●</span></div>
+                </div>
+              </section>
+              <section class="card">
+                <div class="card-head"><h4>Группа B · Инструменты</h4><span class="small">2 вкладки</span></div>
+                <div class="list">
+                  <div class="row"><span class="symbol">⌕</span><div class="row-main"><div class="row-title">Поиск</div><div class="row-path">Инструмент навигации</div></div><span class="pill">без документа</span></div>
+                  <div class="row"><span class="symbol">▧</span><div class="row-main"><div class="row-title">Список файлов</div><div class="row-path">Панель проекта · Copper Age</div></div></div>
+                  <div class="callout">Перетащите вкладку сюда, чтобы переместить её в другую разрешённую группу.</div>
+                </div>
+              </section>
+            </div>
+            <div class="toolbar"><span class="group-title">Направление вкладок: вертикальное · Компактный вид: выкл. · Профиль раскладки: Разработка мода</span><button class="btn quiet">Настроить</button></div>
+          </main>
+        </div>
+      </div>
+      <p class="caption">Визуальная модель, не спецификация полноценного клона VS Code: поддерживаемые группы и перенос задаются продуктом.</p>
+    </section>
+
+    <section class="scene" id="home-recent">
+      <div class="scene-kicker">02 · Дом · Недавние и избранные</div>
+      <h2>Недоступные записи остаются в истории</h2>
+      <p class="scene-desc">Недавние моды и отдельные JSON/HJSON-документы; избранное — самостоятельная категория. Фильтр и порядок помогают быстро найти элемент.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Дом</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="app-body">
+          <aside class="activity">
+            <div class="activity-label">Дом</div>
+            <div class="tab selected"><span class="icon">◷</span><span class="tab-label">Недавние</span></div>
+            <div class="tab"><span class="icon">★</span><span class="tab-label">Избранные</span></div>
+            <div class="tab"><span class="icon">▣</span><span class="tab-label">Mindustry · Основная</span></div>
+            <div class="tab"><span class="icon">▣</span><span class="tab-label">Тестовая установка</span></div>
+            <div class="tab"><span class="icon">＋</span><span class="tab-label">Добавить категорию</span></div>
+          </aside>
+          <main>
+            <div class="heading"><div><h3>Недавние</h3><p class="sub">Ссылки сохраняются, даже если внешний диск отключён.</p></div><button class="btn primary">Открыть файл…</button></div>
+            <div class="filterbar">
+              <div class="filter search">⌕ Поиск по имени или пути</div>
+              <button class="filter">Тип: все ▾</button>
+              <button class="filter">Доступность: все ▾</button>
+              <button class="filter">Сортировка: недавние ▾</button>
+            </div>
+            <div class="grid" style="margin-top:11px">
+              <section class="card">
+                <div class="card-head"><h4>Моды</h4><span class="link">Изменить вид</span></div>
+                <div class="list">
+                  <div class="row"><span class="symbol">✦</span><div class="row-main"><div class="row-title">Copper Age</div><div class="row-path">~/Mindustry/mods/copper-age</div></div><span class="status">Доступен</span><span class="link">☆</span></div>
+                  <div class="row"><span class="symbol">✦</span><div class="row-main"><div class="row-title">New Horizons</div><div class="row-path">/media/MODS/new-horizons.jar</div></div><span class="status missing">Диск отключён</span><span class="link">★</span></div>
+                </div>
+                <div class="callout">Путь не найден. Запись сохранена. Действия: «Повторить», «Найти расположение…», «Удалить из истории».</div>
+              </section>
+              <section class="card">
+                <div class="card-head"><h4>Файлы</h4><span class="link">Очистить фильтр</span></div>
+                <div class="list">
+                  <div class="row"><span class="symbol">{} </span><div class="row-main"><div class="row-title">balance.json</div><div class="row-path">/media/MODS/configs/balance.json</div></div><span class="pill">JSON</span></div>
+                  <div class="row"><span class="symbol">{} </span><div class="row-main"><div class="row-title">mod.hjson</div><div class="row-path">~/Projects/mod-a/mod.hjson</div></div><span class="pill">HJSON</span></div>
+                </div>
+                <p class="small">Файлы можно закрепить в «Избранном» и открыть повторно по сохранённому пути.</p>
+              </section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene" id="home-folders">
+      <div class="scene-kicker">03 · Дом · Папки и пользовательские категории</div>
+      <h2>Предустановленные пути — обнаруживаемые шаблоны, а не гарантии</h2>
+      <p class="scene-desc">Пользователь выбирает несколько установок Mindustry и создаёт собственные категории. Путь можно изменить; обнаруженные варианты проверяются перед открытием.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Дом · Mindustry</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <main>
+          <div class="heading"><div><h3>Каталоги модов</h3><p class="sub">Выберите установку или добавьте свой путь.</p></div><button class="btn primary">＋ Категория</button></div>
+          <div class="filterbar"><div class="filter search">⌕ Фильтр по названию или пути</div><button class="filter">По имени ▾</button><button class="filter">Показывать недоступные</button></div>
+          <div class="grid" style="margin-top:12px">
+            <section class="card">
+              <div class="card-head"><h4>Обнаруженные варианты</h4><span class="small">Проверить заново</span></div>
+              <div class="list">
+                <div class="row selected"><span class="symbol">▣</span><div class="row-main"><div class="row-title">Mindustry · Windows</div><div class="row-path">%APPDATA%/Mindustry/mods</div></div><span class="status">Найдено</span><span class="pill">Windows</span></div>
+                <div class="row"><span class="symbol">▣</span><div class="row-main"><div class="row-title">Mindustry · Linux</div><div class="row-path">~/.config/Mindustry/mods · ~/.local/share/Mindustry/mods</div></div><span class="status">Выбрать</span></div>
+                <div class="row"><span class="symbol">▣</span><div class="row-main"><div class="row-title">Mindustry · Flatpak</div><div class="row-path">~/.var/app/&lt;app-id&gt;/…/Mindustry/mods</div></div><span class="status missing">Не найдено</span></div>
+                <div class="row"><span class="symbol">▣</span><div class="row-main"><div class="row-title">Папка, выбранная пользователем</div><div class="row-path">/mnt/games/mindustry/mods</div></div><span class="status">Найдено</span><span class="link">⋯</span></div>
+              </div>
+            </section>
+            <section class="card">
+              <div class="card-head"><h4>Настройка категории</h4><span class="pill">Пользовательская</span></div>
+              <div class="fields">
+                <div class="field full"><label>Название категории</label><div class="value">Тестовая сборка</div></div>
+                <div class="field full"><label>Путь к папке модов</label><div class="value">/mnt/games/mindustry/mods</div></div>
+              </div>
+              <div class="actions" style="margin-top:10px"><button class="btn">Выбрать папку…</button><button class="btn primary">Сохранить</button></div>
+              <div class="callout">Предустановки автоматически не создают новую категорию без подтверждения. Пользователь может менять название, путь и порядок.</div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <section class="scene" id="mod-editor">
+      <div class="scene-kicker">04 · Рабочее место мода</div>
+      <h2>Навигация, документы и фильтры</h2>
+      <p class="scene-desc">Список контента и дерево файлов остаются разными представлениями. Документы — отдельные вкладки группы, а панель проекта можно расположить отдельно.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Группа A · Copper Age</span><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="tabs"><div class="tab">⌂ Дом</div><div class="tab active">✦ Copper Age</div><div class="tab unsaved">▤ copper-drill.hjson</div><div class="tab">▤ mod.json</div><div class="tab">＋</div></div>
+        <div class="split">
+          <aside class="split-nav">
+            <div class="eyebrow">Навигация · Copper Age</div>
+            <div class="row selected"><span class="symbol">▦</span><span class="row-title">Контент</span></div>
+            <div class="row"><span class="symbol">▤</span><span class="row-title">Файлы</span></div>
+            <div class="row"><span class="symbol">⌕</span><span class="row-title">Поиск</span></div>
+            <div class="list">
+              <div class="row"><span class="symbol">▰</span><div class="row-title">blocks</div></div>
+              <div class="row"><span class="symbol">▰</span><div class="row-title">items</div></div>
+              <div class="row"><span class="symbol">▰</span><div class="row-title">units</div></div>
+            </div>
+          </aside>
+          <section class="editor">
+            <div class="editor-head"><h4>Контент · Blocks</h4><div class="actions"><button class="btn">Сортировка ▾</button><button class="btn">＋ Создать</button></div></div>
+            <div class="filterbar"><div class="filter search">⌕ Поиск по имени</div><button class="filter">Тип: Blocks ▾</button><button class="filter">Статус: все ▾</button><button class="filter">Имя ↑</button></div>
+            <div class="grid" style="margin-top:10px">
+              <div class="card"><div class="row selected"><span class="symbol">▧</span><div class="row-main"><div class="row-title">copper-drill</div><div class="row-path">content/blocks/copper-drill.hjson</div></div><span class="status">●</span></div><p class="small">Drill · production · 2×2</p></div>
+              <div class="card"><div class="row"><span class="symbol">▧</span><div class="row-main"><div class="row-title">copper-wall</div><div class="row-path">content/blocks/copper-wall.json</div></div></div><p class="small">Wall · defense · 1×1</p></div>
+            </div>
+            <div class="callout">Мод: JSON/HJSON · Версия Mindustry: не определена · Совместимость проверяется по доступным данным · Java-моды: запланированы, пока не поддерживаются</div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene" id="open-choice">
+      <div class="scene-kicker">05 · Неоднозначное открытие</div>
+      <h2>Спросить, что пользователь хотел открыть</h2>
+      <p class="scene-desc">Если выбран манифест, он может быть документом для редактирования или точкой входа в мод. Не выбирать режим незаметно.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Открытие файла</span></div>
+        <main>
+          <section class="card" style="max-width:640px;margin:auto">
+            <div class="scene-kicker">Требуется выбор</div>
+            <h3 style="margin:5px 0 7px;font-size:17px">Как открыть `mod.json`?</h3>
+            <p class="sub">Файл похож на манифест Mindustry. Можно открыть весь мод или работать только с этим JSON-документом.</p>
+            <div class="list" style="margin-top:13px">
+              <div class="row selected"><span class="symbol">✦</span><div class="row-main"><div class="row-title">Открыть как мод</div><div class="row-path">Загрузить соседние файлы и контент из папки мода.</div></div></div>
+              <div class="row"><span class="symbol">{ }</span><div class="row-main"><div class="row-title">Открыть как JSON-файл</div><div class="row-path">Открыть только файл в самостоятельном редакторе.</div></div></div>
+            </div>
+            <div class="actions" style="justify-content:flex-end;margin-top:13px"><button class="btn">Отмена</button><button class="btn primary">Продолжить</button></div>
+          </section>
+        </main>
+      </div>
+    </section>
+
+    <section class="scene" id="standalone">
+      <div class="scene-kicker">06 · Самостоятельный документ</div>
+      <h2>Любой JSON/HJSON — без обязательного контекста мода</h2>
+      <p class="scene-desc">Текстовый режим и сохранение доступны всегда. Схема Mindustry, значения по умолчанию и текстурный preview появляются только при установленном контексте.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Группа B · balance.json</span></div>
+        <div class="tabs"><div class="tab active unsaved">▤ balance.json</div><div class="tab">⌕ Поиск</div><div class="tab">＋</div></div>
+        <div class="editor">
+          <div class="editor-head"><h4>balance.json</h4><span class="status missing">Не в контексте мода · Не сохранено</span></div>
+          <div class="segmented"><span class="on">Исходный текст</span><span>Проверка синтаксиса</span><span class="small">Схема Mindustry недоступна</span></div>
+          <pre class="code">{
+  <span class="key">"customRule"</span>: {
+    <span class="key">"enabled"</span>: <span class="str">true</span>,
+    <span class="key">"factor"</span>: 1.25
+  }
+}</pre>
+          <div class="callout">Можно открыть любой JSON/HJSON. Для форм-редактора и ресурсов мода выберите «Привязать к моду…».</div>
+          <div class="actions" style="justify-content:flex-end;margin-top:10px"><button class="btn">Привязать к моду…</button><button class="btn primary">Сохранить</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene" id="mobile">
+      <div class="scene-kicker">07 · Мобильная сборка</div>
+      <h2>Тот же стиль, отдельный поток управления</h2>
+      <p class="scene-desc">Нижняя навигация, крупные сенсорные действия, последовательный переход от списка к документу. Мобильная версия включает не только адаптивный экран, но и реальные файловые операции.</p>
+      <div class="desktop-mobile">
+        <section class="card">
+          <div class="card-head"><h4>Мобильный редактор файла</h4><span class="pill">сенсорная цель</span></div>
+          <div class="list">
+            <div class="row"><span class="symbol">‹</span><div class="row-main"><div class="row-title">Назад к списку файлов</div><div class="row-path">Отдельное действие, не скрытая зона перетаскивания</div></div></div>
+            <div class="row"><span class="symbol">▤</span><div class="row-main"><div class="row-title">copper-drill.hjson</div><div class="row-path">Мод: Copper Age · Изменён</div></div><span class="status missing">●</span></div>
+            <div class="row"><span class="symbol">☰</span><div class="row-main"><div class="row-title">Выбор вида</div><div class="row-path">Форма · Текст · Текстуры</div></div><span class="pill">35–48 px</span></div>
+            <div class="row"><span class="symbol">⇧</span><div class="row-main"><div class="row-title">Открыть файл…</div><div class="row-path">Системный picker / разрешённый доступ</div></div></div>
+            <div class="row"><span class="symbol">✓</span><div class="row-main"><div class="row-title">Сохранить</div><div class="row-path">Явное подтверждение результата</div></div></div>
+          </div>
+          <div class="callout">Проверить экспорт Godot .NET, файловый picker, разрешения, большие каталоги и программную клавиатуру на реальном устройстве/эмуляторе.</div>
+        </section>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-top"></div>
+            <div class="phone-header"><span class="brand-mark">M</span><strong>MMC · Дом</strong><span class="grow"></span><span class="icon">⚙</span></div>
+            <div class="phone-content">
+              <h3>Дом</h3>
+              <p>Недавние проекты и каталоги модов</p>
+              <div class="segmented"><span class="on">Недавние</span><span>★ Избранные</span><span>Mindustry</span></div>
+              <button class="btn primary" style="width:100%">Открыть мод или файл…</button>
+              <div class="grid" style="margin-top:10px">
+                <section class="card">
+                  <div class="card-head"><h4>Недавние</h4><span class="link">Фильтр</span></div>
+                  <div class="list">
+                    <div class="row"><span class="symbol">✦</span><div class="row-main"><div class="row-title">Copper Age</div><div class="row-path">Доступен</div></div><span class="link">★</span></div>
+                    <div class="row"><span class="symbol">✦</span><div class="row-main"><div class="row-title">New Horizons</div><div class="row-path">Путь сохранён</div></div><span class="status missing">Отключён</span></div>
+                  </div>
+                </section>
+                <section class="card">
+                  <div class="card-head"><h4>Категории</h4><span class="link">＋</span></div>
+                  <div class="list">
+                    <div class="row"><span class="symbol">▣</span><div class="row-title">Mindustry</div></div>
+                    <div class="row"><span class="symbol">▣</span><div class="row-title">Тестовая папка</div></div>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <nav class="bottom-nav"><div class="on"><b>⌂</b>Дом</div><div><b>▦</b>Моды</div><div><b>⌕</b>Поиск</div><div><b>⚙</b>Настройки</div></nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene" id="languages">
+      <div class="scene-kicker">08 · Настройки · Язык</div>
+      <h2>English встроен как аварийный offline fallback</h2>
+      <p class="scene-desc">Удалённая версия языкового пакета обновляется в фоне только после проверки. При отсутствии сети выбранный перевод продолжает работать, а недостающие строки берутся из встроенного английского.</p>
+      <div class="window">
+        <div class="titlebar"><span class="brand-mark">M</span><strong>MMC</strong><span class="current">Настройки · Язык</span></div>
+        <div class="app-body">
+          <aside class="activity">
+            <div class="activity-label">Настройки</div>
+            <div class="tab"><span class="icon">⚙</span><span class="tab-label">Основные</span></div>
+            <div class="tab selected"><span class="icon">文</span><span class="tab-label">Язык</span></div>
+            <div class="tab"><span class="icon">ⓘ</span><span class="tab-label">Информация</span></div>
+          </aside>
+          <main>
+            <div class="heading"><div><h3>Язык интерфейса</h3><p class="sub">Доступность: встроенный пакет → кэш → GitHub.</p></div><button class="btn">Проверить обновления</button></div>
+            <div class="two-split" style="margin-top:12px">
+              <section class="card">
+                <div class="card-head"><h4>Доступные пакеты</h4><span class="pill">Обновление в фоне</span></div>
+                <div class="list">
+                  <div class="row"><span class="symbol">EN</span><div class="row-main"><div class="row-title">English · Основной резервный язык</div><div class="row-path">Встроенная копия · Всегда доступна offline</div></div><span class="status">Bundled</span></div>
+                  <div class="row selected"><span class="symbol">RU</span><div class="row-main"><div class="row-title">Русский · Выбран</div><div class="row-path">Целая ревизия пакета: 1 · Синхронизация с GitHub</div></div><span class="status">Актуален</span></div>
+                  <div class="row"><span class="symbol">FR</span><div class="row-main"><div class="row-title">Français</div><div class="row-path">Пакет проверяется до установки</div></div><span class="pill">GitHub</span></div>
+                </div>
+              </section>
+              <section class="card">
+                <div class="card-head"><h4>Правила fallback</h4><span class="status">Offline готов</span></div>
+                <div class="list">
+                  <div class="row"><span class="symbol">1</span><div class="row-main"><div class="row-title">Выбранный язык</div><div class="row-path">Самый свежий проверенный пакет</div></div></div>
+                  <div class="row"><span class="symbol">2</span><div class="row-main"><div class="row-title">Встроенный English</div><div class="row-path">Резерв для отсутствующих ключей и offline</div></div></div>
+                  <div class="row"><span class="symbol">3</span><div class="row-main"><div class="row-title">Исходный ключ</div><div class="row-path">Последний случай, видимый при проверке локализации</div></div></div>
+                </div>
+                <div class="callout">Скачивание не блокирует запуск. Повреждённая или старая копия не заменяет последнюю рабочую версию.</div>
+              </section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+
+    <footer>Статический концептуальный макет · Стилистика Mindustry сохранена как направление, функциональность не подключена.</footer>
+  </div>
+</body>
+</html>

@@ -1,17 +1,19 @@
 @tool
 extends HBoxContainer
+class_name FilePathElement
 
+@export_group("Path")
 @export var path: String = "":
 	set = _set_path
 
 func _ready() -> void:
 	upd()
 
-func _set_path(_path)->void:
-	path = _path
+func _set_path(value: String) -> void:
+	path = value
 	upd()
 
-func upd():
+func upd() -> void:
 	var CopyButton = get_node_or_null("Copy")
 	if not CopyButton:
 		return

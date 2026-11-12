@@ -74,6 +74,83 @@ The project uses `Godot.NET.Sdk/4.7.2` and targets `net8.0`.
 5. Build the C# project with the editor's **Build** button (hammer icon).
 6. Press **F6** to run the current scene, or **F5** to run the project.
 
+### UI and tab workspace test scene
+
+Open `scenes/test_ui.tscn` and press **F6** to launch the UI test polygon. It
+includes independently styled tab and content panels, empty and content-backed
+tabs, draggable/reorderable groups, orientation and compactness controls, plus
+a gallery of the existing Mindustry-styled controls. Drag a tab over another
+group's tab strip to insert it there, or over its content area to dock it. Drag
+a group header over another group to reorder the panels; the target highlights
+while dragging. The test toolbar also has a panel-reorder action.
+
+Run the tab workspace behavior checks headlessly from the project root:
+
+```sh
+godot-mono --headless --path . -s res://tests/test_tab_workspace.gd
+```
+
+Use the Godot .NET executable for your platform (named `godot-mono` in some
+Linux distributions).
+
+Run the widget preview/property checks in the project scene tree, so the
+project autoloads used by localization and theme colors are available:
+
+```sh
+godot-mono --headless --path . res://tests/test_widgets.tscn
+```
+
+### Editing custom widgets
+
+MMC widgets are built from native Godot `Control` nodes and `@tool` GDScript.
+Their exported values are grouped in the Inspector, and supported properties
+update the scene preview as they change. Prefer native Controls, exported
+resources/node references, and property setters for reusable UI. An
+`EditorPlugin`/`EditorInspectorPlugin` is appropriate when a widget needs a
+custom inspector, creation workflow, or dock; a compiled Godot engine module
+is a separate engine-fork/build decision and is not required for editor-ready
+MMC controls.
+
+To author tabs in a `TabWorkspace`, select it in the scene tree and add entries
+to its **Tab Pages** array in the Inspector. Increase the array size, create a
+`TabWorkspacePage` resource for each entry, set its ID/title/group, and assign
+optional `PackedScene` scenes for page content and tab appearance. Page content
+must have a `Control` root. A custom tab scene also has a `Control` root; use
+`TabWorkspaceTab` as its root script to receive `tab_title`, `tab_icon`,
+`tab_selected`, `tab_modified`, and `compact_mode` state. Custom tab scenes are
+visual-only during dragging; selection, dragging, and closing are handled by the
+workspace. The `scenes/test_ui.tscn` polygon demonstrates a custom tab and
+multiple groups. Changes to page resources rebuild the editor preview.
+
+`MindSettingRow` is the reusable settings-row widget. Set its title and optional
+description in the Inspector, then assign a `PackedScene` for the right-side
+control. The control can be a checkbox, selector, slider, or another custom
+Control; the settings page remains responsible for binding its value and
+signals. For a composite control with internal child nodes, assign its scene
+(`PackedScene`) unless the control explicitly builds its internal layout when
+created from its script type. `MindButton`, `MindButtonRTL`, `MindIButton`, and
+`MindIButtonRTL` support both workflows: adding any of them as a node type
+creates its internal layout and fills the child references. Generated internal
+controls are locked in the editor canvas so they do not obstruct selecting or
+moving the parent button; at runtime they ignore mouse input so the parent
+button receives it.
+
+Each workspace group has a separate tab panel and content panel with shared
+group identity, exposed through `get_tab_panel()`, `get_content_panel()`, and
+`get_bound_group_id()`. Assign `tab_panel_stylebox` and
+`content_panel_stylebox` independently in the Inspector to style them, while
+keeping them bound to the same group. Groups can be reordered through
+`move_group()` or by dragging their headers over another group. Dragging a tab
+over another tab strip shows an insertion marker. Hovering over a group's
+content area highlights the panel; dropping there appends the tab to that
+group. Common button text, spacing, margins, alignment, and icon settings are
+exposed on the parent button.
+
+Unassigned parent text fields preserve text authored on the internal labels.
+Assigning a value overrides it, including an empty string to clear the label.
+Layout properties enable the parent layout override when edited, while leaving
+child-authored margins and alignment intact by default.
+
 ## Build from the command line
 
 From the repository root, run:

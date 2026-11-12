@@ -2,34 +2,235 @@
 extends Button
 class_name MindIButtonRTL
 
-@export var left_icon: MindRTL
-@export var label: MindRTL
-@export var right_icon: MindRTL
+@export_group("Content")
+@export var left_icon: MindRTL:
+	set(value):
+		_disconnect_label(left_icon)
+		left_icon = value
+		_connect_label(left_icon)
+		upd()
+@export var label: MindRTL:
+	set(value):
+		_disconnect_label(label)
+		label = value
+		_connect_label(label)
+		upd()
+@export var right_icon: MindRTL:
+	set(value):
+		_disconnect_label(right_icon)
+		right_icon = value
+		_connect_label(right_icon)
+		upd()
+
+@export_multiline var real_text: String = "[emb]MindIButtonRTL":
+	set(value):
+		real_text = value
+		_real_text_assignment_count += 1
+		_real_text_was_set = is_instance_valid(label) or _real_text_assignment_count > 1
+		_sync_child_text()
+
+@export var real_text_icon_left: String = "[emb offset=3]0":
+	set(value):
+		real_text_icon_left = value
+		_real_text_icon_left_assignment_count += 1
+		_real_text_icon_left_was_set = is_instance_valid(left_icon) \
+			or _real_text_icon_left_assignment_count > 1
+		_sync_child_text()
+
+@export var real_text_icon_right: String = "[emb offset=3]0":
+	set(value):
+		real_text_icon_right = value
+		_real_text_icon_right_assignment_count += 1
+		_real_text_icon_right_was_set = is_instance_valid(right_icon) \
+			or _real_text_icon_right_assignment_count > 1
+		_sync_child_text()
+
+@export_group("Layout")
+@export_enum("Left", "Center", "Right") var label_alignment: int = 1:
+	set(value):
+		label_alignment = clampi(value, 0, 2)
+		override_internal_layout = true
+		_sync_layout()
+
+@export_range(0, 64, 1, "or_greater") var content_separation: int = 5:
+	set(value):
+		content_separation = maxi(value, 0)
+		override_internal_layout = true
+		_sync_layout()
+
+@export var content_margins: Vector4i = Vector4i(15, 15, 15, 15):
+	set(value):
+		content_margins = value
+		override_internal_layout = true
+		_sync_layout()
+
+@export_range(1, 128, 1, "or_greater") var font_size: int = 16:
+	set(value):
+		font_size = maxi(value, 1)
+		override_internal_layout = true
+		_sync_layout()
+
+@export_range(1, 128, 1, "or_greater") var icon_size: int = 26:
+	set(value):
+		icon_size = maxi(value, 1)
+		override_internal_layout = true
+		_sync_layout()
+
+@export var override_internal_layout := false:
+	set(value):
+		override_internal_layout = value
+		_sync_layout()
+
+const INTERNAL_LAYOUT: PackedScene = preload("res://widgets/mind_i_button_rtl_content.tscn")
 
 var regex = RegEx.new()
+var _real_text_was_set := false
+var _real_text_icon_left_was_set := false
+var _real_text_icon_right_was_set := false
+var _real_text_assignment_count := 0
+var _real_text_icon_left_assignment_count := 0
+var _real_text_icon_right_assignment_count := 0
+
+
+func _init() -> void:
+	_real_text_was_set = false
+	_real_text_icon_left_was_set = false
+	_real_text_icon_right_was_set = false
+	_real_text_assignment_count = 0
+	_real_text_icon_left_assignment_count = 0
+	_real_text_icon_right_assignment_count = 0
+
+
+func _enter_tree() -> void:
+	_ensure_internal_layout()
+	_resolve_internal_nodes()
+	_set_internal_mouse_filter()
+	_hide_native_button_text()
 
 func _ready() -> void:
 	regex.compile("\\[.*?\\]")
+	_resolve_internal_nodes()
+	_set_internal_mouse_filter()
+	_hide_native_button_text()
+	_connect_label(left_icon)
+	_connect_label(label)
+	_connect_label(right_icon)
+	_sync_child_text()
+	_sync_layout()
 	upd()
 
-func upd():
-	if label:
+func _ensure_internal_layout() -> void:
+	if is_instance_valid(get_node_or_null("MarginContainer")):
+		return
+	var layout := INTERNAL_LAYOUT.instantiate()
+	add_child(layout)
+	if Engine.is_editor_hint():
+		_lock_internal_layout(layout)
+
+func _lock_internal_layout(node: Node) -> void:
+	node.set_meta("_edit_lock_", true)
+	for child: Node in node.get_children():
+		_lock_internal_layout(child)
+
+func _resolve_internal_nodes() -> void:
+	if not is_instance_valid(left_icon):
+		left_icon = get_node_or_null("MarginContainer/HBoxContainer/LeftIcon") as MindRTL
+	if not is_instance_valid(label):
+		label = get_node_or_null("MarginContainer/HBoxContainer/Label") as MindRTL
+	if not is_instance_valid(right_icon):
+		right_icon = get_node_or_null("MarginContainer/HBoxContainer/RightIcon") as MindRTL
+
+func _set_internal_mouse_filter() -> void:
+	var internal_layout := get_node_or_null("MarginContainer")
+	if is_instance_valid(internal_layout):
+		_set_mouse_filter_recursive(internal_layout)
+
+func _set_mouse_filter_recursive(node: Node) -> void:
+	if node is Control:
+		node.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for child: Node in node.get_children():
+		_set_mouse_filter_recursive(child)
+
+func _hide_native_button_text() -> void:
+	var transparent := Color(1, 1, 1, 0)
+	for color_name: StringName in [
+		&"font_color",
+		&"font_focus_color",
+		&"font_pressed_color",
+		&"font_hover_color",
+		&"font_hover_pressed_color",
+		&"font_disabled_color",
+		&"font_outline_color",
+	]:
+		add_theme_color_override(color_name, transparent)
+
+func _connect_label(target: MindRTL) -> void:
+	if is_instance_valid(target) \
+	and not target.display_text_changed.is_connected(_on_label_text_changed):
+		target.display_text_changed.connect(_on_label_text_changed)
+
+func _disconnect_label(target: MindRTL) -> void:
+	if is_instance_valid(target) \
+	and target.display_text_changed.is_connected(_on_label_text_changed):
+		target.display_text_changed.disconnect(_on_label_text_changed)
+
+func _on_label_text_changed(_value: String) -> void:
+	upd()
+
+func upd() -> void:
+	if is_instance_valid(label):
 		if not regex.is_valid():
 			regex.compile("\\[.*?\\]")
 		var _text = ""
 		
-		if left_icon.visible:
+		if is_instance_valid(left_icon) and left_icon.visible:
 			_text += left_icon.text
 		if label.visible:
-			if left_icon.visible:
+			if is_instance_valid(left_icon) and left_icon.visible:
 				_text += " "
 			_text += label.text
-		if right_icon.visible:
+		if is_instance_valid(right_icon) and right_icon.visible:
 			if label.visible:
 				_text += " "
 			_text += right_icon.text
 		
-		text = regex.sub(_text, "", true)
+		text = regex.sub(_text.strip_edges(), "", true)
+
+func _sync_child_text() -> void:
+	if is_instance_valid(left_icon) \
+	and _real_text_icon_left_was_set:
+		left_icon.real_text = real_text_icon_left
+		left_icon.visible = true
+	if is_instance_valid(label) and _real_text_was_set:
+		label.real_text = real_text
+	if is_instance_valid(right_icon) \
+	and _real_text_icon_right_was_set:
+		right_icon.real_text = real_text_icon_right
+		right_icon.visible = true
+	upd()
+
+func _sync_layout() -> void:
+	if not override_internal_layout:
+		return
+	var row := get_node_or_null("MarginContainer/HBoxContainer") as HBoxContainer
+	if is_instance_valid(row):
+		row.add_theme_constant_override("separation", content_separation)
+	var margin := get_node_or_null("MarginContainer") as MarginContainer
+	if is_instance_valid(margin):
+		margin.add_theme_constant_override("margin_left", content_margins.x)
+		margin.add_theme_constant_override("margin_top", content_margins.y)
+		margin.add_theme_constant_override("margin_right", content_margins.z)
+		margin.add_theme_constant_override("margin_bottom", content_margins.w)
+	if is_instance_valid(label):
+		label.horizontal_alignment = [
+			HORIZONTAL_ALIGNMENT_LEFT,
+			HORIZONTAL_ALIGNMENT_CENTER,
+			HORIZONTAL_ALIGNMENT_RIGHT,
+		][label_alignment]
+		label.add_theme_font_size_override("normal_font_size", font_size)
+	for icon: MindRTL in [left_icon, right_icon]:
+		if is_instance_valid(icon):
+			icon.add_theme_font_size_override("normal_font_size", icon_size)
 
 func _on_label_finished() -> void:
 	upd()

@@ -1,82 +1,58 @@
-[gd_scene format=3 uid="uid://stbm820mvq0y"]
+[gd_scene format=3 uid="uid://dhhwrclk6p15s"]
 
-[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_hfxbw"]
-[ext_resource type="PackedScene" uid="uid://bb2wr3gygyr44" path="res://widgets/mind_button_rtl.tscn" id="2_mu4oa"]
-[ext_resource type="PackedScene" uid="uid://celq6cmla6euc" path="res://widgets/mind_button.tscn" id="3_hfxbw"]
-[ext_resource type="PackedScene" uid="uid://lmrimsly8wdg" path="res://widgets/mind_i_button_rtl.tscn" id="3_lc104"]
-[ext_resource type="PackedScene" uid="uid://cr6bawc8angch" path="res://widgets/mind_i_button.tscn" id="4_agviq"]
+[ext_resource type="Theme" uid="uid://bxc3gmqn4ue45" path="res://themes/Mindustry.tres" id="1_theme"]
+[ext_resource type="Script" uid="uid://v1tfl2g1hl2l" path="res://scenes/test_ui.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://c4u6u88kojwwy" path="res://widgets/tab_workspace.gd" id="3_workspace"]
+[ext_resource type="Script" uid="uid://bfmil84e3q8me" path="res://widgets/tab_workspace_page.gd" id="4_page"]
+[ext_resource type="PackedScene" path="res://tests/tab_content/home_page.tscn" id="5_home"]
+[ext_resource type="PackedScene" path="res://tests/tab_content/code_page.tscn" id="6_code"]
+[ext_resource type="PackedScene" path="res://tests/tab_content/custom_tab.tscn" id="7_custom_tab"]
 
-[node name="TestUi" type="Control" unique_id=1687013704]
+[sub_resource type="Resource" id="TabWorkspacePage_home"]
+script = ExtResource("4_page")
+tab_id = &"home"
+title = "Дом"
+icon = "⌂"
+closable = false
+selected_on_start = true
+tab_scene = ExtResource("7_custom_tab")
+content_scene = ExtResource("5_home")
+
+[sub_resource type="Resource" id="TabWorkspacePage_empty"]
+script = ExtResource("4_page")
+tab_id = &"empty"
+title = "Пустая вкладка"
+icon = "○"
+
+[sub_resource type="Resource" id="TabWorkspacePage_code"]
+script = ExtResource("4_page")
+tab_id = &"code"
+title = "Редактор"
+group_id = &"editor"
+group_title = "Редактор"
+icon = "✎"
+content_scene = ExtResource("6_code")
+
+[sub_resource type="Resource" id="Resource_wxsyg"]
+script = ExtResource("4_page")
+metadata/_custom_type_script = "uid://bfmil84e3q8me"
+
+[node name="TestUi" type="Control" unique_id=200004930]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_hfxbw")
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
 
-[node name="TabContainer" type="TabContainer" parent="." unique_id=1623617474]
+[node name="TabWorkspace" type="Control" parent="." unique_id=101567121]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
-
-[node name="Кнопки" type="VBoxContainer" parent="TabContainer" unique_id=2014139230]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="Button" type="Button" parent="TabContainer/Кнопки" unique_id=1541992188]
-layout_mode = 2
-text = "Button"
-
-[node name="Button_ButtonRect" type="Button" parent="TabContainer/Кнопки" unique_id=471957049]
-layout_mode = 2
-theme_type_variation = &"ButtonRect"
-text = "Button.ButtonRect"
-
-[node name="Button_ButonRectTiny" type="Button" parent="TabContainer/Кнопки" unique_id=556118385]
-layout_mode = 2
-theme_type_variation = &"ButtonRectTiny"
-text = "Button.ButtonRectTiny"
-
-[node name="Button_Unborder" type="Button" parent="TabContainer/Кнопки" unique_id=249922721]
-layout_mode = 2
-theme_type_variation = &"ButtonUnborder"
-text = "Button.ButtonUnborder"
-
-[node name="Button_UnborderTiny" type="Button" parent="TabContainer/Кнопки" unique_id=1695311227]
-layout_mode = 2
-theme_type_variation = &"ButtonUnborderTiny"
-text = "Button.ButtonUnborderTiny"
-
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Кнопки" unique_id=78303329]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="MindButtonRTL" parent="TabContainer/Кнопки" unique_id=529493969 instance=ExtResource("2_mu4oa")]
-layout_mode = 2
-
-[node name="MindIButtonRTL" parent="TabContainer/Кнопки" unique_id=168072722 instance=ExtResource("3_lc104")]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="TabContainer/Кнопки" unique_id=3214385]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="MindButton" parent="TabContainer/Кнопки" unique_id=1135730542 instance=ExtResource("3_hfxbw")]
-layout_mode = 2
-
-[node name="MindIButton" parent="TabContainer/Кнопки" unique_id=709750827 instance=ExtResource("4_agviq")]
-layout_mode = 2
-
-[node name="CodeEdit" type="CodeEdit" parent="TabContainer" unique_id=524636307]
-layout_mode = 2
-text = "{
-	TETS: OHOHO
-}"
-gutters_draw_line_numbers = true
-metadata/_tab_index = 1
+script = ExtResource("3_workspace")
+pages = Array[ExtResource("4_page")]([SubResource("TabWorkspacePage_home"), SubResource("TabWorkspacePage_empty"), SubResource("TabWorkspacePage_code"), SubResource("Resource_wxsyg")])

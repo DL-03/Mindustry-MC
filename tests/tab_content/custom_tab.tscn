@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://widgets/tab_workspace_tab.gd" id="1_tab"]
+
+[node name="CustomTab" type="PanelContainer"]
+custom_minimum_size = Vector2(108, 34)
+script = ExtResource("1_tab")
+
+[node name="Content" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Icon" type="Label" parent="Content"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+
+[node name="Modified" type="Label" parent="Content"]
+layout_mode = 2
+text = "●"

@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://widgets/mind_setting_row.tscn" id="1_setting_row"]
+[ext_resource type="PackedScene" path="res://widgets/mind_check_box.tscn" id="2_checkbox"]
+
+[node name="HomePage" type="MarginContainer"]
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Редактируемое содержимое страницы"
+
+[node name="Description" type="Label" parent="Content"]
+layout_mode = 2
+text = "Эту сцену можно открыть и менять обычными инструментами Godot, не включая Editable Children у TabWorkspace."
+autowrap_mode = 3
+
+[node name="NameField" type="LineEdit" parent="Content"]
+layout_mode = 2
+placeholder_text = "Имя модификации"
+
+[node name="Action" type="Button" parent="Content"]
+layout_mode = 2
+theme_type_variation = &"ButtonRect"
+text = "Демонстрационное действие"
+
+[node name="SettingRow" parent="Content" instance=ExtResource("1_setting_row")]
+layout_mode = 2
+title_text = "Универсальная строка"
+description_text = "Текст, пояснение и сцена контрола настраиваются отдельно."
+control_scene = ExtResource("2_checkbox")
